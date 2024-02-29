@@ -3,7 +3,20 @@
 
 Demo IFC and Digital Twin web application powered by 3dverse.
 
-### Getting started
-`npm install`
+### 3dverse Console setup
+- Create a 3dverse account at https://console.3dverse.com/
+- Upload your IFC file
 
-`npm run dev`
+### Preprocess IFC data
+```
+cd public/scripts
+python create_json.py
+python post_process.py
+```
+
+### Getting started
+
+```
+npm install
+npm run dev
+```
