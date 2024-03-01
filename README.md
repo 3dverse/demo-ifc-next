@@ -26,13 +26,13 @@ This should open your browser. If it's not, open your browser and use http://loc
 - Create a Project from the template **Empty** - *Start from scratch*
 - On the left pane select *Asset Browser* and then from the file explorer you see on the screen, go to the *Public* folder
 - Once in the public folder, upload your IFC file
-You will see a `Main Scene` element appears. Click on it and then on the right pane click on the `Asset UUID` section. This will copy the UUID of your scene which will be of use for the next step. 
+You will see a *Main Scene* element appears. Click on it and then on the right pane click on the *Asset UUID* section. This will copy the UUID of your scene which will be of use for the next step. 
 
 ### Get access to your Project and your scene
 To get access to your Project and your scene you need to get a token for all and pass it in your web application config file.
 #### Scene UUID
 If you already copied your Scene UUID you can skip the next instruction. Otherwise:
-- Go to *Asset Browser* -> *Public* folder, and click on `Main Scene`. On the right pane, click on the Asset UUID section to copy it.
+- Go to *Asset Browser* -> *Public* folder, and click on *Main Scene*. On the right pane, click on the *Asset UUID* section to copy it.
 
 #### Public token
 - Go to *API Access* and copy your public token
