@@ -13,7 +13,8 @@ The framework used is Next.js and the IFC functions have been developed using If
 To run this repo locally, open your command line and paste:
 ```
 git clone https://github.com/3dverse/demo-ifc-next
-cd public/scripts && python create_json.py && python post_process.py
+cd public/scripts
+python create_json.py && python post_process.py && python && create_energy_data.py
 cd ..
 npm install
 npm run dev
