@@ -24,7 +24,7 @@ npm run dev
 ### 3dverse Console setup
 - Create a 3dverse account at https://console.3dverse.com/
 - Create a Project from the template **Empty** - *Start from scratch*
-- On the left pane select *Asset Browser* and then from the file explorer you see on the screen, select the *Public* folder
+- On the left pane select *Asset Browser* and then from the file explorer you see on the screen, go to the *Public* folder
 - Once in the public folder, upload your IFC file
 
 ### Preprocess IFC data
