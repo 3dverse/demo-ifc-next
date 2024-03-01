@@ -51,11 +51,11 @@ If you already copied your Scene UUID you can skip the next instruction. Otherwi
 ```
 git clone https://github.com/3dverse/demo-ifc-next
 ```
-- Remove all the files in `public/data/ifc`
-- Remove all the files in `public/data/json`
-- Place your IFC file in `public/data/ifc` and run the following commands:
+- Remove all the files in `public\data\ifc`
+- Remove all the files in `public\data\json`
+- Place your IFC file in `public\data\ifc` and run the following commands:
 ```
-cd demo-ifc-next/public/scripts
+cd demo-ifc-next\public\scripts
 python create_json.py && python post_process.py && python && create_energy_data.py
 cd ..
 ```
