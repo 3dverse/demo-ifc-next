@@ -47,12 +47,13 @@ If you already copied your Scene UUID you can skip the next instruction. Otherwi
 - Edit this line with the Scene UUID you just copied: `export const publicToken = %YOUR_PUBLIC_TOKEN%;`
 
 ### Preprocess your IFC file
-- Clone the repository
+- Delete the default data
 ```
 git clone https://github.com/3dverse/demo-ifc-next
+cd demo-ifc-next\public
+del /F /Q public\data\ifc\*.*
+del /F /Q public\data\json\*.*
 ```
-- Remove all the files in `public\data\ifc`
-- Remove all the files in `public\data\json`
 - Place your IFC file in `public\data\ifc` and run the following commands:
 ```
 cd demo-ifc-next\public\scripts
