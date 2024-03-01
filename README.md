@@ -19,6 +19,13 @@ npm run dev
 ```
 This should open your browser. If it's not, open your browser and use http://localhost:3000/.
 ## Getting started with your own IFC file(s)
+
+### Prerequisites
+#### ifcopenshell-python
+`pip install ifcopenshell`
+#### Node.js
+https://nodejs.org/en/download/current
+
 ### 3dverse Console setup
 - Create a 3dverse account at https://console.3dverse.com/
 - Create a Project from the template **Empty** - *Start from scratch*
