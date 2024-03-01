@@ -35,7 +35,7 @@ If you already copied your Scene UUID you can skip the next instruction. Otherwi
 #### Public token
 - Go to *API Access* and copy your public token
 
-### Preprocess IFC data
+### Preprocess your IFC file
 Place your IFC file in `public/data/ifc` and run the following commands:
 ```
 cd public/scripts
