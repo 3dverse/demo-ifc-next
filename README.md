@@ -22,7 +22,9 @@ This should open your browser. If it's not, open your browser and use http://loc
 
 ### Prerequisites
 #### ifcopenshell-python
-```pip install ifcopenshell```
+```
+pip install ifcopenshell
+```
 #### Node.js
 https://nodejs.org/en/download/current
 
