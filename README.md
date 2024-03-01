@@ -9,6 +9,16 @@ The framework used is Next.js and the IFC functions have been developed using If
 
 ***The whole 3D rendering part of the application is handled by 3dverse, and the tools to manipulate/modify/query your 3D scene are provided by its SDK.***
 
+To run this repo locally, open your command line and paste:
+```
+git clone
+cd public/scripts && python create_json.py && python post_process.py
+cd ..
+npm install
+npm run dev
+```
+
+
 ### 3dverse Console setup
 - Create a 3dverse account at https://console.3dverse.com/
 - Create a Project from the template **Empty** - *Start from scratch*
