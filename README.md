@@ -36,6 +36,7 @@ If you already copied your Scene UUID you can skip the next instruction. Otherwi
 - Go to *API Access* and copy your public token
 
 ### Preprocess IFC data
+Place your IFC file in `public/data/ifc` and run the following commands:
 ```
 cd public/scripts
 python create_json.py && python post_process.py && python && create_energy_data.py
