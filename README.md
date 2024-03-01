@@ -40,7 +40,8 @@ If you already copied your Scene UUID you can skip the next instruction. Otherwi
 ### Preprocess your IFC file
 Place your IFC file in `public/data/ifc` and run the following commands:
 ```
-cd public/scripts
+git clone https://github.com/3dverse/demo-ifc-next
+cd demo-ifc-next/public/scripts
 python create_json.py && python post_process.py && python && create_energy_data.py
 cd ..
 ```
