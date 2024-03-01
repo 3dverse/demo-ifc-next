@@ -1,6 +1,7 @@
 import { useState, useCallback, memo } from "react";
 import dynamic from "next/dynamic";
 
+import ifcInfo from "../../public/data/json/ifcInfo.json";
 import { euid2guid } from "../utils/idsConverter";
 
 import { SidePanel } from "@/components/SidePanel";
@@ -16,6 +17,7 @@ export const Canvas = dynamic(() => import("@/components/Canvas").then((mod) => 
 export const Main = memo(() => {
     const [guid, setGuid] = useState("");
     
+    const ifcData = ifcInfo as object;
     const handleChange: Function = useCallback(async (event: any) => {
         const target = await SDK3DVerse.engineAPI.castScreenSpaceRay(event.clientX, event.clientY);
         if (!target.pickedPosition){
@@ -23,7 +25,11 @@ export const Main = memo(() => {
             return;
         } 
         const entity = target.entity;
-        setGuid(euid2guid(entity.getParent().getEUID()));
+        const guid = euid2guid(entity.getParent().getEUID());
+        if (guid in ifcData){
+            setGuid(euid2guid(entity.getParent().getEUID()));
+        }
+        
     }, []);
 
     return (

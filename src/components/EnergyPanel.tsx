@@ -20,52 +20,57 @@ export const EnergyPanel = ({ test }: { test: string }) => {
         const storeys_ = ifctypes["IfcBuildingStorey"];
 
         for (var i = 0; i < storeys_.length; i++) {
-            const storey = storeys_[i];
-            const storeyEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(storey)))[0];
+            try {
+                const storey = storeys_[i];
+                const storeyEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(storey)))[0];
+                console.log(storeyEntity);
+                console.log(guid2euid(storey));
+                const children = await storeyEntity.getChildren();
 
-            const children = await storeyEntity.getChildren();
+                for (var j = 0; j < children.length; j++) {
+                    if (!types2Isolate.includes(children[j].components.debug_name.value)) {
+                        children[j].setVisibility(false);
+                    } else {
+                        children[j].setVisibility(false);
 
-            for (var j = 0; j < children.length; j++) {
-                if (!types2Isolate.includes(children[j].components.debug_name.value)) {
-                    children[j].setVisibility(false);
-                } else {
-                    children[j].setVisibility(false);
+                        const subchildren = await children[j].getChildren();
+                        for (var k = 0; k < subchildren.length; k++) {
+                            const surentity = subchildren[k];
+                            const cc = await surentity.getChildren();
 
-                    const subchildren = await children[j].getChildren();
-                    for (var k = 0; k < subchildren.length; k++) {
-                        const surentity = subchildren[k];
-                        const cc = await surentity.getChildren();
+                            for (var l = 0; l < cc.length; l++) {
+                                if (cc[l].componentList.includes("mesh_ref")) {
+                                    const entity = cc[l];
+                                    entity.setVisibility(true);
+                                    const entityGuid = euid2guid(entity.getParent().getEUID());
 
-                        for (var l = 0; l < cc.length; l++) {
-                            if (cc[l].componentList.includes("mesh_ref")) {
-                                const entity = cc[l];
-                                entity.setVisibility(true);
-                                const entityGuid = euid2guid(entity.getParent().getEUID());
+                                    const charge = energyData[entityGuid];
 
-                                const charge = energyData[entityGuid];
+                                    if (charge) {
+                                        const color = getValueColor(charge);
 
-                                if (charge) {
-                                    const color = getValueColor(charge);
+                                        entity.detachComponent("material_ref");
+                                        entity.attachComponent("material");
 
-                                    entity.detachComponent("material_ref");
-                                    entity.attachComponent("material");
+                                        entity.setComponent("material", {
+                                            dataJSON: {
+                                                albedo: [color[0] / 255, color[1] / 255, color[2] / 255],
+                                                opacity: 0.75,
+                                            },
+                                            isDoubleSided: true,
 
-                                    entity.setComponent("material", {
-                                        dataJSON: {
-                                            albedo: [color[0] / 255, color[1] / 255, color[2] / 255],
-                                            opacity: 0.75,
-                                        },
-                                        isDoubleSided: true,
-
-                                        shaderRef: "6d7d6861-0938-41db-9fc2-187e09504c96",
-                                    });
+                                            shaderRef: "6d7d6861-0938-41db-9fc2-187e09504c96",
+                                        });
+                                    }
+                                } else {
+                                    cc[l].setVisibility(false);
                                 }
-                            } else {
-                                cc[l].setVisibility(false);
                             }
                         }
                     }
                 }
+            } catch (error) {
+                console.log("error processing this storey");
             }
         }
     }

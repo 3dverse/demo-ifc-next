@@ -3,11 +3,10 @@ import ifcInfo from "../../public/data/json/ifcInfo.json";
 export const PropertiesPanel = ({ guid }: { guid: string }) => {
     const ifcData = ifcInfo as object;
     const entitiyProperties = ifcData[guid];
-    console.log("test")
     return (
         <>
             <aside className="card ifc-properties" >
-                {entitiyProperties.props?.Name && (
+                {entitiyProperties?.props?.Name && (
                     <>
                         <header className="card-header">
                             <h1>
