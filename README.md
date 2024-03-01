@@ -43,9 +43,9 @@ python create_json.py && python post_process.py && python && create_energy_data.
 cd ..
 ```
 
-### Getting started
-
+ ### Run the application
 ```
 npm install
 npm run dev
 ```
+This should open your browser. If it's not, open your browser and use http://localhost:3000/.
