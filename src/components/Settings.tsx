@@ -1,13 +1,13 @@
-"use client";
-import { useState } from "react";
-import { useStateContext } from "./StateContext";
+import { useState, useCallback, memo } from "react";
 import { Switch } from "@chakra-ui/react";
 
-export const Settings = () => {
+export const Settings = memo(() => {
     const [switchCameraState, setSwitchCameraState] = useState(true);
     const [switchEdgeState, setSwitchEdgeState] = useState(false);
 
-    const { basePoint } = useStateContext();
+    const getInitialPoint = useCallback(() => {
+        return SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().getGlobalTransform().position;
+    }, []);
 
     const handleCameraSwitchChange = () => {
         if (!switchCameraState) {
@@ -40,7 +40,6 @@ export const Settings = () => {
             cam.setComponent("camera", newCamComponent);
         } else {
             // Untoggle to hide the edges.
-
             const newCamComponent = {
                 ...camComponent,
                 dataJSON: {
@@ -56,7 +55,7 @@ export const Settings = () => {
     const handleReset = () => {
         SDK3DVerse.engineAPI.cameraAPI.travel(
             SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0],
-            [basePoint[0], basePoint[1], basePoint[2]],
+            getInitialPoint(),
             [0, 0, 0, 1],
             10,
         );
@@ -88,4 +87,4 @@ export const Settings = () => {
             </nav>
         </>
     );
-};
+});

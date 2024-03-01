@@ -1,23 +1,23 @@
-"use client";
-
+import ifcInfo from "../../public/data/json/ifcInfo.json";
+import ifcTypes from "../../public/data/json/ifctype2guids.json";
 import energyData from "../../public/data/json/energyData.json";
+
 import chroma from "chroma-js";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { useState } from "react";
-import { useStateContext } from "./StateContext";
 import { guid2euid, euid2guid } from "../utils/idsConverter";
 
 Chart.register(CategoryScale);
 
 export const EnergyPanel = ({ test }: { test: string }) => {
-    const { ifcData }: any = useStateContext();
-    const { ifcType2Guids }: any = useStateContext();
-    const [localIfcData, setLocalValue] = useState(ifcData);
+    const ifcdata = ifcInfo as object;
+    const [localIfcData, setLocalValue] = useState(ifcdata);
+    const ifctypes = ifcTypes as object;
 
     async function displayRoomEnergyConsumption(types2Isolate = "IfcSpace") {
-        const storeys_ = ifcType2Guids["IfcBuildingStorey"];
+        const storeys_ = ifctypes["IfcBuildingStorey"];
 
         for (var i = 0; i < storeys_.length; i++) {
             const storey = storeys_[i];
@@ -121,13 +121,16 @@ export const EnergyPanel = ({ test }: { test: string }) => {
         type: "bar",
         indexAxis: "y",
         responsive: true,
+        tooltips: {
+            mode: "y",
+        },
     };
 
     return (
         <>
             <aside className="card energy-rooms">
                 <header className="card-header">
-                    <h1>Energy consumption {test}</h1>
+                    <h1>Energy Consumption</h1>
                     <button onClick={handleClick} id="energy-button">
                         Show
                     </button>
@@ -135,7 +138,7 @@ export const EnergyPanel = ({ test }: { test: string }) => {
 
                 <div className="side-panel-body">
                     <div className="chart">
-                        <Bar width="200" height="2800" data={chartData} options={chartOptions} />
+                        <Bar width={"280"} height={"700"} data={chartData} options={chartOptions} />
                     </div>
                 </div>
             </aside>

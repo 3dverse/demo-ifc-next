@@ -1,24 +1,18 @@
 import Script from "next/script";
-import { useStateContext } from "./StateContext";
-import { guid2euid, euid2guid } from "../utils/idsConverter";
+import { publicToken, mainSceneUUID } from "../utils/config.js";
+import { memo } from "react";
 
-export const Canvas = () => {
-    const { setBasePoint } = useStateContext();
-
+export const Canvas = memo(({ onInputChange }) => {
     const initApp = async () => {
         await SDK3DVerse.joinOrStartSession({
-            userToken: "public_TKysjsYtTdahW699",
-            sceneUUID: "e8650680-0933-4a4f-9ad1-983de50433e3",
+            userToken: publicToken,
+            sceneUUID: mainSceneUUID,
 
             canvas: document.getElementById("display-canvas"),
             viewportProperties: {
                 defaultControllerType: SDK3DVerse.controller_type.editor,
             },
         });
-
-        const cameraPose = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().getGlobalTransform();
-
-        setBasePoint([cameraPose.position[0], cameraPose.position[1], cameraPose.position[2]]);
 
         const projectEntity = (await SDK3DVerse.engineAPI.findEntitiesByNames("IfcProject"))[0];
         const projectGlobalCenter = projectEntity.getGlobalAABB().center;
@@ -32,16 +26,6 @@ export const Canvas = () => {
         event.preventDefault();
     };
 
-    const { state, setState } = useStateContext();
-    const { ifcData }: any = useStateContext();
-
-    async function handleClick(event: any) {
-        const target = await SDK3DVerse.engineAPI.castScreenSpaceRay(event.clientX, event.clientY);
-        if (!target.pickedPosition) return;
-        const entity = target.entity;
-        setState(ifcData[euid2guid(entity.getParent().getEUID())]);
-    }
-
     return (
         <>
             <Script src="https://cdn.3dverse.com/legacy/sdk/latest/SDK3DVerse.js" onLoad={initApp} />
@@ -50,8 +34,8 @@ export const Canvas = () => {
                 className="w-screen h-screen"
                 tabIndex={1}
                 onContextMenu={handleContextMenu}
-                onClick={handleClick}
+                onClick={onInputChange}
             ></canvas>
         </>
     );
-};
+});

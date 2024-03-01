@@ -104,7 +104,7 @@ body {
   margin: 0;
 }
 
-canvas {
+#display-canvas {
   flex: 1;
   border: none;
 }
@@ -165,13 +165,13 @@ ul {
         display: flex;
         gap: .25rem;
         margin-block: .5rem;
-        line-height: 1.2;
-        overflow-wrap: anywhere;
+        /* line-height: 1.2;
+        overflow-wrap: anywhere; */
 
-        >*:first-child {
+        /* >*:first-child {
           flex: 0 0 35%;
           opacity: .8;
-        }
+        } */
       }
     }
   }
@@ -478,6 +478,8 @@ ul {
 .icon {
   width: 1.25rem;
 }
+
+
 
 @media (max-width: 35em) {
   .side-panel {

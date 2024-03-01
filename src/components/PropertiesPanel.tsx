@@ -1,44 +1,46 @@
-"use client";
+import ifcInfo from "../../public/data/json/ifcInfo.json";
 
-import React from "react";
-import { useStateContext } from "./StateContext";
-
-export const PropertiesPanel = () => {
-    const { state } = useStateContext();
-
+export const PropertiesPanel = ({ guid }: { guid: string }) => {
+    const ifcData = ifcInfo as object;
+    const entitiyProperties = ifcData[guid];
+    console.log("test")
     return (
         <>
-            <aside className="card ifc-properties">
-                {state.props?.Name && (
+            <aside className="card ifc-properties" >
+                {entitiyProperties.props?.Name && (
                     <>
                         <header className="card-header">
                             <h1>
-                                {state["props"]["type"]}: {state["props"]["Name"]}
+                                {entitiyProperties.props.type}: {entitiyProperties.props.Name}
                             </h1>
                         </header>
                         <div className="card-body props-body">
                             <div>
                                 <div className="pset">
-                                    <h4 className="pset-title">Attributes</h4>
+                                    <h4 className="pset-title text-lg font-bold dark:text-white">Attributes</h4>
                                     <ul className="pset-list">
-                                        {Object.entries(state["props"]).map(([k, v]: any) => (
-                                            <li>
-                                                <p>
-                                                    {k}: {v}
-                                                </p>
-                                            </li>
-                                        ))}
+                                        {Object.entries(entitiyProperties.props).map(
+                                            ([propertyName, propertyValue]: any) => (
+                                                <li>
+                                                    <p>
+                                                        {propertyName}: {String(propertyValue)}
+                                                    </p>
+                                                </li>
+                                            ),
+                                        )}
                                     </ul>
                                 </div>
 
-                                {Object.keys(state["psets"]).map((e: any) => (
+                                {Object.keys(entitiyProperties.psets).map((psetName: any) => (
                                     <div className="pset">
-                                        <h4 className="pset-title">{e}</h4>
-                                        {Object.entries(state["psets"][e]).map(([k, v]: any) => (
-                                            <p>
-                                                {k}: {String(v)}
-                                            </p>
-                                        ))}
+                                        <h4 className="pset-title text-lg font-bold dark:text-white">{psetName}</h4>
+                                        {Object.entries(entitiyProperties.psets[psetName]).map(
+                                            ([propertyName, propertyValue]: any) => (
+                                                <p>
+                                                    {propertyName}: {String(propertyValue)}
+                                                </p>
+                                            ),
+                                        )}
                                     </div>
                                 ))}
                             </div>
