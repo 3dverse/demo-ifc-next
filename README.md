@@ -19,7 +19,7 @@ cd ..
 npm install
 npm run dev
 ```
-
+This should open your browser. If it's not, open your browser and use http://localhost:3000/.
 ## Getting started with your own IFC file(s)
 ### 3dverse Console setup
 - Create a 3dverse account at https://console.3dverse.com/
