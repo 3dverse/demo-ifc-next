@@ -12,7 +12,8 @@ The framework used is Next.js and the IFC functions have been developed using If
 ### 3dverse Console setup
 - Create a 3dverse account at https://console.3dverse.com/
 - Create a Project from the template **Empty** - *Start from scratch*
-- Upload your IFC file
+- On the left pane Select *Asset Browser* and then in file explorer select the Public folder
+- Once in the public folder, upload your IFC file
 
 ### Preprocess IFC data
 ```
