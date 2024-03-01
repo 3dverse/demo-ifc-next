@@ -57,7 +57,7 @@ del /F /Q public\data\json\*.*
 - Place your IFC file in `public\data\ifc` and run the following commands:
 ```
 cd public\scripts
-python create_json.py && python post_process.py && python && create_energy_data.py
+python create_json.py && python post_process.py && python create_energy_data.py
 cd ..
 ```
 
