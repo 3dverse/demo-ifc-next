@@ -50,7 +50,7 @@ If you already copied your Scene UUID you can skip the next instruction. Otherwi
 - Delete the default data
 ```
 git clone https://github.com/3dverse/demo-ifc-next
-cd demo-ifc-next\public
+cd demo-ifc-next
 del /F /Q public\data\ifc\*.*
 del /F /Q public\data\json\*.*
 ```
