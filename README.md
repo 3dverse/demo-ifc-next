@@ -30,8 +30,8 @@ npm run dev
 ### Preprocess IFC data
 ```
 cd public/scripts
-python create_json.py
-python post_process.py
+python create_json.py && python post_process.py && python && create_energy_data.py
+cd ..
 ```
 
 ### Getting started
