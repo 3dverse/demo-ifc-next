@@ -69,8 +69,8 @@ export const SidePanel = memo(() => {
                     <h2>Storeys</h2>
 
                     {storeys.map((storey: any, index: any) => (
-                        <Accordion defaultIndex={[0]} allowMultiple>
-                            <AccordionItem>
+                        <Accordion defaultIndex={[1]} allowMultiple  >
+                            <AccordionItem >
                                 <h2>
                                     <AccordionButton>
                                         <AccordionIcon />
