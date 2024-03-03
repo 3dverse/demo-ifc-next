@@ -7,7 +7,7 @@ This repo aims to enable anyone to develop its own 3D BIM/Digital Twin web appli
 It's possible to either build on top of this repo or to get inspiration from it.
  
 ### Tech stack
-The framework used is Next.js and the IFC functions have been developed using IfcOpenShell.
+The framework used is [Next.js](https://nextjs.org/) and the IFC functions have been developed using [IfcOpenShell](https://ifcopenshell.org/).
 
 ***The whole 3D rendering part of the application is handled by [3dverse](https://3dverse.com/), and the tools to manipulate/modify/query your 3D scene are provided by its [SDK](https://docs.3dverse.com/sdk/).***
 
