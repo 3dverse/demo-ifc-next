@@ -47,17 +47,10 @@ If you already copied your Scene UUID you can skip the next instruction. Otherwi
 - Edit this line with the Scene UUID you just copied: `export const publicToken = %YOUR_PUBLIC_TOKEN%;`
 
 ### Preprocess your IFC file
-- Delete the default data
-```
-git clone https://github.com/3dverse/demo-ifc-next
-cd demo-ifc-next
-del /F /Q public\data\ifc\*.*
-del /F /Q public\data\json\*.*
-```
 - Place your IFC file in `public\data\ifc` and run the following commands:
 ```
 cd public\scripts
-python create_json.py && python post_process.py && python create_energy_data.py
+python preprocess_ifc.py
 cd ..
 ```
 
