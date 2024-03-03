@@ -1,6 +1,6 @@
 # Demo IFC - 3D BIM/Digital Twin web application powered by 3dverse.
 
-![Alt text](public/docs/demo_ifc.png?raw=true "App screenshot")
+![Alt text](public/docs/demo_ifc.png?raw=true)
 
 ### Purpose
 This repo aims to enable anyone to develop its own 3D BIM/Digital Twin web application supporting the IFC format.\
