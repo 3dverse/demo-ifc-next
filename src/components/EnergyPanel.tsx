@@ -6,7 +6,7 @@ import chroma from "chroma-js";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { useState } from "react";
+import { use, useState } from "react";
 import { guid2euid, euid2guid } from "../utils/idsConverter";
 
 Chart.register(CategoryScale);
@@ -16,67 +16,56 @@ export const EnergyPanel = ({ test }: { test: string }) => {
     const [localIfcData, setLocalValue] = useState(ifcdata);
     const ifctypes = ifcTypes as object;
 
-    async function displayRoomEnergyConsumption(types2Isolate = "IfcSpace") {
-        const storeys_ = ifctypes["IfcBuildingStorey"];
+    const [energyVisible, setEnergyVisibility] = useState(false);
 
-        for (var i = 0; i < storeys_.length; i++) {
-            try {
-                const storey = storeys_[i];
-                const storeyEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(storey)))[0];
-                console.log(storeyEntity);
-                console.log(guid2euid(storey));
-                const children = await storeyEntity.getChildren();
+    async function toggleEnergyView(activate) {
+        const projectEntity = (await SDK3DVerse.engineAPI.findEntitiesByNames("IfcProject"))[0];
+        projectEntity.setVisibility(activate ? false : true);
 
-                for (var j = 0; j < children.length; j++) {
-                    if (!types2Isolate.includes(children[j].components.debug_name.value)) {
-                        children[j].setVisibility(false);
-                    } else {
-                        children[j].setVisibility(false);
+        for (const guid of ifctypes["IfcSpace"]) {
+            const spaceEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
+            const charge = energyData[guid];
+            const spaceEntityChildren = await spaceEntity.getChildren();
 
-                        const subchildren = await children[j].getChildren();
-                        for (var k = 0; k < subchildren.length; k++) {
-                            const surentity = subchildren[k];
-                            const cc = await surentity.getChildren();
+            for (const spaceEntityChild of spaceEntityChildren) {
+                spaceEntityChild.detachComponent("material_ref");
+                spaceEntityChild.detachComponent("material");
+                spaceEntityChild.attachComponent("material");
 
-                            for (var l = 0; l < cc.length; l++) {
-                                if (cc[l].componentList.includes("mesh_ref")) {
-                                    const entity = cc[l];
-                                    entity.setVisibility(true);
-                                    const entityGuid = euid2guid(entity.getParent().getEUID());
+                if ("tags" in spaceEntityChild.components) {
+                    if (spaceEntityChild.components.tags.value.includes("IfcSpace")) {
+                        if (charge) {
+                            const color = getValueColor(charge);
 
-                                    const charge = energyData[entityGuid];
+                            spaceEntityChild.setComponent("material", {
+                                dataJSON: activate
+                                    ? {
+                                          albedo: [color[0] / 255, color[1] / 255, color[2] / 255],
+                                          opacity: 0.75,
+                                      }
+                                    : {
+                                          albedo: [0, 0.5686274509803921, 0.788235294117647],
+                                          opacity: 0.15,
+                                          metallic: 0.01,
+                                          roughness: 0.99,
+                                      },
 
-                                    if (charge) {
-                                        const color = getValueColor(charge);
+                                isDoubleSided: true,
 
-                                        entity.detachComponent("material_ref");
-                                        entity.attachComponent("material");
-
-                                        entity.setComponent("material", {
-                                            dataJSON: {
-                                                albedo: [color[0] / 255, color[1] / 255, color[2] / 255],
-                                                opacity: 0.75,
-                                            },
-                                            isDoubleSided: true,
-
-                                            shaderRef: "6d7d6861-0938-41db-9fc2-187e09504c96",
-                                        });
-                                    }
-                                } else {
-                                    cc[l].setVisibility(false);
-                                }
-                            }
+                                shaderRef: "6d7d6861-0938-41db-9fc2-187e09504c96",
+                            });
                         }
+                        spaceEntityChild.setVisibility(true);
                     }
                 }
-            } catch (error) {
-                console.log("error processing this storey");
             }
         }
+
+        setEnergyVisibility(!energyVisible);
     }
 
     const handleClick = () => {
-        displayRoomEnergyConsumption();
+        toggleEnergyView(!energyVisible);
     };
 
     function getValueColor(value: any) {
@@ -136,8 +125,13 @@ export const EnergyPanel = ({ test }: { test: string }) => {
             <aside className="card energy-rooms">
                 <header className="card-header">
                     <h1>Energy Consumption</h1>
-                    <button onClick={handleClick} id="energy-button">
-                        Show
+                    <button
+                        onClick={() => {
+                            handleClick(energyVisible);
+                        }}
+                        id="energy-button"
+                    >
+                        {energyVisible ? "Remove" : "Show"}
                     </button>
                 </header>
 
