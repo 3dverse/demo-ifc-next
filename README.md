@@ -10,6 +10,10 @@ The framework used is Next.js and the IFC functions have been developed using If
 ***The whole 3D rendering part of the application is handled by 3dverse, and the tools to manipulate/modify/query your 3D scene are provided by its SDK.***
 
 ## Getting started quickly with the default IFC file
+### Prerequisites
+- #### Node.js
+https://nodejs.org/en/download/current
+
 To run this repo locally, open your command line and paste:
 ```
 git clone https://github.com/3dverse/demo-ifc-next
@@ -19,16 +23,20 @@ npm run dev
 ```
 This should open your browser. If it's not, open your browser and use http://localhost:3000/.
 ## Getting started with your own IFC file(s)
-
+### Clone the repository
+```
+git clone https://github.com/3dverse/demo-ifc-next
+```
 ### Prerequisites
-#### ifcopenshell-python
+- #### ifcopenshell-python
 ```
 pip install ifcopenshell
 ```
 To test if your installation was successfull, run `python -c "import ifcopenshell;print(ifcopenshell.version)"`.
 This should output something like `v0.7.0-f0e03c79d`.
-#### Node.js
+- #### Node.js
 https://nodejs.org/en/download/current
+
 
 ### 3dverse Console setup
 - Create a 3dverse account at https://console.3dverse.com/
