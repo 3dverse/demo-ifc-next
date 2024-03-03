@@ -47,7 +47,7 @@ If you already copied your Scene UUID you can skip the next instruction. Otherwi
 - Edit this line with the Scene UUID you just copied: `export const publicToken = %YOUR_PUBLIC_TOKEN%;`
 
 ### Preprocess your IFC file
-- Place your IFC file in `public\data\ifc` and run the following commands:
+- Delete the default IFC and file and place your IFC file in `public\data\ifc` and run the following commands:
 ```
 cd public\scripts
 python preprocess_ifc.py
