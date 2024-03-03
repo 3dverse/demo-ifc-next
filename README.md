@@ -9,7 +9,7 @@ It's possible to either build on top of this repo or to get inspiration from it.
 ### Tech stack
 The framework used is Next.js and the IFC functions have been developed using IfcOpenShell.
 
-***The whole 3D rendering part of the application is handled by 3dverse, and the tools to manipulate/modify/query your 3D scene are provided by its SDK.***
+***The whole 3D rendering part of the application is handled by [3dverse](https://3dverse.com/), and the tools to manipulate/modify/query your 3D scene are provided by its [SDK](https://docs.3dverse.com/sdk/).***
 
 ## Getting started quickly with the default IFC file
 ### Prerequisites
