@@ -99,7 +99,8 @@ export const SidePanel = memo(() => {
                                                             goToRoom(guid2euid(ifcData[items[i]].props.GlobalId))
                                                         }
                                                     >
-                                                        {ifcData[items[i]].props.Name}
+                                
+                                                         {ifcData[items[i]].props.LongName !== null ?ifcData[items[i]].props.LongName :ifcData[items[i]].props.Name}
                                                     </li>,
                                                 );
                                             }
