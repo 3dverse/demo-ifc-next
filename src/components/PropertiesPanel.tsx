@@ -5,7 +5,7 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
     const entitiyProperties = ifcData[guid];
     return (
         <>
-            <aside className="card ifc-properties" >
+            <aside className="card ifc-properties">
                 {entitiyProperties?.props?.Name && (
                     <>
                         <header className="card-header">
@@ -19,13 +19,14 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
                                     <h4 className="pset-title text-lg font-bold dark:text-white">Attributes</h4>
                                     <ul className="pset-list">
                                         {Object.entries(entitiyProperties.props).map(
-                                            ([propertyName, propertyValue]: any) => (
-                                                <li>
-                                                    <p>
-                                                        {propertyName}: {String(propertyValue)}
-                                                    </p>
-                                                </li>
-                                            ),
+                                            ([propertyName, propertyValue]: any) =>
+                                                String(propertyValue)[0] != "#" && (
+                                                    <li>
+                                                        <p>
+                                                            {propertyName}: {String(propertyValue)}
+                                                        </p>
+                                                    </li>
+                                                ),
                                         )}
                                     </ul>
                                 </div>
@@ -34,11 +35,12 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
                                     <div className="pset">
                                         <h4 className="pset-title text-lg font-bold dark:text-white">{psetName}</h4>
                                         {Object.entries(entitiyProperties.psets[psetName]).map(
-                                            ([propertyName, propertyValue]: any) => (
-                                                <p>
-                                                    {propertyName}: {String(propertyValue)}
-                                                </p>
-                                            ),
+                                            ([propertyName, propertyValue]: any) =>
+                                                String(propertyValue)[0] != "#" && (
+                                                    <p>
+                                                        {propertyName}: {String(propertyValue)}
+                                                    </p>
+                                                ),
                                         )}
                                     </div>
                                 ))}
