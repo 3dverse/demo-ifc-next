@@ -25,6 +25,8 @@ This should open your browser. If it's not, open your browser and use http://loc
 ```
 pip install ifcopenshell
 ```
+To test if your installation was successfull, run `python -c "import ifcopenshell;print(ifcopenshell.version)"`.
+This should output something like `v0.7.0-f0e03c79d`.
 #### Node.js
 https://nodejs.org/en/download/current
 
