@@ -27,7 +27,6 @@ async function goToRoom(roomUUID: any) {
 }
 
 export const SidePanel = memo(() => {
-    console.log("render panel")
     const ifcData = ifcInfo as object;
     const ifctypes = ifcTypes as object;
 
@@ -69,8 +68,8 @@ export const SidePanel = memo(() => {
                     <h2>Storeys</h2>
 
                     {storeys.map((storey: any, index: any) => (
-                        <Accordion defaultIndex={[1]} allowMultiple  >
-                            <AccordionItem >
+                        <Accordion defaultIndex={[1]} allowMultiple>
+                            <AccordionItem>
                                 <h2>
                                     <AccordionButton>
                                         <AccordionIcon />
@@ -91,20 +90,27 @@ export const SidePanel = memo(() => {
                                         {(() => {
                                             const itemList = [];
                                             const items = ifcData[storey].props.spaces;
-                                            for (let i = 0; i < items.length; i++) {
-                                                itemList.push(
-                                                    <li
-                                                        className="cursor-pointer"
-                                                        key={ifcData[items[i]].props.GlobalId}
-                                                        onClick={(e: any) =>
-                                                            goToRoom(guid2euid(ifcData[items[i]].props.GlobalId))
-                                                        }
-                                                    >
-                                
-                                                         {ifcData[items[i]].props.LongName !== null ?ifcData[items[i]].props.LongName :ifcData[items[i]].props.Name}
-                                                    </li>,
-                                                );
+
+                                            if (items.length) {
+                                                for (let i = 0; i < items.length; i++) {
+                                                    itemList.push(
+                                                        <li
+                                                            className="cursor-pointer"
+                                                            key={ifcData[items[i]].props.GlobalId}
+                                                            onClick={(e: any) =>
+                                                                goToRoom(guid2euid(ifcData[items[i]].props.GlobalId))
+                                                            }
+                                                        >
+                                                            {ifcData[items[i]].props.LongName !== null
+                                                                ? ifcData[items[i]].props.LongName
+                                                                : ifcData[items[i]].props.Name}
+                                                        </li>,
+                                                    );
+                                                }
+                                            } else {
+                                                itemList.push(<li>{"No IfcSpace at this storey"}</li>);
                                             }
+
                                             return itemList;
                                         })()}
                                     </ul>
