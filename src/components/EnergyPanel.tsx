@@ -19,8 +19,17 @@ export const EnergyPanel = ({ test }: { test: string }) => {
     const [energyVisible, setEnergyVisibility] = useState(false);
 
     async function toggleEnergyView(activate) {
-        const projectEntity = (await SDK3DVerse.engineAPI.findEntitiesByNames("IfcProject"))[0];
-        projectEntity.setVisibility(activate ? false : true);
+        const rootEntities = await SDK3DVerse.engineAPI.getRootEntities();
+
+        for (const rootEntity of rootEntities) {
+            if (
+                !("camera" in rootEntity.components) &&
+                !("point_light" in rootEntity.components) &&
+                !("label" in rootEntity.components)
+            ) {
+                await rootEntity.setVisibility(activate ? false : true);
+            }
+        }
 
         for (const guid of ifctypes["IfcSpace"]) {
             const spaceEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
@@ -28,13 +37,13 @@ export const EnergyPanel = ({ test }: { test: string }) => {
             const spaceEntityChildren = await spaceEntity.getChildren();
 
             for (const spaceEntityChild of spaceEntityChildren) {
-                spaceEntityChild.detachComponent("material_ref");
-                spaceEntityChild.detachComponent("material");
-                spaceEntityChild.attachComponent("material");
-
                 if ("tags" in spaceEntityChild.components) {
                     if (spaceEntityChild.components.tags.value.includes("IfcSpace")) {
                         if (charge) {
+                            spaceEntityChild.detachComponent("material_ref");
+                            spaceEntityChild.detachComponent("material");
+                            spaceEntityChild.attachComponent("material");
+
                             const color = getValueColor(charge);
 
                             spaceEntityChild.setComponent("material", {
@@ -55,7 +64,7 @@ export const EnergyPanel = ({ test }: { test: string }) => {
                                 shaderRef: "6d7d6861-0938-41db-9fc2-187e09504c96",
                             });
                         }
-                        spaceEntityChild.setVisibility(true);
+                        await spaceEntityChild.setVisibility(true);
                     }
                 }
             }
