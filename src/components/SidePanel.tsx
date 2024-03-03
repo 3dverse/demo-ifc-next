@@ -94,6 +94,7 @@ export const SidePanel = memo(() => {
                                             for (let i = 0; i < items.length; i++) {
                                                 itemList.push(
                                                     <li
+                                                        className="cursor-pointer"
                                                         key={ifcData[items[i]].props.GlobalId}
                                                         onClick={(e: any) =>
                                                             goToRoom(guid2euid(ifcData[items[i]].props.GlobalId))
