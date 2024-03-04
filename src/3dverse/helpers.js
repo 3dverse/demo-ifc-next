@@ -208,3 +208,25 @@ export const handleEdgeSwitchChange = (edgeState, edgeSetter) => {
     }
     edgeSetter(!edgeState);
 };
+
+export async function goToRoom(roomUUID) {
+    // Retrieve the IfcSpace entity to travel to from the scene graph.
+    const spaceEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(roomUUID))[0];
+    const activeViewPort = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0];
+
+    const aabbCenterGlobal = spaceEntity.getGlobalAABB().center;
+    SDK3DVerse.engineAPI.cameraAPI.travel(
+        activeViewPort,
+        [aabbCenterGlobal[0] + 0.5, aabbCenterGlobal[1] + 0.5, aabbCenterGlobal[2] + 0.5],
+        [0, 0, 0, 1],
+        3,
+    );
+    // Update the orbit target.
+    SDK3DVerse.updateControllerSetting({
+        lookAtPoint: [aabbCenterGlobal[0] + 0.2, aabbCenterGlobal[1] + 0.2, aabbCenterGlobal[2] + 0.2],
+    });
+}
+
+export async function getEntityFromGuid(guid) {
+    return (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
+}
