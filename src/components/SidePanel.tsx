@@ -88,30 +88,30 @@ export const SidePanel = memo(() => {
                                 <AccordionPanel pb={4}>
                                     <ul>
                                         {(() => {
-                                            const itemList = [];
-                                            const items = ifcData[storey].props.spaces;
+                                            const spaces = [];
+                                            const storeySpaces = ifcData[storey].props.spaces;
 
-                                            if (items.length) {
-                                                for (let i = 0; i < items.length; i++) {
-                                                    itemList.push(
+                                            if (storeySpaces.length) {
+                                                for (let i = 0; i < storeySpaces.length; i++) {
+                                                    spaces.push(
                                                         <li
                                                             className="cursor-pointer"
-                                                            key={ifcData[items[i]].props.GlobalId}
+                                                            key={ifcData[storeySpaces[i]].props.GlobalId}
                                                             onClick={(e: any) =>
-                                                                goToRoom(guid2euid(ifcData[items[i]].props.GlobalId))
+                                                                goToRoom(guid2euid(ifcData[storeySpaces[i]].props.GlobalId))
                                                             }
                                                         >
-                                                            {ifcData[items[i]].props.LongName !== null
-                                                                ? ifcData[items[i]].props.LongName
-                                                                : ifcData[items[i]].props.Name}
+                                                            {ifcData[storeySpaces[i]].props.LongName !== null
+                                                                ? ifcData[storeySpaces[i]].props.LongName
+                                                                : ifcData[storeySpaces[i]].props.Name}
                                                         </li>,
                                                     );
                                                 }
                                             } else {
-                                                itemList.push(<li>{"No IfcSpace at this storey"}</li>);
+                                                spaces.push(<li>{"No IfcSpace at this storey"}</li>);
                                             }
 
-                                            return itemList;
+                                            return spaces;
                                         })()}
                                     </ul>
                                 </AccordionPanel>

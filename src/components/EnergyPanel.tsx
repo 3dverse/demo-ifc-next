@@ -82,20 +82,14 @@ export const EnergyPanel = ({ test }: { test: string }) => {
         return scale(value).rgb();
     }
 
-    var labels: any = [];
-    var data = [];
-    var colors = [];
+    let labels: any = [];
+    let data = [];
+    let colors = [];
 
     for (const s in energyData) {
-        const l = localIfcData[s].props.Name;
-        const adjusted = energyData[s];
-        // + Math.random() * 3000;
-        const d = adjusted;
-        const c = getValueColor(adjusted);
-
-        labels.push(l);
-        data.push(d);
-        colors.push(c);
+        labels.push(localIfcData[s].props.Name);
+        data.push(energyData[s]);
+        colors.push(getValueColor(energyData[s]));
     }
 
     const formattedColors = colors.map((color) => `rgba(${color.join(",")})`);
