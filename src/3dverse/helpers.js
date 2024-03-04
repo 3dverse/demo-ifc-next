@@ -152,3 +152,59 @@ export const handleCanvasSelection = async (event, guidSetter) => {
         guidSetter(euid2guid(entity.getParent().getEUID()));
     }
 };
+
+const getInitialPoint = () => {
+    return SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().getGlobalTransform().position;
+};
+
+export const handleReset = () => {
+    SDK3DVerse.engineAPI.cameraAPI.travel(
+        SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0],
+        getInitialPoint(),
+        [0, 0, 0, 1],
+        10,
+    );
+};
+
+export const handleCameraSwitchChange = (cameraState, cameraSetter) => {
+    if (!cameraState) {
+        SDK3DVerse.engineAPI.cameraAPI.setControllerType(
+            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getId(),
+            SDK3DVerse.cameraControllerType.editor,
+        );
+    } else {
+        SDK3DVerse.engineAPI.cameraAPI.setControllerType(
+            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getId(),
+            SDK3DVerse.cameraControllerType.orbit,
+        );
+    }
+
+    cameraSetter(!cameraState);
+};
+
+export const handleEdgeSwitchChange = (edgeState, edgeSetter) => {
+    const cam = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera();
+    const camComponent = cam.getComponent("camera");
+
+    if (!edgeState) {
+        const newCamComponent = {
+            ...camComponent,
+            dataJSON: {
+                ...camComponent.dataJSON,
+                edgeOutlines: true,
+            },
+        };
+        cam.setComponent("camera", newCamComponent);
+    } else {
+        // Untoggle to hide the edges.
+        const newCamComponent = {
+            ...camComponent,
+            dataJSON: {
+                ...camComponent.dataJSON,
+                edgeOutlines: false,
+            },
+        };
+        cam.setComponent("camera", newCamComponent);
+    }
+    edgeSetter(!edgeState);
+};

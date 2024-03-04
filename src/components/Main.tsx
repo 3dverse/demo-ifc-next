@@ -1,9 +1,6 @@
 import { useState, useCallback, memo } from "react";
 import dynamic from "next/dynamic";
 
-import ifcInfo from "../../public/data/json/ifcInfo.json";
-import { euid2guid } from "../utils/idsConverter";
-
 import { SidePanel } from "@/components/SidePanel";
 import { EnergyPanel } from "@/components/EnergyPanel";
 import { PropertiesPanel } from "@/components/PropertiesPanel";

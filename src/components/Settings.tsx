@@ -1,65 +1,10 @@
-import { useState, useCallback, memo } from "react";
+import { useState, memo } from "react";
 import { Switch } from "@chakra-ui/react";
+import { handleReset, handleEdgeSwitchChange, handleCameraSwitchChange } from "../3dverse/helpers.js";
 
 export const Settings = memo(() => {
     const [switchCameraState, setSwitchCameraState] = useState(true);
     const [switchEdgeState, setSwitchEdgeState] = useState(false);
-
-    const getInitialPoint = useCallback(() => {
-        return SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().getGlobalTransform().position;
-    }, []);
-
-    const handleCameraSwitchChange = () => {
-        if (!switchCameraState) {
-            SDK3DVerse.engineAPI.cameraAPI.setControllerType(
-                SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getId(),
-                SDK3DVerse.cameraControllerType.editor,
-            );
-        } else {
-            SDK3DVerse.engineAPI.cameraAPI.setControllerType(
-                SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getId(),
-                SDK3DVerse.cameraControllerType.orbit,
-            );
-        }
-
-        setSwitchCameraState(!switchCameraState);
-    };
-
-    const handleEdgeSwitchChange = () => {
-        const cam = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera();
-        const camComponent = cam.getComponent("camera");
-
-        if (!switchEdgeState) {
-            const newCamComponent = {
-                ...camComponent,
-                dataJSON: {
-                    ...camComponent.dataJSON,
-                    edgeOutlines: true,
-                },
-            };
-            cam.setComponent("camera", newCamComponent);
-        } else {
-            // Untoggle to hide the edges.
-            const newCamComponent = {
-                ...camComponent,
-                dataJSON: {
-                    ...camComponent.dataJSON,
-                    edgeOutlines: false,
-                },
-            };
-            cam.setComponent("camera", newCamComponent);
-        }
-        setSwitchEdgeState(!switchEdgeState);
-    };
-
-    const handleReset = () => {
-        SDK3DVerse.engineAPI.cameraAPI.travel(
-            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0],
-            getInitialPoint(),
-            [0, 0, 0, 1],
-            10,
-        );
-    };
 
     return (
         <>
@@ -71,11 +16,19 @@ export const Settings = memo(() => {
                 </button>
 
                 <div className="island-button orbital-camera-settings">
-                    <Switch id="fly" onChange={handleCameraSwitchChange} isChecked={switchCameraState} />
+                    <Switch
+                        id="fly"
+                        onChange={() => handleCameraSwitchChange(switchCameraState, setSwitchCameraState)}
+                        isChecked={switchCameraState}
+                    />
                     <p>Fly</p>
                 </div>
                 <div className="island-button edge-camera-settings">
-                    <Switch id="edges" onChange={handleEdgeSwitchChange} isChecked={switchEdgeState} />
+                    <Switch
+                        id="edges"
+                        onChange={() => handleEdgeSwitchChange(switchEdgeState, setSwitchEdgeState)}
+                        isChecked={switchEdgeState}
+                    />
                     <p>Edges</p>
                 </div>
             </nav>
