@@ -32,7 +32,7 @@ git clone https://github.com/3dverse/demo-ifc-next
 ### Prerequisites
 - #### ifcopenshell-python
 ```
-pip install ifcopenshell
+python -m pip install ifcopenshell
 ```
 To test if your installation was successfull, run `python -c "import ifcopenshell;print(ifcopenshell.version)"`.
 This should output something like `v0.7.0-f0e03c79d`.
