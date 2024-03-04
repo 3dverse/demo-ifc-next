@@ -22,7 +22,7 @@ export const SidePanel = memo(() => {
     const handleElementClick = async (index: any, storeyGuid: string, event: any) => {
         event.stopPropagation();
 
-        const storeyEntity = getEntityFromGuid(storeyGuid);
+        const storeyEntity = await getEntityFromGuid(storeyGuid);
 
         if (!visibleStoreys[index]) {
             setVisibleStoreys((a: Array<boolean>) => {
