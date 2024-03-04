@@ -137,3 +137,18 @@ export async function toggleEnergyView(activate) {
         }
     }
 }
+
+export const handleCanvasSelection = async (event, guidSetter) => {
+    const target = await SDK3DVerse.engineAPI.castScreenSpaceRay(event.clientX, event.clientY);
+    if (!target.pickedPosition) {
+        SDK3DVerse.engineAPI.unselectAllEntities();
+        guidSetter("");
+        return;
+    }
+    const entity = target.entity;
+    entity.select();
+    const guid = euid2guid(entity.getParent().getEUID());
+    if (guid in ifcdata) {
+        guidSetter(euid2guid(entity.getParent().getEUID()));
+    }
+};

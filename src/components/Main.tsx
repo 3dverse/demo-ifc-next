@@ -14,23 +14,13 @@ export const Canvas = dynamic(() => import("@/components/Canvas").then((mod) => 
     ssr: false,
 });
 
+import { handleCanvasSelection } from "../3dverse/helpers.js";
+
 export const Main = memo(() => {
     const [guid, setGuid] = useState("");
 
-    const ifcData = ifcInfo as object;
-    const handleChange: Function = useCallback(async (event: any) => {
-        const target = await SDK3DVerse.engineAPI.castScreenSpaceRay(event.clientX, event.clientY);
-        if (!target.pickedPosition) {
-            SDK3DVerse.engineAPI.unselectAllEntities();
-            setGuid("");
-            return;
-        }
-        const entity = target.entity;
-        entity.select();
-        const guid = euid2guid(entity.getParent().getEUID());
-        if (guid in ifcData) {
-            setGuid(euid2guid(entity.getParent().getEUID()));
-        }
+    const handleChange: Function = useCallback((event) => {
+        handleCanvasSelection(event, setGuid);
     }, []);
 
     return (
