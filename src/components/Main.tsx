@@ -16,33 +16,29 @@ export const Canvas = dynamic(() => import("@/components/Canvas").then((mod) => 
 
 export const Main = memo(() => {
     const [guid, setGuid] = useState("");
-    
+
     const ifcData = ifcInfo as object;
     const handleChange: Function = useCallback(async (event: any) => {
         const target = await SDK3DVerse.engineAPI.castScreenSpaceRay(event.clientX, event.clientY);
-        if (!target.pickedPosition){
+        if (!target.pickedPosition) {
             SDK3DVerse.engineAPI.unselectAllEntities();
             setGuid("");
             return;
-        } 
+        }
         const entity = target.entity;
         entity.select();
         const guid = euid2guid(entity.getParent().getEUID());
-        if (guid in ifcData){
+        if (guid in ifcData) {
             setGuid(euid2guid(entity.getParent().getEUID()));
         }
-        
     }, []);
 
     return (
         <>
             <Canvas onInputChange={handleChange} />
             <SidePanel />
-            <EnergyPanel test="electricity" />
-            {guid ?  <PropertiesPanel guid={guid}/>: null}
-       
-            
-           
+            <EnergyPanel />
+            {guid ? <PropertiesPanel guid={guid} /> : null}
             <Settings />
         </>
     );
