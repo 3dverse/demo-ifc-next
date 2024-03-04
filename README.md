@@ -51,7 +51,7 @@ You will see a *Main Scene* element appears. Click on it and then on the right p
 To get access to your Project and your scene you need to get a token for all and pass it in your web application config file located at `src\utils\config.js`.
 #### Scene UUID
 If you already copied your Scene UUID you can skip the next instruction. Otherwise:
-- Go to *Asset Browser* -> *Public* folder, and click on *Main Scene*. On the right pane, click on the *Asset UUID* section to copy it.
+- Go to *Asset Browser* -> *Public* folder, and click on *Main Scene*. On the right pane, click on the *Asset UUID* section to copy it
 - Edit this line with the Scene UUID you just copied: `export const mainSceneUUID = %YOUR_MAIN_SCENE_UUID%;`
 
 #### Public token
