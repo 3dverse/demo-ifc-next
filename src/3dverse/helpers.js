@@ -1,13 +1,13 @@
 import { publicToken, mainSceneUUID } from "../utils/config.js";
 import ifcInfo from "../../public/data/json/ifcInfo.json";
-import ifcTypes from "../../public/data/json/ifctype2guids.json";
+import ifctype2guids from "../../public/data/json/ifctype2guids.json";
 import energyData from "../../public/data/json/energyData.json";
 import { guid2euid, euid2guid } from "../utils/idsConverter";
 
 import chroma from "chroma-js";
 
-const ifcdata = ifcInfo;
-const ifctypes = ifcTypes;
+const ifcData = ifcInfo;
+const ifcTypes = ifctype2guids;
 
 function getValueColor(value) {
     const scale = chroma.scale(["green", "yellow", "red"]).domain([0, 600]);
@@ -20,7 +20,7 @@ export function createChartInputs() {
     let colors = [];
 
     for (const s in energyData) {
-        labels.push(ifcdata[s].props.Name);
+        labels.push(ifcData[s].props.Name);
         data.push(energyData[s]);
         colors.push(getValueColor(energyData[s]));
     }
@@ -67,7 +67,7 @@ export function createChart(data, labels, colors) {
     return { chart_data: chartData, chart_options: chartOptions };
 }
 
-export const initApp = async () => {
+export async function initApp() {
     await SDK3DVerse.joinOrStartSession({
         userToken: publicToken,
         sceneUUID: mainSceneUUID,
@@ -83,7 +83,7 @@ export const initApp = async () => {
     SDK3DVerse.updateControllerSetting({
         lookAtPoint: [projectGlobalCenter[0], projectGlobalCenter[1], projectGlobalCenter[2]],
     });
-};
+}
 
 export async function toggleEnergyView(activate) {
     const rootEntities = await SDK3DVerse.engineAPI.getRootEntities();
@@ -98,7 +98,7 @@ export async function toggleEnergyView(activate) {
         }
     }
 
-    for (const guid of ifctypes["IfcSpace"]) {
+    for (const guid of ifcTypes["IfcSpace"]) {
         const spaceEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
         const charge = energyData[guid];
         const spaceEntityChildren = await spaceEntity.getChildren();
@@ -138,7 +138,7 @@ export async function toggleEnergyView(activate) {
     }
 }
 
-export const handleCanvasSelection = async (event, guidSetter) => {
+export async function handleCanvasSelection(event, guidSetter) {
     const target = await SDK3DVerse.engineAPI.castScreenSpaceRay(event.clientX, event.clientY);
     if (!target.pickedPosition) {
         SDK3DVerse.engineAPI.unselectAllEntities();
@@ -148,25 +148,25 @@ export const handleCanvasSelection = async (event, guidSetter) => {
     const entity = target.entity;
     entity.select();
     const guid = euid2guid(entity.getParent().getEUID());
-    if (guid in ifcdata) {
+    if (guid in ifcData) {
         guidSetter(euid2guid(entity.getParent().getEUID()));
     }
-};
+}
 
-const getInitialPoint = () => {
+function getInitialPoint() {
     return SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().getGlobalTransform().position;
-};
+}
 
-export const handleReset = () => {
+export function handleReset() {
     SDK3DVerse.engineAPI.cameraAPI.travel(
         SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0],
         getInitialPoint(),
         [0, 0, 0, 1],
         10,
     );
-};
+}
 
-export const handleCameraSwitchChange = (cameraState, cameraSetter) => {
+export function handleCameraSwitchChange(cameraState, cameraSetter) {
     if (!cameraState) {
         SDK3DVerse.engineAPI.cameraAPI.setControllerType(
             SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getId(),
@@ -180,9 +180,9 @@ export const handleCameraSwitchChange = (cameraState, cameraSetter) => {
     }
 
     cameraSetter(!cameraState);
-};
+}
 
-export const handleEdgeSwitchChange = (edgeState, edgeSetter) => {
+export function handleEdgeSwitchChange(edgeState, edgeSetter) {
     const cam = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera();
     const camComponent = cam.getComponent("camera");
 
@@ -207,7 +207,7 @@ export const handleEdgeSwitchChange = (edgeState, edgeSetter) => {
         cam.setComponent("camera", newCamComponent);
     }
     edgeSetter(!edgeState);
-};
+}
 
 export async function goToRoom(roomUUID) {
     // Retrieve the IfcSpace entity to travel to from the scene graph.
