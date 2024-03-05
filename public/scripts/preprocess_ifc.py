@@ -36,12 +36,14 @@ class EnhancedJSONEncoder(json.JSONEncoder):
         return super().default(o)
 
 
-ifc_folder = '../data/ifc'
-json_folder = '../data/json'
+data_folder = '../../data'
+
+ifc_folder = os.path.join(data_folder, "ifc")
+json_folder = os.path.join(data_folder, "json")
 
 if os.path.exists(json_folder):
     shutil.rmtree(json_folder)
-    
+
 os.mkdir(json_folder)
 
 for fn in os.listdir(ifc_folder):
