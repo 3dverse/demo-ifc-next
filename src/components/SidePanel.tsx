@@ -9,7 +9,7 @@ import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIco
 import { EyeIcon } from "./EyeIcon";
 
 import { goToRoom, getEntityFromGuid } from "../lib/3dverse/helpers";
-import { IfcData, IfcType } from "@/types/ifc";
+import { IfcData, IfcType, Attribute } from "@/types/ifc";
 
 export const SidePanel = memo(() => {
     const ifcData = ifcInfo as IfcData;
@@ -19,6 +19,10 @@ export const SidePanel = memo(() => {
     const storeys = ifctypes[storeyKey];
 
     const [visibleStoreys, setVisibleStoreys]: any = useState(new Array(storeys.length).fill(true));
+
+    function getSurface(areaData: Attribute) {
+        return typeof areaData === "number" ? areaData.toFixed(2) : "-";
+    }
 
     const handleElementClick = async (index: any, storeyGuid: string | null, event: any) => {
         event.stopPropagation();
@@ -97,12 +101,10 @@ export const SidePanel = memo(() => {
                                                                 </p>
                                                                 {
                                                                     <small>
-                                                                        {ifcData[storeySpaces[i]].psets
-                                                                            .PSet_Revit_Dimensions.Area &&
-                                                                            `${Number(
-                                                                                ifcData[storeySpaces[i]].psets
-                                                                                    .PSet_Revit_Dimensions.Area,
-                                                                            ).toFixed(2)} m²`}
+                                                                        {`${getSurface(
+                                                                            ifcData[storeySpaces[i]].psets
+                                                                                .PSet_Revit_Dimensions.Area,
+                                                                        )} m²`}
                                                                     </small>
                                                                 }
                                                             </div>
