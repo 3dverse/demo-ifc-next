@@ -13,6 +13,11 @@ export async function initApp() {
     const projectEntity = (await SDK3DVerse.engineAPI.findEntitiesByNames("IfcProject"))[0];
     const projectGlobalCenter = projectEntity.getGlobalAABB().center;
 
+    SDK3DVerse.engineAPI.cameraAPI
+        .getActiveViewports()[0]
+        .getCamera()
+        .setComponent("camera", { dataJSON: { edgeOutlines: true, skybox: true } });
+        
     SDK3DVerse.updateControllerSetting({
         lookAtPoint: [projectGlobalCenter[0], projectGlobalCenter[1], projectGlobalCenter[2]],
     });

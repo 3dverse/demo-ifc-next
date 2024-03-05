@@ -4,7 +4,7 @@ import { handleReset, handleEdgeSwitchChange, handleCameraSwitchChange } from ".
 
 export const Settings = memo(() => {
     const [switchCameraState, setSwitchCameraState] = useState(true);
-    const [switchEdgeState, setSwitchEdgeState] = useState(false);
+    const [switchEdgeState, setSwitchEdgeState] = useState(true);
 
     return (
         <>
