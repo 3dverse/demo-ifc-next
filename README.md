@@ -40,7 +40,7 @@ To test if your installation was successfull, run:
 python -c "import ifcopenshell;print(ifcopenshell.version)"
 ```
 This should output something like `v0.7.0-f0e03c79d`.\
-If the output doesn't look like the above, the installation was not successfull. In that case follow the instructions (3 steps) provided [here](https://blenderbim.org/docs-python/ifcopenshell-python/installation.html#pre-built-packages.).
+If the output doesn't look like the above, the installation was not successfull. In that case follow the instructions (3 steps) provided <a href="https://blenderbim.org/docs-python/ifcopenshell-python/installation.html#pre-built-packages" target="_blank">here</a>.
 
 - #### Node.js
 https://nodejs.org/en/download/current
