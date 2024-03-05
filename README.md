@@ -31,6 +31,7 @@ git clone https://github.com/3dverse/demo-ifc-next
 ```
 ### Prerequisites
 - #### ifcopenshell-python
+  Make sure your python version is ≥ 3.
 ```
 python -m pip install ifcopenshell
 ```
