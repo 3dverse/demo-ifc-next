@@ -48,7 +48,7 @@ https://nodejs.org/en/download/current
 You will see a *Main Scene* element appears. Click on it and then on the right pane click on the *Asset UUID* section. This will copy the UUID of your scene which will be of use for the next step. 
 
 ### Get access to your Project and your scene
-To get access to your Project and your scene you need to get a token for all and pass it in your web application config file located at `src\utils\config.js`.
+To get access to your Project and your scene you need to get a token for all and pass it in your web application config file located at `src/utils/config.js`.
 #### Scene UUID
 If you already copied your Scene UUID you can skip the next instruction. Otherwise:
 - Go to *Asset Browser* -> *Public* folder, and click on *Main Scene*. On the right pane, click on the *Asset UUID* section to copy it
@@ -59,9 +59,9 @@ If you already copied your Scene UUID you can skip the next instruction. Otherwi
 - Edit this line with the Scene UUID you just copied: `export const publicToken = %YOUR_PUBLIC_TOKEN%;`
 
 ### Preprocess your IFC file
-In `public\data\ifc`, delete the default IFC file, place your own IFC file, and run the following commands:
+In `public/data/ifc`, delete the default IFC file, place your own IFC file, and run the following commands:
 ```
-cd public\scripts
+cd public/scripts
 python preprocess_ifc.py
 cd ..
 ```
