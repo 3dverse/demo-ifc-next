@@ -7,6 +7,7 @@ import { guid2euid } from "@/lib/3dverse/idsConverter";
 
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Icon } from "@chakra-ui/react";
 import { EyeIcon } from "./EyeIcon";
+import { SpaceName } from "@/components/SpaceName";
 
 import { goToRoom, getEntityFromGuid } from "../lib/3dverse/helpers";
 import { IfcData, IfcType, Attribute } from "@/types/ifc";
@@ -94,22 +95,7 @@ export const SidePanel = memo(() => {
                                                             }}
                                                         >
                                                             <div className="flex flex-row justify-between">
-                                                                {
-                                                                    <div className="flex flex-row justify-between gap-2">
-                                                                        <div>
-                                                                            {ifcData[storeySpaces[i]].props.LongName
-                                                                                ? `${
-                                                                                      ifcData[storeySpaces[i]].props
-                                                                                          .LongName
-                                                                                  } `
-                                                                                : ifcData[storeySpaces[i]].props.Name}
-                                                                        </div>
-
-                                                                        <div className="text-xs align-text-bottom flex flex-colum items-center font-thin ">
-                                                                            {ifcData[storeySpaces[i]].props.Name}
-                                                                        </div>
-                                                                    </div>
-                                                                }
+                                                                <SpaceName ifcAttributes={ifcData[storeySpaces[i]]} />
                                                                 {
                                                                     <small>
                                                                         {`${getSurface(
