@@ -3,7 +3,7 @@ import { useState, memo } from "react";
 import ifcInfo from "../../data/json/ifcInfo.json";
 import ifcTypes from "../../data/json/ifctype2guids.json";
 
-import { guid2euid } from "@/lib/3dverse/idsConverter";
+import { guid2euid } from "@/lib/id-converter";
 
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Icon } from "@chakra-ui/react";
 import { EyeIcon } from "./EyeIcon";

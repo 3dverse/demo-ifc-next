@@ -1,7 +1,7 @@
 import ifcInfo from "../../../data/json/ifcInfo.json";
 import ifctype2guids from "../../../data/json/ifctype2guids.json";
 import energyData from "../../../data/json/energyData.json";
-import { guid2euid, euid2guid } from "./idsConverter";
+import { guid2euid, euid2guid } from "../id-converter";
 import { EnergyData, IfcData, ChartInput, CanvasEvent } from "@/types/ifc";
 
 import chroma from "chroma-js";
