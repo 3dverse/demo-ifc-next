@@ -10,12 +10,15 @@ Chart.register(CategoryScale);
 export const EnergyPanel = () => {
     const [energyVisible, setEnergyVisibility] = useState(false);
 
-    const handleClick = () => {
-        setEnergyVisibility((previousEnergyVisible) => {
-            const newEnergyVisible = !previousEnergyVisible;
-            toggleEnergyView(newEnergyVisible);
-            return newEnergyVisible;
-        });
+    async function energyViewModifier(previousEnergyVisible: boolean) {
+        const newEnergyVisible = !previousEnergyVisible;
+        await toggleEnergyView(newEnergyVisible);
+        setEnergyVisibility(newEnergyVisible);
+        return newEnergyVisible;
+    }
+
+    const handleClick = async (previousEnergyVisible: boolean) => {
+        await energyViewModifier(previousEnergyVisible);
     };
 
     const charInputs = createChartInputs();
@@ -26,7 +29,12 @@ export const EnergyPanel = () => {
             <aside className="card energy-rooms">
                 <header className="card-header">
                     <h1>Energy Consumption</h1>
-                    <button onClick={handleClick} id="energy-button">
+                    <button
+                        onClick={() => {
+                            handleClick(energyVisible);
+                        }}
+                        id="energy-button"
+                    >
                         {energyVisible ? "Remove" : "Show"}
                     </button>
                 </header>
