@@ -1,7 +1,7 @@
 import { useState, memo } from "react";
 
-import ifcInfo from "../../public/data/json/ifcInfo.json";
-import ifcTypes from "../../public/data/json/ifctype2guids.json";
+import ifcInfo from "../../data/json/ifcInfo.json";
+import ifcTypes from "../../data/json/ifctype2guids.json";
 
 import { guid2euid } from "@/lib/3dverse/idsConverter";
 

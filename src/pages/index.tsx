@@ -1,9 +1,5 @@
 import dynamic from "next/dynamic";
-import Script from "next/script";
 import { ChakraProvider } from "@chakra-ui/react";
-import { EnergyPanel } from "@/components/EnergyPanel";
-import { PropertiesPanel } from "@/components/PropertiesPanel";
-import { Settings } from "@/components/Settings";
 import { Main } from "@/components/Main";
 export const Canvas = dynamic(() => import("@/components/Canvas").then((mod) => mod.Canvas), {
     loading: () => <p>Loading...</p>,

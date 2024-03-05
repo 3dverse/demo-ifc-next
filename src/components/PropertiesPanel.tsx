@@ -1,4 +1,4 @@
-import ifcInfo from "../../public/data/json/ifcInfo.json";
+import ifcInfo from "../../data/json/ifcInfo.json";
 import { IfcData } from "@/types/ifc";
 export const PropertiesPanel = ({ guid }: { guid: string }) => {
     const ifcData = ifcInfo as IfcData;
