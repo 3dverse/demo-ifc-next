@@ -1,12 +1,12 @@
 const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_$'";
 
-function compress(g) {
+function compress(g: string) {
     let bs = [];
     for (let i = 0; i < g.length; i += 2) {
         bs.push(parseInt(g.slice(i, i + 2), 16));
     }
 
-    function b64(v, l = 4) {
+    function b64(v: number, l = 4) {
         let result = "";
         for (let i = l - 1; i >= 0; i--) {
             result += chars[Math.floor(v / Math.pow(64, i)) % 64];
@@ -22,8 +22,8 @@ function compress(g) {
     return compressed;
 }
 
-function expand(g) {
-    function b64(v) {
+function expand(g: string) {
+    function b64(v: string) {
         return v.split("").reduce((a, c) => a * 64 + chars.indexOf(c), 0);
     }
 
@@ -38,14 +38,16 @@ function expand(g) {
     return bs.map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-function split(g) {
+function split(g: string) {
     return `${g.slice(0, 8)}-${g.slice(8, 12)}-${g.slice(12, 16)}-${g.slice(16, 20)}-${g.slice(20)}`;
 }
 
-export function euid2guid(euid) {
+export function euid2guid(euid: string) {
     return compress(euid.replaceAll("-", ""));
 }
 
-export function guid2euid(guid) {
-    return split(expand(guid));
+export function guid2euid(guid: string) {
+    if (guid) {
+        return split(expand(guid));
+    }
 }

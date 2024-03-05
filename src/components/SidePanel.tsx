@@ -3,12 +3,12 @@ import { useState, memo } from "react";
 import ifcInfo from "../../public/data/json/ifcInfo.json";
 import ifcTypes from "../../public/data/json/ifctype2guids.json";
 
-import { guid2euid } from "../utils/idsConverter";
+import { guid2euid } from "@/lib/3dverse/idsConverter";
 
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Icon } from "@chakra-ui/react";
 import { EyeIcon } from "./EyeIcon";
 
-import { goToRoom, getEntityFromGuid } from "../3dverse/helpers";
+import { goToRoom, getEntityFromGuid } from "../lib/3dverse/helpers";
 import { IfcData, IfcType } from "@/types/ifc";
 
 export const SidePanel = memo(() => {
@@ -78,17 +78,16 @@ export const SidePanel = memo(() => {
                                             const spaces = [];
                                             const storeySpaces = ifcData[storey].props.spaces as string[];
 
-                                            if (storeySpaces) {
+                                            if (storeySpaces.length) {
                                                 for (let i = 0; i < storeySpaces.length; i++) {
                                                     spaces.push(
                                                         <li
                                                             className="cursor-pointer"
                                                             key={ifcData[storeySpaces[i]].props.GlobalId}
-                                                            onClick={(e: any) =>
-                                                                goToRoom(
-                                                                    guid2euid(ifcData[storeySpaces[i]].props.GlobalId),
-                                                                )
-                                                            }
+                                                            onClick={() => {
+                                                                const guid = ifcData[storeySpaces[i]].props["GlobalId"];
+                                                                goToRoom(guid2euid(guid));
+                                                            }}
                                                         >
                                                             {ifcData[storeySpaces[i]].props.LongName !== null
                                                                 ? ifcData[storeySpaces[i]].props.LongName

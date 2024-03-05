@@ -1,6 +1,6 @@
 import { useState, memo } from "react";
 import { Switch } from "@chakra-ui/react";
-import { handleReset, handleEdgeSwitchChange, handleCameraSwitchChange } from "../3dverse/helpers";
+import { handleReset, handleEdgeSwitchChange, handleCameraSwitchChange } from "../lib/3dverse/helpers";
 
 export const Settings = memo(() => {
     const [switchCameraState, setSwitchCameraState] = useState(true);

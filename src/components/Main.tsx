@@ -11,7 +11,7 @@ export const Canvas = dynamic(() => import("@/components/Canvas").then((mod) => 
     ssr: false,
 });
 
-import { handleCanvasSelection } from "../3dverse/helpers";
+import { handleCanvasSelection } from "@/lib/3dverse/helpers";
 
 export const Main = memo(() => {
     const [guid, setGuid] = useState("");

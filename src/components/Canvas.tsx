@@ -1,5 +1,5 @@
 import { useEffect, memo } from "react";
-import { initApp } from "../3dverse/helpers";
+import { initApp } from "@/lib/3dverse/init";
 
 export const Canvas = memo(({ onInputChange }: { onInputChange: (event: React.MouseEvent<HTMLElement>) => void }) => {
     const handleContextMenu = (event: any) => {

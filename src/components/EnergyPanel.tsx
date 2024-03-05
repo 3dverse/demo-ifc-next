@@ -3,7 +3,7 @@ import { CategoryScale } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { useState } from "react";
 
-import { toggleEnergyView, createChartInputs, createChart } from "../3dverse/helpers";
+import { toggleEnergyView, createChartInputs, createChart } from "../lib/3dverse/helpers";
 
 Chart.register(CategoryScale);
 
