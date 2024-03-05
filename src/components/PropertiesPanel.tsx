@@ -1,7 +1,8 @@
 import ifcInfo from "../../public/data/json/ifcInfo.json";
-
+import { IfcData } from "@/types/ifc";
 export const PropertiesPanel = ({ guid }: { guid: string }) => {
-    const ifcData = ifcInfo as object;
+    const ifcData = ifcInfo as IfcData;
+
     const entitiyProperties = ifcData[guid];
     return (
         <>
@@ -21,7 +22,7 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
                                         {Object.entries(entitiyProperties.props).map(
                                             ([propertyName, propertyValue]: any) =>
                                                 String(propertyValue)[0] != "#" && (
-                                                    <li>
+                                                    <li key={propertyName}>
                                                         <p>
                                                             {propertyName}: {String(propertyValue)}
                                                         </p>
@@ -32,12 +33,12 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
                                 </div>
 
                                 {Object.keys(entitiyProperties.psets).map((psetName: any) => (
-                                    <div className="pset">
+                                    <div key={psetName} className="pset">
                                         <h4 className="pset-title text-lg font-bold dark:text-white">{psetName}</h4>
                                         {Object.entries(entitiyProperties.psets[psetName]).map(
                                             ([propertyName, propertyValue]: any) =>
                                                 String(propertyValue)[0] != "#" && (
-                                                    <p>
+                                                    <p key={`${psetName}-${propertyName}`}>
                                                         {propertyName}: {String(propertyValue)}
                                                     </p>
                                                 ),
@@ -52,3 +53,5 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
         </>
     );
 };
+
+PropertiesPanel.displayName = "PropertiesPanel";

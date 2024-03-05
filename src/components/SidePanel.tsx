@@ -8,37 +8,40 @@ import { guid2euid } from "../utils/idsConverter";
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Icon } from "@chakra-ui/react";
 import { EyeIcon } from "./EyeIcon";
 
-import { goToRoom, getEntityFromGuid} from "../3dverse/helpers.js";
+import { goToRoom, getEntityFromGuid } from "../3dverse/helpers";
+import { IfcData, IfcType } from "@/types/ifc";
 
 export const SidePanel = memo(() => {
-    const ifcData = ifcInfo as object;
-    const ifctypes = ifcTypes as object;
+    const ifcData = ifcInfo as IfcData;
+    const ifctypes = ifcTypes as IfcType;
 
-    const storeyKey = "IfcBuildingStorey" as keyof typeof ifctypes;
+    const storeyKey = "IfcBuildingStorey";
     const storeys = ifctypes[storeyKey];
 
     const [visibleStoreys, setVisibleStoreys]: any = useState(new Array(storeys.length).fill(true));
 
-    const handleElementClick = async (index: any, storeyGuid: string, event: any) => {
+    const handleElementClick = async (index: any, storeyGuid: string | null, event: any) => {
         event.stopPropagation();
 
-        const storeyEntity = await getEntityFromGuid(storeyGuid);
+        if (storeyGuid) {
+            const storeyEntity = await getEntityFromGuid(storeyGuid);
 
-        if (!visibleStoreys[index]) {
-            setVisibleStoreys((a: Array<boolean>) => {
-                const newArray = [...a];
-                newArray[index] = true;
-                return newArray;
-            });
+            if (!visibleStoreys[index]) {
+                setVisibleStoreys((a: Array<boolean>) => {
+                    const newArray = [...a];
+                    newArray[index] = true;
+                    return newArray;
+                });
 
-            storeyEntity.setVisibility(true);
-        } else {
-            setVisibleStoreys((a: Array<boolean>) => {
-                const newArray = [...a];
-                newArray[index] = false;
-                return newArray;
-            });
-            storeyEntity.setVisibility(false);
+                storeyEntity.setVisibility(true);
+            } else {
+                setVisibleStoreys((a: Array<boolean>) => {
+                    const newArray = [...a];
+                    newArray[index] = false;
+                    return newArray;
+                });
+                storeyEntity.setVisibility(false);
+            }
         }
     };
 
@@ -51,8 +54,8 @@ export const SidePanel = memo(() => {
                 <div className="side-panel-body">
                     <h2>Storeys</h2>
 
-                    {storeys.map((storey: any, index: any) => (
-                        <Accordion defaultIndex={[1]} allowMultiple>
+                    {storeys.map((storey: string, index: number) => (
+                        <Accordion key={ifcData[storey].props.GlobalId} defaultIndex={[1]} allowMultiple>
                             <AccordionItem>
                                 <h2>
                                     <AccordionButton>
@@ -61,9 +64,9 @@ export const SidePanel = memo(() => {
                                             {ifcData[storey].props.Name}
                                         </Box>
                                         <div
-                                            onClick={(event) =>
-                                                handleElementClick(index, ifcData[storey].props.GlobalId, event)
-                                            }
+                                            onClick={(event) => {
+                                                handleElementClick(index, ifcData[storey].props.GlobalId, event);
+                                            }}
                                         >
                                             <EyeIcon visible={visibleStoreys[index]} />
                                         </div>
@@ -73,9 +76,9 @@ export const SidePanel = memo(() => {
                                     <ul>
                                         {(() => {
                                             const spaces = [];
-                                            const storeySpaces = ifcData[storey].props.spaces;
+                                            const storeySpaces = ifcData[storey].props.spaces as string[];
 
-                                            if (storeySpaces.length) {
+                                            if (storeySpaces) {
                                                 for (let i = 0; i < storeySpaces.length; i++) {
                                                     spaces.push(
                                                         <li
@@ -109,3 +112,5 @@ export const SidePanel = memo(() => {
         </>
     );
 });
+
+SidePanel.displayName = "SidePanel";

@@ -11,12 +11,12 @@ export const Canvas = dynamic(() => import("@/components/Canvas").then((mod) => 
     ssr: false,
 });
 
-import { handleCanvasSelection } from "../3dverse/helpers.js";
+import { handleCanvasSelection } from "../3dverse/helpers";
 
 export const Main = memo(() => {
     const [guid, setGuid] = useState("");
 
-    const handleChange: Function = useCallback((event) => {
+    const handleChange = useCallback((event: React.MouseEvent<HTMLElement>) => {
         handleCanvasSelection(event, setGuid);
     }, []);
 
@@ -30,3 +30,5 @@ export const Main = memo(() => {
         </>
     );
 });
+
+Main.displayName = "Main";

@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import Script from "next/script";
 import { ChakraProvider } from "@chakra-ui/react";
-import { StateProvider } from "@/components/StateContext";
 import { EnergyPanel } from "@/components/EnergyPanel";
 import { PropertiesPanel } from "@/components/PropertiesPanel";
 import { Settings } from "@/components/Settings";
@@ -19,7 +18,7 @@ export const SidePanel = dynamic(() => import("@/components/SidePanel").then((mo
 export default function Home() {
     return (
         <>
-            <Script src="https://cdn.3dverse.com/legacy/sdk/latest/SDK3DVerse.js" />
+           
             <main className="min-h-screen">
                 <ChakraProvider>
                     <Main />

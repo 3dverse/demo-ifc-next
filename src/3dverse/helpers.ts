@@ -1,28 +1,34 @@
-import { publicToken, mainSceneUUID } from "../utils/config.js";
+import { publicToken, mainSceneUUID } from "../../config.js";
 import ifcInfo from "../../public/data/json/ifcInfo.json";
 import ifctype2guids from "../../public/data/json/ifctype2guids.json";
 import energyData from "../../public/data/json/energyData.json";
-import { guid2euid, euid2guid } from "../utils/idsConverter";
+import { guid2euid, euid2guid } from "../utils/idsConverter.js";
+import { EnergyData, IfcData, ChartInput, CanvasEvent } from "@/types/ifc";
 
 import chroma from "chroma-js";
 
-const ifcData = ifcInfo;
+const ifcData = ifcInfo as IfcData;
 const ifcTypes = ifctype2guids;
+const roomEnergyData = energyData as EnergyData;
+// EnergyData
 
-function getValueColor(value) {
+function getValueColor(value: number) {
     const scale = chroma.scale(["green", "yellow", "red"]).domain([0, 600]);
     return scale(value).rgb();
 }
 
 export function createChartInputs() {
-    let labels = [];
+    let labels: string[] = [];
     let data = [];
     let colors = [];
 
     for (const s in energyData) {
-        labels.push(ifcData[s].props.Name);
-        data.push(energyData[s]);
-        colors.push(getValueColor(energyData[s]));
+        const spaceName = ifcData[s].props.Name;
+        if (spaceName) {
+            labels.push(spaceName);
+            data.push(roomEnergyData[s]);
+            colors.push(getValueColor(roomEnergyData[s]));
+        }
     }
 
     const formattedColors = colors.map((color) => `rgba(${color.join(",")})`);
@@ -40,7 +46,7 @@ export function createChartInputs() {
     };
 }
 
-export function createChart(data, labels, colors) {
+export function createChart({ data, labels, colors }: ChartInput) {
     // Chart.js data object
     const chartData = {
         labels: labels,
@@ -57,10 +63,10 @@ export function createChart(data, labels, colors) {
     // Chart.js options object
     const chartOptions = {
         type: "bar",
-        indexAxis: "y",
+        indexAxis: "y" as const,
         responsive: true,
         tooltips: {
-            mode: "y",
+            mode: "y" as const,
         },
     };
 
@@ -85,7 +91,7 @@ export async function initApp() {
     });
 }
 
-export async function toggleEnergyView(activate) {
+export async function toggleEnergyView(activate: boolean) {
     const rootEntities = await SDK3DVerse.engineAPI.getRootEntities();
 
     for (const rootEntity of rootEntities) {
@@ -100,7 +106,7 @@ export async function toggleEnergyView(activate) {
 
     for (const guid of ifcTypes["IfcSpace"]) {
         const spaceEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
-        const charge = energyData[guid];
+        const charge = roomEnergyData[guid];
         const spaceEntityChildren = await spaceEntity.getChildren();
 
         for (const spaceEntityChild of spaceEntityChildren) {
@@ -138,7 +144,7 @@ export async function toggleEnergyView(activate) {
     }
 }
 
-export async function handleCanvasSelection(event, guidSetter) {
+export async function handleCanvasSelection(event:CanvasEvent, guidSetter: (guid: string) => void) {
     const target = await SDK3DVerse.engineAPI.castScreenSpaceRay(event.clientX, event.clientY);
     if (!target.pickedPosition) {
         SDK3DVerse.engineAPI.unselectAllEntities();
@@ -166,7 +172,7 @@ export function handleReset() {
     );
 }
 
-export function handleCameraSwitchChange(cameraState, cameraSetter) {
+export function handleCameraSwitchChange(cameraState: boolean, cameraSetter: (cameraState: boolean) => void) {
     if (!cameraState) {
         SDK3DVerse.engineAPI.cameraAPI.setControllerType(
             SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getId(),
@@ -182,7 +188,7 @@ export function handleCameraSwitchChange(cameraState, cameraSetter) {
     cameraSetter(!cameraState);
 }
 
-export function handleEdgeSwitchChange(edgeState, edgeSetter) {
+export function handleEdgeSwitchChange(edgeState: boolean, edgeSetter: (edgeState: boolean) => void) {
     const cam = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera();
     const camComponent = cam.getComponent("camera");
 
@@ -209,7 +215,7 @@ export function handleEdgeSwitchChange(edgeState, edgeSetter) {
     edgeSetter(!edgeState);
 }
 
-export async function goToRoom(roomUUID) {
+export async function goToRoom(roomUUID: string) {
     // Retrieve the IfcSpace entity to travel to from the scene graph.
     const spaceEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(roomUUID))[0];
     const activeViewPort = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0];
@@ -227,6 +233,6 @@ export async function goToRoom(roomUUID) {
     });
 }
 
-export async function getEntityFromGuid(guid) {
+export async function getEntityFromGuid(guid: string) {
     return (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
 }
