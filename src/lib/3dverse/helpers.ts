@@ -10,6 +10,8 @@ const ifcData = ifcInfo as IfcData;
 const ifcTypes = ifctype2guids;
 const roomEnergyData = energyData as EnergyData;
 
+const TRAVEL_TIME = 1;
+
 function getValueColor(value: number) {
     const scale = chroma.scale(["green", "yellow", "red"]).domain([0, 600]);
     return scale(value).rgb();
@@ -202,6 +204,14 @@ export function handleEdgeSwitchChange(edgeState: boolean, edgeSetter: (edgeStat
     edgeSetter(!edgeState);
 }
 
+function computeDistance(u: number[], v: number[]) {
+    var dx = u[0] - v[0];
+    var dy = u[1] - v[1];
+    var dz = u[2] - v[2];
+
+    return Math.sqrt(dx * dx + dy * dy + dz * dz);
+}
+
 export async function goToRoom(roomUUID: string | undefined) {
     if (roomUUID) {
         // Retrieve the IfcSpace entity to travel to from the scene graph.
@@ -209,11 +219,18 @@ export async function goToRoom(roomUUID: string | undefined) {
         const activeViewPort = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0];
 
         const aabbCenterGlobal = spaceEntity.getGlobalAABB().center;
+        const currentCameraPosition = SDK3DVerse.engineAPI.cameraAPI
+            .getActiveViewports()[0]
+            .getCamera()
+            .getGlobalTransform().position;
+
+        const speed = computeDistance(currentCameraPosition, aabbCenterGlobal) / TRAVEL_TIME;
+
         SDK3DVerse.engineAPI.cameraAPI.travel(
             activeViewPort,
             [aabbCenterGlobal[0] + 0.5, aabbCenterGlobal[1] + 0.5, aabbCenterGlobal[2] + 0.5],
             [0, 0, 0, 1],
-            3,
+            speed,
         );
         // Update the orbit target.
         SDK3DVerse.updateControllerSetting({
