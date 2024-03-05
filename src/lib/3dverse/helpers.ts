@@ -3,8 +3,10 @@ import ifctype2guids from "../../../data/json/ifctype2guids.json";
 import energyData from "../../../data/json/energyData.json";
 import { guid2euid, euid2guid } from "./idsConverter";
 import { EnergyData, IfcData, ChartInput, CanvasEvent } from "@/types/ifc";
+import { SpaceName } from "@/components/SpaceName";
 
 import chroma from "chroma-js";
+import { ReactComponentElement } from "react";
 
 const ifcData = ifcInfo as IfcData;
 const ifcTypes = ifctype2guids;
@@ -18,7 +20,8 @@ function getValueColor(value: number) {
 }
 
 export function createChartInputs() {
-    let labels: string[] = [];
+    // let labels: string[] = [];
+    let labels = [] as any;
     let data = [];
     let colors = [];
 
@@ -26,11 +29,19 @@ export function createChartInputs() {
         const spaceName = ifcData[s].props.LongName
             ? `${ifcData[s].props.LongName}-${ifcData[s].props.Name}`
             : ifcData[s].props.Name;
-        if (typeof spaceName == "string") {
-            labels.push(spaceName);
-            data.push(roomEnergyData[s]);
-            colors.push(getValueColor(roomEnergyData[s]));
-        }
+
+        const spaceNameDiv = SpaceName({ifcAttributes :ifcData[s]});
+        // const spaceNameDiv = <SpaceName ifcAttributes=ifcData[s] />
+
+        labels.push(spaceNameDiv);
+        data.push(roomEnergyData[s]);
+        colors.push(getValueColor(roomEnergyData[s]));
+
+        // if (typeof spaceName == "string") {
+        //     labels.push(spaceName);
+        //     data.push(roomEnergyData[s]);
+        //     colors.push(getValueColor(roomEnergyData[s]));
+        // }
     }
 
     const formattedColors = colors.map((color) => `rgba(${color.join(",")})`);
@@ -38,7 +49,7 @@ export function createChartInputs() {
     combinedArrays.sort((obj1, obj2) => obj2.a - obj1.a);
 
     data = combinedArrays.map((obj) => obj.a);
-    labels = combinedArrays.map((obj) => obj.b);
+    // labels = combinedArrays.map((obj) => obj.b);
     colors = combinedArrays.map((obj) => obj.c);
 
     return {
