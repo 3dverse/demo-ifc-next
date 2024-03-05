@@ -24,7 +24,7 @@ export function createChartInputs() {
 
     for (const s in energyData) {
         const spaceName = ifcData[s].props.LongName
-            ? `${ifcData[s].props.LongName}-${ifcData[s].props.Name}`
+            ? `${ifcData[s].props.LongName} - ${ifcData[s].props.Name}`
             : ifcData[s].props.Name;
         if (typeof spaceName == "string") {
             labels.push(spaceName);
