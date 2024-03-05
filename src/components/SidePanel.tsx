@@ -94,11 +94,22 @@ export const SidePanel = memo(() => {
                                                             }}
                                                         >
                                                             <div className="flex flex-row justify-between">
-                                                                <p>
-                                                                    {ifcData[storeySpaces[i]].props.LongName !== null
-                                                                        ? ifcData[storeySpaces[i]].props.LongName
-                                                                        : ifcData[storeySpaces[i]].props.Name}
-                                                                </p>
+                                                                {
+                                                                    <div className="flex flex-row justify-between gap-2">
+                                                                        <div>
+                                                                            {ifcData[storeySpaces[i]].props.LongName
+                                                                                ? `${
+                                                                                      ifcData[storeySpaces[i]].props
+                                                                                          .LongName
+                                                                                  } `
+                                                                                : ifcData[storeySpaces[i]].props.Name}
+                                                                        </div>
+
+                                                                        <div className="text-xs align-text-bottom flex flex-colum items-center font-thin ">
+                                                                            {ifcData[storeySpaces[i]].props.Name}
+                                                                        </div>
+                                                                    </div>
+                                                                }
                                                                 {
                                                                     <small>
                                                                         {`${getSurface(

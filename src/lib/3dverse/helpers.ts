@@ -23,8 +23,10 @@ export function createChartInputs() {
     let colors = [];
 
     for (const s in energyData) {
-        const spaceName = ifcData[s].props.Name;
-        if (spaceName) {
+        const spaceName = ifcData[s].props.LongName
+            ? `${ifcData[s].props.LongName}-${ifcData[s].props.Name}`
+            : ifcData[s].props.Name;
+        if (typeof spaceName == "string") {
             labels.push(spaceName);
             data.push(roomEnergyData[s]);
             colors.push(getValueColor(roomEnergyData[s]));
