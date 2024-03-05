@@ -89,9 +89,23 @@ export const SidePanel = memo(() => {
                                                                 goToRoom(guid2euid(guid));
                                                             }}
                                                         >
-                                                            {ifcData[storeySpaces[i]].props.LongName !== null
-                                                                ? ifcData[storeySpaces[i]].props.LongName
-                                                                : ifcData[storeySpaces[i]].props.Name}
+                                                            <div className="flex flex-row justify-between">
+                                                                <p>
+                                                                    {ifcData[storeySpaces[i]].props.LongName !== null
+                                                                        ? ifcData[storeySpaces[i]].props.LongName
+                                                                        : ifcData[storeySpaces[i]].props.Name}
+                                                                </p>
+                                                                {
+                                                                    <small>
+                                                                        {ifcData[storeySpaces[i]].psets
+                                                                            .PSet_Revit_Dimensions.Area &&
+                                                                            `${Number(
+                                                                                ifcData[storeySpaces[i]].psets
+                                                                                    .PSet_Revit_Dimensions.Area,
+                                                                            ).toFixed(2)} m²`}
+                                                                    </small>
+                                                                }
+                                                            </div>
                                                         </li>,
                                                     );
                                                 }
@@ -101,6 +115,7 @@ export const SidePanel = memo(() => {
 
                                             return spaces;
                                         })()}
+                                        <li></li>
                                     </ul>
                                 </AccordionPanel>
                             </AccordionItem>
