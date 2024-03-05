@@ -11,7 +11,7 @@ export const Canvas = dynamic(() => import("@/components/Canvas").then((mod) => 
     ssr: false,
 });
 
-import { handleCanvasSelection } from "@/lib/3dverse/helpers";
+import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 
 export const Main = memo(() => {
     const [guid, setGuid] = useState("");
@@ -20,9 +20,13 @@ export const Main = memo(() => {
         handleCanvasSelection(event, setGuid);
     }, []);
 
+    const handleKey = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
+        unselectEntities(event, setGuid);
+    }, []);
+
     return (
         <>
-            <Canvas onInputChange={handleChange} />
+            <Canvas onInputChange={handleChange} onKeyboardChange={handleKey} />
             <SidePanel />
             <EnergyPanel />
             {guid ? <PropertiesPanel guid={guid} /> : null}

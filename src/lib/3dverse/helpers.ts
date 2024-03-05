@@ -139,6 +139,13 @@ export async function handleCanvasSelection(event: CanvasEvent, guidSetter: (gui
     }
 }
 
+export function unselectEntities(event: React.KeyboardEvent<HTMLElement>, guidSetter: (guid: string) => void) {
+    if (event.key === "Escape") {
+        SDK3DVerse.engineAPI.unselectAllEntities();
+        guidSetter("");
+    }
+}
+
 function getInitialPoint() {
     return SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().getGlobalTransform().position;
 }
