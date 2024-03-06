@@ -109,7 +109,11 @@ export const SidePanel = memo(() => {
                                                     );
                                                 }
                                             } else {
-                                                spaces.push(<li>{"No IfcSpace at this storey"}</li>);
+                                                spaces.push(
+                                                    <li key={ifcData[storey].props.GlobalId}>
+                                                        {"No IfcSpace at this storey"}
+                                                    </li>,
+                                                );
                                             }
 
                                             return spaces;
