@@ -150,14 +150,14 @@ export function unselectEntities(event: React.KeyboardEvent<HTMLElement>, guidSe
     }
 }
 
-function getInitialPoint() {
+export function getInitialPoint() {
     return SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().getGlobalTransform().position;
 }
 
-export function handleReset() {
+export function handleReset(basePoint: number[]) {
     SDK3DVerse.engineAPI.cameraAPI.travel(
         SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0],
-        getInitialPoint(),
+        basePoint,
         [0, 0, 0, 1],
         10,
     );

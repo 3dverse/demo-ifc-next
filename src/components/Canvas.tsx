@@ -1,13 +1,17 @@
 import { useEffect, memo } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { initApp } from "@/lib/3dverse/init";
+import { getInitialPoint } from "@/lib/3dverse/helpers";
 
 export const Canvas = memo(
     ({
         onInputChange,
         onKeyboardChange,
+        setBasePoint,
     }: {
         onInputChange: (event: React.MouseEvent<HTMLElement>) => void;
         onKeyboardChange: (event: React.KeyboardEvent<HTMLElement>) => void;
+        setBasePoint: Dispatch<SetStateAction<number[]>>;
     }) => {
         const handleContextMenu = (event: any) => {
             event.preventDefault();
@@ -20,6 +24,7 @@ export const Canvas = memo(
                 .then(async () => {
                     if (cancelled) return;
                     await initApp();
+                    setBasePoint(getInitialPoint());
                 });
 
             return () => {

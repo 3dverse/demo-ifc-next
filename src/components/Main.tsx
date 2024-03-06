@@ -15,6 +15,7 @@ import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 
 export const Main = memo(() => {
     const [guid, setGuid] = useState("");
+    const [basePoint, setBasePoint] = useState([0, 0, 0]);
 
     const handleChange = useCallback((event: React.MouseEvent<HTMLElement>) => {
         handleCanvasSelection(event, setGuid);
@@ -26,11 +27,11 @@ export const Main = memo(() => {
 
     return (
         <>
-            <Canvas onInputChange={handleChange} onKeyboardChange={handleKey} />
+            <Canvas onInputChange={handleChange} onKeyboardChange={handleKey} setBasePoint={setBasePoint} />
             <SidePanel />
             <EnergyPanel />
             {guid ? <PropertiesPanel guid={guid} /> : null}
-            <Settings />
+            <Settings basePoint={basePoint} />
         </>
     );
 });
