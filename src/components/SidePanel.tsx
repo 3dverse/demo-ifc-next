@@ -98,10 +98,12 @@ export const SidePanel = memo(() => {
                                                                 <SpaceName ifcAttributes={ifcData[storeySpaces[i]]} />
                                                                 {
                                                                     <small>
-                                                                        {`${getSurface(
-                                                                            ifcData[storeySpaces[i]].psets
-                                                                                .PSet_Revit_Dimensions.Area,
-                                                                        )} m²`}
+                                                                        {ifcData[storeySpaces[i]].psets
+                                                                            .PSet_Revit_Dimensions &&
+                                                                            `${getSurface(
+                                                                                ifcData[storeySpaces[i]].psets
+                                                                                    .PSet_Revit_Dimensions.Area,
+                                                                            )} m²`}
                                                                     </small>
                                                                 }
                                                             </div>
