@@ -87,7 +87,7 @@ export const SidePanel = memo(() => {
                                                 for (let i = 0; i < storeySpaces.length; i++) {
                                                     spaces.push(
                                                         <li
-                                                            className="cursor-pointer"
+                                                            className="cursor-pointer hover:bg-white"
                                                             key={ifcData[storeySpaces[i]].props.GlobalId}
                                                             onClick={() => {
                                                                 const guid = ifcData[storeySpaces[i]].props["GlobalId"];
