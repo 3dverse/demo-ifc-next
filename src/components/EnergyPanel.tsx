@@ -1,6 +1,7 @@
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { Spinner } from "@chakra-ui/react";
 import { useState } from "react";
 
 import { toggleEnergyView, createChartInputs, createChart } from "../lib/3dverse/helpers";
@@ -9,6 +10,7 @@ Chart.register(CategoryScale);
 
 export const EnergyPanel = () => {
     const [energyVisible, setEnergyVisibility] = useState(false);
+    const [isEnergyVizProcessing, setIsEnergyVizProcessing] = useState(false);
 
     async function energyViewModifier(previousEnergyVisible: boolean) {
         const newEnergyVisible = !previousEnergyVisible;
@@ -17,8 +19,10 @@ export const EnergyPanel = () => {
         return newEnergyVisible;
     }
 
-    const handleClick = async (previousEnergyVisible: boolean) => {
+    const handleClick = async (previousEnergyVisible: boolean, previousIsEnergyVizProcessing: boolean) => {
+        setIsEnergyVizProcessing(!previousIsEnergyVizProcessing);
         await energyViewModifier(previousEnergyVisible);
+        setIsEnergyVizProcessing(previousIsEnergyVizProcessing);
     };
 
     const charInputs = createChartInputs();
@@ -29,14 +33,22 @@ export const EnergyPanel = () => {
             <aside className="card energy-rooms">
                 <header className="card-header">
                     <h1>Energy Consumption</h1>
-                    <button
-                        onClick={() => {
-                            handleClick(energyVisible);
-                        }}
-                        id="energy-button"
-                    >
-                        {energyVisible ? "Remove" : "Show"}
-                    </button>
+                    <div>
+                        {isEnergyVizProcessing ? (
+                            <div>
+                                <Spinner />
+                            </div>
+                        ) : (
+                            <button
+                                onClick={() => {
+                                    handleClick(energyVisible, isEnergyVizProcessing);
+                                }}
+                                id="energy-button"
+                            >
+                                {energyVisible ? "Remove" : "Show"}
+                            </button>
+                        )}
+                    </div>
                 </header>
 
                 <div className="side-panel-body">
