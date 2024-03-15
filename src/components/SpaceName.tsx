@@ -13,6 +13,7 @@ export const SpaceName = ({ ifcAttributes }: { ifcAttributes: Property }) => {
                 <div>
                     {ifcAttributes.psets.PSet_Revit_Dimensions &&
                         `${getSurface(ifcAttributes.psets.PSet_Revit_Dimensions.Area)} m²`}
+                    {ifcAttributes.psets.Dimensions && `${getSurface(ifcAttributes.psets.Dimensions.Area)} m²`}
                 </div>
             </div>
         </div>
