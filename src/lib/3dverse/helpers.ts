@@ -248,3 +248,45 @@ export async function getEntityFromGuid(guid: string) {
 export function getSurface(areaData: Attribute) {
     return typeof areaData === "number" ? areaData.toFixed(2) : "-";
 }
+
+export async function updateLightIntensity(value: number, guid: string) {
+    const lightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
+    const lightEntityChildren = await lightEntity.getChildren();
+    console.log(lightEntityChildren);
+
+    for (const lightChild of lightEntityChildren) {
+        if ("point_light" in lightChild.components) {
+            console.log("spotlight");
+            const spotlightComponent = lightChild.getComponent("point_light");
+            const newComponent = {
+                ...spotlightComponent,
+                intensity: value,
+            };
+            lightChild.setComponent("point_light", newComponent);
+        }
+    }
+}
+
+export async function updateColor(value: string, guid: string) {
+    const colorValHex = value;
+    const red = parseInt(colorValHex.substring(1, 3), 16);
+    const green = parseInt(colorValHex.substring(3, 5), 16);
+    const blue = parseInt(colorValHex.substring(5, 7), 16);
+
+    const rgb = [red / 255, green / 255, blue / 255];
+    const lightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
+    const lightEntityChildren = await lightEntity.getChildren();
+    console.log(lightEntityChildren);
+
+    for (const lightChild of lightEntityChildren) {
+        if ("point_light" in lightChild.components) {
+            console.log("spotlight");
+            const spotlightComponent = lightChild.getComponent("point_light");
+            const newComponent = {
+                ...spotlightComponent,
+                color: rgb,
+            };
+            lightChild.setComponent("point_light", newComponent);
+        }
+    }
+}
