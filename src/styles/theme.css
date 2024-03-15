@@ -19,22 +19,36 @@
   
     --color-bg-ground-hsl: 255, 0%, 100%;
     --color-bg-ground: hsl(var(--color-bg-ground-hsl));
-    --color-bg-underground-hsl: 270, 67%, 99%;
+
+    --color-bg-underground-hsl: 250, 60%, 98%, 1;
     --color-bg-underground: hsl(var(--color-bg-underground-hsl));
-    --color-bg-overground-hsl: 270, 7%, 93%;
+
+    --color-bg-overground-hsl: 255, 83%, 57%, 1;
     --color-bg-overground: hsl(var(--color-bg-overground-hsl));
   
-    --color-content-primary-hsl: 212, 6%, 12%;
+    --color-content-primary-hsl: 256, 96%, 32%;
     --color-content-primary: hsl(var(--color-content-primary-hsl));
     --color-content-primary-dark-hsl: 229, 27%, 12%;
     --color-content-primary-dark: hsl(var(--color-content-primary-dark-hsl));
-    --color-content-secondary-hsl: 212, 9%, 28%;
+
+    --color-content-secondary-hsl: 255, 96%, 60%, 1;
     --color-content-secondary: hsl(var(--color-content-secondary-hsl));
-    --color-content-tertiary-hsl: 212, 11%, 46%;
+
+    --color-content-tertiary-hsl: 256, 93%, 68%, 1;
     --color-content-tertiary: hsl(var(--color-content-tertiary-hsl));
   
     --color-border-primary-hsl: 231, 25%, 100%;
     --color-border-primary: hsl(var(--color-border-primary-hsl));
+
+    --color-border-secondary-hsl: 0, 0%, 85%, 1;
+    --color-border-secondary: hsl(var(--color-border-secondary-hsl));
   
     --shadow-xl: rgba(50, 50, 93, 0.15) 0px 50px 100px -20px, rgba(0, 0, 0, 0.2) 0px 30px 60px -30px;
+
+    --color-energy-increase-hsl: 347, 82%, 52%, 1;
+    --color-energy-increase: hsl(var(--color-energy-increase-hsl));    
+    --color-energy-decrease-hsl: 93, 90%, 35%, 1;
+    --color-energy-decrease: hsl(var(--color-energy-decrease-hsl));
+
+
   }

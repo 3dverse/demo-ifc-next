@@ -8,7 +8,7 @@ export const Settings = memo(({ basePoint }: { basePoint: number[] }) => {
 
     return (
         <>
-            <nav className="settings-box">
+            <nav className="flex flex-row gap-1">
                 <button
                     className="island-button reset-button"
                     onClick={() => {

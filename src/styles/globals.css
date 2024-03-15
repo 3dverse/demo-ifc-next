@@ -98,15 +98,12 @@ body {
   display: flex;
   justify-content: center;
   position: relative;
-  background-color: #D1D0D1;
-
   padding: 0;
   margin: 0;
 }
 
 #display-canvas {
   flex: 1;
-  border: none;
 }
 
 h1,
@@ -126,7 +123,6 @@ ul {
   flex-direction: column;
   border-radius: 8px;
   background-color: rgba(252, 250, 254, 0.75);
-  border: 1px solid var(--color-border-primary);
   filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
   overflow: hidden;
 }
@@ -165,13 +161,6 @@ ul {
         display: flex;
         gap: .25rem;
         margin-block: .5rem;
-        /* line-height: 1.2;
-        overflow-wrap: anywhere; */
-
-        /* >*:first-child {
-          flex: 0 0 35%;
-          opacity: .8;
-        } */
       }
     }
   }
@@ -214,10 +203,8 @@ ul {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: rgba(252, 250, 254, 0.9);
   box-shadow: var(--shadow-xl);
   backdrop-filter: blur(20px) saturate(.7);
-  border-right: 1px solid hsl(var(--color-bg-underground-hsl), .5);
 }
 
 .side-panel-header {
@@ -233,12 +220,8 @@ ul {
   overflow-y: auto;
 
   h2 {
-    padding: .5rem 1.2rem;
-    font-size: .85rem;
-    font-weight: 400;
     letter-spacing: 0.075em;
     text-transform: uppercase;
-    color: var(--color-content-tertiary);
   }
 }
 
@@ -249,21 +232,14 @@ ul {
   list-style: none;
   padding-left: 0;
   overflow-y: auto;
-  border-top: 1px solid var(--color-border-primary);
 
   &>li {
-    border-bottom: 1px solid var(--color-border-primary);
-
     .summary {
       display: flex;
       align-items: center;
 
       &:hover {
         background-color: rgba(252, 250, 254, 0.9);
-      }
-
-      &:last-child {
-        border: none;
       }
     }
 
@@ -353,7 +329,6 @@ ul {
   overflow: hidden;
 
   &>li {
-    padding: .5rem 1rem .5rem 3rem;
     background-color: rgba(252, 250, 254, 0.8);
     cursor: pointer;
 
@@ -379,11 +354,6 @@ ul {
   justify-content: space-around;
   align-items: center;
   gap: 2px;
-
-  position: absolute;
-  bottom: 0;
-  left: 27rem;
-  margin: .5rem;
 }
 
 .island-button {
@@ -395,7 +365,6 @@ ul {
   padding: .75rem;
 
   background-color: rgba(252, 250, 254, 0.8);
-  border: none;
   border-radius: 3px;
   box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
   box-sizing: border-box;
@@ -449,7 +418,6 @@ ul {
   width: 20rem;
   border-radius: 6px;
   background-color: rgba(252, 250, 254, 0.75);
-  border: 1px solid hsl(var(--color-border-primary-hsl), .9);
   box-shadow: var(--shadow-xl);
   backdrop-filter: blur(20px) saturate(.7);
   filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
@@ -458,7 +426,6 @@ ul {
     display: flex;
     justify-content: space-between;
     padding: .5rem 1rem;
-    border-bottom: 1px solid var(--color-border-primary);
 
     h1 {
       font-size: 1rem;

@@ -36,7 +36,7 @@ export const Canvas = memo(
             <>
                 <canvas
                     id="display-canvas"
-                    className="w-screen h-screen"
+                    className="w-screen h-screen bg-color-underground"
                     tabIndex={1}
                     onContextMenu={handleContextMenu}
                     onClick={onInputChange}

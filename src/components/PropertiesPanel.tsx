@@ -9,10 +9,18 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
             <aside className="card ifc-properties">
                 {entitiyProperties?.props?.Name && (
                     <>
-                        <header className="card-header">
-                            <h1>
-                                {entitiyProperties.props.type}: {entitiyProperties.props.Name}
-                            </h1>
+                        <header className="p-2">
+                            <div className="flex flex-col">
+                                <div className="flex flex-row justify-between text-xs">
+                                    <p className="text-color-secondary">Selection</p>
+                                    <div className="flex flex-row gap-1">
+                                        <p>Unselect</p>
+                                        <p>&times;</p>
+                                    </div>
+                                </div>
+                                <h1 className="text-xl ">{entitiyProperties.props.type}</h1>
+                                <p className="text-sm font-light">{entitiyProperties.props.Name}</p>
+                            </div>
                         </header>
                         <div className="card-body props-body">
                             <div>

@@ -1,15 +1,11 @@
 import { useState, useCallback, memo } from "react";
-import dynamic from "next/dynamic";
 
+import { Canvas } from "./Canvas";
 import { SidePanel } from "@/components/SidePanel";
-import { EnergyPanel } from "@/components/EnergyPanel";
 import { PropertiesPanel } from "@/components/PropertiesPanel";
 import { Settings } from "@/components/Settings";
-
-export const Canvas = dynamic(() => import("@/components/Canvas").then((mod) => mod.Canvas), {
-    loading: () => <p>Loading...</p>,
-    ssr: false,
-});
+import { EnergyView } from "./EnergyView";
+import { EnergyViewButton } from "./EnergyViewButton";
 
 import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 
@@ -29,9 +25,24 @@ export const Main = memo(() => {
         <>
             <Canvas onInputChange={handleChange} onKeyboardChange={handleKey} setBasePoint={setBasePoint} />
             <SidePanel />
-            <EnergyPanel />
+
+            <div
+                className="flex flex-row
+                            justify-between
+                            absolute
+                            top-1
+                            left-[28rem]
+                            max-f-[500px]
+                            gap-3"
+            >
+                <Settings basePoint={basePoint} />
+
+                <EnergyViewButton />
+            </div>
+
+            <EnergyView />
+
             {guid ? <PropertiesPanel guid={guid} /> : null}
-            <Settings basePoint={basePoint} />
         </>
     );
 });

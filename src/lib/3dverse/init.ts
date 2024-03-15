@@ -16,7 +16,7 @@ export async function initApp() {
     SDK3DVerse.engineAPI.cameraAPI
         .getActiveViewports()[0]
         .getCamera()
-        .setComponent("camera", { dataJSON: { edgeOutlines: true, skybox: true } });
+        .setComponent("camera", { dataJSON: { edgeOutlines: true, skybox: false } });
         
     SDK3DVerse.updateControllerSetting({
         lookAtPoint: [projectGlobalCenter[0], projectGlobalCenter[1], projectGlobalCenter[2]],

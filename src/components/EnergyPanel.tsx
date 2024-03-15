@@ -30,7 +30,7 @@ export const EnergyPanel = () => {
 
     return (
         <>
-            <aside className="card energy-rooms">
+            <aside>
                 <header className="card-header">
                     <h1>Energy Consumption</h1>
                     <div>
