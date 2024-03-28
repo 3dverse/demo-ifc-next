@@ -152,12 +152,11 @@ export function getInitialPoint() {
 }
 
 export function handleReset(basePoint: BasePoint) {
-    console.log("BP", basePoint);
     SDK3DVerse.engineAPI.cameraAPI.travel(
         SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0],
         basePoint.position,
         basePoint.orientation,
-        10,
+        10000,
     );
 }
 
