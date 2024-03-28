@@ -1,8 +1,9 @@
 import { useState, memo } from "react";
 import { Switch } from "@chakra-ui/react";
 import { handleReset, handleEdgeSwitchChange, handleCameraSwitchChange, getInitialPoint } from "../lib/3dverse/helpers";
+import { BasePoint } from "@/types/ifc";
 
-export const Settings = memo(({ basePoint }: { basePoint: number[] }) => {
+export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
     const [switchCameraState, setSwitchCameraState] = useState(true);
     const [switchEdgeState, setSwitchEdgeState] = useState(true);
 

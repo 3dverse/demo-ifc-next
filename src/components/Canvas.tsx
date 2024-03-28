@@ -2,6 +2,7 @@ import { useEffect, memo } from "react";
 import { Dispatch, SetStateAction } from "react";
 import { initApp } from "@/lib/3dverse/init";
 import { getInitialPoint } from "@/lib/3dverse/helpers";
+import { BasePoint } from "@/types/ifc";
 
 export const Canvas = memo(
     ({
@@ -11,7 +12,7 @@ export const Canvas = memo(
     }: {
         onInputChange: (event: React.MouseEvent<HTMLElement>) => void;
         onKeyboardChange: (event: React.KeyboardEvent<HTMLElement>) => void;
-        setBasePoint: Dispatch<SetStateAction<number[]>>;
+        setBasePoint: Dispatch<SetStateAction<BasePoint>>;
     }) => {
         const handleContextMenu = (event: any) => {
             event.preventDefault();

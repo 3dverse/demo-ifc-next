@@ -2,7 +2,7 @@ import ifcInfo from "../../../data/json/ifcInfo.json";
 import ifctype2guids from "../../../data/json/ifctype2guids.json";
 import energyData from "../../../data/json/energyData.json";
 import { guid2euid, euid2guid } from "../id-converter";
-import { EnergyData, IfcData, ChartInput, CanvasEvent, Attribute } from "@/types/ifc";
+import { EnergyData, IfcData, ChartInput, CanvasEvent, Attribute, BasePoint } from "@/types/ifc";
 
 import chroma from "chroma-js";
 
@@ -147,14 +147,16 @@ export function unselectEntities(event: React.KeyboardEvent<HTMLElement>, guidSe
 }
 
 export function getInitialPoint() {
-    return SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().getGlobalTransform().position;
+    const cameraTransform = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().getGlobalTransform();
+    return { position: cameraTransform.position, orientation: cameraTransform.orientation };
 }
 
-export function handleReset(basePoint: number[]) {
+export function handleReset(basePoint: BasePoint) {
+    console.log("BP", basePoint);
     SDK3DVerse.engineAPI.cameraAPI.travel(
         SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0],
-        basePoint,
-        [0, 0, 0, 1],
+        basePoint.position,
+        basePoint.orientation,
         10,
     );
 }

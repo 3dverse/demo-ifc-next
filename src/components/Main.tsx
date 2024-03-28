@@ -11,7 +11,7 @@ import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 
 export const Main = memo(() => {
     const [guid, setGuid] = useState("");
-    const [basePoint, setBasePoint] = useState([0, 0, 0]);
+    const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
 
     const handleChange = useCallback((event: React.MouseEvent<HTMLElement>) => {
         handleCanvasSelection(event, setGuid);
