@@ -9,7 +9,7 @@ import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIco
 import { EyeIcon } from "./EyeIcon";
 import { SpaceName } from "@/components/SpaceName";
 
-import { goToRoom, getEntityFromGuid, getSurface } from "../lib/3dverse/helpers";
+import { goToRoom, getEntityFromGuid, toToggle, getSurface } from "../lib/3dverse/helpers";
 import { IfcData, IfcType, Attribute } from "@/types/ifc";
 
 export const SidePanel = memo(() => {
@@ -43,6 +43,26 @@ export const SidePanel = memo(() => {
                 });
                 storeyEntity.setVisibility(false);
             }
+        }
+    };
+
+    const toggleStoreysVisibility = async (event: any) => {
+        event.stopPropagation();
+        const rootEntities = await SDK3DVerse.engineAPI.getRootEntities();
+        if (visibleStoreys.some((element: boolean) => element === true)) {
+            for (const rootEntity of rootEntities) {
+                if (toToggle(rootEntity.components)) {
+                    await rootEntity.setVisibility(false);
+                }
+            }
+            setVisibleStoreys(Array(visibleStoreys.length).fill(false));
+        } else {
+            for (const rootEntity of rootEntities) {
+                if (toToggle(rootEntity.components)) {
+                    await rootEntity.setVisibility(true);
+                }
+            }
+            setVisibleStoreys(Array(visibleStoreys.length).fill(true));
         }
     };
 
@@ -226,7 +246,17 @@ export const SidePanel = memo(() => {
                     </div>
                 </header>
                 <div className="side-panel-body">
-                    <h2 className="text-color-secondary p-4">Storeys</h2>
+                    <div className="flex flex-row items-center">
+                        <h2 className="text-color-secondary p-4">Storeys</h2>
+                        <div
+                            className="cursor-pointer"
+                            onClick={(event) => {
+                                toggleStoreysVisibility(event);
+                            }}
+                        >
+                            <EyeIcon visible={visibleStoreys.some((element: boolean) => element === true)} />
+                        </div>
+                    </div>
 
                     {storeys.map((storey: string, index: number) => (
                         <Accordion key={ifcData[storey].props.GlobalId} defaultIndex={[1]} allowMultiple>

@@ -79,11 +79,7 @@ export async function toggleEnergyView(activate: boolean) {
     const rootEntities = await SDK3DVerse.engineAPI.getRootEntities();
 
     for (const rootEntity of rootEntities) {
-        if (
-            !("camera" in rootEntity.components) &&
-            !("point_light" in rootEntity.components) &&
-            !("label" in rootEntity.components)
-        ) {
+        if (toToggle(rootEntity.components)) {
             await rootEntity.setVisibility(activate ? false : true);
         }
     }
@@ -289,4 +285,8 @@ export async function updateColor(value: string, guid: string) {
             lightChild.setComponent("point_light", newComponent);
         }
     }
+}
+
+export function toToggle(components: string[]) {
+    return !("camera" in components) && !("point_light" in components) && !("label" in components);
 }
