@@ -249,11 +249,9 @@ export function getSurface(areaData: Attribute) {
 export async function updateLightIntensity(value: number, guid: string) {
     const lightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
     const lightEntityChildren = await lightEntity.getChildren();
-    console.log(lightEntityChildren);
 
     for (const lightChild of lightEntityChildren) {
         if ("point_light" in lightChild.components) {
-            console.log("spotlight");
             const spotlightComponent = lightChild.getComponent("point_light");
             const newComponent = {
                 ...spotlightComponent,
@@ -273,11 +271,9 @@ export async function updateColor(value: string, guid: string) {
     const rgb = [red / 255, green / 255, blue / 255];
     const lightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
     const lightEntityChildren = await lightEntity.getChildren();
-    console.log(lightEntityChildren);
 
     for (const lightChild of lightEntityChildren) {
         if ("point_light" in lightChild.components) {
-            console.log("spotlight");
             const spotlightComponent = lightChild.getComponent("point_light");
             const newComponent = {
                 ...spotlightComponent,
@@ -290,4 +286,16 @@ export async function updateColor(value: string, guid: string) {
 
 export function toToggle(components: string[]) {
     return !("camera" in components) && !("point_light" in components) && !("label" in components);
+}
+
+export async function runAnimation(uuid: string) {
+    SDK3DVerse.engineAPI.playAnimationSequence(uuid, { playbackSpeed: 1, seekOffset: 0 });
+}
+
+export async function pauseAnimation(uuid: string) {
+    SDK3DVerse.engineAPI.pauseAnimationSequence(uuid);
+}
+
+export async function stopAnimation(uuid: string) {
+    SDK3DVerse.engineAPI.stopAnimationSequence(uuid);
 }
