@@ -34,7 +34,7 @@ export const EnergyView = memo(() => {
               <small>&#9650;</small> 3 ALERTS
             </div>
           </div>
-          <div className='font-normal text-gray-500 text-sm'>SEE ALL</div>
+          {/* <div className='font-normal text-gray-500 text-sm'>SEE ALL</div> */}
         </div>
         <div className='overflow-y-scroll  grid grid-cols-3 h-[100%] gap-1'>
           {(() => {

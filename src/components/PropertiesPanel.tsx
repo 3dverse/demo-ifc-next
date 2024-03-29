@@ -20,8 +20,8 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
                                 <div className="flex flex-row justify-between text-xs">
                                     <p className="text-color-secondary">Selection</p>
                                     <div className="flex flex-row gap-1">
-                                        <p>Unselect</p>
-                                        <p>&times;</p>
+                                        {/* <p>Unselect</p>
+                                        <p>&times;</p> */}
                                     </div>
                                 </div>
                                 <h1 className="text-xl ">{entitiyProperties.props.type}</h1>
