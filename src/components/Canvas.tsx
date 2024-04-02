@@ -34,10 +34,10 @@ export const Canvas = memo(
         }, []);
 
         return (
-            <>
+            <div className="canvas-container">
                 <canvas
-                    id="display-canvas"
-                    className="w-screen h-screen bg-color-underground"
+                    id="canvas"
+                    className="w-screen h-screen bg-color-underground-dark"
                     tabIndex={1}
                     onContextMenu={handleContextMenu}
                     onWheel={(event) => {
@@ -58,7 +58,7 @@ export const Canvas = memo(
                         onKeyboardChange(e);
                     }}
                 ></canvas>
-            </>
+            </div>
         );
     },
 );

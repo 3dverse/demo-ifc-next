@@ -5,7 +5,7 @@ export async function initApp() {
         userToken: publicToken,
         sceneUUID: mainSceneUUID,
 
-        canvas: document.getElementById("display-canvas"),
+        canvas: document.getElementById("canvas"),
         viewportProperties: {
             defaultControllerType: SDK3DVerse.controller_type.editor,
         },
