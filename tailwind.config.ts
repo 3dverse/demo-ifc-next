@@ -15,6 +15,7 @@ const config: Config = {
             backgroundColor: {
                 "color-ground": "var(--color-bg-ground)",
                 "color-underground": "var(--color-bg-underground)",
+                "color-underground-dark": "var(--color-bg-underground-dark)",
                 "color-overground": "var(--color-bg-overground)",
             },
 
