@@ -8,29 +8,30 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            colors: {
+                accent: "var(--color-accent)",
+            },
+            backgroundColor: {
+                ground: "hsla(var(--color-bg-ground-hsl), var(--tw-bg-opacity, 1))",
+                underground: "hsla(var(--color-bg-underground-hsl), var(--tw-bg-opacity, 1))",
+                "underground-dark": "hsla(var(--color-bg-underground-dark-hsl), var(--tw-bg-opacity, 1))",
+                overground: "hsla(var(--color-bg-overground-hsl), var(--tw-bg-opacity, 1))",
+            },
+            textColor: {
+                primary: "var(--color-content-primary)",
+                secondary: "var(--color-content-secondary)",
+                tertiary: "var(--color-content-tertiary)",
+                increase: "var(--color-energy-increase)",
+                decrease: "var(--color-energy-decrease)",
+            },
+            borderColor: {
+                primary: "var(--color-border-primary)",
+                secondary: "var(--color-border-secondary)",
+                tertiary: "var(--color-border-tertiary)",
+            },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-            },
-            backgroundColor: {
-                "color-ground": "var(--color-bg-ground)",
-                "color-underground": "var(--color-bg-underground)",
-                "color-underground-dark": "var(--color-bg-underground-dark)",
-                "color-overground": "var(--color-bg-overground)",
-            },
-
-            textColor: {
-                "color-primary": "var(--color-content-primary)",
-                "color-secondary": "var(--color-content-secondary)",
-                "color-tertiary": "var(--color-content-tertiary)",
-                "color-increase": "var(--color-energy-increase)",
-                "color-decrease": "var(--color-energy-decrease)",
-            },
-
-            borderColor: {
-                "border-primary": "var(--color-border-primary)",
-                "border-secondary": "var(--color-border-secondary)",
-                "border-tertiary": "var(--color-border-tertiary)",
             },
         },
     },

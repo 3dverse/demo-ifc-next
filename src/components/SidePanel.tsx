@@ -69,57 +69,58 @@ export const SidePanel = memo(() => {
     };
 
     return (
-        <>
-            <aside className="side-panel bg-gradient-to-b from-[hsla(var(--color-bg-underground-hsl),.92)] to-[hsla(var(--color-bg-ground-hsl),.98)]">
-                <header className="px-2 py-2">
-                    <div className="flex flex-row gap-3">
-                        <Logo className="-mt-px" />
-                        <div>
-                            <h1 className="text-lg font-semibold">IFC Demo App</h1>
-                            <p className="text-xs font-light text-gray-600">
-                                Example of a{" "}
-                                <a
-                                    className="text-color-secondary hover:underline"
-                                    target="_blank"
-                                    href="https://3dverse.com/"
-                                >
-                                    3dverse web app
-                                </a>
-                                .
-                            </p>
-                        </div>
+        <aside className="side-panel bg-underground bg-opacity-[.92]">
+            <header className="px-2 py-2 border-b border-primary">
+                <div className="flex flex-row gap-3">
+                    <Logo className="-mt-px" />
+                    <div>
+                        <h1 className="text-lg font-semibold">IFC Demo App</h1>
+                        <p className="text-xs font-light text-gray-600">
+                            Example of a{" "}
+                            <a className="text-secondary hover:underline" target="_blank" href="https://3dverse.com/">
+                                3dverse web app
+                            </a>
+                            .
+                        </p>
                     </div>
-                </header>
-                <div className="side-panel-body flex-1 pb-12">
-                    <div className="flex flex-row items-center justify-between pb-2 pl-4 pr-3">
-                        <h2 className="text-xs text-gray-500 uppercase tracking-wide">Storeys</h2>
-                        <IconButton
-                            aria-label="Show/hide storey"
-                            variant="ghost"
-                            size="xs"
-                            icon={<EyeIcon isVisible={visibleStoreys.some((element: boolean) => element === true)} />}
-                            onClick={toggleStoreysVisibility}
-                            _hover={{
-                                bgColor: "var(--color-bg-ground)",
-                            }}
-                        />
-                    </div>
+                </div>
+            </header>
+            <div className="side-panel-body flex-1 pb-12">
+                <div className="flex flex-row items-center justify-between py-2 pl-4 pr-3">
+                    <h2 className="text-xs text-gray-500 uppercase tracking-wide">Storeys</h2>
+                    <IconButton
+                        aria-label="Show/hide storey"
+                        variant="ghost"
+                        size="xs"
+                        icon={<EyeIcon isVisible={visibleStoreys.some((element: boolean) => element === true)} />}
+                        onClick={toggleStoreysVisibility}
+                        _hover={{
+                            bgColor: "var(--color-bg-ground)",
+                        }}
+                    />
+                </div>
 
-                    <Accordion
-                        defaultIndex={[1]}
-                        allowMultiple
-                        className="mx-2 border divide-y rounded-lg overflow-hidden"
-                    >
-                        {storeys.map((storey: string, index: number) => {
-                            const spaces = ifcData[storey].props?.spaces;
-                            const hasStoreySpaces = typeof spaces === "object" && spaces!.length > 0;
+                <Accordion defaultIndex={[1]} allowMultiple className="mx-2">
+                    {storeys.map((storey: string, index: number) => {
+                        const spaces = ifcData[storey].props?.spaces;
+                        const hasStoreySpaces = typeof spaces === "object" && spaces!.length > 0;
 
-                            return (
-                                <div key={ifcData[storey].props.GlobalId}>
-                                    <AccordionItem
-                                        className="bg-color-ground p-0"
-                                        border="none"
-                                        isDisabled={!hasStoreySpaces}
+                        return (
+                            <AccordionItem
+                                key={ifcData[storey].props.GlobalId}
+                                border="none"
+                                isDisabled={!hasStoreySpaces}
+                            >
+                                {({ isExpanded }) => (
+                                    <div
+                                        className={`my-px bg-ground border transitions-all 
+                                            ${index === 0 ? "rounded-t-md" : ""}
+                                            ${index === storeys.length - 1 ? "rounded-b-md" : ""}
+                                            ${
+                                                isExpanded
+                                                    ? "rounded-md overflow-hidden border-accent"
+                                                    : "border-transparent"
+                                            }`}
                                     >
                                         <AccordionButton
                                             pr="1"
@@ -140,13 +141,15 @@ export const SidePanel = memo(() => {
                                             }}
                                             _disabled={{
                                                 opacity: 1,
+                                                bgColor: "hsla(var(--color-bg-underground-hsl), .5)",
                                             }}
                                         >
                                             <AccordionIcon
                                                 as={CaretRightSharpSolidIcon}
                                                 width="3"
                                                 height="3"
-                                                opacity={hasStoreySpaces ? 0.2 : 0}
+                                                opacity={hasStoreySpaces ? (isExpanded ? 1 : 0.2) : 0}
+                                                className="fill-accent"
                                             />
 
                                             <h2
@@ -188,7 +191,7 @@ export const SidePanel = memo(() => {
                                                         for (let i = 0; i < storeySpaces.length; i++) {
                                                             spaces.push(
                                                                 <li
-                                                                    className="group cursor-pointer hover:bg-color-underground transition-colors duration-300"
+                                                                    className="group cursor-pointer hover:bg-underground transition-colors duration-300"
                                                                     key={ifcData[storeySpaces[i]].props.GlobalId}
                                                                     onClick={() => {
                                                                         const guid =
@@ -207,14 +210,14 @@ export const SidePanel = memo(() => {
                                                 })()}
                                             </ul>
                                         </AccordionPanel>
-                                    </AccordionItem>
-                                </div>
-                            );
-                        })}
-                    </Accordion>
-                </div>
-            </aside>
-        </>
+                                    </div>
+                                )}
+                            </AccordionItem>
+                        );
+                    })}
+                </Accordion>
+            </div>
+        </aside>
     );
 });
 

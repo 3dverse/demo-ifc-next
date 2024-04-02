@@ -10,7 +10,7 @@ export const Main = dynamic(() => import("@/components/Main").then((mod) => mod.
 
 export default function Home() {
     return (
-        <main className="min-h-screen bg-color-underground-dark">
+        <main className="min-h-screen bg-underground-dark">
             <ChakraProvider>
                 <Main />
             </ChakraProvider>

@@ -34,30 +34,36 @@ export const Canvas = memo(
         }, []);
 
         return (
-            <div className="canvas-container">
-                <canvas
-                    id="canvas"
-                    className="w-screen h-screen bg-color-underground-dark"
-                    tabIndex={1}
-                    onContextMenu={handleContextMenu}
-                    onWheel={(event) => {
-                        if (event.buttons == 2) {
-                            const currentSpeed = SDK3DVerse.engineAPI.cameraAPI.controllerSettings.speed;
+            <div>
+                <div className="canvas-container">
+                    <canvas
+                        id="canvas"
+                        className="w-screen h-screen bg-underground-dark"
+                        tabIndex={1}
+                        onContextMenu={handleContextMenu}
+                        onWheel={(event) => {
+                            if (event.buttons == 2) {
+                                const currentSpeed = SDK3DVerse.engineAPI.cameraAPI.controllerSettings.speed;
 
-                            if (event.deltaY > 0) {
-                                SDK3DVerse.engineAPI.cameraAPI.updateControllerSettings({
-                                    speed: currentSpeed - 0.5 < 0 ? 0.1 : currentSpeed - 0.5,
-                                });
-                            } else {
-                                SDK3DVerse.engineAPI.cameraAPI.updateControllerSettings({ speed: currentSpeed + 0.5 });
+                                if (event.deltaY > 0) {
+                                    SDK3DVerse.engineAPI.cameraAPI.updateControllerSettings({
+                                        speed: currentSpeed - 0.5 < 0 ? 0.1 : currentSpeed - 0.5,
+                                    });
+                                } else {
+                                    SDK3DVerse.engineAPI.cameraAPI.updateControllerSettings({
+                                        speed: currentSpeed + 0.5,
+                                    });
+                                }
                             }
-                        }
-                    }}
-                    onClick={onInputChange}
-                    onKeyDown={(e) => {
-                        onKeyboardChange(e);
-                    }}
-                ></canvas>
+                        }}
+                        onClick={onInputChange}
+                        onKeyDown={(e) => {
+                            onKeyboardChange(e);
+                        }}
+                    ></canvas>
+                </div>
+
+                <div className="canvas-outline" />
             </div>
         );
     },

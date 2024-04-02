@@ -3,78 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-}
+@import "canvas.css";
 
-/* UI */
-.label-container {
-    &.active,
-    &:hover {
-        z-index: 10 !important;
-    }
-
-    &.active .label,
-    .label:hover,
-    .label:focus {
-        color: rgba(241, 241, 241, 0.9);
-        background-color: var(--color-accent);
-    }
-
-    .label:hover,
-    .label:focus {
-        & + .label-title:not(:empty) {
-            transform: scaleX(1);
-            opacity: 1;
-        }
-    }
-}
-
-.label {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20px;
-    height: 20px;
-    transform: translate(-50%, -50%);
-    border-radius: 1rem;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    color: rgba(9, 11, 12, 0.6);
-    background-color: rgba(241, 241, 241, 0.7);
-    transition: opacity 0.35s, color 0.35s, background-color 0.35s;
-    user-select: none;
-    pointer-events: all !important;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.label-title {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    top: -12px;
-    left: -12px;
-    transform: scaleX(0.9);
-    transform-origin: center left;
-    width: max-content;
-    max-width: 15rem;
-    min-height: 24px;
-    padding: 0.25rem 0.75rem 0.25rem 1.75rem;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    border-radius: 12px;
-    color: rgba(9, 11, 12, 0.8);
-    background-color: rgba(241, 241, 241, 0.9);
-    transition: opacity 0.25s, transform 0.25s;
-    opacity: 0;
-    pointer-events: none;
-}
-
-p {
-    margin: 0;
+:root {
+    --side-panel-width: 28rem;
 }
 
 body {
@@ -85,21 +17,13 @@ body {
 
     accent-color: var(--color-accent);
     font-family: "Open Sans", sans-serif;
+
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
-.canvas-container {
-    width: 100vw;
-    height: 100dvh;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    padding: 0;
+p {
     margin: 0;
-
-    canvas {
-        flex: 1;
-    }
 }
 
 h1,
@@ -194,27 +118,10 @@ ul {
     left: 0;
     top: 0;
     height: 100dvh;
-    width: 27rem;
+    width: var(--side-panel-width);
     display: flex;
     flex-direction: column;
-    box-shadow: var(--shadow-xl);
     backdrop-filter: blur(20px) saturate(0.7);
-
-    &:before {
-        content: "";
-        position: absolute;
-        left: 100%;
-        bottom: 0;
-        width: 24px;
-        height: 24px;
-        background-color: var(--color-bg-underground);
-        mask-image: linear-gradient(to top, red, red),
-            radial-gradient(circle 15px at center, green 80%, transparent 81%);
-        mask-size: 12px 12px, 100%;
-        mask-position: bottom left, center;
-        mask-repeat: no-repeat, repeat;
-        mask-composite: subtract;
-    }
 }
 
 .side-panel-body {
@@ -355,12 +262,12 @@ ul {
     justify-content: center;
     align-items: center;
     gap: 0.25rem;
-    height: 2.5rem;
-    padding: 0.75rem;
+    height: 2rem;
+    padding: 0.5rem;
 
     background-color: rgba(252, 250, 254, 0.8);
     border-radius: 3px;
-    box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+    box-shadow: 0 4px 15px rgb(0 0 0 / 0.2);
     box-sizing: border-box;
     cursor: pointer;
 

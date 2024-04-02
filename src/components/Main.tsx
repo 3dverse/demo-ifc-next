@@ -30,9 +30,10 @@ export const Main = memo(() => {
                 className="flex flex-row
                             justify-between
                             absolute
-                            top-1
-                            left-[28rem]
-                            max-f-[500px]
+                            top-4
+                            left-[var(--side-panel-width)]
+                            ml-3
+                            max-w-[500px]
                             gap-3"
             >
                 <Settings basePoint={basePoint} />

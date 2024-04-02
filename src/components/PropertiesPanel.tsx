@@ -18,7 +18,7 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
                         <header className="p-2">
                             <div className="flex flex-col">
                                 <div className="flex flex-row justify-between text-xs">
-                                    <p className="text-color-secondary">Selection</p>
+                                    <p className="text-secondary">Selection</p>
                                     <div className="flex flex-row gap-1">
                                         {/* <p>Unselect</p>
                                         <p>&times;</p> */}
