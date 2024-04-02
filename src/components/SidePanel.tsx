@@ -111,7 +111,8 @@ export const SidePanel = memo(() => {
                         className="mx-2 border divide-y rounded-lg overflow-hidden"
                     >
                         {storeys.map((storey: string, index: number) => {
-                            const hasStoreySpaces = Number(ifcData[storey].props?.spaces?.length) > 0;
+                            const spaces = ifcData[storey].props?.spaces;
+                            const hasStoreySpaces = typeof spaces === "object" && spaces!.length > 0;
 
                             return (
                                 <div key={ifcData[storey].props.GlobalId}>
