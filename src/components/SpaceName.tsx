@@ -3,7 +3,7 @@ import { getSurface } from "@/lib/3dverse/helpers";
 
 export const SpaceName = ({ ifcAttributes }: { ifcAttributes: Property }) => {
     return (
-        <div className="flex flex-row items-center justify-between gap-2 pl-4 pr-2 py-1 text-gray-800">
+        <div className="flex flex-row items-center justify-between gap-2 pl-7 pr-3 py-1 text-gray-800">
             <div className="text-sm group-hover:text-color-primary transition-colors duration-300">
                 {ifcAttributes.props.LongName ? `${ifcAttributes.props.LongName}` : `${ifcAttributes.props.Name}`}
             </div>

@@ -70,7 +70,7 @@ export const SidePanel = memo(() => {
 
     return (
         <>
-            <aside className="side-panel bg-color-underground">
+            <aside className="side-panel bg-gradient-to-b from-[hsla(var(--color-bg-underground-hsl),.92)] to-[hsla(var(--color-bg-ground-hsl),.98)]">
                 <header className="px-2 py-2">
                     <div className="flex flex-row gap-3">
                         <Logo className="-mt-px" />
@@ -110,88 +110,106 @@ export const SidePanel = memo(() => {
                         allowMultiple
                         className="mx-2 border divide-y rounded-lg overflow-hidden"
                     >
-                        {storeys.map((storey: string, index: number) => (
-                            <div key={ifcData[storey].props.GlobalId}>
-                                <AccordionItem className="bg-color-ground p-0" border="none">
-                                    <AccordionButton
-                                        pr="1"
-                                        pl="2"
-                                        py="1"
-                                        textTransform="none"
-                                        alignItems="center"
-                                        className="w-full gap-2"
+                        {storeys.map((storey: string, index: number) => {
+                            const hasStoreySpaces = Number(ifcData[storey].props?.spaces?.length) > 0;
+
+                            return (
+                                <div key={ifcData[storey].props.GlobalId}>
+                                    <AccordionItem
+                                        className="bg-color-ground p-0"
                                         border="none"
-                                        _hover={{
-                                            bgColor: "var(--color-bg-underground)",
-                                        }}
-                                        _focus={{
-                                            bgColor: "var(--color-bg-underground)",
-                                        }}
-                                        _expanded={{
-                                            bgColor: "var(--color-bg-underground)",
-                                        }}
+                                        isDisabled={!hasStoreySpaces}
                                     >
-                                        <AccordionIcon
-                                            as={CaretRightSharpSolidIcon}
-                                            width="3"
-                                            height="3"
-                                            opacity={0.2}
-                                        />
-
-                                        <h2 className="flex-1 text-left font-medium">{ifcData[storey].props.Name}</h2>
-                                        <IconButton
-                                            aria-label="Show/hide storey"
-                                            variant="ghost"
-                                            size="xs"
-                                            icon={<EyeIcon isVisible={visibleStoreys[index]} />}
-                                            onClick={(event) => {
-                                                handleElementClick(index, ifcData[storey].props.GlobalId, event);
-                                            }}
+                                        <AccordionButton
+                                            pr="1"
+                                            pl="2"
+                                            py="1"
+                                            textTransform="none"
+                                            alignItems="center"
+                                            className="w-full gap-2"
+                                            border="none"
                                             _hover={{
-                                                bgColor: "var(--color-bg-ground)",
+                                                bgColor: hasStoreySpaces ? "var(--color-bg-underground)" : "none",
                                             }}
-                                        />
-                                    </AccordionButton>
-                                    <AccordionPanel p="0">
-                                        <ul className="w-full pt-1 pb-2">
-                                            {(() => {
-                                                const spaces = [];
-                                                const storeySpaces = ifcData[storey].props.spaces as string[];
+                                            _focus={{
+                                                bgColor: "var(--color-bg-underground)",
+                                            }}
+                                            _expanded={{
+                                                bgColor: "var(--color-bg-underground)",
+                                            }}
+                                            _disabled={{
+                                                opacity: 1,
+                                            }}
+                                        >
+                                            <AccordionIcon
+                                                as={CaretRightSharpSolidIcon}
+                                                width="3"
+                                                height="3"
+                                                opacity={hasStoreySpaces ? 0.2 : 0}
+                                            />
 
-                                                if (storeySpaces.length) {
-                                                    for (let i = 0; i < storeySpaces.length; i++) {
-                                                        spaces.push(
-                                                            <li
-                                                                className="group cursor-pointer hover:bg-color-underground transition-colors duration-300"
-                                                                key={ifcData[storeySpaces[i]].props.GlobalId}
-                                                                onClick={() => {
-                                                                    const guid =
-                                                                        ifcData[storeySpaces[i]].props["GlobalId"];
-                                                                    goToRoom(guid2euid(guid));
-                                                                }}
-                                                            >
-                                                                <SpaceName ifcAttributes={ifcData[storeySpaces[i]]} />
-                                                            </li>,
+                                            <h2
+                                                className={`flex-1 text-left font-medium ${
+                                                    hasStoreySpaces ? "" : "text-gray-500"
+                                                }`}
+                                            >
+                                                {ifcData[storey].props.Name}
+                                                {!hasStoreySpaces && (
+                                                    <span className="px-3 text-xs text-gray-400">No IfcSpace</span>
+                                                )}
+                                            </h2>
+                                            {hasStoreySpaces && (
+                                                <IconButton
+                                                    aria-label="Show/hide storey"
+                                                    variant="ghost"
+                                                    size="xs"
+                                                    icon={<EyeIcon isVisible={visibleStoreys[index]} />}
+                                                    onClick={(event) => {
+                                                        handleElementClick(
+                                                            index,
+                                                            ifcData[storey].props.GlobalId,
+                                                            event,
                                                         );
-                                                    }
-                                                } else {
-                                                    spaces.push(
-                                                        <li
-                                                            className="px-4 text-sm text-gray-500"
-                                                            key={ifcData[storey].props.GlobalId}
-                                                        >
-                                                            No IfcSpace at this storey.
-                                                        </li>,
-                                                    );
-                                                }
+                                                    }}
+                                                    _hover={{
+                                                        bgColor: "var(--color-bg-ground)",
+                                                    }}
+                                                />
+                                            )}
+                                        </AccordionButton>
+                                        <AccordionPanel p="0">
+                                            <ul className="w-full pt-1 pb-2">
+                                                {(() => {
+                                                    const storeySpaces = ifcData[storey].props.spaces as string[];
 
-                                                return spaces;
-                                            })()}
-                                        </ul>
-                                    </AccordionPanel>
-                                </AccordionItem>
-                            </div>
-                        ))}
+                                                    if (storeySpaces.length) {
+                                                        const spaces = [];
+                                                        for (let i = 0; i < storeySpaces.length; i++) {
+                                                            spaces.push(
+                                                                <li
+                                                                    className="group cursor-pointer hover:bg-color-underground transition-colors duration-300"
+                                                                    key={ifcData[storeySpaces[i]].props.GlobalId}
+                                                                    onClick={() => {
+                                                                        const guid =
+                                                                            ifcData[storeySpaces[i]].props["GlobalId"];
+                                                                        goToRoom(guid2euid(guid));
+                                                                    }}
+                                                                >
+                                                                    <SpaceName
+                                                                        ifcAttributes={ifcData[storeySpaces[i]]}
+                                                                    />
+                                                                </li>,
+                                                            );
+                                                        }
+                                                        return spaces;
+                                                    }
+                                                })()}
+                                            </ul>
+                                        </AccordionPanel>
+                                    </AccordionItem>
+                                </div>
+                            );
+                        })}
                     </Accordion>
                 </div>
             </aside>
