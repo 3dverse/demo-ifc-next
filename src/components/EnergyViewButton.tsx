@@ -23,7 +23,7 @@ export const EnergyViewButton = () => {
     return (
         <div className="flex flex-row items-center rounded text-white gap-1">
             <button
-                className="flex flex-row items-center h-8 px-3 pr-4 bg-accent rounded text-sm text-[white] gap-2  shadow-[0_3px_10px_-2px_hsl(var(--color-accent-hsl),.5)]"
+                className="button button-primary"
                 onClick={() => {
                     handleClick(energyVisible, isEnergyVizProcessing);
                 }}

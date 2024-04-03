@@ -69,7 +69,7 @@ export const SidePanel = memo(() => {
     };
 
     return (
-        <aside className="side-panel bg-underground bg-opacity-[.92]">
+        <aside className="side-panel bg-blur">
             <header className="px-2 py-2 border-b border-primary">
                 <div className="flex flex-row gap-3">
                     <Logo className="-mt-px" />
@@ -128,10 +128,10 @@ export const SidePanel = memo(() => {
                                             py="1"
                                             textTransform="none"
                                             alignItems="center"
-                                            className="w-full gap-2"
+                                            className="group w-full gap-2"
                                             border="none"
                                             _hover={{
-                                                bgColor: hasStoreySpaces ? "var(--color-bg-underground)" : "none",
+                                                bgColor: "none",
                                             }}
                                             _focus={{
                                                 bgColor: "var(--color-bg-underground)",
@@ -148,8 +148,14 @@ export const SidePanel = memo(() => {
                                                 as={CaretRightSharpSolidIcon}
                                                 width="3"
                                                 height="3"
-                                                opacity={hasStoreySpaces ? (isExpanded ? 1 : 0.2) : 0}
-                                                className="fill-accent"
+                                                opacity={
+                                                    hasStoreySpaces
+                                                        ? isExpanded
+                                                            ? "1 !important"
+                                                            : 0.2
+                                                        : "0 !important"
+                                                }
+                                                className="fill-accent group-hover:opacity-[.4] transition-opacity"
                                             />
 
                                             <h2
@@ -175,8 +181,11 @@ export const SidePanel = memo(() => {
                                                             event,
                                                         );
                                                     }}
+                                                    className="text-[red] opacity-80 transition-all"
+                                                    opacity={visibleStoreys[index] ? 1 : undefined}
                                                     _hover={{
-                                                        bgColor: "var(--color-bg-ground)",
+                                                        opacity: "1",
+                                                        bgColor: "var(--color-bg-underground)",
                                                     }}
                                                 />
                                             )}

@@ -56,16 +56,16 @@ export const SpaceEnergyViz = ({ roomName, cons }: { roomName: string | null; co
     };
 
     return (
-        <div className="flex flex-row items-center justify-center gap-4 hover:bg-underground">
+        <div className="flex flex-row items-center gap-4 hover:bg-underground">
             <div>
-                <p className="h-[100%] text-2xl">{roomName}</p>
+                <p className="h-full text-2xl font-light">{roomName}</p>
 
                 {consHasIncreased ? (
-                    <p className="h-[100%] text-increase">
+                    <p className="h-full font-medium text-xs text-increase">
                         {cons.toFixed(2)} <small>&#9650;</small>
                     </p>
                 ) : (
-                    <p className="h-[100%] text-decrease">
+                    <p className="h-full font-medium text-xs text-decrease">
                         {cons.toFixed(2)} <small>&#9660;</small>
                     </p>
                 )}

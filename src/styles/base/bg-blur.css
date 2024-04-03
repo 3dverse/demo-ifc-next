@@ -1,0 +1,4 @@
+.bg-blur {
+    @apply bg-underground bg-opacity-[.92];
+    backdrop-filter: blur(20px) saturate(0.7);
+}

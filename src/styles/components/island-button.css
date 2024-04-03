@@ -1,0 +1,25 @@
+.island-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    height: 2rem;
+    padding: 0.5rem;
+
+    background-color: rgba(252, 250, 254, 0.8);
+    border-radius: 3px;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 0.2);
+    box-sizing: border-box;
+    cursor: pointer;
+
+    text-align: center;
+    font-size: 0.9rem;
+    letter-spacing: 0.025em;
+    font-weight: 400;
+    outline: none;
+
+    .icon {
+        width: 1.25rem;
+        opacity: 0.8;
+    }
+}

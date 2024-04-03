@@ -1,0 +1,143 @@
+.side-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100dvh;
+    width: var(--side-panel-width);
+    display: flex;
+    flex-direction: column;
+}
+
+.side-panel-body {
+    overflow-y: auto;
+}
+
+.storeys {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    list-style: none;
+    padding-left: 0;
+    overflow-y: auto;
+
+    & > li {
+        .summary {
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                background-color: rgba(252, 250, 254, 0.9);
+            }
+        }
+
+        & .chevron {
+            background-image: url("https://icongr.am/fontawesome/angle-right.svg?size=16&color=000000");
+            opacity: 0.5;
+            width: 16px;
+            height: 16px;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            small {
+                padding-left: 0.5rem;
+                font-size: 0.85rem;
+                opacity: 0.6;
+            }
+        }
+
+        &.active {
+            background-color: rgba(252, 250, 254, 0.9);
+
+            & .chevron {
+                transform: rotate(90deg);
+                opacity: 0.7;
+            }
+
+            & .spaces {
+                max-height: none;
+            }
+        }
+
+        & .visibility-icon {
+            background: url("https://icongr.am/fontawesome/eye.svg?size=16&color=#fff") no-repeat center;
+            width: 16px;
+            height: 16px;
+            padding: 0.75rem;
+            transition: opacity 0.2s;
+            opacity: 0.7;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        &.hidden {
+            h3 {
+                opacity: 0.6;
+            }
+
+            & .visibility-icon {
+                background: url("https://icongr.am/fontawesome/eye-slash.svg?size=16&color=#fff") no-repeat center;
+                opacity: 0.3;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.spaces {
+    list-style: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+
+    & > li {
+        background-color: rgba(252, 250, 254, 0.8);
+        cursor: pointer;
+
+        &:hover {
+            background-color: transparent;
+        }
+
+        small {
+            padding-left: 0.5rem;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        &.empty-storey {
+            color: dimgray;
+            font-size: 0.85rem;
+        }
+    }
+}
+
+@media (max-width: 35em) {
+    .side-panel {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        max-height: 50vh;
+    }
+
+    .settings-box {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        transform: none;
+    }
+}

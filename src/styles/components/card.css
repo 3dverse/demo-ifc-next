@@ -1,0 +1,25 @@
+.card {
+    width: clamp(20rem, 25vw, 30rem);
+    border-radius: var(--border-radius-md);
+    @apply bg-underground bg-opacity-[.9];
+    box-shadow: var(--shadow-xl);
+    backdrop-filter: blur(20px) saturate(0.7);
+    filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
+
+    .card-header {
+        border-bottom: 1px solid var(--color-border-primary);
+    }
+
+    .card-title {
+        @apply text-xs text-secondary uppercase tracking-wide pb-1;
+    }
+
+    .card-body {
+        overflow-y: auto;
+        background-color: hsl(var(--color-bg-underground-hsl), 0.5);
+    }
+
+    .card-wrapper {
+        @apply px-5;
+    }
+}

@@ -1,0 +1,23 @@
+.pset {
+    @apply border-b border-primary;
+
+    &-title {
+        @apply pt-2 pb-1 text-sm font-medium;
+    }
+
+    &-list {
+        @apply list-none pt-1 pb-3;
+    }
+
+    &-list-item {
+        @apply flex gap-2 py-1 text-sm odd:bg-underground;
+    }
+
+    &-label {
+        @apply flex-[1_0_40%] truncate text-gray-600;
+    }
+
+    &-value {
+        @apply w-[60%] text-gray-700;
+    }
+}

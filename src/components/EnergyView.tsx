@@ -11,39 +11,29 @@ const ifcData = ifcInfo as IfcData;
 const roomEnergyData = energyData as EnergyData;
 export const EnergyView = memo(() => {
     return (
-        <>
-            <div
-                className="flex 
-                            flex-col
-                            absolute 
-                            top-3 right-3
-                            max-h-[10rem]
-                            w-[30rem]
-                            bg-ground
-                            p-2
-                            rounded-lg
-                            gap-1
-                            shadow-xl
-                            "
-            >
-                <div className="flex flex-row justify-between">
-                    <div className="flex flex-row gap-4 items-end">
-                        <p className="font-normal text-gray-500 text-sm">ENERGY CONSUMPTION</p>
-                        <div className=" flex flex-row justify-center gap-1 font-light text-xs rounded-full bg-red-100 text-increase px-1 w-[5rem]">
-                            <small>&#9650;</small> 3 ALERTS
-                        </div>
+        <aside
+            className="
+                animation-appear-bottom
+                absolute top-3 right-3
+                flex flex-col gap-1 max-h-[10rem] w-[30rem]
+                bg-ground rounded-lg shadow-xl
+            "
+        >
+            <header className="flex flex-row justify-between px-4 pt-2">
+                <div className="w-full flex flex-row justify-between gap-4 items-center">
+                    <p className="font-normal text-gray-600 text-sm">Energy Consumption</p>
+                    <div className=" flex flex-row justify-center gap-1 font-light text-xs rounded-full bg-red-100 text-increase px-1 w-[5rem]">
+                        <small>&#9650;</small> 3 ALERTS
                     </div>
-                    {/* <div className='font-normal text-gray-500 text-sm'>SEE ALL</div> */}
                 </div>
-                <div className="overflow-y-scroll  grid grid-cols-3 h-[100%] gap-1">
-                    {(() => {
-                        return Object.entries(roomEnergyData).map(([roomGuid, cons]: [string, number]) => (
-                            <SpaceEnergyViz key={roomGuid} roomName={ifcData[roomGuid].props.Name} cons={cons} />
-                        ));
-                    })()}
-                </div>
+                {/* <div className='font-normal text-gray-500 text-sm'>SEE ALL</div> */}
+            </header>
+            <div className="overflow-y-scroll grid grid-cols-3 h-full gap-1 px-4">
+                {Object.entries(roomEnergyData).map(([roomGuid, cons]: [string, number]) => (
+                    <SpaceEnergyViz key={roomGuid} roomName={ifcData[roomGuid].props.Name} cons={cons} />
+                ))}
             </div>
-        </>
+        </aside>
     );
 });
 

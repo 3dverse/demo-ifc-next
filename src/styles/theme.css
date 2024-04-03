@@ -51,4 +51,12 @@
     --color-energy-increase: hsl(var(--color-energy-increase-hsl));
     --color-energy-decrease-hsl: 93, 90%, 35%, 1;
     --color-energy-decrease: hsl(var(--color-energy-decrease-hsl));
+
+    --border-radius-xs: 0.125rem;
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.375rem;
+    --border-radius-lg: 0.5rem;
+    --border-radius-xl: 0.75rem;
+    --border-radius-2xl: 1rem;
+    --border-radius-3xl: 1.5rem;
 }

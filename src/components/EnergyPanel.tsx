@@ -30,9 +30,9 @@ export const EnergyPanel = () => {
 
     return (
         <>
-            <aside>
+            <aside className="card">
                 <header className="card-header">
-                    <h1>Energy Consumption</h1>
+                    <h1 className="card-title">Energy Consumption</h1>
                     <div>
                         {isEnergyVizProcessing ? (
                             <div>

@@ -1,15 +1,15 @@
 import { useState, useCallback, memo } from "react";
 
-import { Canvas } from "./Canvas";
+import { Canvas } from "../components/Canvas";
 import { SidePanel } from "@/components/SidePanel";
 import { PropertiesPanel } from "@/components/PropertiesPanel";
 import { Settings } from "@/components/Settings";
-import { EnergyView } from "./EnergyView";
-import { EnergyViewButton } from "./EnergyViewButton";
+import { EnergyView } from "../components/EnergyView";
+import { EnergyViewButton } from "../components/EnergyViewButton";
 
 import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 
-export const Main = memo(() => {
+export const MainLayout = memo(() => {
     const [guid, setGuid] = useState("");
     const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
 
@@ -24,10 +24,11 @@ export const Main = memo(() => {
     return (
         <>
             <Canvas onInputChange={handleChange} onKeyboardChange={handleKey} setBasePoint={setBasePoint} />
-            <SidePanel />
+            <div className="relative z-[100]">
+                <SidePanel />
 
-            <div
-                className="flex flex-row
+                <div
+                    className="flex flex-row
                             justify-between
                             absolute
                             top-4
@@ -35,17 +36,18 @@ export const Main = memo(() => {
                             ml-3
                             max-w-[500px]
                             gap-3"
-            >
-                <Settings basePoint={basePoint} />
+                >
+                    <Settings basePoint={basePoint} />
 
-                <EnergyViewButton />
+                    <EnergyViewButton />
+                </div>
+
+                <EnergyView />
+
+                {guid ? <PropertiesPanel guid={guid} /> : null}
             </div>
-
-            <EnergyView />
-
-            {guid ? <PropertiesPanel guid={guid} /> : null}
         </>
     );
 });
 
-Main.displayName = "Main";
+MainLayout.displayName = "MainLayout";
