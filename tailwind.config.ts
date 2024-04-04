@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import type { PluginAPI } from "tailwindcss/types/config";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
     content: [
@@ -43,8 +45,28 @@ const config: Config = {
                 "2xl": "var(--border-radius-2xl)",
                 "3xl": "var(--border-radius-3xl)",
             },
+            boxShadow: {
+                md: "var(--shadow-md)",
+            },
         },
     },
-    plugins: [],
+    plugins: [
+        plugin(
+            ({ matchUtilities, theme }: { matchUtilities: PluginAPI["matchUtilities"]; theme: PluginAPI["theme"] }) => {
+                matchUtilities(
+                    {
+                        "animation-delay": (value: string) => {
+                            return {
+                                "animation-delay": value,
+                            };
+                        },
+                    },
+                    {
+                        values: theme("transitionDelay"),
+                    },
+                );
+            },
+        ),
+    ],
 };
 export default config;

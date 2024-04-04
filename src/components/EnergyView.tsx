@@ -13,10 +13,10 @@ export const EnergyView = memo(() => {
     return (
         <aside
             className="
-                animation-appear-bottom
                 absolute top-3 right-3
                 flex flex-col gap-1 max-h-[10rem] w-[30rem]
                 bg-ground rounded-lg shadow-xl
+                animation-appear-top animation-delay-[500ms] opacity-0
             "
         >
             <header className="flex flex-row justify-between px-4 pt-2">

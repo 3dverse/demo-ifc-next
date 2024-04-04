@@ -1,18 +1,75 @@
-@keyframes appear-bottom {
+@keyframes appear-top {
     0% {
-        transform: translateY(16px);
+        translate: 0 -16px;
         opacity: 0;
     }
 
     100% {
-        transform: translateY(0);
+        translate: 0 0;
+        opacity: 1;
+    }
+}
+
+.animation-appear-top {
+    animation-name: appear-top;
+    animation-duration: var(--animation-duration, 250ms);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes appear-bottom {
+    0% {
+        translate: 0 16px;
+        opacity: 0;
+    }
+
+    100% {
+        translate: 0 0;
         opacity: 1;
     }
 }
 
 .animation-appear-bottom {
     animation-name: appear-bottom;
-    animation-duration: 200ms;
+    animation-duration: var(--animation-duration, 250ms);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes appear-right {
+    0% {
+        translate: 16px 0;
+        opacity: 0;
+    }
+
+    100% {
+        translate: 0 0;
+        opacity: 1;
+    }
+}
+
+.animation-appear-right {
+    animation-name: appear-right;
+    animation-duration: var(--animation-duration, 250ms);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes appear-left {
+    0% {
+        translate: -16px 0;
+        opacity: 0;
+    }
+
+    100% {
+        translate: 0 0;
+        opacity: 1;
+    }
+}
+
+.animation-appear-left {
+    animation-name: appear-left;
+    animation-duration: var(--animation-duration, 250ms);
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 }

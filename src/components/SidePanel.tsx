@@ -6,8 +6,8 @@ import ifcTypes from "../../data/json/ifctype2guids.json";
 import { guid2euid } from "@/lib/id-converter";
 
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, IconButton } from "@chakra-ui/react";
-import { EyeIcon } from "./icons/EyeIcon";
-import { CaretRightSharpSolidIcon } from "@/components/icons/CaretRightSharpSolidIcon";
+import { EyeIcon } from "./icons";
+import { CaretRightSharpSolidIcon } from "@/components/icons";
 import { SpaceName } from "@/components/SpaceName";
 
 import { goToRoom, getEntityFromGuid, toToggle, getSurface } from "../lib/3dverse/helpers";
@@ -85,7 +85,7 @@ export const SidePanel = memo(() => {
                     </div>
                 </div>
             </header>
-            <div className="side-panel-body flex-1 pb-12">
+            <div className="side-panel-body flex-1 pb-12 animation-appear-left">
                 <div className="flex flex-row items-center justify-between py-2 pl-4 pr-3">
                     <h2 className="text-xs text-gray-500 uppercase tracking-wide">Storeys</h2>
                     <IconButton

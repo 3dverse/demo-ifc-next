@@ -130,3 +130,8 @@
     opacity: 0;
     pointer-events: none;
 }
+
+.rocket-loader-3dverse.rocket-loader-3dverse {
+    z-index: auto;
+    left: var(--side-panel-width);
+}

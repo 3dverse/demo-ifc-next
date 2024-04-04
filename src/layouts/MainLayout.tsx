@@ -24,28 +24,24 @@ export const MainLayout = memo(() => {
     return (
         <>
             <Canvas onInputChange={handleChange} onKeyboardChange={handleKey} setBasePoint={setBasePoint} />
-            <div className="relative z-[100]">
-                <SidePanel />
 
-                <div
-                    className="flex flex-row
-                            justify-between
-                            absolute
-                            top-4
-                            left-[var(--side-panel-width)]
-                            ml-3
-                            max-w-[500px]
-                            gap-3"
-                >
-                    <Settings basePoint={basePoint} />
+            <SidePanel />
 
-                    <EnergyViewButton />
-                </div>
-
-                <EnergyView />
-
-                {guid ? <PropertiesPanel guid={guid} /> : null}
+            <div
+                className="
+                    absolute top-4 left-[var(--side-panel-width)]
+                    flex flex-row justify-between gap-3
+                    ml-3 max-w-[500px]
+                    animation-appear-left animation-delay-[250ms] opacity-0
+                "
+            >
+                <Settings basePoint={basePoint} />
+                <EnergyViewButton />
             </div>
+
+            <EnergyView />
+
+            {guid ? <PropertiesPanel guid={guid} /> : null}
         </>
     );
 });

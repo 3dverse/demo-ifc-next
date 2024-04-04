@@ -63,7 +63,7 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
                                 <div className=" flex flex-row gap-5">
                                     {animationIsPlaying ? (
                                         <button
-                                            className="island-button reset-button"
+                                            className="island-button"
                                             onClick={() => {
                                                 pauseAnimation(animationUUID);
                                                 setAnimationIsPlaying(false);
@@ -97,7 +97,7 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
                                     )}
 
                                     <button
-                                        className="island-button reset-button"
+                                        className="island-button"
                                         onClick={() => {
                                             stopAnimation(animationUUID);
                                             setAnimationIsPlaying(false);
