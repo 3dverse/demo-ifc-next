@@ -1,7 +1,7 @@
 import { publicToken, mainSceneUUID } from "../../../config.js";
 
 export async function initApp() {
-    await SDK3DVerse.joinOrStartSession({
+    await SDK3DVerse.startSession({
         userToken: publicToken,
         sceneUUID: mainSceneUUID,
 
