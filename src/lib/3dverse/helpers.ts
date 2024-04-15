@@ -88,7 +88,7 @@ export async function toggleEnergyView(activate: boolean) {
         dataJson: {
             albedo: [0, 0.5686274509803921, 0.788235294117647],
             metallic: 1,
-            opacity: 0.25,
+            opacity: 0,
             roughness: 0.7,
         },
         isDoubleSided: true,
@@ -113,19 +113,44 @@ export async function toggleEnergyView(activate: boolean) {
     }
 }
 
-export async function handleCanvasSelection(event: CanvasEvent, guidSetter: (guid: string) => void) {
-    const target = await SDK3DVerse.engineAPI.castScreenSpaceRay(event.clientX, event.clientY);
+async function processPickedEntity(
+    position: { x: number; y: number },
+    guidSetter: (guid: string) => void,
+    energyVisible: boolean,
+) {
+    const target = await SDK3DVerse.engineAPI.castScreenSpaceRay(position.x, position.y);
+
     if (!target.pickedPosition) {
         SDK3DVerse.engineAPI.unselectAllEntities();
         guidSetter("");
         return;
     }
+
     const entity = target.entity;
-    entity.select();
-    const guid = euid2guid(entity.getParent().getEUID());
-    if (guid in ifcData) {
-        guidSetter(euid2guid(entity.getParent().getEUID()));
+
+    if (!("tags" in entity.components)) {
+        return;
     }
+
+    if (entity.components.tags.value[0] == "IfcSpace" && !energyVisible) {
+        entity.setVisibility(false);
+        await processPickedEntity(position, guidSetter, energyVisible);
+        entity.setVisibility(true);
+    } else {
+        entity.select();
+        const guid = euid2guid(entity.getParent().getEUID());
+        if (guid in ifcData) {
+            guidSetter(euid2guid(entity.getParent().getEUID()));
+        }
+    }
+}
+
+export async function handleCanvasSelection(
+    event: CanvasEvent,
+    guidSetter: (guid: string) => void,
+    energyVisible: boolean,
+) {
+    processPickedEntity({ x: event.clientX, y: event.clientY }, guidSetter, energyVisible);
 }
 
 export function unselectEntities(event: React.KeyboardEvent<HTMLElement>, guidSetter: (guid: string) => void) {

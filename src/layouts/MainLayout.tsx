@@ -11,11 +11,15 @@ import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 
 export const MainLayout = memo(() => {
     const [guid, setGuid] = useState("");
+    const [energyVisible, setEnergyVisibility] = useState(false);
     const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
 
-    const handleChange = useCallback((event: React.MouseEvent<HTMLElement>) => {
-        handleCanvasSelection(event, setGuid);
-    }, []);
+    const handleChange = useCallback(
+        (event: React.MouseEvent<HTMLElement>) => {
+            handleCanvasSelection(event, setGuid, energyVisible);
+        },
+        [energyVisible],
+    );
 
     const handleKey = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
         unselectEntities(event, setGuid);
@@ -36,7 +40,7 @@ export const MainLayout = memo(() => {
                 "
             >
                 <Settings basePoint={basePoint} />
-                <EnergyViewButton />
+                <EnergyViewButton energyVisible={energyVisible} setEnergyVisibility={setEnergyVisibility} />
             </div>
 
             <EnergyView />

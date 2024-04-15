@@ -26,7 +26,6 @@ export const EnergyView = memo(() => {
                         <small>&#9650;</small> 3 ALERTS
                     </div>
                 </div>
-                {/* <div className='font-normal text-gray-500 text-sm'>SEE ALL</div> */}
             </header>
             <div className="overflow-y-scroll grid grid-cols-3 h-full gap-1 px-4">
                 {Object.entries(roomEnergyData).map(([roomGuid, cons]: [string, number]) => (

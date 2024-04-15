@@ -1,10 +1,15 @@
 import { Spinner } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 
 import { toggleEnergyView } from "../lib/3dverse/helpers";
 
-export const EnergyViewButton = () => {
-    const [energyVisible, setEnergyVisibility] = useState(false);
+export const EnergyViewButton = ({
+    energyVisible,
+    setEnergyVisibility,
+}: {
+    energyVisible: boolean;
+    setEnergyVisibility: Dispatch<SetStateAction<boolean>>;
+}) => {
     const [isEnergyVizProcessing, setIsEnergyVizProcessing] = useState(false);
 
     async function energyViewModifier(previousEnergyVisible: boolean) {
