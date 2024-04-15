@@ -76,51 +76,40 @@ export function createChart({ data, labels, colors }: ChartInput) {
 }
 
 export async function toggleEnergyView(activate: boolean) {
-    const rootEntities = await SDK3DVerse.engineAPI.getRootEntities();
+    const originalColor = [0, 0.5686274509803921, 0.788235294117647];
 
-    for (const rootEntity of rootEntities) {
-        if (toToggle(rootEntity.components)) {
-            await rootEntity.setVisibility(activate ? false : true);
+    const matIds = {
+        "d1cccba6-1dc8-43e7-b9f5-380b838b533b": { originalColor: originalColor, energyColor: [0, 1, 0] },
+        "6d0cec57-748b-4906-9ddc-d83d221ede40": { originalColor: originalColor, energyColor: [1, 0.5, 0] },
+        "7f72e7bd-055e-43af-9b93-8140ec5b69a8": { originalColor: originalColor, energyColor: [1, 0, 0] },
+    };
+
+    const originalMat = {
+        dataJson: {
+            albedo: [0, 0.5686274509803921, 0.788235294117647],
+            metallic: 1,
+            opacity: 0.25,
+            roughness: 0.7,
+        },
+        isDoubleSided: true,
+        name: "Interior Fill",
+        shaderRef: "6d7d6861-0938-41db-9fc2-187e09504c96",
+        skinnedShaderRef: "baa040d3-4e11-4bbf-b932-5c7782d2dcc4",
+        uuid: "18803c48-b14f-4fc2-b0ce-ed72b2776c77",
+        version: 1,
+    };
+
+    for (const [matUUID, colors] of Object.entries(matIds)) {
+        const newMatDesc = originalMat;
+        newMatDesc.uuid = matUUID;
+        if (activate) {
+            newMatDesc.dataJson.albedo = colors.energyColor;
+            newMatDesc.dataJson.opacity = 0.7;
+        } else {
+            newMatDesc.dataJson.albedo = colors.originalColor;
         }
-    }
 
-    for (const guid of ifcTypes["IfcSpace"]) {
-        const spaceEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
-        const charge = roomEnergyData[guid];
-        const spaceEntityChildren = await spaceEntity.getChildren();
-
-        for (const spaceEntityChild of spaceEntityChildren) {
-            if ("tags" in spaceEntityChild.components) {
-                if (spaceEntityChild.components.tags.value.includes("IfcSpace")) {
-                    if (charge) {
-                        spaceEntityChild.detachComponent("material_ref");
-                        spaceEntityChild.detachComponent("material");
-                        spaceEntityChild.attachComponent("material");
-
-                        const color = getValueColor(charge);
-
-                        spaceEntityChild.setComponent("material", {
-                            dataJSON: activate
-                                ? {
-                                      albedo: [color[0] / 255, color[1] / 255, color[2] / 255],
-                                      opacity: 0.75,
-                                  }
-                                : {
-                                      albedo: [0, 0.5686274509803921, 0.788235294117647],
-                                      opacity: 0.15,
-                                      metallic: 0.01,
-                                      roughness: 0.99,
-                                  },
-
-                            isDoubleSided: true,
-
-                            shaderRef: "6d7d6861-0938-41db-9fc2-187e09504c96",
-                        });
-                    }
-                    await spaceEntityChild.setVisibility(true);
-                }
-            }
-        }
+        SDK3DVerse.engineAPI.ftlAPI.updateMaterial(matUUID, newMatDesc);
     }
 }
 
