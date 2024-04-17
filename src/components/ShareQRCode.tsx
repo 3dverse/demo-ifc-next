@@ -13,6 +13,7 @@ export const ShareQRCode = memo(({ sessionId }: { sessionId: string }) => {
         sessionId && (
             <aside
                 className="
+                invisible
                 absolute top-3 right-6
                 flex flex-col gap-1 
                 bg-ground rounded-lg shadow-xl
