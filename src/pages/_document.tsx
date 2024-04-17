@@ -16,10 +16,6 @@ export default function Document() {
                     src="https://cdn.3dverse.com/legacy/sdk/stable/SDK3DVerse_ViewportDomOverlay_Ext.js"
                     strategy="beforeInteractive"
                 />
-                <Script
-                    src="https://cdn.3dverse.com/legacy/sdk/stable/SDK3DVerse_LabelDisplay_Ext.js"
-                    strategy="beforeInteractive"
-                />
                 <Main />
                 <NextScript />
             </body>

@@ -27,7 +27,6 @@ export async function initApp() {
     }
 
     await SDK3DVerse.installExtension(SDK3DVerse_ViewportDomOverlay_Ext);
-    await SDK3DVerse.installExtension(SDK3DVerse_LabelDisplay_Ext);
 
     showClientAvatars();
 
