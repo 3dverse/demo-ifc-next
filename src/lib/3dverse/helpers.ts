@@ -316,7 +316,7 @@ export async function stopAnimation(uuid: string) {
 
 export async function showClientAvatars() {
     const clientDisplayEX = await SDK3DVerse.installExtension(SDK3DVerse_ClientDisplay_Ext);
-    const clientAvatarContent = await fetch("./img/client-avatar.svg").then((res) => res.text());
+    const clientAvatarContent = await fetch("../../img/client-avatar.svg").then((res) => res.text());
     clientDisplayEX.showClientAvatars({
         // depending on the size of your scene you might want to adjust the radius
         radius: 80,

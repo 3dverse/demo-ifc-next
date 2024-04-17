@@ -1,0 +1,6 @@
+<svg viewBox="0 0 36 36" fill="none" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="36" height="36" fill="BG_COLOR"/>
+  <path d="M7 22c0-.5523.44772-1 1-1h3v15H7V22ZM29 22c0-.5523-.4477-1-1-1h-3v15h4V22Z" fill="FG_COLOR"/>
+  <rect x="12" y="21" width="12" height="15" rx="1" fill="FG_COLOR"/>
+  <rect x="12" y="8" width="12" height="12" rx="6" fill="FG_COLOR"/>
+</svg>
