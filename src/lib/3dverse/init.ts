@@ -1,4 +1,5 @@
 import { publicToken, mainSceneUUID } from "../../../config.js";
+import { showClientAvatars } from "./helpers";
 
 export async function initApp() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -24,6 +25,11 @@ export async function initApp() {
             },
         });
     }
+
+    await SDK3DVerse.installExtension(SDK3DVerse_ViewportDomOverlay_Ext);
+    await SDK3DVerse.installExtension(SDK3DVerse_LabelDisplay_Ext);
+
+    showClientAvatars();
 
     const projectEntity = (await SDK3DVerse.engineAPI.findEntitiesByNames("IfcProject"))[0];
     const projectGlobalCenter = projectEntity.getGlobalAABB().center;

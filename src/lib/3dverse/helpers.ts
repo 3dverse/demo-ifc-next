@@ -313,3 +313,28 @@ export async function pauseAnimation(uuid: string) {
 export async function stopAnimation(uuid: string) {
     SDK3DVerse.engineAPI.stopAnimationSequence(uuid);
 }
+
+export async function showClientAvatars() {
+    const clientDisplayEX = await SDK3DVerse.installExtension(SDK3DVerse_ClientDisplay_Ext);
+    const clientAvatarContent = await fetch("./img/client-avatar.svg").then((res) => res.text());
+    clientDisplayEX.showClientAvatars({
+        // depending on the size of your scene you might want to adjust the radius
+        radius: 80,
+        /** @param {{ color: string }} params */
+        getClientAvatarSrc({ color }: { color: string }) {
+            const svgContent = clientAvatarContent.replace(/FG_COLOR/g, color).replace(/BG_COLOR/g, "#ffffff");
+            const url = `data:image/svg+xml,${encodeURIComponent(svgContent)}`;
+            return url;
+        },
+        /** @param {{ clientUUID: string }} params */
+        getClientDisplayName({ clientUUID }: { clientUUID: string }) {
+            // Convert the UUID to something that looks sort of like a word
+            const name = [...clientUUID]
+                .filter((s) => /[a-zA-Z]/.test(s))
+                .slice(0, 5)
+                .join("");
+            const nameCapitalized = `${name[0].toUpperCase()}${name.slice(1)}`;
+            return `User ${nameCapitalized}`;
+        },
+    });
+}
