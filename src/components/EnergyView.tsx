@@ -12,8 +12,7 @@ const roomEnergyData = energyData as EnergyData;
 export const EnergyView = memo(() => {
     return (
         <aside
-            className="
-                absolute top-3 right-3
+            className="absolute bottom-3 left-1/4
                 flex flex-col gap-1 max-h-[10rem] w-[30rem]
                 bg-ground rounded-lg shadow-xl
                 animation-appear-top animation-delay-[500ms] opacity-0

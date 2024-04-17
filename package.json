@@ -21,7 +21,8 @@
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
-    "react-icons": "^5.0.1"
+    "react-icons": "^5.0.1",
+    "react-qr-code": "^2.0.12"
   },
   "devDependencies": {
     "@types/chroma-js": "^2.4.4",

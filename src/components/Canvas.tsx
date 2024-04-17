@@ -9,10 +9,12 @@ export const Canvas = memo(
         onInputChange,
         onKeyboardChange,
         setBasePoint,
+        setSessionId,
     }: {
         onInputChange: (event: React.MouseEvent<HTMLElement>) => void;
         onKeyboardChange: (event: React.KeyboardEvent<HTMLElement>) => void;
         setBasePoint: Dispatch<SetStateAction<BasePoint>>;
+        setSessionId: Dispatch<SetStateAction<string>>;
     }) => {
         const handleContextMenu = (event: any) => {
             event.preventDefault();
@@ -26,6 +28,7 @@ export const Canvas = memo(
                     if (cancelled) return;
                     await initApp();
                     setBasePoint(getInitialPoint());
+                    setSessionId(SDK3DVerse.getSessionId());
                 });
 
             return () => {

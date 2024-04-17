@@ -1,15 +1,30 @@
 import { publicToken, mainSceneUUID } from "../../../config.js";
 
 export async function initApp() {
-    await SDK3DVerse.startSession({
-        userToken: publicToken,
-        sceneUUID: mainSceneUUID,
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.size) {
+        if (urlParams.has("sessionId")) {
+            await SDK3DVerse.joinSession({
+                sessionId: urlParams.get("sessionId"),
+                userToken: publicToken,
+                canvas: document.getElementById("canvas"),
+                viewportProperties: {
+                    defaultControllerType: SDK3DVerse.controller_type.editor,
+                },
+            });
+        }
+    } else {
+        await SDK3DVerse.startSession({
+            userToken: publicToken,
+            sceneUUID: mainSceneUUID,
 
-        canvas: document.getElementById("canvas"),
-        viewportProperties: {
-            defaultControllerType: SDK3DVerse.controller_type.editor,
-        },
-    });
+            canvas: document.getElementById("canvas"),
+            viewportProperties: {
+                defaultControllerType: SDK3DVerse.controller_type.editor,
+            },
+        });
+    }
+
     const projectEntity = (await SDK3DVerse.engineAPI.findEntitiesByNames("IfcProject"))[0];
     const projectGlobalCenter = projectEntity.getGlobalAABB().center;
 

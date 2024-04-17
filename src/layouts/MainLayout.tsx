@@ -6,6 +6,7 @@ import { PropertiesPanel } from "@/components/PropertiesPanel";
 import { Settings } from "@/components/Settings";
 import { EnergyView } from "../components/EnergyView";
 import { EnergyViewButton } from "../components/EnergyViewButton";
+import { ShareQRCode } from "@/components/ShareQRCode";
 
 import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 
@@ -13,6 +14,7 @@ export const MainLayout = memo(() => {
     const [guid, setGuid] = useState("");
     const [energyVisible, setEnergyVisibility] = useState(false);
     const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
+    const [sessionId, setSessionId] = useState("");
 
     const handleChange = useCallback(
         (event: React.MouseEvent<HTMLElement>) => {
@@ -27,7 +29,12 @@ export const MainLayout = memo(() => {
 
     return (
         <>
-            <Canvas onInputChange={handleChange} onKeyboardChange={handleKey} setBasePoint={setBasePoint} />
+            <Canvas
+                onInputChange={handleChange}
+                onKeyboardChange={handleKey}
+                setBasePoint={setBasePoint}
+                setSessionId={setSessionId}
+            />
 
             <SidePanel />
 
@@ -44,6 +51,8 @@ export const MainLayout = memo(() => {
             </div>
 
             <EnergyView />
+
+            <ShareQRCode sessionId={sessionId} />
 
             {guid ? <PropertiesPanel guid={guid} /> : null}
         </>
