@@ -15,7 +15,7 @@ export const EnergyView = memo(() => {
             className="absolute bottom-3 left-[30rem]
                 flex flex-col gap-1 max-h-[10rem] w-[30rem]
                 bg-ground rounded-lg shadow-xl
-                animation-appear-top animation-delay-[500ms] opacity-0
+                animate-appear-top animation-delay-[500ms] opacity-0
             "
         >
             <header className="flex flex-row justify-between px-4 pt-2">

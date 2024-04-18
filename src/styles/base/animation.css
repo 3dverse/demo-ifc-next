@@ -3,14 +3,13 @@
         translate: 0 -16px;
         opacity: 0;
     }
-
     100% {
         translate: 0 0;
         opacity: 1;
     }
 }
 
-.animation-appear-top {
+.animate-appear-top {
     animation-name: appear-top;
     animation-duration: var(--animation-duration, 250ms);
     animation-timing-function: ease-in-out;
@@ -22,14 +21,13 @@
         translate: 0 16px;
         opacity: 0;
     }
-
     100% {
         translate: 0 0;
         opacity: 1;
     }
 }
 
-.animation-appear-bottom {
+.animate-appear-bottom {
     animation-name: appear-bottom;
     animation-duration: var(--animation-duration, 250ms);
     animation-timing-function: ease-in-out;
@@ -41,14 +39,13 @@
         translate: 16px 0;
         opacity: 0;
     }
-
     100% {
         translate: 0 0;
         opacity: 1;
     }
 }
 
-.animation-appear-right {
+.animate-appear-right {
     animation-name: appear-right;
     animation-duration: var(--animation-duration, 250ms);
     animation-timing-function: ease-in-out;
@@ -60,14 +57,13 @@
         translate: -16px 0;
         opacity: 0;
     }
-
     100% {
         translate: 0 0;
         opacity: 1;
     }
 }
 
-.animation-appear-left {
+.animate-appear-left {
     animation-name: appear-left;
     animation-duration: var(--animation-duration, 250ms);
     animation-timing-function: ease-in-out;

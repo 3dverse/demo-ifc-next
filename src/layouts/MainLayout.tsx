@@ -43,7 +43,7 @@ export const MainLayout = memo(() => {
                     absolute top-4 left-[var(--side-panel-width)]
                     flex flex-row justify-between gap-3
                     ml-3 max-w-[500px]
-                    animation-appear-left animation-delay-[250ms] opacity-0
+                    animate-appear-left animation-delay-[250ms] opacity-0
                 "
             >
                 <Settings basePoint={basePoint} />

@@ -11,7 +11,7 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
     const animationUUID = "7f64dfa2-338a-4cb2-8f96-449a2c101120";
 
     return (
-        <aside className="card animation-appear-bottom absolute bottom-0 right-3 max-h-[46vh] flex flex-col">
+        <aside className="card animate-appear-bottom absolute bottom-0 right-3 max-h-[46vh] flex flex-col">
             {entitiyProperties?.props?.Name && (
                 <>
                     <header className="card-header card-wrapper py-3">

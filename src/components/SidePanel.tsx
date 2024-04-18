@@ -85,7 +85,7 @@ export const SidePanel = memo(() => {
                     </div>
                 </div>
             </header>
-            <div className="side-panel-body flex-1 pb-12 animation-appear-left">
+            <div className="side-panel-body flex-1 pb-12 animate-appear-left">
                 <div className="flex flex-row items-center justify-between py-2 pl-4 pr-3">
                     <h2 className="text-xs text-gray-500 uppercase tracking-wide">Storeys</h2>
                     <IconButton
