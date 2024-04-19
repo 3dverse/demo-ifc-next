@@ -1,0 +1,8 @@
+{
+  "name": "IFC Viewer",
+  "short_name": "IFC Viewer",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#f8f7fd",
+  "background_color": "#f8f7fd"
+}
