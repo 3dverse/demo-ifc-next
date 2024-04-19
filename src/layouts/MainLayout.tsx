@@ -14,7 +14,7 @@ import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 import { CanvasActionBar } from "@/components/CanvasActionBar";
 
 export const MainLayout = memo(() => {
-    const [selectedPropertyEUID, setSelectedPropertyEUID] = useState("");
+    const [selectedPropertyEUID, setSelectedPropertyEUID] = useState<string | null>(null);
     const [energyVisible, setEnergyVisibility] = useState(false);
     const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
     const [sessionId, setSessionId] = useState("");

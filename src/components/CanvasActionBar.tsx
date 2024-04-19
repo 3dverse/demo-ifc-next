@@ -1,6 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { Settings } from "@/components/Settings";
 import { EnergyViewButton } from "@/components/EnergyViewButton";
+import { Dispatch, SetStateAction } from "react";
 
 export const CanvasActionBar = ({
     isSidePanelExpanded,
@@ -11,7 +12,7 @@ export const CanvasActionBar = ({
     isSidePanelExpanded: boolean;
     basePoint: any;
     energyVisible: any;
-    setEnergyVisibility: (state: boolean) => void;
+    setEnergyVisibility: Dispatch<SetStateAction<boolean>>;
 }) => {
     return (
         <div
