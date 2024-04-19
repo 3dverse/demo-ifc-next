@@ -1,30 +1,34 @@
 import { useState, useCallback, memo } from "react";
+import { useDisclosure } from "@chakra-ui/react";
+import { twMerge } from "tailwind-merge";
 
-import { Canvas } from "../components/Canvas";
+import { Canvas } from "@/components/Canvas";
 import { SidePanel } from "@/components/SidePanel";
 import { PropertiesPanel } from "@/components/PropertiesPanel";
 import { Settings } from "@/components/Settings";
-import { EnergyView } from "../components/EnergyView";
-import { EnergyViewButton } from "../components/EnergyViewButton";
+import { EnergyView } from "@/components/EnergyView";
+import { EnergyViewButton } from "@/components/EnergyViewButton";
 import { ShareQRCode } from "@/components/ShareQRCode";
 
 import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 
 export const MainLayout = memo(() => {
-    const [guid, setGuid] = useState("");
+    const [selectedPropertyEUID, setSelectedPropertyEUID] = useState("");
     const [energyVisible, setEnergyVisibility] = useState(false);
     const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
     const [sessionId, setSessionId] = useState("");
 
+    const { isOpen: isExpanded, onClose: onCollapse, onOpen: onExpand } = useDisclosure({ defaultIsOpen: true });
+
     const handleChange = useCallback(
         (event: React.MouseEvent<HTMLElement>) => {
-            handleCanvasSelection(event, setGuid, energyVisible);
+            handleCanvasSelection(event, setSelectedPropertyEUID, energyVisible);
         },
         [energyVisible],
     );
 
     const handleKey = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
-        unselectEntities(event, setGuid);
+        unselectEntities(event, setSelectedPropertyEUID);
     }, []);
 
     return (
@@ -36,15 +40,21 @@ export const MainLayout = memo(() => {
                 setSessionId={setSessionId}
             />
 
-            <SidePanel />
+            <SidePanel
+                isUnderAnotherMobilepanel={!!selectedPropertyEUID}
+                isExpanded={isExpanded}
+                onExpand={onExpand}
+                onCollapse={onCollapse}
+            />
 
             <div
-                className="
-                    absolute top-4 left-[var(--side-panel-width)]
-                    flex flex-row justify-between gap-3
-                    ml-3 max-w-[500px]
-                    animate-appear-left animation-delay-[250ms] opacity-0
-                "
+                className={twMerge(
+                    `absolute top-4 left-0 xl:left-[var(--side-panel-width)] 
+                    flex flex-col xl:flex-row items-start justify-between gap-3 
+                    max-w-[500px] ml-3 
+                    animate-appear-left animation-delay-[250ms] opacity-0 transition-all`,
+                    !isExpanded ? "xl:left-16" : "",
+                )}
             >
                 <Settings basePoint={basePoint} />
                 <EnergyViewButton energyVisible={energyVisible} setEnergyVisibility={setEnergyVisibility} />
@@ -54,7 +64,9 @@ export const MainLayout = memo(() => {
 
             <ShareQRCode sessionId={sessionId} />
 
-            {guid ? <PropertiesPanel guid={guid} /> : null}
+            {selectedPropertyEUID && (
+                <PropertiesPanel guid={selectedPropertyEUID} onClose={() => setSelectedPropertyEUID(null)} />
+            )}
         </>
     );
 });

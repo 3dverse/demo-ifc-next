@@ -1,5 +1,5 @@
 @import "tailwindcss/base";
-@import "./theme.css";
+@import "../theme/theme.css";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
@@ -8,9 +8,11 @@
 @import "./base/bg-blur.css";
 
 @import "./components/canvas.css";
+@import "./components/canvas-outline.css";
 @import "./components/card.css";
 @import "./components/button.css";
 @import "./components/island-button.css";
+@import "./components/panel.css";
 @import "./components/panels.css";
 @import "./components/pset.css";
 @import "./components/side-panel.css";

@@ -1,0 +1,90 @@
+/* ------------------------------------------------------------------------------ */
+
+@keyframes appear-top {
+    0% {
+        translate: var(--tw-translate-x, 0px) calc(var(--tw-translate-y, 0px) - var(--animation-appear-offset, 16px));
+        opacity: 0;
+    }
+    100% {
+        translate: var(--tw-translate-x, 0px) var(--tw-translate-y, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes appear-right {
+    0% {
+        translate: calc(var(--tw-translate-x, 0px) + var(--animation-appear-offset, 16px)) var(--tw-translate-y, 0px);
+        opacity: 0;
+    }
+    100% {
+        translate: var(--tw-translate-x, 0px) var(--tw-translate-y, 0px);
+        opacity: 1;
+    }
+}
+
+@keyframes appear-bottom {
+    0% {
+        translate: var(--tw-translate-x, 0px) calc(var(--tw-translate-y, 0px) + var(--animation-appear-offset, 16px));
+        opacity: 0;
+    }
+    100% {
+        translate: var(--tw-translate-x, 0px) calc(var(--tw-translate-y, 0px));
+        opacity: 1;
+    }
+}
+
+@keyframes appear-left {
+    0% {
+        translate: calc(var(--tw-translate-x, 0px) - var(--animation-appear-offset, 16px)) var(--tw-translate-y, 0px);
+        opacity: 0;
+    }
+    100% {
+        translate: var(--tw-translate-x, 0px) var(--tw-translate-y, 0px);
+        opacity: 1;
+    }
+}
+
+/* ------------------------------------------------------------------------------ */
+@layer base {
+    .animate-appear-top {
+        animation-name: appear-top;
+        animation-duration: var(--animation-duration, 0.25s);
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+    .animate-appear-right {
+        animation-name: appear-right;
+        animation-duration: var(--animation-duration, 0.25s);
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+    .animate-appear-bottom {
+        animation-name: appear-bottom;
+        animation-duration: var(--animation-duration, 0.25s);
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+    .animate-appear-left {
+        animation-name: appear-left;
+        animation-duration: var(--animation-duration, 0.25s);
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+    /* ------------------------------------------------------------------------------ */
+    /* Note: Feel free to create `animate-disappear-...` for other directions.
+/* ------------------------------------------------------------------------------ */
+
+    .animate-disappear-left {
+        @apply animate-appear-left;
+        animation-direction: reverse;
+    }
+
+    .animate-disappear-bottom {
+        @apply animate-appear-bottom;
+        animation-direction: reverse;
+    }
+}

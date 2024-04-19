@@ -45,8 +45,14 @@ const config: Config = {
                 "2xl": "var(--border-radius-2xl)",
                 "3xl": "var(--border-radius-3xl)",
             },
-            boxShadow: {
-                md: "var(--shadow-md)",
+            screens: {
+                sm: "30em",
+                md: "48em",
+                lg: "62em",
+                xl: "80em",
+                "2xl": "96em",
+                "3xl": "1600px",
+                "4xl": "1800px",
             },
         },
     },

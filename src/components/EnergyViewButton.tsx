@@ -26,7 +26,7 @@ export const EnergyViewButton = ({
     };
 
     return (
-        <div className="flex flex-row items-center rounded text-white gap-1">
+        <div className="flex flex-row items-center rounded-md text-white gap-1">
             <button
                 className="button button-primary"
                 onClick={() => {

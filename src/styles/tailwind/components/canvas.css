@@ -1,3 +1,7 @@
+canvas:focus {
+    outline: none;
+}
+
 .canvas-container {
     position: relative;
     width: 100vw;
@@ -8,61 +12,6 @@
 
     canvas {
         position: absolute;
-    }
-}
-
-.canvas-outline {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 8px solid var(--color-bg-underground);
-    box-shadow: inset 0 0 24px 0 #00000030;
-    pointer-events: none;
-}
-
-.canvas-outline,
-.side-panel {
-    &:before,
-    &:after {
-        content: "";
-        position: absolute;
-        width: 24px;
-        height: 24px;
-        background-color: var(--color-bg-underground);
-        mask-image: linear-gradient(to top, red, red),
-            radial-gradient(circle 15px at center, green 80%, transparent 81%);
-        mask-size: 12px 12px, 100%;
-        mask-repeat: no-repeat, repeat;
-        mask-composite: subtract;
-    }
-}
-
-.canvas-outline {
-    &:before {
-        top: 0;
-        right: 0;
-        mask-position: top right, center;
-    }
-
-    &:after {
-        bottom: 0;
-        right: 0;
-        mask-position: bottom right, center;
-    }
-}
-.side-panel {
-    &:before {
-        top: 8px;
-        left: 100%;
-        mask-position: top left, center;
-    }
-
-    &:after {
-        bottom: 8px;
-        left: 100%;
-        mask-position: bottom left, center;
     }
 }
 

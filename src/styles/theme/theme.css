@@ -1,0 +1,120 @@
+:root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
+}
+
+:root {
+    /* ------------------------------------------------------------------------------ */
+    /* Accent colors */
+
+    --color-accent-hsl: 259, 48.09%, 51.87%;
+    --color-accent: hsl(var(--color-accent-hsl));
+
+    /* ------------------------------------------------------------------------------ */
+    /* Background colors */
+
+    --color-bg-ground-hsl: 255, 0%, 100%;
+    --color-bg-ground: hsl(var(--color-bg-ground-hsl));
+
+    --color-bg-underground-hsl: 249, 64%, 98%;
+    --color-bg-underground: hsl(var(--color-bg-underground-hsl));
+
+    --color-bg-underground-dark-hsl: 255, 0%, 0%;
+    --color-bg-underground-dark: hsl(var(--color-bg-underground-dark-hsl));
+
+    --color-bg-overground-hsl: 255, 83%, 57%, 1;
+    --color-bg-overground: hsl(var(--color-bg-overground-hsl));
+
+    /* ------------------------------------------------------------------------------ */
+    /* Content colors */
+
+    --color-content-primary-hsl: 256, 96%, 32%;
+    --color-content-primary: hsl(var(--color-content-primary-hsl));
+    --color-content-primary-dark-hsl: 229, 27%, 12%;
+    --color-content-primary-dark: hsl(var(--color-content-primary-dark-hsl));
+
+    --color-content-secondary-hsl: 255, 96%, 60%, 1;
+    --color-content-secondary: hsl(var(--color-content-secondary-hsl));
+
+    --color-content-tertiary-hsl: 256, 93%, 68%, 1;
+    --color-content-tertiary: hsl(var(--color-content-tertiary-hsl));
+
+    /* ------------------------------------------------------------------------------ */
+    /* Border colors */
+
+    --color-border-primary-hsl: 231, 25%, 100%;
+    --color-border-primary: hsl(var(--color-border-primary-hsl));
+
+    --color-border-secondary-hsl: 0, 0%, 85%, 1;
+    --color-border-secondary: hsl(var(--color-border-secondary-hsl));
+
+    /* ------------------------------------------------------------------------------ */
+    /* Energy colors */
+
+    --color-energy-increase-hsl: 347, 82%, 52%, 1;
+    --color-energy-increase: hsl(var(--color-energy-increase-hsl));
+    --color-energy-decrease-hsl: 93, 90%, 35%, 1;
+    --color-energy-decrease: hsl(var(--color-energy-decrease-hsl));
+
+    /* ------------------------------------------------------------------------------ */
+    /* Rounded */
+
+    --border-radius-xs: 1px;
+    --border-radius-sm: 2px;
+    --border-radius-md: 3px;
+    --border-radius-lg: 4px;
+    --border-radius-xl: 8px;
+    --border-radius-2xl: 16px;
+    --border-radius-3xl: 24px;
+
+    /* ------------------------------------------------------------------------------ */
+    /* Spacing */
+
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-7: 1.75rem;
+    --spacing-8: 2rem;
+    --spacing-9: 2.25rem;
+    --spacing-10: 2.5rem;
+    --spacing-12: 3rem;
+    --spacing-14: 3.5rem;
+    --spacing-16: 4rem;
+    --spacing-20: 5rem;
+    --spacing-24: 6rem;
+    --spacing-28: 7rem;
+    --spacing-32: 8rem;
+    --spacing-36: 9rem;
+    --spacing-40: 10rem;
+    --spacing-44: 11rem;
+    --spacing-48: 12rem;
+    --spacing-52: 13rem;
+    --spacing-56: 14rem;
+    --spacing-60: 15rem;
+    --spacing-64: 16rem;
+    --spacing-72: 18rem;
+    --spacing-80: 20rem;
+    --spacing-96: 24rem;
+
+    /* ------------------------------------------------------------------------------ */
+    /* Shadow */
+
+    --shadow-sm: 0 1px 2px 0 black;
+    --shadow-md: 0 4px 6px -1px black, 0 2px 4px -2px black;
+    --shadow-lg: 0 10px 15px -3px black, 0 4px 6px -4px black;
+    --shadow-xl: 0 20px 25px -5px black, 0 8px 10px -6px black;
+    --shadow-2xl: 0 25px 50px -12px black;
+    --shadow-3xl: 0 35px 60px -15px black;
+}

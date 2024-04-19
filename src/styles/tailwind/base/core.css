@@ -2,11 +2,17 @@
     --side-panel-width: 28rem;
 }
 
+html,
+body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
 body {
     padding: 0;
     margin: 0;
-    overflow: hidden;
-    display: flex;
+    overflow-x: clip;
 
     accent-color: var(--color-accent);
     font-family: "Open Sans", sans-serif;

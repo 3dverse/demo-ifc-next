@@ -1,9 +1,10 @@
+import { useState } from "react";
+import { Button } from "@chakra-ui/react";
 import ifcInfo from "../../data/json/ifcInfo.json";
 import { IfcData } from "@/types/ifc";
 import { updateColor, updateLightIntensity, runAnimation, pauseAnimation, stopAnimation } from "@/lib/3dverse/helpers";
-import { useState } from "react";
 
-export const PropertiesPanel = ({ guid }: { guid: string }) => {
+export const PropertiesPanel = ({ guid, onClose }: { guid: string; onClose: () => void }) => {
     const ifcData = ifcInfo as IfcData;
     const entitiyProperties = ifcData[guid];
 
@@ -11,19 +12,22 @@ export const PropertiesPanel = ({ guid }: { guid: string }) => {
     const animationUUID = "7f64dfa2-338a-4cb2-8f96-449a2c101120";
 
     return (
-        <aside className="card animate-appear-bottom absolute bottom-0 right-3 max-h-[46vh] flex flex-col">
+        <aside className="panel-card xl:card animate-appear-bottom absolute xl:bottom-0 xl:right-3 xl:max-h-[46vh] flex flex-col">
             {entitiyProperties?.props?.Name && (
                 <>
                     <header className="card-header card-wrapper py-3">
                         <div className="flex flex-col">
                             <div className="flex flex-row justify-between">
                                 <p className="card-title">Selection</p>
-                                {false && (
-                                    <div className="flex flex-row gap-1">
-                                        <p>Unselect</p>
-                                        <p>&times;</p>
-                                    </div>
-                                )}
+                                <Button
+                                    variant="ghost"
+                                    size="xs"
+                                    color="content.tertiary"
+                                    fontWeight={400}
+                                    onClick={onClose}
+                                >
+                                    Close
+                                </Button>
                             </div>
                             <h1 className="text-xl">{entitiyProperties.props.type}</h1>
                             <p className="text-sm font-light">{entitiyProperties.props.Name}</p>
