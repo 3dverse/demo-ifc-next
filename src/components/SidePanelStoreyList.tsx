@@ -4,7 +4,7 @@ import ifcInfo from "../../data/json/ifcInfo.json";
 import ifcTypes from "../../data/json/ifctype2guids.json";
 
 import { guid2euid } from "@/lib/id-converter";
-
+import { goToRoom, getEntityFromGuid, toToggle, getSurface } from "@/lib/3dverse/helpers";
 import {
     Accordion,
     AccordionItem,
@@ -14,11 +14,9 @@ import {
     IconButton,
     Button,
 } from "@chakra-ui/react";
-import { EyeIcon } from "./icons";
-import { CaretRightSharpSolidIcon } from "@/components/icons";
+import { CaretRightSharpSolidIcon, EyeIcon } from "@/components/common/icons";
 import { SpaceName } from "@/components/SpaceName";
 
-import { goToRoom, getEntityFromGuid, toToggle, getSurface } from "../lib/3dverse/helpers";
 import { IfcData, IfcType, Attribute } from "@/types/ifc";
 
 export const SidePanelStoreyList = () => {

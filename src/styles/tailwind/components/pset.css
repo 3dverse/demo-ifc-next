@@ -1,8 +1,12 @@
 .pset {
     @apply border-b border-primary;
 
+    &-header {
+        @apply min-h-[2.25rem] flex justify-between items-center gap-2 bg-[rgba(252,250,254,0.75)] border-b border-primary;
+    }
+
     &-title {
-        @apply pt-2 pb-1 text-sm font-medium;
+        @apply text-sm font-medium;
     }
 
     &-list {

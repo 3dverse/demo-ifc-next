@@ -27,8 +27,8 @@ export const EllipsisLightIcon = ({ className }: { className?: string }) => (
     </svg>
 );
 
-export const EyeIcon = ({ isVisible }: { isVisible?: boolean }) => {
-    return <>{isVisible ? <Eye /> : <EyeSlash />}</>;
+export const EyeIcon = ({ className, isVisible }: { className?: string; isVisible?: boolean }) => {
+    return <>{isVisible ? <Eye className={className} /> : <EyeSlash className={className} />}</>;
 };
 
 const Eye = ({ className }: { className?: string }) => (

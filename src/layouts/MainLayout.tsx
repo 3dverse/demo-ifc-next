@@ -11,6 +11,7 @@ import { EnergyViewButton } from "@/components/EnergyViewButton";
 import { ShareQRCode } from "@/components/ShareQRCode";
 
 import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
+import { CanvasActionBar } from "@/components/CanvasActionBar";
 
 export const MainLayout = memo(() => {
     const [selectedPropertyEUID, setSelectedPropertyEUID] = useState("");
@@ -18,7 +19,11 @@ export const MainLayout = memo(() => {
     const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
     const [sessionId, setSessionId] = useState("");
 
-    const { isOpen: isExpanded, onClose: onCollapse, onOpen: onExpand } = useDisclosure({ defaultIsOpen: true });
+    const {
+        isOpen: isSidePanelExpanded,
+        onClose: onCollapseSidePanel,
+        onOpen: onExpandSidePanel,
+    } = useDisclosure({ defaultIsOpen: true });
 
     const handleChange = useCallback(
         (event: React.MouseEvent<HTMLElement>) => {
@@ -42,23 +47,17 @@ export const MainLayout = memo(() => {
 
             <SidePanel
                 isUnderAnotherMobilepanel={!!selectedPropertyEUID}
-                isExpanded={isExpanded}
-                onExpand={onExpand}
-                onCollapse={onCollapse}
+                isExpanded={isSidePanelExpanded}
+                onExpand={onExpandSidePanel}
+                onCollapse={onCollapseSidePanel}
             />
 
-            <div
-                className={twMerge(
-                    `absolute top-4 left-0 xl:left-[var(--side-panel-width)] 
-                    flex flex-col xl:flex-row items-start justify-between gap-3 
-                    max-w-[500px] ml-3 
-                    animate-appear-left animation-delay-[250ms] opacity-0 transition-all`,
-                    !isExpanded ? "xl:left-16" : "",
-                )}
-            >
-                <Settings basePoint={basePoint} />
-                <EnergyViewButton energyVisible={energyVisible} setEnergyVisibility={setEnergyVisibility} />
-            </div>
+            <CanvasActionBar
+                isSidePanelExpanded={isSidePanelExpanded}
+                basePoint={basePoint}
+                energyVisible={energyVisible}
+                setEnergyVisibility={setEnergyVisibility}
+            />
 
             <EnergyView />
 
