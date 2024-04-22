@@ -212,6 +212,12 @@ export default defineStyleConfig({
             },
         },
 
+        "outline-island": {
+            bgColor: "rgba(252, 250, 254, 0.8)",
+            borderColor: "border.secondary",
+            rounded: "md",
+        },
+
         link: {
             bgColor: "transparent",
             fontWeight: "400",

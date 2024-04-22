@@ -34,6 +34,8 @@ export const MainPanel = memo(
 
         const isCollapsed = !isExpanded;
 
+        const SHOW_NOT_READY_FEATURE = false;
+
         return (
             <>
                 <aside
@@ -41,7 +43,7 @@ export const MainPanel = memo(
                         `
                             side-panel
                             fixed xl:absolute
-                            xl:top-0 bottom-0 left-0 w-screen max-h-[50vh] xl:w-[var(--side-panel-width)] xl:h-[100dvh] xl:max-h-none
+                            xl:top-0 bottom-0 left-0 w-screen xl:w-[var(--side-panel-width)] h-full max-h-[50vh] xl:h-[100dvh] xl:max-h-none
                             rounded-xl xl:rounded-none
                             bg-blur transition-all
                         `,
@@ -66,7 +68,9 @@ export const MainPanel = memo(
                         </div>
                     </div>
                 </aside>
-                <MobileMainNav activeNavItemId={activeNavItemId} setActiveNavItemId={setActiveNavItemId} />
+                {SHOW_NOT_READY_FEATURE && (
+                    <MobileMainNav activeNavItemId={activeNavItemId} setActiveNavItemId={setActiveNavItemId} />
+                )}
             </>
         );
     },

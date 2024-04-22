@@ -9,9 +9,9 @@ const baseStyle = definePartsStyle({
         py: "1px",
         px: "1px",
         borderRadius: "md",
-        borderColor: "border.tertiary",
+        border: "none",
         bgColor: "bg.underground",
-        boxShadow: "0px 4px 24px black, 0px 20px 80px #000000",
+        boxShadow: "xl",
         zIndex: 11,
     },
     item: {

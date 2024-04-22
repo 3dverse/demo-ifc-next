@@ -47,6 +47,8 @@ export const MainLayout = memo(() => {
                 setSessionId={setSessionId}
             />
 
+            <EnergyView />
+
             <MainPanel
                 isUnderAnotherMobilepanel={!!selectedPropertyEUID}
                 isExpanded={isSidePanelExpanded}
@@ -60,8 +62,6 @@ export const MainLayout = memo(() => {
                 energyVisible={energyVisible}
                 setEnergyVisibility={setEnergyVisibility}
             />
-
-            <EnergyView />
 
             <ShareQRCode sessionId={sessionId} />
 
