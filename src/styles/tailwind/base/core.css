@@ -22,5 +22,5 @@ body {
 
 ::selection {
     color: var(--color-accent);
-    background-color: hsla(var(--color-accent-hsl), 0.1);
+    background-color: hsl(var(--color-accent-hsl), 0.1);
 }

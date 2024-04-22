@@ -13,7 +13,7 @@ export default defineStyleConfig({
         border: "1px",
         borderColor: "transparent",
         textDecoration: "none",
-        letterSpacing: ".025em",
+        // letterSpacing: ".025em",
         WebkitTapHighlightColor: "transparent",
         whiteSpace: "normal",
         _disabled: {
@@ -228,7 +228,7 @@ export default defineStyleConfig({
             paddingBlock: "0px",
             _hover: {
                 textDecoration: "none",
-                bgColor: "hsla(var(--color-accent-hsl), 0.1)",
+                bgColor: "hsl(var(--color-accent-hsl), 0.1)",
             },
             _active: {
                 color: "accent.500",
@@ -251,7 +251,7 @@ export default defineStyleConfig({
             _hover: {
                 color: "content.primary",
                 textDecoration: "none",
-                bgColor: "hsla(var(--color-content-primary-hsl), 0.1)",
+                bgColor: "hsl(var(--color-content-primary-hsl), 0.1)",
             },
             _active: {
                 color: "accent.500",
@@ -274,7 +274,7 @@ export default defineStyleConfig({
             _hover: {
                 color: "content.primary",
                 textDecoration: "none",
-                bgColor: "hsla(var(--color-content-primary-hsl), 0.1)",
+                bgColor: "hsl(var(--color-content-primary-hsl), 0.1)",
             },
             _active: {
                 color: "accent.500",
@@ -297,7 +297,7 @@ export default defineStyleConfig({
             _hover: {
                 color: "content.primary",
                 textDecoration: "none",
-                bgColor: "hsla(var(--color-content-primary-hsl), 0.1)",
+                bgColor: "hsl(var(--color-content-primary-hsl), 0.1)",
             },
             _active: {
                 color: "accent.500",
@@ -315,15 +315,15 @@ export default defineStyleConfig({
             color: "informative.500",
             fontWeight: "400",
             _hover: {
-                bgColor: "hsla(var(--color-feedback-informative-500-hsl), .1)",
+                bgColor: "hsl(var(--color-feedback-informative-500-hsl), .1)",
                 textDecorationColor: "currentColor",
             },
             _focus: {
-                bgColor: "hsla(var(--color-feedback-informative-500-hsl), .1)",
+                bgColor: "hsl(var(--color-feedback-informative-500-hsl), .1)",
                 textDecorationColor: "currentColor",
             },
             _active: {
-                bgColor: "hsla(var(--color-feedback-informative-500-hsl), .1)",
+                bgColor: "hsl(var(--color-feedback-informative-500-hsl), .1)",
                 textDecorationColor: "currentColor",
             },
             _disabled: {

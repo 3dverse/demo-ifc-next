@@ -1,7 +1,7 @@
 @layer base {
     .button {
         @apply flex flex-row items-center gap-2 h-8 px-4 bg-ground hover:bg-overground rounded-md shadow-md transition-all duration-500;
-        @apply text-sm text-gray-800 hover:text-gray-900;
+        @apply text-sm text-secondary hover:text-primary;
 
         &-primary {
             @apply text-[white] hover:text-[white] shadow-[0_3px_10px_-2px_hsl(var(--color-accent-hsl),.5)];

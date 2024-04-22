@@ -16,7 +16,6 @@
     /* ------------------------------------------------------------------------------ */
     /* Accent colors */
 
-    --color-accent-50-hsl: 260, 50%, 95.29%; /* #f1edf9 */
     --color-accent-100-hsl: 259.15, 47.47%, 80.59%; /* #c5b6e5 */
     --color-accent-200-hsl: 259.15, 47.47%, 80.59%; /* #a992d9 */
     --color-accent-hsl: 259.32, 47.97%, 51.76%; /* #6f49bf */
@@ -25,7 +24,6 @@
     --color-accent-800-hsl: 259.32, 44.36%, 26.08%; /* #382560 */
 
     --color-accent: hsl(var(--color-accent-hsl));
-    --color-accent-50: hsl(var(--color-accent-50-hsl));
     --color-accent-100: hsl(var(--color-accent-100-hsl));
     --color-accent-200: hsl(var(--color-accent-200-hsl));
 
@@ -70,6 +68,37 @@
 
     --color-border-secondary-hsl: 0, 0%, 85%, 1;
     --color-border-secondary: hsl(var(--color-border-secondary-hsl));
+
+    /* ------------------------------------------------------------------------------ */
+    /* Feedbacks */
+
+    --color-feedback-informative-100-hsl: 202, 100%, 84%;
+    --color-feedback-informative-100: hsl(var(--color-feedback-informative-100-hsl));
+    --color-feedback-informative-500-hsl: 202, 100%, 62%;
+    --color-feedback-informative-500: hsl(var(--color-feedback-informative-500-hsl));
+    --color-feedback-informative-800-hsl: 203, 94%, 21%;
+    --color-feedback-informative-800: hsl(var(--color-feedback-informative-800-hsl));
+    --color-feedback-informative-900-hsl: 202, 50%, 25%;
+    --color-feedback-informative-900: hsl(var(--color-feedback-informative-900-hsl));
+
+    --color-feedback-positive: var(--color-feedback-positive-500);
+    --color-feedback-positive-hsl: var(--color-feedback-positive-500-hsl);
+    --color-feedback-positive-500-hsl: 158, 64%, 52%;
+    --color-feedback-positive-500: hsl(var(--color-feedback-positive-500-hsl));
+    --color-feedback-positive-800-hsl: 157.2, 48%, 20.4%;
+    --color-feedback-positive-800: hsl(var(--color-feedback-positive-800-hsl));
+    --color-feedback-positive-900: #09271c;
+
+    --color-feedback-warning-500-hsl: 14.4, 86%, 55.3%;
+    --color-feedback-warning-500: hsl(var(--color-feedback-warning-500-hsl));
+    --color-feedback-warning-800-hsl: 12, 29.4%, 13.3%;
+    --color-feedback-warning-800: hsl(var(--color-feedback-warning-800-hsl));
+
+    --color-feedback-negative-400: #f56565;
+    --color-feedback-negative-500-hsl: 0, 95.7%, 63.53%;
+    --color-feedback-negative-500: hsl(var(--color-feedback-negative-500-hsl));
+    --color-feedback-negative-800-hsl: 355.52, 46.21%, 28.43%;
+    --color-feedback-negative-800: hsl(var(--color-feedback-negative-800-hsl));
 
     /* ------------------------------------------------------------------------------ */
     /* Energy colors */

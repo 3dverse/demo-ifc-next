@@ -55,7 +55,6 @@ const theme = extendTheme({
             quaternary: "var(--color-border-quaternary)",
         },
         accent: {
-            50: "var(--color-accent-50)",
             100: "var(--color-accent-100)",
             200: "var(--color-accent-200)",
             500: "var(--color-accent)",

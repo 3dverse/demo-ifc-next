@@ -13,12 +13,37 @@ const config: Config = {
         extend: {
             colors: {
                 accent: "var(--color-accent)",
+                "accent-100": "var(--color-accent-100)",
+                "accent-200": "var(--color-accent-200)",
+                "accent-500": "var(--color-accent-500)",
+                "accent-800": "var(--color-accent-800)",
+
+                "informative-50": "var(--color-feedback-informative-50)",
+                "informative-100": "var(--color-feedback-informative-100)",
+                "informative-500": "var(--color-feedback-informative-500)",
+                informative: "var(--color-feedback-informative-500)",
+                "informative-800": "var(--color-feedback-informative-800)",
+
+                "positive-500": "var(--color-feedback-positive-500)",
+                positive: "var(--color-feedback-positive-500)",
+                "positive-800": "var(--color-feedback-positive-800)",
+                "positive-900": "var(--color-feedback-positive-900)",
+
+                "warning-500": "var(--color-feedback-warning-500)",
+                warning: "var(--color-feedback-warning-500)",
+                "warning-800": "var(--color-feedback-warning-800)",
+
+                "negative-100": "var(--color-feedback-negative-100)",
+                "negative-400": "var(--color-feedback-negative-400)",
+                "negative-500": "var(--color-feedback-negative-500)",
+                negative: "var(--color-feedback-negative-500)",
+                "negative-800": "var(--color-feedback-negative-800)",
             },
             backgroundColor: {
-                ground: "hsla(var(--color-bg-ground-hsl), var(--tw-bg-opacity, 1))",
-                underground: "hsla(var(--color-bg-underground-hsl), var(--tw-bg-opacity, 1))",
-                "underground-dark": "hsla(var(--color-bg-underground-dark-hsl), var(--tw-bg-opacity, 1))",
-                overground: "hsla(var(--color-bg-overground-hsl), var(--tw-bg-opacity, 1))",
+                ground: "hsl(var(--color-bg-ground-hsl), var(--tw-bg-opacity, 1))",
+                underground: "hsl(var(--color-bg-underground-hsl), var(--tw-bg-opacity, 1))",
+                "underground-dark": "hsl(var(--color-bg-underground-dark-hsl), var(--tw-bg-opacity, 1))",
+                overground: "hsl(var(--color-bg-overground-hsl), var(--tw-bg-opacity, 1))",
             },
             textColor: {
                 primary: "var(--color-content-primary)",

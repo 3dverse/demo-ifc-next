@@ -2,7 +2,7 @@ import { memo, useEffect, useState } from "react";
 import { IconButton, useMediaQuery } from "@chakra-ui/react";
 import { twMerge } from "tailwind-merge";
 import { SidePanelHeader } from "@/components/layout/SidePanelHeader";
-import { SidePanelStoreyList } from "@/components/storeys/SidePanelStoreyList";
+import { StoreyList } from "@/components/storeys/StoreyList";
 import { Logo } from "@/components/common/Logo";
 import { MobileMainNav } from "./MobileMainNav";
 import { ActiveNavItemId } from "@/core/type";
@@ -45,7 +45,7 @@ export const MainPanel = memo(
                             fixed xl:absolute
                             xl:top-0 bottom-0 left-0 w-screen xl:w-[var(--side-panel-width)] h-full max-h-[50vh] xl:h-[100dvh] xl:max-h-none
                             rounded-xl xl:rounded-none
-                            bg-blur transition-all
+                            bg-backdrop-blur transition-all
                         `,
                         isCollapsed ? "xl:w-16" : "",
                     )}
@@ -63,8 +63,8 @@ export const MainPanel = memo(
                         )}
                     >
                         <SidePanelHeader onCollapse={onCollapse} />
-                        <div className="overflow-y-scroll">
-                            <SidePanelStoreyList />
+                        <div className="overflow-y-scroll h-full">
+                            <StoreyList />
                         </div>
                     </div>
                 </aside>

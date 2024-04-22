@@ -5,7 +5,7 @@
 
 @import "./base/core.css";
 @import "./base/animation.css";
-@import "./base/bg-blur.css";
+@import "./base/bg-backdrop-blur.css";
 
 @import "./components/canvas.css";
 @import "./components/canvas-outline.css";

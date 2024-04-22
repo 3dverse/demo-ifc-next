@@ -1,19 +1,12 @@
 import { useState, useCallback, memo } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import { twMerge } from "tailwind-merge";
-
 import { Canvas } from "@/components/canvas/Canvas";
 import { MainPanel } from "@/components/layout/MainPanel";
 import { PropertiesPanel } from "@/components/IfcProperty/PropertiesPanel";
-import { Settings } from "@/components/canvas/Settings";
-import { EnergyView } from "@/components/energy/EnergyView";
-import { EnergyViewButton } from "@/components/energy/EnergyViewButton";
-import { ShareQRCode } from "@/components/canvas/ShareQRCode";
-
-import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
+import { EnergyConsumptionPanel } from "@/components/energy/EnergyConsumptionPanel";
 import { CanvasActionBar } from "@/components/canvas/CanvasActionBar";
-import { MobileMainNav } from "@/components/layout/MobileMainNav";
-import { ActiveNavItemId } from "@/core/type";
+import { ShareQRCode } from "@/components/canvas/ShareQRCode";
+import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 
 export const MainLayout = memo(() => {
     const [selectedPropertyEUID, setSelectedPropertyEUID] = useState<string | null>(null);
@@ -47,7 +40,7 @@ export const MainLayout = memo(() => {
                 setSessionId={setSessionId}
             />
 
-            <EnergyView />
+            <EnergyConsumptionPanel isSidePanelExpanded={isSidePanelExpanded} />
 
             <MainPanel
                 isUnderAnotherMobilepanel={!!selectedPropertyEUID}

@@ -20,7 +20,7 @@ import { SpaceName } from "@/components/storeys/SpaceName";
 import { IfcData, IfcType } from "@/types/ifc";
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 
-export const SidePanelStoreyList = () => {
+export const StoreyList = () => {
     const ifcData = ifcInfo as IfcData;
     const ifctypes = ifcTypes as IfcType;
 
@@ -30,7 +30,6 @@ export const SidePanelStoreyList = () => {
     const [visibleStoreys, setVisibleStoreys]: any = useState(new Array(storeys.length).fill(true));
 
     const handleStoreyVisibility = async (index: any, storeyGuid: string | null, event: any) => {
-        console.log("handleStoreyVisibility"), index, storeyGuid;
         event.stopPropagation();
 
         if (storeyGuid) {
@@ -83,8 +82,9 @@ export const SidePanelStoreyList = () => {
                 <h2 className="text-xs text-secondary uppercase tracking-wide">Storeys</h2>
                 <Button
                     variant="ghost"
-                    fontSize="xs"
-                    size="xs"
+                    fontSize="2xs"
+                    size="2xs"
+                    px="1"
                     color="content.secondary"
                     fontWeight={400}
                     onClick={toggleStoreysVisibility}
@@ -141,7 +141,7 @@ export const SidePanelStoreyList = () => {
                                                 }}
                                                 _disabled={{
                                                     opacity: 1,
-                                                    bgColor: "hsla(var(--color-bg-underground-hsl), .5)",
+                                                    bgColor: "hsl(var(--color-bg-underground-hsl), .5)",
                                                 }}
                                             >
                                                 <AccordionIcon
@@ -168,7 +168,7 @@ export const SidePanelStoreyList = () => {
                                                 >
                                                     {ifcData[storey].props.Name}
                                                     {!hasStoreySpaces && (
-                                                        <span className="px-3 text-xs text-gray-400">No IfcSpace</span>
+                                                        <span className="px-3 text-xs text-tertiary">No IfcSpace</span>
                                                     )}
                                                 </h2>
                                             </AccordionButton>

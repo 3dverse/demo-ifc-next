@@ -1,5 +1,4 @@
-import { useEffect, memo } from "react";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, memo } from "react";
 import { initApp } from "@/lib/3dverse/init";
 import { getInitialPoint } from "@/lib/3dverse/helpers";
 import { BasePoint } from "@/types/ifc";

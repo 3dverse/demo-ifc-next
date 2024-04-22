@@ -6,7 +6,7 @@
     }
 
     &-title {
-        @apply text-sm font-medium;
+        @apply text-sm font-semibold;
     }
 
     &-list {
@@ -18,10 +18,10 @@
     }
 
     &-label {
-        @apply flex-[1_0_40%] truncate text-gray-600;
+        @apply flex-[1_0_40%] truncate text-tertiary;
     }
 
     &-value {
-        @apply w-[60%] text-gray-700;
+        @apply w-[60%] text-tertiary;
     }
 }
