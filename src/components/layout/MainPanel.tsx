@@ -2,7 +2,7 @@ import { memo, useState } from "react";
 import { IconButton } from "@chakra-ui/react";
 import { RiExpandRightLine } from "react-icons/ri";
 import { twMerge } from "tailwind-merge";
-import { SidePanelHeader } from "@/components/layout/SidePanelHeader";
+import { MainPanelHeader } from "@/components/layout/MainPanelHeader";
 import { StoreyList } from "@/components/storeys/StoreyList";
 import { Logo } from "@/components/common/Logo";
 import { MobileMainNav } from "./MobileMainNav";
@@ -21,9 +21,9 @@ export const MainPanel = memo(
                 <aside
                     className={twMerge(
                         `
-                            side-panel
+                            main-panel
                             fixed lg:absolute
-                            lg:top-0 bottom-0 left-0 w-screen lg:w-[var(--side-panel-width)] h-full max-h-[50vh] lg:h-[100dvh] lg:max-h-none
+                            lg:top-0 bottom-0 left-0 w-screen lg:w-[var(--main-panel-width)] h-full max-h-[50vh] lg:h-[100dvh] lg:max-h-none
                             rounded-xl lg:rounded-none
                             bg-backdrop-blur transition-all
                         `,
@@ -38,7 +38,7 @@ export const MainPanel = memo(
                             isCollapsed ? "animate-disappear-left" : "animate-appear-right",
                         )}
                     >
-                        <SidePanelHeader onCollapse={onCollapse} />
+                        <MainPanelHeader onCollapse={onCollapse} />
                         <div className="overflow-y-scroll h-full">
                             <StoreyList />
                         </div>

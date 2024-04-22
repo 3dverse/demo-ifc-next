@@ -4,12 +4,12 @@ import { Settings } from "@/components/canvas/Settings";
 import { EnergyConsumptionButton } from "@/components/energy/EnergyConsumptionButton";
 
 export const CanvasActionBar = ({
-    isSidePanelExpanded,
+    isMainPanelExpanded,
     basePoint,
     energyVisible,
     setEnergyVisibility,
 }: {
-    isSidePanelExpanded: boolean;
+    isMainPanelExpanded: boolean;
     basePoint: any;
     energyVisible: any;
     setEnergyVisibility: Dispatch<SetStateAction<boolean>>;
@@ -17,11 +17,11 @@ export const CanvasActionBar = ({
     return (
         <div
             className={twMerge(
-                `absolute top-4 left-0 lg:left-[var(--side-panel-width)] 
+                `absolute top-4 left-0 lg:left-[var(--main-panel-width)] 
                 flex flex-col md:flex-row items-start justify-between gap-3 
                 max-w-[500px] ml-3 
                 animate-appear-left animation-delay-[250ms] opacity-0 transition-all`,
-                !isSidePanelExpanded ? "lg:left-16" : "",
+                !isMainPanelExpanded ? "lg:left-16" : "",
             )}
         >
             <Settings basePoint={basePoint} />

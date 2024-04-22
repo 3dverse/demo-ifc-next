@@ -8,7 +8,7 @@ import { IfcData } from "@/types/ifc";
 
 const ifcData = ifcInfo as IfcData;
 const roomEnergyData = energyData as EnergyData;
-export const EnergyConsumptionPanel = memo(({ isSidePanelExpanded }: { isSidePanelExpanded: boolean }) => {
+export const EnergyConsumptionPanel = memo(({ isMainPanelExpanded }: { isMainPanelExpanded: boolean }) => {
     return (
         <aside
             className={twMerge(
@@ -17,7 +17,7 @@ export const EnergyConsumptionPanel = memo(({ isSidePanelExpanded }: { isSidePan
                 bg-backdrop-blur rounded-lg shadow-xl
                 animate-appear-top animation-delay-[500ms] opacity-0 transition-all
             `,
-                isSidePanelExpanded ? "lg:left-[var(--side-panel-width)]" : "lg:left-16",
+                isMainPanelExpanded ? "lg:left-[var(--main-panel-width)]" : "lg:left-16",
             )}
         >
             <header className="w-full flex flex-row justify-between items-center gap-4 px-4 pt-2">

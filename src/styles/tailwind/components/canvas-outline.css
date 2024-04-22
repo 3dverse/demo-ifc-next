@@ -11,7 +11,7 @@
 }
 
 .canvas-outline,
-.side-panel {
+.main-panel {
     &:before,
     &:after {
         content: "";
@@ -40,7 +40,7 @@
         mask-position: bottom right, center;
     }
 }
-.side-panel {
+.main-panel {
     &:before {
         @apply hidden lg:block;
         top: 8px;

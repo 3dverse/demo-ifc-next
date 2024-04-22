@@ -1,9 +1,9 @@
-import { Logo } from "@/components/common/Logo";
-import { METADATA } from "@/lib/content/metadata";
 import { IconButton } from "@chakra-ui/react";
 import { RiExpandLeftLine } from "react-icons/ri";
+import { Logo } from "@/components/common/Logo";
+import { METADATA } from "@/lib/content/metadata";
 
-export const SidePanelHeader = ({ onCollapse }: { onCollapse: () => void }) => (
+export const MainPanelHeader = ({ onCollapse }: { onCollapse: () => void }) => (
     <header className="hidden lg:flex lg:justify-between items-center n px-2 py-2 border-b border-primary">
         <div className="flex flex-row gap-3">
             <Logo className="-mt-px" />

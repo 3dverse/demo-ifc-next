@@ -15,9 +15,9 @@ export const MainLayout = memo(() => {
     const [sessionId, setSessionId] = useState("");
 
     const {
-        isOpen: isSidePanelExpanded,
-        onClose: onCollapseSidePanel,
-        onOpen: onExpandSidePanel,
+        isOpen: isMainPanelExpanded,
+        onClose: onCollapseMainPanel,
+        onOpen: onExpandMainPanel,
     } = useDisclosure({ defaultIsOpen: true });
 
     const handleChange = useCallback(
@@ -40,12 +40,12 @@ export const MainLayout = memo(() => {
                 setSessionId={setSessionId}
             />
 
-            <EnergyConsumptionPanel isSidePanelExpanded={isSidePanelExpanded} />
+            <EnergyConsumptionPanel isMainPanelExpanded={isMainPanelExpanded} />
 
-            <MainPanel isExpanded={isSidePanelExpanded} onExpand={onExpandSidePanel} onCollapse={onCollapseSidePanel} />
+            <MainPanel isExpanded={isMainPanelExpanded} onExpand={onExpandMainPanel} onCollapse={onCollapseMainPanel} />
 
             <CanvasActionBar
-                isSidePanelExpanded={isSidePanelExpanded}
+                isMainPanelExpanded={isMainPanelExpanded}
                 basePoint={basePoint}
                 energyVisible={energyVisible}
                 setEnergyVisibility={setEnergyVisibility}
