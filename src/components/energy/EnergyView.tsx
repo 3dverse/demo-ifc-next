@@ -2,17 +2,17 @@ import { memo } from "react";
 import { EnergyData } from "@/types/ifc";
 import { SpaceEnergyViz } from "./SpaceEnergyViz";
 
-import ifcInfo from "../../data/json/ifcInfo.json";
+import ifcInfo from "../../../data/json/ifcInfo.json";
 
 import { IfcData } from "@/types/ifc";
-import energyData from "../../data/json/energyData.json";
+import energyData from "../../../data/json/energyData.json";
 
 const ifcData = ifcInfo as IfcData;
 const roomEnergyData = energyData as EnergyData;
 export const EnergyView = memo(() => {
     return (
         <aside
-            className="absolute bottom-3 left-[30rem]
+            className="absolute top-14 right-4
                 flex flex-col gap-1 max-h-[10rem] w-[30rem]
                 bg-ground rounded-lg shadow-xl
                 animate-appear-top animation-delay-[500ms] opacity-0

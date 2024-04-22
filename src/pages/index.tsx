@@ -1,9 +1,15 @@
+import { LoaderProgressBarUndefined } from "@/components/common/LoaderProgressBarUndefined";
+import { Logo } from "@/components/common/Logo";
+import { METADATA } from "@/lib/content/metadata";
 import dynamic from "next/dynamic";
-import { ChakraProvider } from "@chakra-ui/react";
 
 export const Main = dynamic(() => import("@/layouts/MainLayout").then((mod) => mod.MainLayout), {
     loading: () => (
-        <div className="h-screen w-screen flex items-center justify-center text-sm text-[white]">Loading...</div>
+        <div className="h-screen w-screen flex flex-col items-center justify-center text-sm text-primary-light">
+            <Logo />
+            <h1 className="mb-2 font-medium text-lg opacity-80">{METADATA.title}</h1>
+            <LoaderProgressBarUndefined />
+        </div>
     ),
     ssr: false,
 });
@@ -11,9 +17,7 @@ export const Main = dynamic(() => import("@/layouts/MainLayout").then((mod) => m
 export default function Home() {
     return (
         <main className="min-h-screen bg-underground-dark">
-            <ChakraProvider>
-                <Main />
-            </ChakraProvider>
+            <Main />
         </main>
     );
 }

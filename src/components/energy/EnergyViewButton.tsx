@@ -1,7 +1,7 @@
 import { Spinner } from "@chakra-ui/react";
 import { useState, Dispatch, SetStateAction } from "react";
 
-import { toggleEnergyView } from "../lib/3dverse/helpers";
+import { toggleEnergyView } from "../../lib/3dverse/helpers";
 
 export const EnergyViewButton = ({
     energyVisible,

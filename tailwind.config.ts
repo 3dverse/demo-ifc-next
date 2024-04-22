@@ -22,6 +22,7 @@ const config: Config = {
             },
             textColor: {
                 primary: "var(--color-content-primary)",
+                "primary-light": "var(--color-content-primary-light)",
                 secondary: "var(--color-content-secondary)",
                 tertiary: "var(--color-content-tertiary)",
                 increase: "var(--color-energy-increase)",
@@ -35,6 +36,24 @@ const config: Config = {
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+            },
+            fontSize: {
+                base: ["var(--font-size-md)", "var(--leading-normal)"],
+                "9xl": ["var(--font-size-9xl)", "var(--leading-normal)"],
+                "8xl": ["var(--font-size-8xl)", "var(--leading-normal)"],
+                "7xl": ["var(--font-size-7xl)", "var(--leading-normal)"],
+                "6xl": ["var(--font-size-6xl)", "var(--leading-normal)"],
+                "5xl": ["var(--font-size-5xl)", "var(--leading-normal)"],
+                "4xl": ["var(--font-size-4xl)", "var(--leading-normal)"],
+                "3xl": ["var(--font-size-3xl)", "var(--leading-snug)"],
+                "2xl": ["var(--font-size-2xl)", "var(--leading-normal)"],
+                xl: ["var(--font-size-xl)", "var(--leading-normal)"],
+                lg: ["var(--font-size-lg)", "var(--leading-normal)"],
+                md: ["var(--font-size-md)", "var(--leading-normal)"],
+                sm: ["var(--font-size-sm)", "var(--leading-normal)"],
+                xs: ["var(--font-size-xs)", "var(--leading-normal)"],
+                "2xs": ["var(--font-size-2xs)", "var(--leading-normal)"],
+                "3xs": ["var(--font-size-3xs)", "var(--leading-normal)"],
             },
             borderRadius: {
                 xs: "var(--border-radius-xs)",

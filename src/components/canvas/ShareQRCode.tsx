@@ -1,5 +1,6 @@
 import { Button, Popover, PopoverBody, PopoverContent, PopoverTrigger } from "@chakra-ui/react";
 import { memo } from "react";
+import { RiQrCodeFill } from "react-icons/ri";
 import QRCode from "react-qr-code";
 
 function buildQRCodeUrl(sessionId: string) {
@@ -17,24 +18,16 @@ export const ShareQRCode = memo(({ sessionId }: { sessionId: string }) => {
         <div className="absolute top-4 right-4">
             <Popover gutter={4}>
                 <PopoverTrigger>
-                    <button className="button button-primary animate-appear-right animation-delay-[250ms] opacity-0 rounded-full">
+                    <Button size="sm" variant="primary" rounded="full" leftIcon={<RiQrCodeFill />}>
                         Invite
-                    </button>
+                    </Button>
                 </PopoverTrigger>
-                <PopoverContent w="min" className="shadow-2xl">
+                <PopoverContent w="min">
                     <PopoverBody p="4">
                         <QRCode value={buildQRCodeUrl(sessionId)} className="h-[10rem] w-[10rem]" />
                     </PopoverBody>
                 </PopoverContent>
             </Popover>
-            <aside
-                className="hidden
-                absolute top-3 right-6
-                flex flex-col gap-1 
-                bg-ground rounded-lg shadow-xl
-                animate-appear-top animation-delay-[500ms] opacity-0
-            "
-            ></aside>
         </div>
     );
 });

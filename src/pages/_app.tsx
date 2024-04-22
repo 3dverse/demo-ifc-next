@@ -1,6 +1,8 @@
 import { METADATA } from "@/lib/content/metadata";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { ChakraProvider } from "@chakra-ui/react";
+import theme from "@/styles/chakra/theme";
 import "@/styles/tailwind/globals.css";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -11,7 +13,9 @@ export default function App({ Component, pageProps }: AppProps) {
                     {METADATA.title} - {METADATA.description}
                 </title>
             </Head>
-            <Component {...pageProps} />
+            <ChakraProvider theme={theme}>
+                <Component {...pageProps} />
+            </ChakraProvider>
         </>
     );
 }

@@ -26,6 +26,6 @@
         }
     }
     .panel-card {
-        @apply fixed bottom-0 left-0 w-screen max-h-[50vh] rounded-xl;
+        @apply fixed bottom-0 left-0 w-screen max-h-[50vh] rounded-t-xl z-[100];
     }
 }

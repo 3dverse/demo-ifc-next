@@ -15,12 +15,12 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
 
     return (
         <ButtonGroup as="nav" isAttached variant="outline" size="sm">
-            <Tooltip label="Reset position">
+            <Tooltip label="Reset position" size="sm">
                 <Button className="button button-icon-only button-island" onClick={() => handleReset(basePoint)}>
                     <ArrowsToDotLightIcon />
                 </Button>
             </Tooltip>
-            <Tooltip label="Toggle fly camera">
+            <Tooltip label="Toggle fly camera" size="sm">
                 <Button
                     className="button button-icon-only button-island"
                     onClick={() => handleCameraSwitchChange(switchCameraState, setSwitchCameraState)}

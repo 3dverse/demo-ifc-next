@@ -10,11 +10,11 @@
     }
 
     &-list {
-        @apply list-none pt-1 pb-3;
+        @apply list-none;
     }
 
     &-list-item {
-        @apply flex gap-2 py-1 text-sm odd:bg-underground;
+        @apply flex gap-2 py-[5px] text-sm odd:bg-underground;
     }
 
     &-label {

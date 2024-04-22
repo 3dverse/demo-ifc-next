@@ -12,6 +12,8 @@
 @import "./components/card.css";
 @import "./components/button.css";
 @import "./components/island-button.css";
+@import "./components/link.css";
+@import "./components/loader-progressbar-undefined.css";
 @import "./components/panel.css";
 @import "./components/panels.css";
 @import "./components/pset.css";

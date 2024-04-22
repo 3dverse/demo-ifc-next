@@ -16,9 +16,22 @@
     /* ------------------------------------------------------------------------------ */
     /* Accent colors */
 
-    /* #6f49bf */
-    --color-accent-hsl: 259, 48.09%, 51.87%;
+    --color-accent-50-hsl: 260, 50%, 95.29%; /* #f1edf9 */
+    --color-accent-100-hsl: 259.15, 47.47%, 80.59%; /* #c5b6e5 */
+    --color-accent-200-hsl: 259.15, 47.47%, 80.59%; /* #a992d9 */
+    --color-accent-hsl: 259.32, 47.97%, 51.76%; /* #6f49bf */
+    --color-accent-500-hsl: var(--color-accent-hsl);
+    --color-accent-600-hsl: 259.25, 44.54%, 46.67%; /* #6442ac */
+    --color-accent-800-hsl: 259.32, 44.36%, 26.08%; /* #382560 */
+
     --color-accent: hsl(var(--color-accent-hsl));
+    --color-accent-50: hsl(var(--color-accent-50-hsl));
+    --color-accent-100: hsl(var(--color-accent-100-hsl));
+    --color-accent-200: hsl(var(--color-accent-200-hsl));
+
+    --color-accent-500: hsl(var(--color-accent-500-hsl));
+    --color-accent-600: hsl(var(--color-accent-600-hsl));
+    --color-accent-800: hsl(var(--color-accent-800-hsl));
 
     /* ------------------------------------------------------------------------------ */
     /* Background colors */
@@ -38,15 +51,15 @@
     /* ------------------------------------------------------------------------------ */
     /* Content colors */
 
-    --color-content-primary-hsl: 256, 96%, 32%;
+    --color-content-primary-hsl: 220, 26%, 14%;
     --color-content-primary: hsl(var(--color-content-primary-hsl));
-    --color-content-primary-dark-hsl: 229, 27%, 12%;
-    --color-content-primary-dark: hsl(var(--color-content-primary-dark-hsl));
+    --color-content-primary-light-hsl: 229, 27%, 100%;
+    --color-content-primary-light: hsl(var(--color-content-primary-light-hsl));
 
-    --color-content-secondary-hsl: 255, 96%, 60%, 1;
+    --color-content-secondary-hsl: 218, 17%, 25%;
     --color-content-secondary: hsl(var(--color-content-secondary-hsl));
 
-    --color-content-tertiary-hsl: 256, 93%, 68%, 1;
+    --color-content-tertiary-hsl: 216, 15%, 52%;
     --color-content-tertiary: hsl(var(--color-content-tertiary-hsl));
 
     /* ------------------------------------------------------------------------------ */
@@ -65,6 +78,49 @@
     --color-energy-increase: hsl(var(--color-energy-increase-hsl));
     --color-energy-decrease-hsl: 93, 90%, 35%, 1;
     --color-energy-decrease: hsl(var(--color-energy-decrease-hsl));
+
+    /* ------------------------------------------------------------------------------ */
+    /* Fonts */
+
+    --font-family-primary: "Open Sans", sans-serif;
+    --font-family-secondary: "Open Sans", sans-serif;
+
+    /* ------------------------------------------------------------------------------ */
+    /* Font size */
+
+    --font-size-3xs: 0.7rem;
+    --font-size-2xs: 0.75rem;
+    --font-size-xs: 0.85rem;
+    --font-size-sm: 0.95rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    --font-size-6xl: 3.75rem;
+    --font-size-7xl: 4rem;
+    --font-size-8xl: 6rem;
+    --font-size-9xl: 8rem;
+
+    /* ------------------------------------------------------------------------------ */
+    /* Leading */
+
+    --leading-3: 0.75rem;
+    --leading-4: 1rem;
+    --leading-5: 1.25rem;
+    --leading-6: 1.5rem;
+    --leading-7: 1.75rem;
+    --leading-8: 2rem;
+    --leading-9: 2.25rem;
+    --leading-10: 2.5rem;
+    --leading-none: 1;
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
 
     /* ------------------------------------------------------------------------------ */
     /* Rounded */
@@ -112,10 +168,10 @@
     /* ------------------------------------------------------------------------------ */
     /* Shadow */
 
-    --shadow-sm: 0 1px 2px 0 black;
-    --shadow-md: 0 4px 6px -1px black, 0 2px 4px -2px black;
-    --shadow-lg: 0 10px 15px -3px black, 0 4px 6px -4px black;
-    --shadow-xl: 0 20px 25px -5px black, 0 8px 10px -6px black;
-    --shadow-2xl: 0 25px 50px -12px black;
-    --shadow-3xl: 0 35px 60px -15px black;
+    --shadow-sm: 0 1px 2px 0 #00000020;
+    --shadow-md: 0 4px 6px -1px #00000020, 0 2px 4px -2px #00000020;
+    --shadow-lg: 0 10px 15px -3px #00000020, 0 4px 6px -4px #00000020;
+    --shadow-xl: 0 20px 25px -5px #00000020, 0 8px 10px -6px #00000020;
+    --shadow-2xl: 0 25px 50px -12px #00000020;
+    --shadow-3xl: 0 35px 60px -15px #00000020;
 }

@@ -1,0 +1,66 @@
+.link {
+    @apply px-[2px] py-px rounded-sm text-accent;
+    transition-property: background-color, color, opacity;
+    transition-duration: 0.25s;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        background-color: hsla(var(--color-accent-hsl), 0.1);
+    }
+
+    &-primary {
+        @apply text-primary;
+
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            @apply bg-transparent text-accent;
+        }
+    }
+
+    &-secondary {
+        @apply text-secondary;
+
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            @apply bg-transparent text-accent;
+        }
+    }
+
+    &-tertiary {
+        @apply text-tertiary;
+
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            @apply bg-transparent text-accent;
+        }
+    }
+
+    &-external {
+        &:after {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23864db3' d='M416 64v384H32V64h384zm32-32H0v448h448V32zM304 160H152v32h113.4L132.7 324.7 121.4 336l22.6 22.6 11.3-11.3L288 214.6V336h32V160h-16z'/%3E%3C/svg%3E%0A");
+            display: inline-block;
+            width: 10px;
+            margin-left: 6px;
+            opacity: 0;
+            transition-property: opacity;
+            transition-duration: 0.25s;
+        }
+        &:hover:after,
+        &:focus:after,
+        &:active:after {
+            opacity: 1;
+        }
+    }
+}
+
+.link-sm {
+    @apply px-px py-0;
+}

@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
-import { Settings } from "@/components/Settings";
-import { EnergyViewButton } from "@/components/EnergyViewButton";
+import { Settings } from "@/components/canvas/Settings";
+import { EnergyViewButton } from "@/components/energy/EnergyViewButton";
 import { Dispatch, SetStateAction } from "react";
 
 export const CanvasActionBar = ({
@@ -18,9 +18,9 @@ export const CanvasActionBar = ({
         <div
             className={twMerge(
                 `absolute top-4 left-0 xl:left-[var(--side-panel-width)] 
-            flex flex-col xl:flex-row items-start justify-between gap-3 
-            max-w-[500px] ml-3 
-            animate-appear-left animation-delay-[250ms] opacity-0 transition-all`,
+                flex flex-col lg:flex-row items-start justify-between gap-3 
+                max-w-[500px] ml-3 
+                animate-appear-left animation-delay-[250ms] opacity-0 transition-all`,
                 !isSidePanelExpanded ? "xl:left-16" : "",
             )}
         >

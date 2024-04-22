@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@chakra-ui/react";
-import ifcInfo from "../../data/json/ifcInfo.json";
+import ifcInfo from "../../../data/json/ifcInfo.json";
 import { IfcData } from "@/types/ifc";
 import { updateColor, updateLightIntensity, runAnimation, pauseAnimation, stopAnimation } from "@/lib/3dverse/helpers";
 
