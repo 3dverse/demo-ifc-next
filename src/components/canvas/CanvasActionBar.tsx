@@ -1,7 +1,7 @@
+import { Dispatch, SetStateAction } from "react";
 import { twMerge } from "tailwind-merge";
 import { Settings } from "@/components/canvas/Settings";
-import { EnergyViewButton } from "@/components/energy/EnergyViewButton";
-import { Dispatch, SetStateAction } from "react";
+import { EnergyConsumptionButton } from "@/components/energy/EnergyConsumptionButton";
 
 export const CanvasActionBar = ({
     isSidePanelExpanded,
@@ -25,7 +25,7 @@ export const CanvasActionBar = ({
             )}
         >
             <Settings basePoint={basePoint} />
-            <EnergyViewButton energyVisible={energyVisible} setEnergyVisibility={setEnergyVisibility} />
+            <EnergyConsumptionButton energyVisible={energyVisible} setEnergyVisibility={setEnergyVisibility} />
         </div>
     );
 };

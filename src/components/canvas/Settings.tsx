@@ -43,19 +43,20 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
                     <IconButton aria-label={label} onClick={onClick} icon={icon} />
                 </Tooltip>
             ))}
-            <Menu closeOnSelect={false}>
-                <MenuButton>
-                    <IconButton
+            <Menu closeOnSelect={false} gutter={3}>
+                <Tooltip label="Open render settings" size="sm">
+                    <MenuButton
+                        as={IconButton}
                         aria-label="Toggle Settings menu"
                         variant="outline-island"
                         roundedStart="none"
                         icon={<EllipsisLightIcon />}
                     />
-                </MenuButton>
-                <MenuList p="0" w="32" minW="auto">
+                </Tooltip>
+                <MenuList p="0" w="40" minW="auto">
                     <MenuItem onClick={() => handleEdgeSwitchChange(switchEdgeState, setSwitchEdgeState)}>
-                        <span className="flex justify-between items-center flex-grow gap-4 text-sm">
-                            Edges
+                        <span className="flex justify-between items-center flex-grow gap-4 text-xs">
+                            Outline edges
                             <Switch size="sm" id="edges" isChecked={switchEdgeState} />
                         </span>
                     </MenuItem>

@@ -29,18 +29,12 @@ export const PropertiesPanel = ({ guid, onClose }: { guid: string; onClose: () =
                         <div className="flex flex-col">
                             <div className="flex flex-row justify-between">
                                 <p className="card-title">Selection</p>
-                                <Button
-                                    variant="ghost"
-                                    size="xs"
-                                    color="content.tertiary"
-                                    fontWeight={400}
-                                    onClick={onClose}
-                                >
+                                <Button variant="ghost" size="xs" color="content.secondary" px="1" onClick={onClose}>
                                     Close
                                 </Button>
                             </div>
-                            <h1 className="text-xl">{entitiyProperties.props.type}</h1>
-                            <p className="text-sm font-light">{entitiyProperties.props.Name}</p>
+                            <h1 className="text-xl font-semibold">{entitiyProperties.props.type}</h1>
+                            <p className="text-xs text-tertiary">{entitiyProperties.props.Name}</p>
                         </div>
                     </header>
                     <div className="card-body">

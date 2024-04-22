@@ -1,23 +1,25 @@
 import { memo } from "react";
 import { EnergyData } from "@/types/ifc";
-import { SpaceEnergyViz } from "./SpaceEnergyViz";
-
-import ifcInfo from "../../../data/json/ifcInfo.json";
-
-import { IfcData } from "@/types/ifc";
-import energyData from "../../../data/json/energyData.json";
 import { twMerge } from "tailwind-merge";
+import { SpaceEnergyViz } from "./SpaceEnergyViz";
+import ifcInfo from "../../../data/json/ifcInfo.json";
+import energyData from "../../../data/json/energyData.json";
+import { IfcData } from "@/types/ifc";
 
 const ifcData = ifcInfo as IfcData;
 const roomEnergyData = energyData as EnergyData;
 export const EnergyConsumptionPanel = memo(({ isSidePanelExpanded }: { isSidePanelExpanded: boolean }) => {
     return (
         <aside
-            className={twMerge(`absolute bottom-16 lg:top-14 right-4
-                flex flex-col gap-1 max-h-[10rem] w-auto lg:w-[30rem]
+            className={twMerge(
+                `absolute bottom-16 lg:top-14
+                left-0 xl:left-[var(--side-panel-width)]
+                flex flex-col gap-1 max-h-[10rem] w-auto lg:w-[30rem] mx-3
                 bg-backdrop-blur rounded-lg shadow-xl
                 animate-appear-top animation-delay-[500ms] opacity-0
-            `)}
+            `,
+                isSidePanelExpanded ? "left" : "",
+            )}
         >
             <header className="w-full flex flex-row justify-between items-center gap-4 px-4 pt-2">
                 <h1>Energy Consumption</h1>

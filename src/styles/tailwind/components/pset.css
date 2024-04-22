@@ -2,11 +2,11 @@
     @apply border-b border-primary;
 
     &-header {
-        @apply min-h-[2.25rem] flex justify-between items-center gap-2 bg-[rgba(252,250,254,0.75)] border-b border-primary;
+        @apply min-h-[2.25rem] flex justify-between items-center gap-2 border-b border-primary;
     }
 
     &-title {
-        @apply text-sm font-semibold;
+        @apply text-xs font-semibold;
     }
 
     &-list {
@@ -14,14 +14,14 @@
     }
 
     &-list-item {
-        @apply flex gap-2 py-[5px] text-sm odd:bg-underground;
+        @apply flex gap-2 py-[5px] text-xs odd:bg-underground odd:bg-opacity-60;
     }
 
     &-label {
-        @apply flex-[1_0_40%] truncate text-tertiary;
+        @apply flex-[1_0_40%] truncate text-secondary;
     }
 
     &-value {
-        @apply w-[60%] text-tertiary;
+        @apply w-[60%] text-secondary;
     }
 }
