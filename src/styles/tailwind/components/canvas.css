@@ -81,6 +81,6 @@ canvas:focus {
 }
 
 .rocket-loader-3dverse.rocket-loader-3dverse {
-    @apply xl:left-[var(--side-panel-width)];
+    @apply lg:left-[var(--side-panel-width)];
     z-index: auto;
 }

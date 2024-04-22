@@ -1,36 +1,16 @@
-import { memo, useEffect, useState } from "react";
-import { IconButton, useMediaQuery } from "@chakra-ui/react";
+import { memo, useState } from "react";
+import { IconButton } from "@chakra-ui/react";
+import { RiExpandRightLine } from "react-icons/ri";
 import { twMerge } from "tailwind-merge";
 import { SidePanelHeader } from "@/components/layout/SidePanelHeader";
 import { StoreyList } from "@/components/storeys/StoreyList";
 import { Logo } from "@/components/common/Logo";
 import { MobileMainNav } from "./MobileMainNav";
 import { ActiveNavItemId } from "@/core/type";
-import { RiExpandRightLine } from "react-icons/ri";
-
-const BREAKPOINT_XL = "80em";
 
 export const MainPanel = memo(
-    ({
-        isExpanded,
-        onExpand,
-        onCollapse,
-        isUnderAnotherMobilepanel,
-    }: {
-        isExpanded: boolean;
-        onExpand: () => void;
-        onCollapse: () => void;
-        isUnderAnotherMobilepanel: boolean;
-    }) => {
+    ({ isExpanded, onExpand, onCollapse }: { isExpanded: boolean; onExpand: () => void; onCollapse: () => void }) => {
         const [activeNavItemId, setActiveNavItemId] = useState<ActiveNavItemId>(null);
-        const [isUnderAnotherPanel, setIsUnderAnotherPanel] = useState(false);
-
-        const [isSmallerThanXL] = useMediaQuery(`(max-width: ${BREAKPOINT_XL})`);
-        useEffect(() => {
-            if (isSmallerThanXL) {
-                setIsUnderAnotherPanel(isUnderAnotherMobilepanel);
-            }
-        }, [isSmallerThanXL, isUnderAnotherMobilepanel]);
 
         const isCollapsed = !isExpanded;
 
@@ -42,19 +22,15 @@ export const MainPanel = memo(
                     className={twMerge(
                         `
                             side-panel
-                            fixed xl:absolute
-                            xl:top-0 bottom-0 left-0 w-screen xl:w-[var(--side-panel-width)] h-full max-h-[50vh] xl:h-[100dvh] xl:max-h-none
-                            rounded-xl xl:rounded-none
+                            fixed lg:absolute
+                            lg:top-0 bottom-0 left-0 w-screen lg:w-[var(--side-panel-width)] h-full max-h-[50vh] lg:h-[100dvh] lg:max-h-none
+                            rounded-xl lg:rounded-none
                             bg-backdrop-blur transition-all
                         `,
-                        isCollapsed ? "xl:w-16" : "",
+                        isCollapsed ? "lg:w-16" : "",
                     )}
-                    style={{
-                        translate: isUnderAnotherPanel ? "0 10vh" : "0 0",
-                        opacity: isUnderAnotherPanel ? ".2" : "1",
-                    }}
                 >
-                    {isCollapsed && <CollapsedSidePanel onExpand={onExpand} />}
+                    {isCollapsed && <CollapsedMainPanel onExpand={onExpand} />}
 
                     <div
                         className={twMerge(
@@ -76,9 +52,9 @@ export const MainPanel = memo(
     },
 );
 
-MainPanel.displayName = "SidePanel";
+MainPanel.displayName = "MainPanel";
 
-const CollapsedSidePanel = ({ onExpand }: { onExpand: () => void }) => (
+const CollapsedMainPanel = ({ onExpand }: { onExpand: () => void }) => (
     <div className="absolute top-2 left-2 flex flex-col items-center animate-appear-left z-10">
         <Logo className="-mt-px" />
         <IconButton

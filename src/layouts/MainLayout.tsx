@@ -2,7 +2,7 @@ import { useState, useCallback, memo } from "react";
 import { useDisclosure } from "@chakra-ui/react";
 import { Canvas } from "@/components/canvas/Canvas";
 import { MainPanel } from "@/components/layout/MainPanel";
-import { PropertiesPanel } from "@/components/IfcProperty/PropertiesPanel";
+import { IfcPropertyPanel } from "@/components/IfcProperty/IfcPropertyPanel";
 import { EnergyConsumptionPanel } from "@/components/energy/EnergyConsumptionPanel";
 import { CanvasActionBar } from "@/components/canvas/CanvasActionBar";
 import { ShareQRCode } from "@/components/canvas/ShareQRCode";
@@ -42,12 +42,7 @@ export const MainLayout = memo(() => {
 
             <EnergyConsumptionPanel isSidePanelExpanded={isSidePanelExpanded} />
 
-            <MainPanel
-                isUnderAnotherMobilepanel={!!selectedPropertyEUID}
-                isExpanded={isSidePanelExpanded}
-                onExpand={onExpandSidePanel}
-                onCollapse={onCollapseSidePanel}
-            />
+            <MainPanel isExpanded={isSidePanelExpanded} onExpand={onExpandSidePanel} onCollapse={onCollapseSidePanel} />
 
             <CanvasActionBar
                 isSidePanelExpanded={isSidePanelExpanded}
@@ -59,7 +54,7 @@ export const MainLayout = memo(() => {
             <ShareQRCode sessionId={sessionId} />
 
             {selectedPropertyEUID && (
-                <PropertiesPanel guid={selectedPropertyEUID} onClose={() => setSelectedPropertyEUID(null)} />
+                <IfcPropertyPanel guid={selectedPropertyEUID} onClose={() => setSelectedPropertyEUID(null)} />
             )}
         </>
     );

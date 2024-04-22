@@ -12,12 +12,12 @@ export const EnergyConsumptionButton = ({
 }) => {
     const [isEnergyVizProcessing, setIsEnergyVizProcessing] = useState(false);
 
-    async function energyViewModifier(previousEnergyVisible: boolean) {
+    const energyViewModifier = async (previousEnergyVisible: boolean) => {
         const newEnergyVisible = !previousEnergyVisible;
         await toggleEnergyView(newEnergyVisible);
         setEnergyVisibility(newEnergyVisible);
         return newEnergyVisible;
-    }
+    };
 
     const handleClick = async (previousEnergyVisible: boolean, previousIsEnergyVizProcessing: boolean) => {
         setIsEnergyVizProcessing(!previousIsEnergyVizProcessing);
@@ -29,6 +29,7 @@ export const EnergyConsumptionButton = ({
         <Button
             variant="primary"
             size="sm"
+            fontSize="xs"
             leftIcon={<RiFlashlightFill />}
             isLoading={isEnergyVizProcessing}
             spinner={<Spinner color="white" thickness="1px" size="xs" mr="1" />}

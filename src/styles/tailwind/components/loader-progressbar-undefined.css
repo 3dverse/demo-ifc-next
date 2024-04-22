@@ -1,7 +1,7 @@
 .loader-progress-bar-undefined {
     width: 3.5rem;
     padding: 7px 8px;
-    background-color: var(--color-bg-foreground);
+    background-color: #1a1b30;
     border-radius: 2rem;
 }
 
@@ -11,7 +11,7 @@
     width: 100%;
     border-radius: 1rem;
     overflow: hidden;
-    background-color: #45433f;
+    background-color: black;
 
     &:before {
         content: "''";

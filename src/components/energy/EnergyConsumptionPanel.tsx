@@ -12,13 +12,12 @@ export const EnergyConsumptionPanel = memo(({ isSidePanelExpanded }: { isSidePan
     return (
         <aside
             className={twMerge(
-                `absolute bottom-16 lg:top-14
-                left-0 xl:left-[var(--side-panel-width)]
+                `absolute bottom-16 lg:bottom-5 left-0
                 flex flex-col gap-1 max-h-[10rem] w-auto lg:w-[30rem] mx-3
                 bg-backdrop-blur rounded-lg shadow-xl
-                animate-appear-top animation-delay-[500ms] opacity-0
+                animate-appear-top animation-delay-[500ms] opacity-0 transition-all
             `,
-                isSidePanelExpanded ? "left" : "",
+                isSidePanelExpanded ? "lg:left-[var(--side-panel-width)]" : "lg:left-16",
             )}
         >
             <header className="w-full flex flex-row justify-between items-center gap-4 px-4 pt-2">

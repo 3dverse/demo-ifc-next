@@ -1,23 +1,13 @@
 import { useState, memo } from "react";
-import {
-    Button,
-    ButtonGroup,
-    IconButton,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuList,
-    Switch,
-    Tooltip,
-} from "@chakra-ui/react";
+import { ButtonGroup, IconButton, Menu, MenuButton, MenuItem, MenuList, Switch, Tooltip } from "@chakra-ui/react";
 import { handleReset, handleEdgeSwitchChange, handleCameraSwitchChange } from "@/lib/3dverse/helpers";
-import { BasePoint } from "@/types/ifc";
 import {
     ArrowsToDotLightIcon,
     EllipsisLightIcon,
     PlaneUpLightIcon,
     PlaneUpSlashLightIcon,
 } from "@/components/common/icons";
+import { BasePoint } from "@/types/ifc";
 
 export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
     const [switchCameraState, setSwitchCameraState] = useState(true);
@@ -27,12 +17,12 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
         {
             label: "Reset position",
             onClick: () => handleReset(basePoint),
-            icon: <ArrowsToDotLightIcon />,
+            icon: <ArrowsToDotLightIcon className="w-4" />,
         },
         {
             label: "Toggle fly camera",
             onClick: () => handleCameraSwitchChange(switchCameraState, setSwitchCameraState),
-            icon: switchCameraState ? <PlaneUpLightIcon /> : <PlaneUpSlashLightIcon />,
+            icon: switchCameraState ? <PlaneUpLightIcon className="w-4" /> : <PlaneUpSlashLightIcon className="w-4" />,
         },
     ];
 
@@ -50,7 +40,7 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
                         aria-label="Toggle Settings menu"
                         variant="outline-island"
                         roundedStart="none"
-                        icon={<EllipsisLightIcon />}
+                        icon={<EllipsisLightIcon className="w-4" />}
                     />
                 </Tooltip>
                 <MenuList p="0" w="40" minW="auto">

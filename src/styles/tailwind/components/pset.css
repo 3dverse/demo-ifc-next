@@ -14,7 +14,7 @@
     }
 
     &-list-item {
-        @apply flex gap-2 py-[5px] text-xs odd:bg-underground odd:bg-opacity-60;
+        @apply flex gap-2 py-[5px] text-xs odd:bg-ground odd:bg-opacity-60;
     }
 
     &-label {

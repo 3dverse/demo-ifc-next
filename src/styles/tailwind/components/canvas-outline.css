@@ -1,5 +1,5 @@
 .canvas-outline {
-    @apply hidden xl:block;
+    @apply hidden lg:block;
     position: absolute;
     top: 0;
     left: 0;
@@ -42,14 +42,14 @@
 }
 .side-panel {
     &:before {
-        @apply hidden xl:block;
+        @apply hidden lg:block;
         top: 8px;
         left: 100%;
         mask-position: top left, center;
     }
 
     &:after {
-        @apply hidden xl:block;
+        @apply hidden lg:block;
         bottom: 8px;
         left: 100%;
         mask-position: bottom left, center;

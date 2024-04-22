@@ -4,7 +4,7 @@ import { IconButton } from "@chakra-ui/react";
 import { RiExpandLeftLine } from "react-icons/ri";
 
 export const SidePanelHeader = ({ onCollapse }: { onCollapse: () => void }) => (
-    <header className="hidden xl:flex xl:justify-between items-center n px-2 py-2 border-b border-primary">
+    <header className="hidden lg:flex lg:justify-between items-center n px-2 py-2 border-b border-primary">
         <div className="flex flex-row gap-3">
             <Logo className="-mt-px" />
             <div>

@@ -7,10 +7,11 @@
 @import "./base/animation.css";
 @import "./base/bg-backdrop-blur.css";
 
+@import "./components/button.css";
 @import "./components/canvas.css";
 @import "./components/canvas-outline.css";
 @import "./components/card.css";
-@import "./components/button.css";
+@import "./components/glow-effect.css";
 @import "./components/island-button.css";
 @import "./components/link.css";
 @import "./components/loader-progressbar-undefined.css";

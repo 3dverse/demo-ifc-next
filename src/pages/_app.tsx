@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "@/styles/chakra/theme";
+import "@fontsource-variable/inter";
 import "@/styles/tailwind/globals.css";
 
 export default function App({ Component, pageProps }: AppProps) {

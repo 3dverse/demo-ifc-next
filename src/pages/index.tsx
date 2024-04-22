@@ -5,9 +5,9 @@ import dynamic from "next/dynamic";
 
 export const Main = dynamic(() => import("@/layouts/MainLayout").then((mod) => mod.MainLayout), {
     loading: () => (
-        <div className="h-screen w-screen flex flex-col items-center justify-center text-sm text-primary-light">
+        <div className="glow-effect absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center text-sm text-primary-light">
             <Logo />
-            <h1 className="mb-2 font-medium text-lg opacity-80">{METADATA.title}</h1>
+            <h1 className="mb-3 font-medium text-lg opacity-80">{METADATA.title}</h1>
             <LoaderProgressBarUndefined />
         </div>
     ),
