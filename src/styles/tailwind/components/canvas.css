@@ -1,6 +1,9 @@
 canvas:focus {
     outline: none;
 }
+.SDK3DVerse-viewport {
+    border: none !important;
+}
 
 .canvas-container {
     position: relative;

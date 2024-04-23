@@ -6,7 +6,7 @@ export const EnergyConsumptionPanel = memo(({ isMainPanelExpanded }: { isMainPan
     return (
         <aside
             className={twMerge(
-                `fixed bottom-14 lg:bottom-5 left-0
+                `fixed bottom-14 lg:bottom-2 left-0
                 hidden md:flex flex-col gap-1 max-h-[10rem] w-auto lg:w-[30rem] m-3
                 bg-backdrop-blur rounded-lg shadow-xl
                 animate-appear-top animation-delay-[500ms] opacity-0 transition-all

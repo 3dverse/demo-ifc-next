@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 import { MainPanelTop } from "@/components/layout/MainPanelTop";
 import { MobileMainNav } from "@/components/layout/MobileMainNav";
 import { StoreyList } from "@/components/storeys/StoreyList";
-import Logo from "public/logo/logo.svg";
+import { Logo } from "@/components/common/Logo";
 
 export const MainPanel = memo(
     ({ isExpanded, onExpand, onCollapse }: { isExpanded: boolean; onExpand: () => void; onCollapse: () => void }) => {
@@ -49,7 +49,7 @@ MainPanel.displayName = "MainPanel";
 
 const CollapsedMainPanel = ({ onExpand }: { onExpand: () => void }) => (
     <div className="absolute top-2 left-2 flex flex-col items-center animate-appear-left z-10">
-        <Logo className="w-12 mt-3" />
+        <Logo className="w-12 mt-3" id={2} />
         <IconButton
             aria-label="Expand side panel"
             size="sm"
