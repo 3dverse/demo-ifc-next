@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Box, Button, IconButton } from "@chakra-ui/react";
 import {
-    RiExpandLeftRightLine,
     RiExpandRightLine,
     RiFlashlightFill,
     RiFlashlightLine,

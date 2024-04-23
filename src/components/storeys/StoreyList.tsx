@@ -95,7 +95,7 @@ export const StoreyList = () => {
                 </MainPanelHeader>
 
                 <div className="md:mx-2">
-                    <Accordion defaultIndex={[0]} allowMultiple>
+                    <Accordion allowMultiple>
                         {storeys.map((storey: string, index: number) => {
                             const spaces = ifcData[storey].props?.spaces;
                             const hasStoreySpaces = typeof spaces === "object" && spaces!.length > 0;
