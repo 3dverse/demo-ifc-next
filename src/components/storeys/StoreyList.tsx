@@ -1,10 +1,4 @@
 import { useState } from "react";
-
-import ifcInfo from "../../../data/json/ifcInfo.json";
-import ifcTypes from "../../../data/json/ifctype2guids.json";
-
-import { guid2euid } from "@/lib/id-converter";
-import { goToRoom, getEntityFromGuid, toToggle } from "@/lib/3dverse/helpers";
 import {
     Accordion,
     AccordionItem,
@@ -14,12 +8,19 @@ import {
     IconButton,
     Button,
 } from "@chakra-ui/react";
+import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
+
+import ifcInfo from "../../../data/json/ifcInfo.json";
+import ifcTypes from "../../../data/json/ifctype2guids.json";
+
+import { guid2euid } from "@/lib/id-converter";
+import { goToRoom, getEntityFromGuid, toToggle } from "@/lib/3dverse/helpers";
+
 import { CaretRightSharpSolidIcon } from "@/components/common/icons";
 import { SpaceName } from "@/components/storeys/SpaceName";
+import { MainPanelHeader } from "@/components/layout/MainPanelHeader";
 
 import { IfcData, IfcType } from "@/types/ifc";
-import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
-import { MainPanelHeader } from "../layout/MainPanelHeader";
 
 export const StoreyList = () => {
     const ifcData = ifcInfo as IfcData;
@@ -43,14 +44,14 @@ export const StoreyList = () => {
                     return newArray;
                 });
 
-                storeyEntity.setVisibility(true);
+                storeyEntity?.setVisibility(true);
             } else {
                 setVisibleStoreys((a: Array<boolean>) => {
                     const newArray = [...a];
                     newArray[index] = false;
                     return newArray;
                 });
-                storeyEntity.setVisibility(false);
+                storeyEntity?.setVisibility(false);
             }
         }
     };

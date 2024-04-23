@@ -12,17 +12,17 @@ export const EnergyConsumptionButton = ({
 }) => {
     const [isEnergyVizProcessing, setIsEnergyVizProcessing] = useState(false);
 
-    const energyViewModifier = async (previousEnergyVisible: boolean) => {
-        const newEnergyVisible = !previousEnergyVisible;
+    const handleToggleEnergyView = async () => {
+        const newEnergyVisible = !energyVisible;
         await toggleEnergyView(newEnergyVisible);
         setEnergyVisibility(newEnergyVisible);
         return newEnergyVisible;
     };
 
-    const handleClick = async (previousEnergyVisible: boolean, previousIsEnergyVizProcessing: boolean) => {
-        setIsEnergyVizProcessing(!previousIsEnergyVizProcessing);
-        await energyViewModifier(previousEnergyVisible);
-        setIsEnergyVizProcessing(previousIsEnergyVizProcessing);
+    const handleClick = async () => {
+        setIsEnergyVizProcessing(true);
+        await handleToggleEnergyView();
+        setIsEnergyVizProcessing(false);
     };
 
     return (
@@ -34,9 +34,8 @@ export const EnergyConsumptionButton = ({
             isLoading={isEnergyVizProcessing}
             spinner={<Spinner color="white" thickness="1px" size="xs" mr="1" />}
             className="tracking-wide"
-            onClick={() => {
-                handleClick(energyVisible, isEnergyVizProcessing);
-            }}
+            display={["none", null, null, null, "block"]}
+            onClick={handleClick}
         >
             {energyVisible ? "Hide" : "Visualize"} Energy Consumption
         </Button>

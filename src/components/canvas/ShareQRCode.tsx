@@ -15,7 +15,7 @@ export const ShareQRCode = memo(({ sessionId }: { sessionId: string }) => {
         return null;
     }
     return (
-        <div className="absolute top-4 right-4">
+        <div className="hidden md:block absolute top-4 right-4">
             <Popover gutter={4}>
                 <PopoverTrigger>
                     <Button size="sm" variant="primary" rounded="full" leftIcon={<RiQrCodeFill />}>
