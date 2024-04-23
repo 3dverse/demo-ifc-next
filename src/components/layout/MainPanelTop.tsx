@@ -26,6 +26,9 @@ export const MainPanelTop = ({ onCollapse }: { onCollapse: () => void }) => (
                 color="content.tertiary"
                 rounded="full"
                 icon={<RiExpandLeftLine />}
+                _hover={{
+                    bgColor: "transparent",
+                }}
                 onClick={onCollapse}
             />
         </div>

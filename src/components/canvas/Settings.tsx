@@ -28,7 +28,7 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
     ];
 
     return (
-        <ButtonGroup as="nav" isAttached variant="outline-island" size="sm" shadow="xl">
+        <ButtonGroup as="nav" isAttached variant="outline-island" size="sm" shadow={["lg", null, "xl"]}>
             {settings_actions.map(({ label, onClick, icon }) => (
                 <Tooltip key={label} label={label} size="sm">
                     <IconButton aria-label={label} onClick={onClick} icon={icon} />
