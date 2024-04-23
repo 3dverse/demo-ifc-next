@@ -1,20 +1,15 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { IconButton } from "@chakra-ui/react";
 import { RiExpandRightLine } from "react-icons/ri";
 import { twMerge } from "tailwind-merge";
-import { MainPanelHeader } from "@/components/layout/MainPanelHeader";
+import { MainPanelTop } from "@/components/layout/MainPanelTop";
+import { MobileMainNav } from "@/components/layout/MobileMainNav";
 import { StoreyList } from "@/components/storeys/StoreyList";
 import { Logo } from "@/components/common/Logo";
-import { MobileMainNav } from "./MobileMainNav";
-import { ActiveNavItemId } from "@/core/type";
 
 export const MainPanel = memo(
     ({ isExpanded, onExpand, onCollapse }: { isExpanded: boolean; onExpand: () => void; onCollapse: () => void }) => {
-        const [activeNavItemId, setActiveNavItemId] = useState<ActiveNavItemId>(null);
-
         const isCollapsed = !isExpanded;
-
-        const SHOW_NOT_READY_FEATURE = false;
 
         return (
             <>
@@ -22,9 +17,10 @@ export const MainPanel = memo(
                     className={twMerge(
                         `
                             main-panel
-                            fixed lg:absolute
-                            lg:top-0 bottom-0 left-0 w-screen lg:w-[var(--main-panel-width)] h-full max-h-[50vh] lg:h-[100dvh] lg:max-h-none
-                            rounded-xl lg:rounded-none
+                            hidden md:block
+                            absolute
+                            top-0 left-0 w-screen w-[var(--main-panel-width)] h-[100dvh] 
+                            rounded-none
                             bg-backdrop-blur transition-all
                         `,
                         isCollapsed ? "lg:w-16" : "",
@@ -38,15 +34,12 @@ export const MainPanel = memo(
                             isCollapsed ? "animate-disappear-left" : "animate-appear-right",
                         )}
                     >
-                        <MainPanelHeader onCollapse={onCollapse} />
-                        <div className="overflow-y-scroll h-full">
-                            <StoreyList />
-                        </div>
+                        <MainPanelTop onCollapse={onCollapse} />
+                        <StoreyList />
                     </div>
                 </aside>
-                {SHOW_NOT_READY_FEATURE && (
-                    <MobileMainNav activeNavItemId={activeNavItemId} setActiveNavItemId={setActiveNavItemId} />
-                )}
+
+                <MobileMainNav />
             </>
         );
     },

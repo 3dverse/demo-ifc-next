@@ -2,7 +2,7 @@
 
 @keyframes appear-top {
     0% {
-        translate: var(--tw-translate-x, 0px) calc(var(--tw-translate-y, 0px) - var(--animation-appear-offset, 16px));
+        translate: var(--tw-translate-x, 0px) calc(0px + var(--animation-appear-offset, 16px));
         opacity: 0;
     }
     100% {

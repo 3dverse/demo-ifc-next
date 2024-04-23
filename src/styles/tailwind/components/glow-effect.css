@@ -1,6 +1,6 @@
 .glow-effect {
     &:before {
         content: "";
-        @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] aspect-square bg-[hsl(var(--color-accent-hsl),.6)] rounded-full blur-3xl opacity-[.25] pointer-events-none;
+        @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[125%] aspect-square bg-accent rounded-full blur-[5rem] opacity-40 pointer-events-none;
     }
 }

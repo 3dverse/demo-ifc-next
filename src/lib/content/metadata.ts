@@ -6,5 +6,5 @@ export const METADATA = {
     url: "https://3dverse.github.io/demo-ifc-next/",
     logo: "https://3dverse.com/logo/3dverse-rocket.svg",
     image: "/socials/og-image.png",
-    themeColor: "##6f49bf", // accent color
+    themeColor: "#CCCCCC",
 };

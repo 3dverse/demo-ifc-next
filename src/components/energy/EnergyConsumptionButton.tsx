@@ -43,4 +43,4 @@ export const EnergyConsumptionButton = ({
     );
 };
 
-EnergyConsumptionButton.displayName = "EnergyViewButton";
+EnergyConsumptionButton.displayName = "EnergyConsumptionButton";

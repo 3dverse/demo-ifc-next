@@ -1,4 +1,3 @@
-import { Button } from "@chakra-ui/react";
 import ifcInfo from "../../../data/json/ifcInfo.json";
 import { Header } from "./Header";
 import { ControlLight } from "./ControlLight";

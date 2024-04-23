@@ -1,12 +1,13 @@
 import { useState, memo } from "react";
-import { ButtonGroup, IconButton, Menu, MenuButton, MenuItem, MenuList, Switch, Tooltip } from "@chakra-ui/react";
-import { handleReset, handleEdgeSwitchChange, handleCameraSwitchChange } from "@/lib/3dverse/helpers";
+import { ButtonGroup, IconButton, Menu, MenuButton, MenuItem, MenuList, Switch } from "@chakra-ui/react";
 import {
     ArrowsToDotLightIcon,
     EllipsisLightIcon,
     PlaneUpLightIcon,
     PlaneUpSlashLightIcon,
 } from "@/components/common/icons";
+import { Tooltip } from "@/components/common/Tooltip";
+import { handleReset, handleEdgeSwitchChange, handleCameraSwitchChange } from "@/lib/3dverse/helpers";
 import { BasePoint } from "@/types/ifc";
 
 export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {

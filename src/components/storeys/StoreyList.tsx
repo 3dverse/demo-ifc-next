@@ -77,163 +77,170 @@ export const StoreyList = () => {
     const areSomeVisible = visibleStoreys.some((element: boolean) => element === true);
 
     return (
-        <div className="flex-1 pb-12">
-            <div className="flex flex-row items-center justify-between py-2 pl-4 pr-2">
-                <h2 className="text-xs text-secondary uppercase tracking-wide">Storeys</h2>
-                <Button
-                    variant="ghost"
-                    fontSize="2xs"
-                    size="2xs"
-                    px="1"
-                    color="content.secondary"
-                    fontWeight={400}
-                    onClick={toggleStoreysVisibility}
-                >
-                    {areSomeVisible ? "Hide" : "Show"} all
-                </Button>
-            </div>
+        <article className="overflow-y-scroll h-full">
+            <div className="flex-1 pb-4 md:pb-12">
+                <header className="flex flex-row items-center justify-between py-2 pl-4 mr-12 md:mr-2">
+                    <h2 className="text-xs text-secondary uppercase tracking-wide">Storeys</h2>
+                    <Button
+                        variant="ghost"
+                        fontSize="2xs"
+                        size="2xs"
+                        px="1"
+                        color="content.secondary"
+                        fontWeight={400}
+                        onClick={toggleStoreysVisibility}
+                    >
+                        {areSomeVisible ? "Hide" : "Show"} all
+                    </Button>
+                </header>
 
-            <div className="mx-2">
-                <Accordion defaultIndex={[0]} allowMultiple>
-                    {storeys.map((storey: string, index: number) => {
-                        const spaces = ifcData[storey].props?.spaces;
-                        const hasStoreySpaces = typeof spaces === "object" && spaces!.length > 0;
-                        const isStoreyVisible = visibleStoreys[index];
+                <div className="md:mx-2">
+                    <Accordion defaultIndex={[0]} allowMultiple>
+                        {storeys.map((storey: string, index: number) => {
+                            const spaces = ifcData[storey].props?.spaces;
+                            const hasStoreySpaces = typeof spaces === "object" && spaces!.length > 0;
+                            const isStoreyVisible = visibleStoreys[index];
 
-                        return (
-                            <AccordionItem
-                                key={ifcData[storey].props.GlobalId}
-                                border="none"
-                                isDisabled={!hasStoreySpaces}
-                                opacity={isStoreyVisible ? 1 : 0.6}
-                                transition="opacity .25s"
-                            >
-                                {({ isExpanded }) => (
-                                    <div
-                                        className={`
+                            return (
+                                <AccordionItem
+                                    key={ifcData[storey].props.GlobalId}
+                                    border="none"
+                                    isDisabled={!hasStoreySpaces}
+                                    opacity={isStoreyVisible ? 1 : 0.6}
+                                    transition="opacity .25s"
+                                >
+                                    {({ isExpanded }) => (
+                                        <div
+                                            className={`
                                             my-px bg-ground border transitions-all 
-                                            ${index === 0 ? "rounded-t-md" : ""}
-                                            ${index === storeys.length - 1 ? "rounded-b-md" : ""}
+                                            ${index === 0 ? "md:rounded-t-md" : ""}
+                                            ${index === storeys.length - 1 ? "md:rounded-b-md" : ""}
                                             ${
                                                 isExpanded
                                                     ? "rounded-md overflow-hidden border-accent"
                                                     : "border-transparent"
                                             }
                                         `}
-                                    >
-                                        <div className="relative">
-                                            <AccordionButton
-                                                pr="1"
-                                                pl="2"
-                                                py="1"
-                                                textTransform="none"
-                                                alignItems="center"
-                                                className="group w-full gap-2"
-                                                border="none"
-                                                _hover={{
-                                                    bgColor: "none",
-                                                }}
-                                                _focus={{
-                                                    bgColor: "var(--color-bg-underground)",
-                                                }}
-                                                _expanded={{
-                                                    bgColor: "var(--color-bg-underground)",
-                                                }}
-                                                _disabled={{
-                                                    opacity: 1,
-                                                    bgColor: "hsl(var(--color-bg-underground-hsl), .5)",
-                                                }}
-                                            >
-                                                <AccordionIcon
-                                                    as={CaretRightSharpSolidIcon}
-                                                    width="3"
-                                                    height="3"
-                                                    opacity={
-                                                        hasStoreySpaces
-                                                            ? isExpanded
-                                                                ? "1 !important"
-                                                                : 0.2
-                                                            : "0 !important"
-                                                    }
-                                                    className="fill-accent group-hover:opacity-[.4] transition-opacity"
+                                        >
+                                            <div className="relative">
+                                                <AccordionButton
+                                                    pr="1"
+                                                    pl="2"
+                                                    py="1"
+                                                    textTransform="none"
+                                                    alignItems="center"
+                                                    className="group w-full gap-2"
+                                                    border="none"
+                                                    _hover={{
+                                                        bgColor: "none",
+                                                    }}
+                                                    _focus={{
+                                                        bgColor: "var(--color-bg-underground)",
+                                                    }}
                                                     _expanded={{
-                                                        transform: "rotate(180deg)",
+                                                        bgColor: "var(--color-bg-underground)",
+                                                    }}
+                                                    _disabled={{
+                                                        opacity: 1,
+                                                        bgColor: "hsl(var(--color-bg-underground-hsl), .5)",
+                                                    }}
+                                                >
+                                                    <AccordionIcon
+                                                        as={CaretRightSharpSolidIcon}
+                                                        width="3"
+                                                        height="3"
+                                                        opacity={
+                                                            hasStoreySpaces
+                                                                ? isExpanded
+                                                                    ? "1 !important"
+                                                                    : 0.2
+                                                                : "0 !important"
+                                                        }
+                                                        className="fill-accent group-hover:opacity-[.4] transition-opacity"
+                                                        _expanded={{
+                                                            transform: "rotate(180deg)",
+                                                        }}
+                                                    />
+
+                                                    <h2
+                                                        className={`flex-1 text-left font-medium ${
+                                                            hasStoreySpaces ? "" : "text-secondary"
+                                                        }`}
+                                                    >
+                                                        {ifcData[storey].props.Name}
+                                                        {!hasStoreySpaces && (
+                                                            <span className="px-3 text-xs text-tertiary">
+                                                                No IfcSpace
+                                                            </span>
+                                                        )}
+                                                    </h2>
+                                                </AccordionButton>
+                                                <IconButton
+                                                    aria-label="Show/hide storey"
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    icon={isStoreyVisible ? <RiEyeLine /> : <RiEyeOffLine />}
+                                                    onClick={(event) => {
+                                                        handleStoreyVisibility(
+                                                            index,
+                                                            ifcData[storey].props.GlobalId,
+                                                            event,
+                                                        );
+                                                    }}
+                                                    pos="absolute"
+                                                    top="0"
+                                                    px={[4, 0]}
+                                                    right="0"
+                                                    className="hover:opacity-100 transition-all"
+                                                    opacity={isStoreyVisible ? 0.8 : 0.5}
+                                                    _hover={{
+                                                        bgColor: "transparent",
+                                                    }}
+                                                    _focus={{
+                                                        bgColor: "transparent",
                                                     }}
                                                 />
+                                            </div>
 
-                                                <h2
-                                                    className={`flex-1 text-left font-medium ${
-                                                        hasStoreySpaces ? "" : "text-secondary"
-                                                    }`}
-                                                >
-                                                    {ifcData[storey].props.Name}
-                                                    {!hasStoreySpaces && (
-                                                        <span className="px-3 text-xs text-tertiary">No IfcSpace</span>
-                                                    )}
-                                                </h2>
-                                            </AccordionButton>
-                                            <IconButton
-                                                aria-label="Show/hide storey"
-                                                variant="ghost"
-                                                size="sm"
-                                                icon={isStoreyVisible ? <RiEyeLine /> : <RiEyeOffLine />}
-                                                onClick={(event) => {
-                                                    handleStoreyVisibility(
-                                                        index,
-                                                        ifcData[storey].props.GlobalId,
-                                                        event,
-                                                    );
-                                                }}
-                                                pos="absolute"
-                                                top="0"
-                                                right="0"
-                                                className="hover:opacity-100 transition-all"
-                                                opacity={isStoreyVisible ? 0.8 : 0.5}
-                                                _hover={{
-                                                    bgColor: "transparent",
-                                                }}
-                                                _focus={{
-                                                    bgColor: "transparent",
-                                                }}
-                                            />
-                                        </div>
+                                            <AccordionPanel p="0">
+                                                <ul className="w-full pt-1 pb-2">
+                                                    {(() => {
+                                                        const storeySpaces = ifcData[storey].props.spaces as string[];
 
-                                        <AccordionPanel p="0">
-                                            <ul className="w-full pt-1 pb-2">
-                                                {(() => {
-                                                    const storeySpaces = ifcData[storey].props.spaces as string[];
-
-                                                    if (storeySpaces.length) {
-                                                        const spaces = [];
-                                                        for (let i = 0; i < storeySpaces.length; i++) {
-                                                            spaces.push(
-                                                                <li
-                                                                    className="group cursor-pointer hover:bg-underground transition-colors duration-300"
-                                                                    key={ifcData[storeySpaces[i]].props.GlobalId}
-                                                                    onClick={() => {
-                                                                        const guid =
-                                                                            ifcData[storeySpaces[i]].props["GlobalId"];
-                                                                        goToRoom(guid2euid(guid));
-                                                                    }}
-                                                                >
-                                                                    <SpaceName
-                                                                        ifcAttributes={ifcData[storeySpaces[i]]}
-                                                                    />
-                                                                </li>,
-                                                            );
+                                                        if (storeySpaces.length) {
+                                                            const spaces = [];
+                                                            for (let i = 0; i < storeySpaces.length; i++) {
+                                                                spaces.push(
+                                                                    <li
+                                                                        className="group cursor-pointer hover:bg-underground transition-colors duration-300"
+                                                                        key={ifcData[storeySpaces[i]].props.GlobalId}
+                                                                        onClick={() => {
+                                                                            const guid =
+                                                                                ifcData[storeySpaces[i]].props[
+                                                                                    "GlobalId"
+                                                                                ];
+                                                                            goToRoom(guid2euid(guid));
+                                                                        }}
+                                                                    >
+                                                                        <SpaceName
+                                                                            ifcAttributes={ifcData[storeySpaces[i]]}
+                                                                        />
+                                                                    </li>,
+                                                                );
+                                                            }
+                                                            return spaces;
                                                         }
-                                                        return spaces;
-                                                    }
-                                                })()}
-                                            </ul>
-                                        </AccordionPanel>
-                                    </div>
-                                )}
-                            </AccordionItem>
-                        );
-                    })}
-                </Accordion>
+                                                    })()}
+                                                </ul>
+                                            </AccordionPanel>
+                                        </div>
+                                    )}
+                                </AccordionItem>
+                            );
+                        })}
+                    </Accordion>
+                </div>
             </div>
-        </div>
+        </article>
     );
 };
