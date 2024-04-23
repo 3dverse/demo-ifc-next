@@ -19,6 +19,7 @@ import { SpaceName } from "@/components/storeys/SpaceName";
 
 import { IfcData, IfcType } from "@/types/ifc";
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
+import { MainPanelHeader } from "../layout/MainPanelHeader";
 
 export const StoreyList = () => {
     const ifcData = ifcInfo as IfcData;
@@ -79,8 +80,7 @@ export const StoreyList = () => {
     return (
         <article className="overflow-y-scroll h-full">
             <div className="flex-1 pb-4 md:pb-12">
-                <header className="flex flex-row items-center justify-between py-2 pl-4 mr-12 md:mr-2">
-                    <h2 className="text-xs text-secondary uppercase tracking-wide">Storeys</h2>
+                <MainPanelHeader title="Storeys">
                     <Button
                         variant="ghost"
                         fontSize="2xs"
@@ -92,7 +92,7 @@ export const StoreyList = () => {
                     >
                         {areSomeVisible ? "Hide" : "Show"} all
                     </Button>
-                </header>
+                </MainPanelHeader>
 
                 <div className="md:mx-2">
                     <Accordion defaultIndex={[0]} allowMultiple>

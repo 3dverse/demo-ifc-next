@@ -16,6 +16,7 @@ import Select from "@/styles/chakra/components/Select";
 import Skeleton from "@/styles/chakra/components/Skeleton";
 import Slider from "@/styles/chakra/components/Slider";
 import Spinner from "@/styles/chakra/components/Spinner";
+import Switch from "@/styles/chakra/components/Switch";
 import Table from "@/styles/chakra/components/Table";
 import Tabs from "@/styles/chakra/components/Tabs";
 import Text from "@/styles/chakra/components/Text";
@@ -147,6 +148,7 @@ const theme = extendTheme({
         Skeleton,
         Slider,
         Spinner,
+        Switch,
         Table,
         Tabs,
         Text,

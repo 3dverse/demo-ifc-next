@@ -14,12 +14,6 @@ export const EnergyConsumptionPanel = memo(({ isMainPanelExpanded }: { isMainPan
                 isMainPanelExpanded ? "lg:left-[var(--main-panel-width)]" : "lg:left-16",
             )}
         >
-            <header className="w-full flex flex-row justify-between items-center gap-4 px-4 pt-2">
-                <h1>Energy Consumption</h1>
-                <p className="flex items-center justify-center gap-1 font-semibold text-xs rounded-full bg-negative-100 text-negative px-2">
-                    <small>&#9650;</small> 3 Alerts
-                </p>
-            </header>
             <EnergyConsumptionList />
         </aside>
     );

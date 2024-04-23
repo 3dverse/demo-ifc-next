@@ -51,8 +51,11 @@
     --color-border-primary-hsl: 231, 25%, 100%;
     --color-border-primary: hsl(var(--color-border-primary-hsl));
 
-    --color-border-secondary-hsl: 0, 0%, 85%, 1;
+    --color-border-secondary-hsl: 0, 0%, 85%;
     --color-border-secondary: hsl(var(--color-border-secondary-hsl));
+
+    --color-border-tertiary-hsl: 0, 0%, 75%;
+    --color-border-tertiary: hsl(var(--color-border-tertiary-hsl));
 
     /* ------------------------------------------------------------------------------ */
     /* Feedbacks */
