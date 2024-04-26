@@ -1,8 +1,13 @@
+//------------------------------------------------------------------------------
 import { IconButton } from "@chakra-ui/react";
 import { RiExpandLeftLine } from "react-icons/ri";
+
+//------------------------------------------------------------------------------
 import { Logo } from "@/components/common/Logo";
 import { METADATA } from "@/lib/content/metadata";
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 export const MainPanelTop = ({ onCollapse }: { onCollapse: () => void }) => (
     <header className="hidden lg:flex lg:justify-between items-center n px-2 py-2 border-b border-primary">
         <div className="flex flex-row gap-3">
@@ -25,8 +30,10 @@ export const MainPanelTop = ({ onCollapse }: { onCollapse: () => void }) => (
                 variant="ghost"
                 color="content.tertiary"
                 rounded="full"
+                mt={-1}
                 icon={<RiExpandLeftLine />}
                 _hover={{
+                    color: "content.primary",
                     bgColor: "transparent",
                 }}
                 onClick={onCollapse}

@@ -1,6 +1,9 @@
-import { Property } from "@/types/ifc";
+//------------------------------------------------------------------------------
 import { getSurface } from "@/lib/3dverse/helpers";
+import { Property } from "@/types/ifc";
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 export const SpaceName = ({ ifcAttributes }: { ifcAttributes: Property }) => {
     return (
         <div className="flex flex-row items-center justify-between gap-2 pl-7 pr-3 py-1 text-secondary">

@@ -1,6 +1,8 @@
+//------------------------------------------------------------------------------
 import { METADATA } from "@/lib/content/metadata";
 import { Logo } from "@/components/common/Logo";
 
+//------------------------------------------------------------------------------
 export const AboutPanel = () => {
     return (
         <article className="flex flex-col items-center justify-center h-full">
@@ -19,4 +21,5 @@ export const AboutPanel = () => {
     );
 };
 
+//------------------------------------------------------------------------------
 AboutPanel.displayName = "AboutPanel";

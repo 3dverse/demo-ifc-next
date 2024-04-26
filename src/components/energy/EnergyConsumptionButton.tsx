@@ -1,8 +1,11 @@
+//------------------------------------------------------------------------------
 import { useState, Dispatch, SetStateAction } from "react";
 import { Button, Spinner } from "@chakra-ui/react";
 import { RiFlashlightFill } from "react-icons/ri";
 import { toggleEnergyView } from "@/lib/3dverse/helpers";
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 export const EnergyConsumptionButton = ({
     energyVisible,
     setEnergyVisibility,
@@ -10,8 +13,10 @@ export const EnergyConsumptionButton = ({
     energyVisible: boolean;
     setEnergyVisibility: Dispatch<SetStateAction<boolean>>;
 }) => {
+    //------------------------------------------------------------------------------
     const [isEnergyVizProcessing, setIsEnergyVizProcessing] = useState(false);
 
+    //------------------------------------------------------------------------------
     const handleToggleEnergyView = async () => {
         const newEnergyVisible = !energyVisible;
         await toggleEnergyView(newEnergyVisible);
@@ -19,12 +24,14 @@ export const EnergyConsumptionButton = ({
         return newEnergyVisible;
     };
 
+    //------------------------------------------------------------------------------
     const handleClick = async () => {
         setIsEnergyVizProcessing(true);
         await handleToggleEnergyView();
         setIsEnergyVizProcessing(false);
     };
 
+    //------------------------------------------------------------------------------
     return (
         <Button
             variant="primary"

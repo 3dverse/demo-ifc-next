@@ -1,6 +1,8 @@
+//------------------------------------------------------------------------------
 import { Button } from "@chakra-ui/react";
 import { Property } from "@/types/ifc";
 
+//------------------------------------------------------------------------------
 export const Header = ({ entitiyProperties, onClose }: { entitiyProperties: Property; onClose: () => void }) => {
     return (
         <header className="card-header card-wrapper py-3">
@@ -18,4 +20,5 @@ export const Header = ({ entitiyProperties, onClose }: { entitiyProperties: Prop
     );
 };
 
+//------------------------------------------------------------------------------
 Header.displayName = "Header";

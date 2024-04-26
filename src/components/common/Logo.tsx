@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------
 export const Logo = ({ className, id }: { className?: string; id: number }) => {
     return (
         <svg viewBox="0 0 51 42" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>

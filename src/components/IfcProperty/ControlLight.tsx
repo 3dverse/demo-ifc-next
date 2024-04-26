@@ -1,5 +1,8 @@
+//------------------------------------------------------------------------------
 import { updateColor, updateLightIntensity } from "@/lib/3dverse/helpers";
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 export const ControlLight = ({ guid }: { guid: string }) => {
     return (
         <article className="card-wrapper pset-header">
@@ -29,4 +32,5 @@ export const ControlLight = ({ guid }: { guid: string }) => {
     );
 };
 
+//------------------------------------------------------------------------------
 ControlLight.displayName = "ControlLight";

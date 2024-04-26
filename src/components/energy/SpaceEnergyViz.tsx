@@ -1,13 +1,19 @@
+//------------------------------------------------------------------------------
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { Line } from "react-chartjs-2";
 
+//------------------------------------------------------------------------------
 Chart.register(CategoryScale);
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 export const SpaceEnergyViz = ({ roomName, cons }: { roomName: string | null; cons: number }) => {
+    //------------------------------------------------------------------------------
     const consValues = Array.from({ length: 6 }, () => Math.floor(Math.random() * (cons + 1)));
     const consHasIncreased = consValues[consValues.length - 1] - consValues[0] > 0;
 
+    //------------------------------------------------------------------------------
     const data = {
         labels: ["", "", "", "", "", ""],
         datasets: [
@@ -20,6 +26,7 @@ export const SpaceEnergyViz = ({ roomName, cons }: { roomName: string | null; co
         ],
     };
 
+    //------------------------------------------------------------------------------
     const options = {
         elements: {
             point: {
@@ -55,6 +62,7 @@ export const SpaceEnergyViz = ({ roomName, cons }: { roomName: string | null; co
         },
     };
 
+    //------------------------------------------------------------------------------
     return (
         <div className="flex flex-row items-center gap-4 hover:bg-underground">
             <div>

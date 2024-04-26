@@ -1,8 +1,15 @@
+//------------------------------------------------------------------------------
 import dynamic from "next/dynamic";
+
+//------------------------------------------------------------------------------
 import { Logo } from "@/components/common/Logo";
 import { LoaderProgressBarUndefined } from "@/components/common/LoaderProgressBarUndefined";
+
+//------------------------------------------------------------------------------
 import { METADATA } from "@/lib/content/metadata";
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 export const Main = dynamic(() => import("@/layouts/MainLayout").then((mod) => mod.MainLayout), {
     loading: () => (
         <div className="glow-effect absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center text-sm text-primary-light">
@@ -14,6 +21,8 @@ export const Main = dynamic(() => import("@/layouts/MainLayout").then((mod) => m
     ssr: false,
 });
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 export default function Home() {
     return (
         <main className="min-h-screen bg-underground-dark">

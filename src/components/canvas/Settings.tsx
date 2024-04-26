@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------
 import { useState, memo } from "react";
 import { ButtonGroup, IconButton, Menu, MenuButton, MenuItem, MenuList, Switch } from "@chakra-ui/react";
 import {
@@ -6,14 +7,22 @@ import {
     PlaneUpLightIcon,
     PlaneUpSlashLightIcon,
 } from "@/components/common/icons";
+
+//------------------------------------------------------------------------------
 import { Tooltip } from "@/components/common/Tooltip";
+
+//------------------------------------------------------------------------------
 import { handleReset, handleEdgeSwitchChange, handleCameraSwitchChange } from "@/lib/3dverse/helpers";
 import { BasePoint } from "@/types/ifc";
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
+    //------------------------------------------------------------------------------
     const [switchCameraState, setSwitchCameraState] = useState(true);
     const [switchEdgeState, setSwitchEdgeState] = useState(true);
 
+    //------------------------------------------------------------------------------
     const settings_actions = [
         {
             label: "Reset position",
@@ -27,19 +36,20 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
         },
     ];
 
+    //------------------------------------------------------------------------------
     return (
-        <ButtonGroup as="nav" isAttached variant="outline-island" size="sm" shadow={["lg", null, "xl"]}>
+        <ButtonGroup as="nav" isAttached variant="outline-island" size="sm" shadow={["lg", null, "xl"]} rounded="md">
             {settings_actions.map(({ label, onClick, icon }) => (
                 <Tooltip key={label} label={label} size="sm">
-                    <IconButton aria-label={label} onClick={onClick} icon={icon} />
+                    <IconButton aria-label={label} onClick={onClick} icon={icon} border="none" />
                 </Tooltip>
             ))}
             <Menu closeOnSelect={false} gutter={3}>
                 <Tooltip label="Open render settings" size="sm">
                     <MenuButton
                         as={IconButton}
+                        border="none"
                         aria-label="Toggle Settings menu"
-                        variant="outline-island"
                         roundedStart="none"
                         icon={<EllipsisLightIcon className="w-4" />}
                     />
@@ -57,4 +67,5 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
     );
 });
 
+//------------------------------------------------------------------------------
 Settings.displayName = "Settings";

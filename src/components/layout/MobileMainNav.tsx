@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------
 import { useState } from "react";
 import { Box, Button, IconButton } from "@chakra-ui/react";
 import {
@@ -8,20 +9,25 @@ import {
     RiHomeLine,
     RiInformationFill,
     RiInformationLine,
+    RiListCheck2,
     RiStackFill,
     RiStackLine,
 } from "react-icons/ri";
 import { IconType } from "react-icons";
+
+//------------------------------------------------------------------------------
 import { StoreyList } from "@/components/storeys/StoreyList";
 import { EnergyConsumptionList } from "@/components/energy/EnergyConsumptionList";
 import { AboutPanel } from "@/components/about/AboutPanel";
 import { MainNavActiveItemId } from "@/core/type";
 
+//------------------------------------------------------------------------------
 export const MAIN_NAV_3D_ID = "3d";
 export const MAIN_NAV_STOREYS_ID = "storeys";
 export const MAIN_NAV_ENERGY_ID = "energy";
 export const MAIN_NAV_ABOUT_ID = "about";
 
+//------------------------------------------------------------------------------
 const MOBILE_MAIN_NAV = [
     {
         id: MAIN_NAV_3D_ID,
@@ -54,18 +60,24 @@ const MOBILE_MAIN_NAV = [
     iconActive: IconType;
 }[];
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 export const MobileMainNav = () => {
+    //------------------------------------------------------------------------------
     const DEFAULT_ITEM_ID = MAIN_NAV_3D_ID;
     const [mainNavActiveItemId, setMainNavActiveItemId] = useState<MainNavActiveItemId>(DEFAULT_ITEM_ID);
 
+    //------------------------------------------------------------------------------
     const handleChangeActiveId = (navItemId: MainNavActiveItemId) => {
         setMainNavActiveItemId(navItemId);
     };
 
+    //------------------------------------------------------------------------------
     const handleClose = () => {
         setMainNavActiveItemId(MAIN_NAV_3D_ID);
     };
 
+    //------------------------------------------------------------------------------
     return (
         <div className="md:hidden">
             {mainNavActiveItemId !== MAIN_NAV_3D_ID && (

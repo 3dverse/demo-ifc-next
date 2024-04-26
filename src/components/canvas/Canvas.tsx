@@ -1,8 +1,15 @@
+//------------------------------------------------------------------------------
 import { Dispatch, SetStateAction, useEffect, memo } from "react";
+
+//------------------------------------------------------------------------------
 import { initApp } from "@/lib/3dverse/init";
 import { getInitialPoint } from "@/lib/3dverse/helpers";
+
+//------------------------------------------------------------------------------
 import { BasePoint } from "@/types/ifc";
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 export const Canvas = memo(
     ({
         onInputChange,
@@ -15,10 +22,12 @@ export const Canvas = memo(
         setBasePoint: Dispatch<SetStateAction<BasePoint>>;
         setSessionId: Dispatch<SetStateAction<string>>;
     }) => {
+        //------------------------------------------------------------------------------
         const handleContextMenu = (event: any) => {
             event.preventDefault();
         };
 
+        //------------------------------------------------------------------------------
         useEffect(() => {
             let cancelled = false;
             SDK3DVerse.disconnectFromSession()
@@ -35,6 +44,7 @@ export const Canvas = memo(
             };
         }, []);
 
+        //------------------------------------------------------------------------------
         return (
             <div>
                 <div className="canvas-container">
