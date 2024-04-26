@@ -9,8 +9,6 @@ import { MainPanelTop } from "@/components/layout/MainPanelTop";
 import { MobileMainNav } from "@/components/layout/MobileMainNav";
 import { StoreyList } from "@/components/storeys/StoreyList";
 import { Logo } from "@/components/common/Logo";
-import { ProductsList } from "@/components/products/ProductsList";
-import { MainPanelTabList } from "@/components/layout/MainPanelTabList";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------

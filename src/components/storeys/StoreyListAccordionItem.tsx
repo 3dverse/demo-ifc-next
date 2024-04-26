@@ -27,7 +27,7 @@ export const StoreyListAccordionItem = ({
     hasStoreySpaces: boolean;
     isStoreyVisible: boolean;
     index: number;
-    handleStoreyVisibility: (index: number, GlobalId: string, event: MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    handleStoreyVisibility: (index: number, GlobalId: string, event: MouseEvent<HTMLButtonElement>) => void;
 }) => {
     return (
         <AccordionItem
