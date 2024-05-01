@@ -45,13 +45,21 @@ export const MainPanel = memo(
                         )}
                     >
                         <MainPanelTop onCollapse={onCollapse} />
-                        <Tabs size="sm" pos="relative" variant="unstyled" defaultIndex={1}>
+                        <Tabs
+                            size="sm"
+                            pos="relative"
+                            variant="unstyled"
+                            defaultIndex={1}
+                            display="flex"
+                            flexDir="column"
+                            flexGrow="1"
+                        >
                             <MainPanelTabList />
-                            <TabPanels>
-                                <TabPanel p={0}>
+                            <TabPanels display="flex" flexGrow="1">
+                                <TabPanel flexGrow="1" p={0}>
                                     <StoreyList />
                                 </TabPanel>
-                                <TabPanel p={0}>
+                                <TabPanel flexGrow="1" p={0}>
                                     <ProductsList />
                                 </TabPanel>
                             </TabPanels>

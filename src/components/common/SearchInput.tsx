@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import { RiSearch2Line } from "react-icons/ri";
+import { RiSearchLine } from "react-icons/ri";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -9,7 +9,7 @@ export const SearchInput = ({ setSearch }: { setSearch: (searchString: string) =
     return (
         <InputGroup w="full" flex="1" size="sm">
             <InputLeftElement pointerEvents="none" pl="1">
-                <RiSearch2Line />
+                <RiSearchLine />
             </InputLeftElement>
             <Input
                 type="search"

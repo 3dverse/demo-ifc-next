@@ -5,9 +5,8 @@ import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
 //------------------------------------------------------------------------------
 import { Canvas } from "@/components/canvas/Canvas";
 import { MainPanel } from "@/components/layout/MainPanel";
-import { IfcPropertyPanel } from "@/components/IfcProperty/IfcPropertyPanel";
 import { EnergyConsumptionPanel } from "@/components/energy/EnergyConsumptionPanel";
-import { CanvasActionBar } from "@/components/canvas/CanvasActionBar";
+import { MainActionBar } from "@/components/canvas/MainActionBar";
 import { ShareQRCode } from "@/components/canvas/ShareQRCode";
 
 //------------------------------------------------------------------------------
@@ -15,12 +14,17 @@ import { BREAKPOINTS } from "@/styles/theme/breakpoints";
 
 //------------------------------------------------------------------------------
 import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
+import { Product } from "@/types/ifc";
+import { DetailsPanel } from "@/components/canvas/DetailsPanel";
+import { SecondaryActionBar } from "@/components/canvas/SecondaryActionBar";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 export const MainLayout = memo(() => {
     //------------------------------------------------------------------------------
     const [selectedPropertyEUID, setSelectedPropertyEUID] = useState<string | null>(null);
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
     const [energyVisible, setEnergyVisibility] = useState(false);
 
     const [isSmallerThanLG] = useMediaQuery(`(max-width: ${BREAKPOINTS.lg})`);
@@ -46,6 +50,8 @@ export const MainLayout = memo(() => {
         unselectEntities(event, setSelectedPropertyEUID);
     }, []);
 
+    const SHOW_ENERGY_CONSUMPTION_PANEL = false;
+
     //------------------------------------------------------------------------------
     return (
         <>
@@ -56,22 +62,24 @@ export const MainLayout = memo(() => {
                 setSessionId={setSessionId}
             />
 
-            <EnergyConsumptionPanel isMainPanelExpanded={isMainPanelExpanded} />
+            {SHOW_ENERGY_CONSUMPTION_PANEL && <EnergyConsumptionPanel isMainPanelExpanded={isMainPanelExpanded} />}
 
             <MainPanel isExpanded={isMainPanelExpanded} onExpand={onExpandMainPanel} onCollapse={onCollapseMainPanel} />
 
-            <CanvasActionBar
+            <MainActionBar
                 isMainPanelExpanded={isMainPanelExpanded}
-                basePoint={basePoint}
                 energyVisible={energyVisible}
                 setEnergyVisibility={setEnergyVisibility}
             />
+            <SecondaryActionBar isMainPanelExpanded={isMainPanelExpanded} basePoint={basePoint} />
 
             <ShareQRCode sessionId={sessionId} />
 
-            {selectedPropertyEUID && (
-                <IfcPropertyPanel guid={selectedPropertyEUID} onClose={() => setSelectedPropertyEUID(null)} />
-            )}
+            <DetailsPanel
+                selectedProduct={selectedProduct}
+                selectedPropertyEUID={selectedPropertyEUID}
+                onClose={() => setSelectedPropertyEUID(null)}
+            />
         </>
     );
 });

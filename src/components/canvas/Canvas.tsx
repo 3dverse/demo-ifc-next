@@ -73,7 +73,6 @@ export const Canvas = memo(
                             onKeyboardChange(e);
                         }}
                     ></canvas>
-                    {/* <div className="w-screen h-screen bg-[red] z-[100]"></div> */}
                 </div>
 
                 <div className="canvas-outline" />
