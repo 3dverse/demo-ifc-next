@@ -4,9 +4,9 @@
     "name": "Wall Panel (45x63cm)",
     "waste_type": "DD",
     "reuse_rate": 10,
-    "room_name": ["KITCHEN-05", "BEDROOM-01"],
-    "ifc_space_guids": ["IFCSPACE_GUID1", "IFCSPACE_GUID7"],
-    "ifc_instances_guids": ["IFCWALL_05", "IFCWALL_089"],
+    "room_name": ["Café 12", "SPACE-01"],
+    "ifc_space_guids": ["2h03y6Q250o9Gar71r0qsZ", "21$tDpUWDEtxLZIWIT_3Oa"],
+    "ifc_instances_guids": ["0s9hxL8vH4AQpm7LXCLPLB", "1nMwdyzlT4AuQ_X$HWZCgF"],
     "instructions": "Do not touch with bare hands.\nCall a professional"
   },
 
@@ -15,9 +15,9 @@
     "name": "Plastic Sol Recovering",
     "waste_type": "DD",
     "reuse_rate": 30,
-    "room_name": ["KITCHEN-05"],
-    "ifc_space_guids": ["IFCSPACE_GUID1"],
-    "ifc_instances_guids": ["IFCSLAB_001"],
+    "room_name": ["Café Kitchen"],
+    "ifc_space_guids": ["17VeSua915eg0pWeRRyRpP"],
+    "ifc_instances_guids": ["1NhMakM$TEzQvUQoR4kE4U"],
     "instructions": "Remove all at once."
   },
   {
@@ -26,8 +26,8 @@
     "waste_type": "DNIND",
     "reuse_rate": 90,
     "room_name": ["KITCHEN-07", "LIVING ROOM-01"],
-    "ifc_space_guids": ["IFCSPACE_GUID1", "IFCSPACE_GUID7"],
-    "ifc_instances_guids": ["IFCWINDOW_05", "IFWINDOW_089"],
+    "ifc_space_guids": ["0j4aKWFKL0jB8BuvskwcxB", "0XunQJuDrCywXJ370JITn8"],
+    "ifc_instances_guids": ["3kc6SqM9H57QHDXaSHOxBT", "2gDGg7MA90nQHvffsvVo7c"],
     "instructions": "Touch only if you know what you are doing.\nCall a professional otherwise"
   }
 ]
