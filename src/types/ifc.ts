@@ -16,3 +16,14 @@ export type ChartInput = { data: number[]; labels: string[]; colors: string[] };
 export type CanvasEvent = React.MouseEvent<HTMLElement>;
 
 export type BasePoint = { position: number[]; orientation: number[] };
+
+export type Product = {
+    id: string;
+    name: string;
+    waste_type: string;
+    reuse_rate: number;
+    room_name: string[];
+    ifc_space_guids: string[];
+    ifc_instances_guids: string[];
+    instructions: string;
+};

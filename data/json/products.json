@@ -1,0 +1,33 @@
+[
+  {
+    "id": "454134136",
+    "name": "Wall Panel (45x63cm)",
+    "waste_type": "DD",
+    "reuse_rate": 10,
+    "room_name": ["KITCHEN-05", "BEDROOM-01"],
+    "ifc_space_guids": ["IFCSPACE_GUID1", "IFCSPACE_GUID7"],
+    "ifc_instances_guids": ["IFCWALL_05", "IFCWALL_089"],
+    "instructions": "Do not touch with bare hands.\nCall a professional"
+  },
+
+  {
+    "id": "954134836",
+    "name": "Plastic Sol Recovering",
+    "waste_type": "DD",
+    "reuse_rate": 30,
+    "room_name": ["KITCHEN-05"],
+    "ifc_space_guids": ["IFCSPACE_GUID1"],
+    "ifc_instances_guids": ["IFCSLAB_001"],
+    "instructions": "Remove all at once."
+  },
+  {
+    "id": "454134736",
+    "name": "PVC Window (32x48cm)",
+    "waste_type": "DNIND",
+    "reuse_rate": 90,
+    "room_name": ["KITCHEN-07", "LIVING ROOM-01"],
+    "ifc_space_guids": ["IFCSPACE_GUID1", "IFCSPACE_GUID7"],
+    "ifc_instances_guids": ["IFCWINDOW_05", "IFWINDOW_089"],
+    "instructions": "Touch only if you know what you are doing.\nCall a professional otherwise"
+  }
+]

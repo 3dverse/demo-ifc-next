@@ -20,10 +20,12 @@ import { StoreyList } from "@/components/storeys/StoreyList";
 import { EnergyConsumptionList } from "@/components/energy/EnergyConsumptionList";
 import { AboutPanel } from "@/components/about/AboutPanel";
 import { MainNavActiveItemId } from "@/core/type";
+import { ProductsList } from "@/components/products/ProductsList";
 
 //------------------------------------------------------------------------------
 export const MAIN_NAV_3D_ID = "3d";
 export const MAIN_NAV_STOREYS_ID = "storeys";
+export const MAIN_NAV_PRODUCTS_ID = "products";
 export const MAIN_NAV_ENERGY_ID = "energy";
 export const MAIN_NAV_ABOUT_ID = "about";
 
@@ -40,6 +42,12 @@ const MOBILE_MAIN_NAV = [
         label: "Storeys",
         icon: RiStackLine,
         iconActive: RiStackFill,
+    },
+    {
+        id: MAIN_NAV_PRODUCTS_ID,
+        label: "Products",
+        icon: RiListCheck2,
+        iconActive: RiListCheck2,
     },
     {
         id: MAIN_NAV_ENERGY_ID,
@@ -92,6 +100,7 @@ export const MobileMainNav = () => {
                         />
                     </div>
                     {mainNavActiveItemId === MAIN_NAV_STOREYS_ID && <StoreyList />}
+                    {mainNavActiveItemId === MAIN_NAV_PRODUCTS_ID && <ProductsList />}
                     {mainNavActiveItemId === MAIN_NAV_ENERGY_ID && <EnergyConsumptionList />}
                     {mainNavActiveItemId === MAIN_NAV_ABOUT_ID && <AboutPanel />}
                 </div>

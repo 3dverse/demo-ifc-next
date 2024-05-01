@@ -81,6 +81,7 @@ export const StoreyList = () => {
         <article className="overflow-y-scroll h-full">
             <div className="flex-1 pb-4 md:pb-12">
                 <MainPanelHeader title="Storeys">
+                    <span />
                     <Button
                         variant="ghost"
                         fontSize="2xs"

@@ -73,11 +73,9 @@ export const StoreyListAccordionItem = ({
                                 as={CaretRightSharpSolidIcon}
                                 width="3"
                                 height="3"
-                                opacity={hasStoreySpaces ? (isExpanded ? "1 !important" : 0.2) : "0 !important"}
-                                className="fill-accent group-hover:opacity-[.4] transition-opacity"
-                                _expanded={{
-                                    transform: "rotate(180deg)",
-                                }}
+                                opacity={hasStoreySpaces ? (isExpanded ? "1 !important" : 0.5) : "0 !important"}
+                                transform={isExpanded ? "rotate(90deg)" : undefined}
+                                className="fill-accent group-hover:opacity-[.8] transition-opacity"
                             />
 
                             <h2 className={`flex-1 text-left font-medium ${hasStoreySpaces ? "" : "text-secondary"}`}>

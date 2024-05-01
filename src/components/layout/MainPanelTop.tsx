@@ -9,7 +9,7 @@ import { METADATA } from "@/lib/content/metadata";
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 export const MainPanelTop = ({ onCollapse }: { onCollapse: () => void }) => (
-    <header className="hidden lg:flex lg:justify-between items-center n px-2 py-2 border-b border-primary">
+    <header className="hidden lg:flex lg:justify-between items-center n px-2 py-2">
         <div className="flex flex-row gap-3">
             <Logo className="w-12 mt-3" id={3} />
             <div>

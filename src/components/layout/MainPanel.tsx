@@ -8,15 +8,19 @@ import { twMerge } from "tailwind-merge";
 import { MainPanelTop } from "@/components/layout/MainPanelTop";
 import { MobileMainNav } from "@/components/layout/MobileMainNav";
 import { StoreyList } from "@/components/storeys/StoreyList";
+import { ProductsList } from "@/components/products/ProductsList";
 import { Logo } from "@/components/common/Logo";
+import { MainPanelTabList } from "./MainPanelTabList";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 export const MainPanel = memo(
     ({ isExpanded, onExpand, onCollapse }: { isExpanded: boolean; onExpand: () => void; onCollapse: () => void }) => {
+        //------------------------------------------------------------------------------
         const isCollapsed = !isExpanded;
 
         //------------------------------------------------------------------------------
+        // UI
         return (
             <>
                 <aside
@@ -41,7 +45,17 @@ export const MainPanel = memo(
                         )}
                     >
                         <MainPanelTop onCollapse={onCollapse} />
-                        <StoreyList />
+                        <Tabs size="sm" pos="relative" variant="unstyled" defaultIndex={1}>
+                            <MainPanelTabList />
+                            <TabPanels>
+                                <TabPanel p={0}>
+                                    <StoreyList />
+                                </TabPanel>
+                                <TabPanel p={0}>
+                                    <ProductsList />
+                                </TabPanel>
+                            </TabPanels>
+                        </Tabs>
                     </div>
                 </aside>
 
