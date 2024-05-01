@@ -66,11 +66,8 @@ export const MainLayout = memo(() => {
 
             <MainPanel isExpanded={isMainPanelExpanded} onExpand={onExpandMainPanel} onCollapse={onCollapseMainPanel} />
 
-            <MainActionBar
-                isMainPanelExpanded={isMainPanelExpanded}
-                energyVisible={energyVisible}
-                setEnergyVisibility={setEnergyVisibility}
-            />
+            <MainActionBar isMainPanelExpanded={isMainPanelExpanded} setEnergyVisibility={setEnergyVisibility} />
+
             <SecondaryActionBar isMainPanelExpanded={isMainPanelExpanded} basePoint={basePoint} />
 
             <ShareQRCode sessionId={sessionId} />
