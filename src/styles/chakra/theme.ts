@@ -1,4 +1,7 @@
+//------------------------------------------------------------------------------
 import { extendTheme } from "@chakra-ui/react";
+
+//------------------------------------------------------------------------------
 import Alert from "@/styles/chakra/components/Alert";
 import Button from "@/styles/chakra/components/Button";
 import Card from "@/styles/chakra/components/Card";
@@ -23,6 +26,7 @@ import Text from "@/styles/chakra/components/Text";
 import Textarea from "@/styles/chakra/components/Textarea";
 import Tooltip from "@/styles/chakra/components/Tooltip";
 
+//------------------------------------------------------------------------------
 const theme = extendTheme({
     initialColorMode: "dark",
     useSystemColorMode: false,
@@ -157,4 +161,5 @@ const theme = extendTheme({
     },
 });
 
+//------------------------------------------------------------------------------
 export default theme;

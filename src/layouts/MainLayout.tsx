@@ -4,10 +4,12 @@ import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
 import { Canvas } from "@/components/canvas/Canvas";
-import { MainPanel } from "@/components/layout/MainPanel";
-import { EnergyConsumptionPanel } from "@/components/energy/EnergyConsumptionPanel";
 import { MainActionBar } from "@/components/canvas/MainActionBar";
 import { ShareQRCode } from "@/components/canvas/ShareQRCode";
+import { DetailsPanel } from "@/components/canvas/DetailsPanel";
+import { SecondaryActionBar } from "@/components/canvas/SecondaryActionBar";
+import { MainPanel } from "@/components/layout/MainPanel";
+import { EnergyConsumptionPanel } from "@/components/energy/EnergyConsumptionPanel";
 
 //------------------------------------------------------------------------------
 import { BREAKPOINTS } from "@/styles/theme/breakpoints";
@@ -15,8 +17,6 @@ import { BREAKPOINTS } from "@/styles/theme/breakpoints";
 //------------------------------------------------------------------------------
 import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 import { Product } from "@/types/ifc";
-import { DetailsPanel } from "@/components/canvas/DetailsPanel";
-import { SecondaryActionBar } from "@/components/canvas/SecondaryActionBar";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
