@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 import { useEffect, useState } from "react";
-import { Accordion } from "@chakra-ui/react";
+import { Accordion, Text } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
 import PRODUCT_LIST from "../../../data/json/products.json";
@@ -29,7 +29,7 @@ export const ProductsList = () => {
         newProductList = newProductList.filter((p) => p.name.toLowerCase().includes(searchString.toLowerCase()));
 
         setProductList(newProductList);
-    }, [productList, searchString]);
+    }, [searchString]);
 
     //------------------------------------------------------------------------------
     return (
@@ -37,6 +37,13 @@ export const ProductsList = () => {
             <div className="flex-1 pb-4 md:pb-12">
                 <MainPanelHeader title="Products" className="!px-2 py-1">
                     <SearchInput setSearch={setSearch} />
+                    {productList.length < PRODUCT_LIST.length && (
+                        <Text fontSize="2xs" color="content.secondary">
+                            {productList.length}
+                            <span className="px-px">/</span>
+                            {PRODUCT_LIST.length}
+                        </Text>
+                    )}
                 </MainPanelHeader>
 
                 <div className="md:mx-2">

@@ -1,27 +1,34 @@
 //------------------------------------------------------------------------------
-import { Product } from "@/types/ifc";
 import { AccordionPanel, Button } from "@chakra-ui/react";
+
+//------------------------------------------------------------------------------
+import { travelToEntity } from "@/lib/3dverse/helpers";
+import { guid2euid } from "@/lib/id-converter";
+import { Product } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 export const ProductsListAccordionPanel = ({ product }: { product: Product }) => {
-    const goToIfc = (guid: string) => {
-        console.log("goToIfc", guid);
+    //------------------------------------------------------------------------------
+    const handleClick = (guid: string) => {
+        travelToEntity(guid2euid(guid));
     };
 
+    //------------------------------------------------------------------------------
+    // UI
     return (
         <AccordionPanel p="0">
             <div className="flex flex-col">
-                {product.ifc_instances_guids.map((ifcName) => (
+                {product.ifc_instances_guids.map((ifcEntityUUID: string) => (
                     <Button
-                        key={ifcName}
+                        key={ifcEntityUUID}
                         variant="ghost"
                         size="sm"
                         justifyContent="start"
                         pl={7}
-                        onClick={() => goToIfc("1234")}
+                        onClick={() => handleClick(ifcEntityUUID)}
                     >
-                        {ifcName}
+                        {ifcEntityUUID}
                     </Button>
                 ))}
             </div>

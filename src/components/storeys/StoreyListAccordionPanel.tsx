@@ -3,7 +3,7 @@ import { AccordionPanel } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
 import { guid2euid } from "@/lib/id-converter";
-import { goToRoom } from "@/lib/3dverse/helpers";
+import { travelToEntity } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 import { SpaceName } from "@/components/storeys/SpaceName";
@@ -15,7 +15,7 @@ export const StoreyListAccordionPanel = ({ ifcData, storey }: { ifcData: IfcData
     //------------------------------------------------------------------------------
     const handleClick = (storeySpace: string) => {
         const guid = ifcData[storeySpace].props["GlobalId"];
-        goToRoom(guid2euid(guid));
+        travelToEntity(guid2euid(guid));
     };
 
     //------------------------------------------------------------------------------
