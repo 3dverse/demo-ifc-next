@@ -156,8 +156,5 @@ const config: Config = {
             },
         ),
     ],
-    corePlugins: {
-        outline: false,
-    },
 };
 export default config;
