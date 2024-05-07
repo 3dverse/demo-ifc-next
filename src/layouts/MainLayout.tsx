@@ -56,7 +56,7 @@ export const MainLayout = memo(() => {
                 setSessionId={setSessionId}
             />
 
-            <EnergyConsumptionPanel isMainPanelExpanded={isMainPanelExpanded} />
+            {energyVisible && <EnergyConsumptionPanel isMainPanelExpanded={isMainPanelExpanded} />}
 
             <MainPanel isExpanded={isMainPanelExpanded} onExpand={onExpandMainPanel} onCollapse={onCollapseMainPanel} />
 
