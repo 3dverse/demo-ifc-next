@@ -14,13 +14,7 @@ export const MainPanelTop = ({ onCollapse }: { onCollapse: () => void }) => (
             <Logo className="w-12 mt-3" id={3} />
             <div>
                 <h1 className="text-lg font-semibold">{METADATA.title}</h1>
-                <p className="text-xs text-tertiary">
-                    Powered by{" "}
-                    <a className="link" target="_blank" href="https://3dverse.com/">
-                        3dverse
-                    </a>
-                    .
-                </p>
+                <p className="text-xs text-tertiary">{METADATA.description_with_link}</p>
             </div>
         </div>
         <div>

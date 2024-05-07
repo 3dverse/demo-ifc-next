@@ -1,6 +1,15 @@
 export const METADATA = {
     title: "IFC Demo Viewer",
     description: "Powered by 3dverse",
+    description_with_link: (
+        <>
+            Powered by{" "}
+            <a className="link" target="_blank" href="https://3dverse.com/">
+                3dverse
+            </a>
+            .
+        </>
+    ),
     seo_title: "IFC Viewer",
     seo_description: "Powered by 3dverse",
     url: "https://3dverse.github.io/demo-ifc-next/",

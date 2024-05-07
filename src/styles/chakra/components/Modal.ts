@@ -5,12 +5,12 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
     overlay: {
-        bg: "hsl(var(--color-bg-overground-hsl), .9)",
+        bgColor: "hsl(var(--color-bg-overground-hsl), .9)",
         opacity: 0.5,
     },
     dialog: {
         rounded: "lg",
-        bg: `bg.ground`,
+        bg: "bg.ground",
         border: "1px",
         borderColor: "border.quaternary",
         margin: 0,
