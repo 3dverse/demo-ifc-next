@@ -23,7 +23,7 @@ export const MainPanel = memo(
                     className={twMerge(
                         `
                             main-panel
-                            hidden md:block
+                            hidden lg:block
                             absolute
                             top-0 left-0 w-screen w-[var(--main-panel-width)] h-[100dvh] 
                             rounded-none
