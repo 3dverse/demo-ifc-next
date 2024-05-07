@@ -9,17 +9,16 @@ import {
     RiHomeLine,
     RiInformationFill,
     RiInformationLine,
-    RiListCheck2,
     RiStackFill,
     RiStackLine,
 } from "react-icons/ri";
-import { IconType } from "react-icons";
 
 //------------------------------------------------------------------------------
 import { StoreyList } from "@/components/storeys/StoreyList";
 import { EnergyConsumptionList } from "@/components/energy/EnergyConsumptionList";
 import { AboutPanel } from "@/components/about/AboutPanel";
 import { MainNavActiveItemId } from "@/core/type";
+import { MainNavItem } from "@/types/app";
 
 //------------------------------------------------------------------------------
 export const MAIN_NAV_3D_ID = "3d";
@@ -53,12 +52,7 @@ const MOBILE_MAIN_NAV = [
         icon: RiInformationLine,
         iconActive: RiInformationFill,
     },
-] as {
-    id: MainNavActiveItemId;
-    label: string;
-    icon: IconType;
-    iconActive: IconType;
-}[];
+] as MainNavItem[];
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
