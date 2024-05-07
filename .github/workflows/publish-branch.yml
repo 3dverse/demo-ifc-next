@@ -1,0 +1,51 @@
+name: publish-to-google-cloud-storage
+on:
+  push:
+    branches:
+      - dataviz
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Remove local data
+        run: rm -rf data
+
+      - name: Checkout data
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.DATA_REPO }}
+          path: data
+          token: ${{ secrets.DATA_REPO_GITHUB_TOKEN }}
+
+      - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
+        uses: ./.github/workflows/setup-node
+
+      - name: Build with Next.js 🏗️
+        run: npx next build
+
+      - id: "auth"
+        uses: "google-github-actions/auth@v2"
+        with:
+          credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
+
+      - id: "upload-folder"
+        uses: "google-github-actions/upload-cloud-storage@v2"
+        with:
+          parent: false
+          path: "out"
+          destination: ${{ env.GOOGLE_STORAGE_BUCKET }}
+
