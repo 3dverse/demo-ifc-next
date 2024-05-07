@@ -15,6 +15,9 @@ concurrency:
 
 jobs:
   build:
+    environment:
+      name: dataviz-branch
+
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +30,7 @@ jobs:
       - name: Checkout data
         uses: actions/checkout@v4
         with:
-          repository: ${{ env.DATA_REPO }}
+          repository: ${{ vars.DATA_REPO }}
           path: data
           token: ${{ secrets.DATA_REPO_GITHUB_TOKEN }}
 
@@ -36,6 +39,9 @@ jobs:
 
       - name: Build with Next.js 🏗️
         run: npx next build
+        env:
+          NEXT_PUBLIC_SCENE_UUID: ${{ vars.NEXT_PUBLIC_SCENE_UUID }}
+          NEXT_PUBLIC_PUBLIC_TOKEN: ${{ vars.NEXT_PUBLIC_PUBLIC_TOKEN }}
 
       - id: "auth"
         uses: "google-github-actions/auth@v2"
@@ -48,4 +54,3 @@ jobs:
           parent: false
           path: "out"
           destination: ${{ env.GOOGLE_STORAGE_BUCKET }}
-

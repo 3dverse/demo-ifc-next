@@ -10,11 +10,14 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: false
 
 jobs:
   build:
+    environment:
+      name: demo-branch
+
     runs-on: ubuntu-latest
 
     steps:
@@ -31,6 +34,9 @@ jobs:
 
       - name: Build with Next.js 🏗️
         run: npx next build
+        env:
+          NEXT_PUBLIC_SCENE_UUID: ${{ vars.NEXT_PUBLIC_SCENE_UUID }}
+          NEXT_PUBLIC_PUBLIC_TOKEN: ${{ vars.NEXT_PUBLIC_PUBLIC_TOKEN }}
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
