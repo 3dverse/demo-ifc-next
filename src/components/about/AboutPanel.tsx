@@ -10,9 +10,9 @@ export const AboutPanel = () => {
                 <Logo className="w-20 aspect-square mx-auto" id={1} />
                 <h1 className="text-xl font-semibold">{METADATA.title}</h1>
                 <p className="mt-1 text-sm text-tertiary">
-                    Example of a{" "}
+                    Powered by{" "}
                     <a className="link" target="_blank" href="https://3dverse.com/">
-                        3dverse web app
+                        3dverse
                     </a>
                     .
                 </p>
