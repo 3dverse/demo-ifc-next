@@ -53,4 +53,4 @@ jobs:
         with:
           parent: false
           path: "out"
-          destination: ${{ env.GOOGLE_STORAGE_BUCKET }}
+          destination: ${{ vars.GOOGLE_STORAGE_BUCKET }}
