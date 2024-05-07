@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 import { memo } from "react";
-import { IconButton, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
 import { RiExpandRightLine } from "react-icons/ri";
 import { twMerge } from "tailwind-merge";
 
@@ -14,7 +14,12 @@ import { Logo } from "@/components/common/Logo";
 //------------------------------------------------------------------------------
 export const MainPanel = memo(
     ({ isExpanded, onExpand, onCollapse }: { isExpanded: boolean; onExpand: () => void; onCollapse: () => void }) => {
+        //------------------------------------------------------------------------------
         const isCollapsed = !isExpanded;
+
+        //------------------------------------------------------------------------------
+        // Temporary hide mobile navigation in order to avoid complexity.
+        const IS_MOBILE_NAV_VISIBLE = false;
 
         //------------------------------------------------------------------------------
         return (
@@ -44,15 +49,17 @@ export const MainPanel = memo(
                         <StoreyList />
                     </div>
                 </aside>
-
-                <MobileMainNav />
+                {IS_MOBILE_NAV_VISIBLE && <MobileMainNav />}
             </>
         );
     },
 );
 
+//------------------------------------------------------------------------------
 MainPanel.displayName = "MainPanel";
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 const CollapsedMainPanel = ({ onExpand }: { onExpand: () => void }) => (
     <div className="absolute top-2 left-2 flex flex-col items-center animate-appear-left z-10">
         <Logo className="w-12 mt-3" id={2} />
