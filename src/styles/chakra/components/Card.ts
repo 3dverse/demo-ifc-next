@@ -13,11 +13,11 @@ export default defineStyleConfig({
         unstyled: {
             container: {},
         },
-        "glass-effect": {
+        glass: {
             container: {
-                border: "1px solid var(--color-bg-underground)",
-                backgroundColor: "rgba(252, 250, 254, 0.7)",
-                boxShadow: "0px 4px 24px rgba(132, 75, 177, 0.2)",
+                border: "none",
+                bgColor: "hsla(var(--color-bg-ground-hsl), .6)",
+                boxShadow: "xl",
                 backdropFilter: "blur(10px)",
             },
         },

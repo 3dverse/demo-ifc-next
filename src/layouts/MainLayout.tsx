@@ -16,6 +16,7 @@ import { breakpoints } from "@/styles/theme/breakpoints";
 //------------------------------------------------------------------------------
 import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 import { WelcomeModal } from "@/components/common/WelcomeModal";
+import { AboutCard } from "@/components/about/AboutCard";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -74,6 +75,7 @@ export const MainLayout = memo(() => {
                 <IfcPropertyPanel guid={selectedPropertyEUID} onClose={() => setSelectedPropertyEUID(null)} />
             )}
 
+            <AboutCard />
             <WelcomeModal />
         </>
     );
