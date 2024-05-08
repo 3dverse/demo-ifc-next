@@ -5,6 +5,7 @@ import { guid2euid, euid2guid } from "../id-converter";
 import { EnergyData, IfcData, ChartInput, CanvasEvent, Attribute, BasePoint } from "@/types/ifc";
 
 import chroma from "chroma-js";
+import { Entity } from "@/types/3dverse";
 
 const ifcData = ifcInfo as IfcData;
 const ifcTypes = ifctype2guids;
@@ -260,41 +261,51 @@ export function getSurface(areaData: Attribute) {
     return typeof areaData === "number" ? areaData.toFixed(2) : "-";
 }
 
-export async function updateLightIntensity(value: number, guid: string) {
-    const lightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
-    const lightEntityChildren = await lightEntity.getChildren();
-
-    for (const lightChild of lightEntityChildren) {
-        if ("point_light" in lightChild.components) {
-            const spotlightComponent = lightChild.getComponent("point_light");
-            const newComponent = {
-                ...spotlightComponent,
-                intensity: value,
-            };
-            lightChild.setComponent("point_light", newComponent);
-        }
+export async function updateLightIntensity(
+    value: number,
+    spotLightEntity: Entity | undefined,
+    setIntensity: (value: number) => void,
+) {
+    // spotLightEntity
+    if (spotLightEntity) {
+        const spotlightComponent = spotLightEntity.getComponent("point_light");
+        const newComponent = {
+            ...spotlightComponent,
+            intensity: value,
+        };
+        setIntensity(value);
+        spotLightEntity.setComponent("point_light", newComponent);
     }
 }
 
-export async function updateColor(value: string, guid: string) {
+function componentToHex(c: number) {
+    var hex = (c * 255).toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+export function rgbToHex(rgb: number[]) {
+    return "#" + componentToHex(rgb[0]) + componentToHex(rgb[1]) + componentToHex(rgb[2]);
+}
+
+export async function updateColor(
+    value: string,
+    spotLightEntity: Entity | undefined,
+    setColor: (col: number[]) => void,
+) {
     const colorValHex = value;
     const red = parseInt(colorValHex.substring(1, 3), 16);
     const green = parseInt(colorValHex.substring(3, 5), 16);
     const blue = parseInt(colorValHex.substring(5, 7), 16);
 
     const rgb = [red / 255, green / 255, blue / 255];
-    const lightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
-    const lightEntityChildren = await lightEntity.getChildren();
-
-    for (const lightChild of lightEntityChildren) {
-        if ("point_light" in lightChild.components) {
-            const spotlightComponent = lightChild.getComponent("point_light");
-            const newComponent = {
-                ...spotlightComponent,
-                color: rgb,
-            };
-            lightChild.setComponent("point_light", newComponent);
-        }
+    if (spotLightEntity) {
+        const spotlightComponent = spotLightEntity.getComponent("point_light");
+        setColor(rgb);
+        const newComponent = {
+            ...spotlightComponent,
+            color: rgb,
+        };
+        spotLightEntity.setComponent("point_light", newComponent);
     }
 }
 
