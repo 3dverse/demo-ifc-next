@@ -55,8 +55,8 @@ export const MainLayout = memo(() => {
     //------------------------------------------------------------------------------
     useEffect(() => {
         const getSpotlightEntity = async () => {
-            const spotligId = "5f0cf797-d27a-4f53-91b3-de21758050dd";
-            const spotlightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(spotligId))[0];
+            const spotligthId = "5f0cf797-d27a-4f53-91b3-de21758050dd";
+            const spotlightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(spotligthId))[0];
             setSpotlightEntity(spotlightEntity);
         };
         getSpotlightEntity();
