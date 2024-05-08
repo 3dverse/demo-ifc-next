@@ -9,6 +9,7 @@ import { IfcPropertyPanel } from "@/components/IfcProperty/IfcPropertyPanel";
 import { EnergyConsumptionPanel } from "@/components/energy/EnergyConsumptionPanel";
 import { CanvasActionBar } from "@/components/canvas/CanvasActionBar";
 import { ShareQRCode } from "@/components/canvas/ShareQRCode";
+import { Entity } from "@/types/3dverse";
 
 //------------------------------------------------------------------------------
 import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
@@ -24,7 +25,7 @@ export const MainLayout = memo(() => {
     const [energyVisible, setEnergyVisibility] = useState(false);
     const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
     const [sessionId, setSessionId] = useState("");
-
+    const [spotLightEntity, setSpotlightEntity] = useState<Entity | undefined>(undefined);
     //------------------------------------------------------------------------------
     const {
         isOpen: isMainPanelExpanded,
@@ -52,6 +53,15 @@ export const MainLayout = memo(() => {
     }, []);
 
     //------------------------------------------------------------------------------
+    useEffect(() => {
+        const getSpotlightEntity = async () => {
+            const spotligId = "5f0cf797-d27a-4f53-91b3-de21758050dd";
+            const spotlightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(spotligId))[0];
+            setSpotlightEntity(spotlightEntity);
+        };
+        getSpotlightEntity();
+    }, [sessionId]);
+    //------------------------------------------------------------------------------
     // UI
     return (
         <>
@@ -76,7 +86,11 @@ export const MainLayout = memo(() => {
             <ShareQRCode sessionId={sessionId} />
 
             {selectedPropertyEUID && (
-                <IfcPropertyPanel guid={selectedPropertyEUID} onClose={() => setSelectedPropertyEUID(null)} />
+                <IfcPropertyPanel
+                    guid={selectedPropertyEUID}
+                    onClose={() => setSelectedPropertyEUID(null)}
+                    spotLightEntity={spotLightEntity}
+                />
             )}
 
             <AboutCard />
