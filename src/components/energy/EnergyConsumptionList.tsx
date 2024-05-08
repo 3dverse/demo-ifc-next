@@ -2,8 +2,8 @@
 import { memo } from "react";
 
 //------------------------------------------------------------------------------
-import ifcInfo from "../../../data/json/ifcInfo.json";
-import energyData from "../../../data/json/energyData.json";
+import ifcInfo from "data/json/ifcInfo.json";
+import energyData from "data/json/energyData.json";
 
 //------------------------------------------------------------------------------
 import { SpaceEnergyViz } from "@/components/energy/SpaceEnergyViz";

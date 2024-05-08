@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Accordion, Text } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
-import PRODUCT_LIST from "../../../data/json/products.json";
+import PRODUCT_LIST from "data/json/products.json";
 
 //------------------------------------------------------------------------------
 import { MainPanelHeader } from "@/components/layout/MainPanelHeader";

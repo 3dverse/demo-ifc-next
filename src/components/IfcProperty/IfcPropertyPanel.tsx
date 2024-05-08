@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-import ifcInfo from "../../../data/json/ifcInfo.json";
+import ifcInfo from "data/json/ifcInfo.json";
 
 //------------------------------------------------------------------------------
 import { Header } from "./Header";
