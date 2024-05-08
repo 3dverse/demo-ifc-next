@@ -58,7 +58,7 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
                     <MenuItem onClick={() => handleEdgeSwitchChange(switchEdgeState, setSwitchEdgeState)}>
                         <span className="flex justify-between items-center flex-grow gap-4 text-xs">
                             Outline edges
-                            <Switch size="sm" id="edges" isChecked={switchEdgeState} />
+                            <Switch size="sm" id="edges" isChecked={switchEdgeState} className="pointer-events-none" />
                         </span>
                     </MenuItem>
                 </MenuList>

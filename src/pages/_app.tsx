@@ -5,7 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import "@fontsource-variable/inter";
 
 //------------------------------------------------------------------------------
-import theme from "@/styles/chakra/theme";
+import theme from "@/styles/theme/theme";
 import "@/styles/tailwind/globals.css";
 
 //------------------------------------------------------------------------------

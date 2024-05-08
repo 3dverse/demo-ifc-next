@@ -1,2 +1,2 @@
-export const publicToken = 'public_TKysjsYtTdahW699';
-export const mainSceneUUID = 'ab32e8dd-b8aa-4125-9caa-0d22cb125980';
+export const publicToken = process.env.NEXT_PUBLIC_PUBLIC_TOKEN || "";
+export const mainSceneUUID = process.env.NEXT_PUBLIC_SCENE_UUID || "";

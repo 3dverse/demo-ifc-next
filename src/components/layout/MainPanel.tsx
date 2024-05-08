@@ -20,6 +20,10 @@ export const MainPanel = memo(
         const isCollapsed = !isExpanded;
 
         //------------------------------------------------------------------------------
+        // Temporary hide mobile navigation in order to avoid complexity.
+        const IS_MOBILE_NAV_VISIBLE = false;
+
+        //------------------------------------------------------------------------------
         // UI
         return (
             <>
@@ -27,7 +31,7 @@ export const MainPanel = memo(
                     className={twMerge(
                         `
                             main-panel
-                            hidden md:block
+                            hidden lg:block
                             absolute
                             top-0 left-0 w-screen w-[var(--main-panel-width)] h-[100dvh] 
                             rounded-none
@@ -66,15 +70,17 @@ export const MainPanel = memo(
                         </Tabs>
                     </div>
                 </aside>
-
-                <MobileMainNav />
+                {IS_MOBILE_NAV_VISIBLE && <MobileMainNav />}
             </>
         );
     },
 );
 
+//------------------------------------------------------------------------------
 MainPanel.displayName = "MainPanel";
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 const CollapsedMainPanel = ({ onExpand }: { onExpand: () => void }) => (
     <div className="absolute top-2 left-2 flex flex-col items-center animate-appear-left z-10">
         <Logo className="w-12 mt-3" id={2} />

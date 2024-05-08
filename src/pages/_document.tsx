@@ -29,15 +29,15 @@ export default function Document() {
 
                 <meta name="application-name" content="3dverse" />
                 <link rel="icon" type="image/svg+xml" href="/socials/favicon.svg" />
-                <link rel="icon" href="/socials/favicon.svg" />
+                <link rel="icon" href="/demo-ifc-next/socials/favicon.svg" />
                 <meta name="theme-color" content={METADATA.themeColor} />
 
-                <link rel="manifest" href="/socials/manifest.json" />
+                <link rel="manifest" href="/demo-ifc-next/socials/manifest.json" />
                 <meta name="mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-title" content="3dverse" />
                 <meta name="msapplication-TileColor" content={METADATA.themeColor} />
-                <meta name="msapplication-config" content="/socials/browserconfig.xml" />
+                <meta name="msapplication-config" content="/demo-ifc-next/socials/browserconfig.xml" />
             </Head>
 
             <body>

@@ -5,27 +5,28 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
     overlay: {
-        bg: "hsl(var(--color-bg-overground-hsl), .9)",
+        bgColor: "hsl(var(--color-bg-overground-hsl), .9)",
         opacity: 0.5,
     },
+    dialogContainer: {},
     dialog: {
         rounded: "lg",
-        bg: `bg.ground`,
-        border: "1px",
-        borderColor: "border.quaternary",
+        bg: "bg.ground",
         margin: 0,
-    },
-    dialogContainer: {
-        paddingTop: "var(--chakra-space-16)",
-        paddingBottom: "var(--chakra-space-16)",
+        px: { base: 12, md: 8 },
+        py: { base: 8, md: 12 },
     },
     header: {
         px: [6, 8, 10],
         pt: [5, null, 6],
     },
     body: {
-        px: [6, 8, 10],
+        px: [6, 8, 16],
         pb: [10, null, 9],
+    },
+    footer: {
+        px: 0,
+        py: 0,
     },
 });
 

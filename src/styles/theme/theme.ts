@@ -2,6 +2,9 @@
 import { extendTheme } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
+import { breakpoints } from "@/styles/theme/breakpoints";
+
+//------------------------------------------------------------------------------
 import Alert from "@/styles/chakra/components/Alert";
 import Button from "@/styles/chakra/components/Button";
 import Card from "@/styles/chakra/components/Card";
@@ -132,6 +135,7 @@ const theme = extendTheme({
         "2xl": "var(--shadow-2xl)",
         "3xl": "var(--shadow-3xl)",
     },
+    breakpoints,
     components: {
         Alert,
         Button,

@@ -13,7 +13,6 @@ import {
     RiStackFill,
     RiStackLine,
 } from "react-icons/ri";
-import { IconType } from "react-icons";
 
 //------------------------------------------------------------------------------
 import { StoreyList } from "@/components/storeys/StoreyList";
@@ -21,6 +20,7 @@ import { EnergyConsumptionList } from "@/components/energy/EnergyConsumptionList
 import { AboutPanel } from "@/components/about/AboutPanel";
 import { MainNavActiveItemId } from "@/core/type";
 import { ProductsList } from "@/components/products/ProductsList";
+import { MainNavItem } from "@/types/app";
 
 //------------------------------------------------------------------------------
 export const MAIN_NAV_3D_ID = "3d";
@@ -61,12 +61,7 @@ const MOBILE_MAIN_NAV = [
         icon: RiInformationLine,
         iconActive: RiInformationFill,
     },
-] as {
-    id: MainNavActiveItemId;
-    label: string;
-    icon: IconType;
-    iconActive: IconType;
-}[];
+] as MainNavItem[];
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -87,7 +82,7 @@ export const MobileMainNav = () => {
 
     //------------------------------------------------------------------------------
     return (
-        <div className="md:hidden">
+        <div className="lg:hidden">
             {mainNavActiveItemId !== MAIN_NAV_3D_ID && (
                 <div className="fixed bottom-12 left-0 w-screen h-full max-h-[50vh] rounded-t-xl bg-backdrop-blur shadow-[0_-10px_40px_0px_#00000020] animate-appear-top">
                     <div className="fixed top-0 right-0 rotate-90">
