@@ -25,7 +25,7 @@ export const MainLayout = memo(() => {
     const [energyVisible, setEnergyVisibility] = useState(false);
     const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
     const [sessionId, setSessionId] = useState("");
-    const [spotLightEntity, setSpotlightEntity] = useState<Entity | undefined>(undefined);
+    const [spotLightEntity, setSpotLightEntity] = useState<Entity | undefined>(undefined);
     //------------------------------------------------------------------------------
     const {
         isOpen: isMainPanelExpanded,
@@ -57,7 +57,7 @@ export const MainLayout = memo(() => {
         const getSpotlightEntity = async () => {
             const spotligthId = "5f0cf797-d27a-4f53-91b3-de21758050dd";
             const spotlightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(spotligthId))[0];
-            setSpotlightEntity(spotlightEntity);
+            setSpotLightEntity(spotlightEntity);
         };
         getSpotlightEntity();
     }, [sessionId]);
