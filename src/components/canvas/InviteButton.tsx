@@ -13,14 +13,14 @@ function buildQRCodeUrl(sessionId: string) {
 }
 
 //------------------------------------------------------------------------------
-export const ShareQRCode = memo(({ sessionId }: { sessionId: string }) => {
+export const InviteButton = memo(({ sessionId }: { sessionId: string }) => {
     //------------------------------------------------------------------------------
     if (!sessionId) {
         return null;
     }
     //------------------------------------------------------------------------------
     return (
-        <div className="hidden md:block absolute top-4 right-4">
+        <div className="hidden md:block">
             <Popover gutter={6}>
                 <PopoverTrigger>
                     <Button size="sm" variant="primary" rounded="full" leftIcon={<RiQrCodeFill />}>
@@ -37,4 +37,4 @@ export const ShareQRCode = memo(({ sessionId }: { sessionId: string }) => {
     );
 });
 
-ShareQRCode.displayName = "ShareQRCode";
+InviteButton.displayName = "InviteButton";

@@ -6,7 +6,6 @@ import { useDisclosure } from "@chakra-ui/react";
 import { WelcomeModal } from "@/components/common/WelcomeModal";
 import { Canvas } from "@/components/canvas/Canvas";
 import { MainActionBar } from "@/components/canvas/MainActionBar";
-import { ShareQRCode } from "@/components/canvas/ShareQRCode";
 import { DetailsPanel } from "@/components/canvas/DetailsPanel";
 import { SecondaryActionBar } from "@/components/canvas/SecondaryActionBar";
 import { MainPanel } from "@/components/layout/MainPanel";
@@ -67,23 +66,15 @@ export const MainLayout = memo(() => {
                 setBasePoint={setBasePoint}
                 setSessionId={setSessionId}
             />
-
             {energyVisible && <EnergyConsumptionPanel isMainPanelExpanded={isMainPanelExpanded} />}
-
             <MainPanel isExpanded={isMainPanelExpanded} onExpand={onExpandMainPanel} onCollapse={onCollapseMainPanel} />
-
             <MainActionBar isMainPanelExpanded={isMainPanelExpanded} setEnergyVisibility={setEnergyVisibility} />
-
-            <SecondaryActionBar isMainPanelExpanded={isMainPanelExpanded} basePoint={basePoint} />
-
-            <ShareQRCode sessionId={sessionId} />
-
+            <SecondaryActionBar basePoint={basePoint} sessionId={sessionId} />
             <DetailsPanel
                 selectedProduct={selectedProduct}
                 selectedPropertyEUID={selectedPropertyEUID}
                 onClose={() => setSelectedPropertyEUID(null)}
             />
-
             <AboutCard />
             <WelcomeModal />
         </>

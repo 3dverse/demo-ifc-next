@@ -41,21 +41,25 @@ export const MainActionBar = ({
             name: "Asbestos",
             icon: RiErrorWarningLine,
             onClick: () => console.log("Asbestos"),
+            isHidden: true,
         },
         {
             name: "Zone map",
             icon: RiLayoutMasonryLine,
             onClick: () => console.log("Zone map"),
+            isHidden: true,
         },
         {
             name: "Energy consumption",
             icon: RiFlashlightLine,
             onClick: () => setEnergyVisibility(true),
+            isHidden: true,
         },
         {
             name: "Air quality",
             icon: RiWindyLine,
             onClick: () => console.log("Air quality"),
+            isHidden: true,
         },
     ];
     //------------------------------------------------------------------------------
@@ -66,12 +70,12 @@ export const MainActionBar = ({
                 `absolute top-4 left-0 lg:left-[var(--main-panel-width)] 
                 flex flex-col md:flex-row items-start justify-between gap-2 
                 max-w-[500px] ml-2 
-                animate-appear-left animation-delay-[250ms] opacity-0 transition-all`,
+                animate-appear-right animation-delay-[250ms] opacity-0 transition-all`,
                 !isMainPanelExpanded ? "lg:left-16" : "",
             )}
         >
             <ButtonGroup isAttached variant="outline-island" size="sm" shadow={["lg", null, "xl"]} rounded="md">
-                {ACTIONS.map(({ name, icon, onClick }, index: number) => (
+                {ACTIONS.filter((a) => !a.isHidden).map(({ name, icon, onClick }, index: number) => (
                     <Tooltip key={name} label={name} size="md">
                         <IconButton
                             rounded="xl"

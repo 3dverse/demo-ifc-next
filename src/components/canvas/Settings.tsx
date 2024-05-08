@@ -23,7 +23,7 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
     const [switchEdgeState, setSwitchEdgeState] = useState(true);
 
     //------------------------------------------------------------------------------
-    const settings_actions = [
+    const settingsActions = [
         {
             label: "Reset position",
             onClick: () => handleReset(basePoint),
@@ -38,10 +38,10 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
 
     //------------------------------------------------------------------------------
     return (
-        <ButtonGroup as="nav" isAttached variant="outline-island" size="sm" shadow={["lg", null, "xl"]} rounded="md">
-            {settings_actions.map(({ label, onClick, icon }) => (
+        <ButtonGroup as="nav" isAttached variant="outline-island" size="sm" shadow={["lg", null, "xl"]} rounded="full">
+            {settingsActions.map(({ label, onClick, icon }) => (
                 <Tooltip key={label} label={label} size="sm">
-                    <IconButton aria-label={label} onClick={onClick} icon={icon} border="none" />
+                    <IconButton aria-label={label} onClick={onClick} icon={icon} border="none" rounded="full" />
                 </Tooltip>
             ))}
             <Menu closeOnSelect={false} gutter={3}>
@@ -50,7 +50,7 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
                         as={IconButton}
                         border="none"
                         aria-label="Toggle Settings menu"
-                        roundedStart="none"
+                        rounded="full"
                         icon={<EllipsisLightIcon className="w-4" />}
                     />
                 </Tooltip>
