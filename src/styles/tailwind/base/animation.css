@@ -24,7 +24,7 @@
 
 @keyframes appear-bottom {
     0% {
-        translate: var(--tw-translate-x, 0px) var(--animation-appear-offset, 16px);
+        translate: var(--tw-translate-x, 0px) var(--animation-appear-offset, -16px);
         opacity: 0;
     }
     100% {

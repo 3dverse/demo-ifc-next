@@ -27,3 +27,7 @@ export type Product = {
     ifc_instances_guids: string[];
     instructions: string;
 };
+
+export type Waste = {
+    type: "DD" | "DEA" | "DEEE" | "DI" | "DNIND" | "VOID";
+};
