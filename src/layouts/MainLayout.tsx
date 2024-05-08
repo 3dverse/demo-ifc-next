@@ -11,7 +11,7 @@ import { CanvasActionBar } from "@/components/canvas/CanvasActionBar";
 import { ShareQRCode } from "@/components/canvas/ShareQRCode";
 
 //------------------------------------------------------------------------------
-import { BREAKPOINTS } from "@/styles/theme/breakpoints";
+import { breakpoints } from "@/styles/theme/breakpoints";
 
 //------------------------------------------------------------------------------
 import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
@@ -24,7 +24,7 @@ export const MainLayout = memo(() => {
     const [selectedPropertyEUID, setSelectedPropertyEUID] = useState<string | null>(null);
     const [energyVisible, setEnergyVisibility] = useState(false);
 
-    const [isSmallerThanLG] = useMediaQuery(`(max-width: ${BREAKPOINTS.lg})`);
+    const [isSmallerThanLG] = useMediaQuery(`(max-width: ${breakpoints.lg})`);
     const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
     const [sessionId, setSessionId] = useState("");
 

@@ -13,7 +13,7 @@
 
 @keyframes appear-right {
     0% {
-        translate: var(--animation-appear-offset, 16px) var(--tw-translate-y, 0px);
+        translate: var(--animation-appear-offset, -16px) var(--tw-translate-y, 0px);
         opacity: 0;
     }
     100% {
