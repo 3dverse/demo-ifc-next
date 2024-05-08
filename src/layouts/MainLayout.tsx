@@ -1,5 +1,4 @@
-//------------------------------------------------------------------------------
-import { useState, useCallback, memo } from "react";
+import { useState, useCallback, memo, useEffect } from "react";
 import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
@@ -9,12 +8,11 @@ import { IfcPropertyPanel } from "@/components/IfcProperty/IfcPropertyPanel";
 import { EnergyConsumptionPanel } from "@/components/energy/EnergyConsumptionPanel";
 import { CanvasActionBar } from "@/components/canvas/CanvasActionBar";
 import { ShareQRCode } from "@/components/canvas/ShareQRCode";
-
-//------------------------------------------------------------------------------
 import { BREAKPOINTS } from "@/styles/theme/breakpoints";
+import { handleCanvasSelection, CameraController_, unselectEntities } from "@/lib/3dverse/helpers";
+import { useRef } from "react";
 
 //------------------------------------------------------------------------------
-import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 import { WelcomeModal } from "@/components/common/WelcomeModal";
 
 //------------------------------------------------------------------------------
@@ -47,7 +45,29 @@ export const MainLayout = memo(() => {
         unselectEntities(event, setSelectedPropertyEUID);
     }, []);
 
-    //------------------------------------------------------------------------------
+    const maxWidth = "760px";
+    const [onMobile] = useMediaQuery(`(max-width: ${maxWidth})`, { ssr: false });
+
+    const canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
+    const cameraControllerRef = useRef<CameraController_ | null>(null);
+
+    useEffect(() => {
+        if (!sessionId) return;
+        if (!cameraControllerRef.current) {
+            cameraControllerRef.current = new CameraController_(canvasElement);
+        }
+    }, [sessionId]);
+
+    useEffect(() => {
+        if (!cameraControllerRef.current || !sessionId) return;
+
+        if (onMobile) {
+            cameraControllerRef.current.activateThreeJsController();
+        } else {
+            cameraControllerRef.current.deactivateThreeJsController();
+        }
+    }, [sessionId, onMobile]);
+
     return (
         <>
             <Canvas
