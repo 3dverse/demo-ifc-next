@@ -84,6 +84,13 @@ canvas:focus {
 }
 
 .rocket-loader-3dverse.rocket-loader-3dverse {
-    @apply lg:left-[var(--main-panel-width)];
     z-index: auto;
+    transition-property: left;
+    transition-duration: 150ms;
+}
+
+.main-panel-expanded {
+    .rocket-loader-3dverse.rocket-loader-3dverse {
+        @apply lg:left-[var(--main-panel-width)];
+    }
 }

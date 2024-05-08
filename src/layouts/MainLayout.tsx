@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
-import { useState, useCallback, memo } from "react";
-import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
+import { useState, useCallback, memo, useEffect } from "react";
+import { useDisclosure } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
 import { Canvas } from "@/components/canvas/Canvas";
@@ -11,9 +11,6 @@ import { CanvasActionBar } from "@/components/canvas/CanvasActionBar";
 import { ShareQRCode } from "@/components/canvas/ShareQRCode";
 
 //------------------------------------------------------------------------------
-import { breakpoints } from "@/styles/theme/breakpoints";
-
-//------------------------------------------------------------------------------
 import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 import { WelcomeModal } from "@/components/common/WelcomeModal";
 import { AboutCard } from "@/components/about/AboutCard";
@@ -21,19 +18,25 @@ import { AboutCard } from "@/components/about/AboutCard";
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 export const MainLayout = memo(() => {
-    //------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    // Hooks
     const [selectedPropertyEUID, setSelectedPropertyEUID] = useState<string | null>(null);
     const [energyVisible, setEnergyVisibility] = useState(false);
-
-    const [isSmallerThanLG] = useMediaQuery(`(max-width: ${breakpoints.lg})`);
     const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
     const [sessionId, setSessionId] = useState("");
 
+    //------------------------------------------------------------------------------
     const {
         isOpen: isMainPanelExpanded,
         onClose: onCollapseMainPanel,
         onOpen: onExpandMainPanel,
-    } = useDisclosure({ defaultIsOpen: isSmallerThanLG });
+    } = useDisclosure({ defaultIsOpen: true });
+
+    //--------------------------------------------------------------------------
+    // Effects
+    useEffect(() => {
+        document.documentElement.classList.toggle("main-panel-expanded", isMainPanelExpanded);
+    }, [isMainPanelExpanded]);
 
     //------------------------------------------------------------------------------
     const handleChange = useCallback(
@@ -49,6 +52,7 @@ export const MainLayout = memo(() => {
     }, []);
 
     //------------------------------------------------------------------------------
+    // UI
     return (
         <>
             <Canvas
