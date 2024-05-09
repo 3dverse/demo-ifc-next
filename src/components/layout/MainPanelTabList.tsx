@@ -5,7 +5,7 @@ import { Tab, TabIndicator, TabList } from "@chakra-ui/react";
 //------------------------------------------------------------------------------
 export const MainPanelTabList = () => {
     //------------------------------------------------------------------------------
-    const TAB_ITEMS = ["Storeys", "Produits"];
+    const TAB_ITEMS = ["Storeys", "Products"];
 
     //------------------------------------------------------------------------------
     return (
