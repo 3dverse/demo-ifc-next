@@ -23,14 +23,14 @@ export const IfcPropertyPanel = ({ guid }: { guid: string }) => {
 
     //------------------------------------------------------------------------------
     return (
-        <div>
+        <>
             <Header entitiyProperties={entitiyProperties} />
-            <div className="card-body">
+            <div className="card-body pb-8">
                 {entitiyProperties?.props?.type == "IfcLightFixture" && <ControlLight guid={guid} />}
                 {entitiyProperties?.props?.GlobalId == "02a5zYLwD3j9mC$YV6woIu" && <ControlAnimation />}
                 <Attributes guid={guid} />
             </div>
-        </div>
+        </>
     );
 };
 //------------------------------------------------------------------------------
