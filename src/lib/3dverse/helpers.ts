@@ -1,4 +1,4 @@
-import ifcInfo from "data/json/ifcInfo.json";
+import ifcInfo from "data/json/ifcData.json";
 import ifctype2guids from "data/json/ifctype2guids.json";
 import energyData from "data/json/energyData.json";
 import { guid2euid, euid2guid } from "../id-converter";

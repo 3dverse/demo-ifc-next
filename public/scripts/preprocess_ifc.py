@@ -109,7 +109,7 @@ for s in ifctype2guids["IfcSpace"]:
         result[s] = random.randint(1, 500)
 
 
-with open(os.path.join(json_folder, "ifcInfo.json"), 'w') as json_file:
+with open(os.path.join(json_folder, "ifcData.json"), 'w') as json_file:
     json.dump(ifc_info, json_file, indent=2)
 
 with open(os.path.join(json_folder, "ifctype2guids.json"), 'w') as json_file:

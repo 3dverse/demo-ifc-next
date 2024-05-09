@@ -2,7 +2,7 @@
 import { memo } from "react";
 
 //------------------------------------------------------------------------------
-import ifcInfo from "data/json/ifcInfo.json";
+import ifcInfo from "data/json/ifcData.json";
 import energyData from "data/json/energyData.json";
 
 //------------------------------------------------------------------------------
