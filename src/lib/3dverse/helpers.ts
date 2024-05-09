@@ -1,35 +1,41 @@
-import ifcInfo from "data/json/ifcData.json";
-import ifctype2guids from "data/json/ifctype2guids.json";
-import energyData from "data/json/energyData.json";
-import { guid2euid, euid2guid } from "../id-converter";
-import { EnergyData, IfcData, ChartInput, CanvasEvent, Attribute, BasePoint } from "@/types/ifc";
-
+//------------------------------------------------------------------------------
 import chroma from "chroma-js";
 
-const ifcData = ifcInfo as IfcData;
-const ifcTypes = ifctype2guids;
-const roomEnergyData = energyData as EnergyData;
+//------------------------------------------------------------------------------
+import IFC_DATA from "data/json/ifcData.json";
+import ENERGY_DATA from "data/json/energyData.json";
 
+//------------------------------------------------------------------------------
+import { guid2euid, euid2guid } from "@/lib/id-converter";
+import { EnergyData, IfcData, ChartInput, CanvasEvent, Attribute, BasePoint } from "@/types/ifc";
+
+//------------------------------------------------------------------------------
+const ifcData = IFC_DATA as IfcData;
+const energyData = ENERGY_DATA as EnergyData;
+
+//------------------------------------------------------------------------------
 const TRAVEL_TIME = 1;
 
+//------------------------------------------------------------------------------
 function getValueColor(value: number) {
     const scale = chroma.scale(["green", "yellow", "red"]).domain([0, 600]);
     return scale(value).rgb();
 }
 
+//------------------------------------------------------------------------------
 export function createChartInputs() {
     let labels: string[] = [];
     let data = [];
     let colors = [];
 
-    for (const s in energyData) {
+    for (const s in ENERGY_DATA) {
         const spaceName = ifcData[s].props.LongName
             ? `${ifcData[s].props.LongName} - ${ifcData[s].props.Name}`
             : ifcData[s].props.Name;
         if (typeof spaceName == "string") {
             labels.push(spaceName);
-            data.push(roomEnergyData[s]);
-            colors.push(getValueColor(roomEnergyData[s]));
+            data.push(energyData[s]);
+            colors.push(getValueColor(energyData[s]));
         }
     }
 
@@ -48,6 +54,7 @@ export function createChartInputs() {
     };
 }
 
+//------------------------------------------------------------------------------
 export function createChart({ data, labels, colors }: ChartInput) {
     // Chart.js data object
     const chartData = {
@@ -75,6 +82,7 @@ export function createChart({ data, labels, colors }: ChartInput) {
     return { chart_data: chartData, chart_options: chartOptions };
 }
 
+//------------------------------------------------------------------------------
 export async function toggleEnergyView(activate: boolean) {
     const originalColor = [0, 0.5686274509803921, 0.788235294117647];
 
@@ -113,6 +121,7 @@ export async function toggleEnergyView(activate: boolean) {
     }
 }
 
+//------------------------------------------------------------------------------
 async function processPickedEntity(
     position: { x: number; y: number },
     guidSetter: (guid: string) => void,
@@ -145,6 +154,7 @@ async function processPickedEntity(
     }
 }
 
+//------------------------------------------------------------------------------
 export async function handleCanvasSelection(
     event: CanvasEvent,
     guidSetter: (guid: string) => void,
@@ -153,6 +163,7 @@ export async function handleCanvasSelection(
     processPickedEntity({ x: event.clientX, y: event.clientY }, guidSetter, energyVisible);
 }
 
+//------------------------------------------------------------------------------
 export function unselectEntities(event: React.KeyboardEvent<HTMLElement>, guidSetter: (guid: string) => void) {
     if (event.key === "Escape") {
         SDK3DVerse.engineAPI.unselectAllEntities();
@@ -160,11 +171,13 @@ export function unselectEntities(event: React.KeyboardEvent<HTMLElement>, guidSe
     }
 }
 
+//------------------------------------------------------------------------------
 export function getInitialPoint() {
     const cameraTransform = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().getGlobalTransform();
     return { position: cameraTransform.position, orientation: cameraTransform.orientation };
 }
 
+//------------------------------------------------------------------------------
 export function handleReset(basePoint: BasePoint) {
     SDK3DVerse.engineAPI.cameraAPI.travel(
         SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0],
@@ -174,6 +187,7 @@ export function handleReset(basePoint: BasePoint) {
     );
 }
 
+//------------------------------------------------------------------------------
 export function handleCameraSwitchChange(cameraState: boolean, cameraSetter: (cameraState: boolean) => void) {
     if (!cameraState) {
         SDK3DVerse.engineAPI.cameraAPI.setControllerType(
@@ -190,6 +204,7 @@ export function handleCameraSwitchChange(cameraState: boolean, cameraSetter: (ca
     cameraSetter(!cameraState);
 }
 
+//------------------------------------------------------------------------------
 export function handleEdgeSwitchChange(edgeState: boolean, edgeSetter: (edgeState: boolean) => void) {
     const cam = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera();
     const camComponent = cam.getComponent("camera");
@@ -217,6 +232,7 @@ export function handleEdgeSwitchChange(edgeState: boolean, edgeSetter: (edgeStat
     edgeSetter(!edgeState);
 }
 
+//------------------------------------------------------------------------------
 function computeDistance(u: number[], v: number[]) {
     var dx = u[0] - v[0];
     var dy = u[1] - v[1];
@@ -225,6 +241,7 @@ function computeDistance(u: number[], v: number[]) {
     return Math.sqrt(dx * dx + dy * dy + dz * dz);
 }
 
+//------------------------------------------------------------------------------
 export async function travelToEntity(entityUUID: string | undefined) {
     if (!entityUUID) {
         return null;
@@ -254,14 +271,17 @@ export async function travelToEntity(entityUUID: string | undefined) {
     });
 }
 
+//------------------------------------------------------------------------------
 export async function getEntityFromGuid(guid: string) {
     return (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
 }
 
+//------------------------------------------------------------------------------
 export function getSurface(areaData: Attribute) {
     return typeof areaData === "number" ? areaData.toFixed(2) : "-";
 }
 
+//------------------------------------------------------------------------------
 export async function updateLightIntensity(value: number, guid: string) {
     const lightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
     const lightEntityChildren = await lightEntity.getChildren();
@@ -278,6 +298,7 @@ export async function updateLightIntensity(value: number, guid: string) {
     }
 }
 
+//------------------------------------------------------------------------------
 export async function updateColor(value: string, guid: string) {
     const colorValHex = value;
     const red = parseInt(colorValHex.substring(1, 3), 16);
@@ -300,22 +321,27 @@ export async function updateColor(value: string, guid: string) {
     }
 }
 
+//------------------------------------------------------------------------------
 export function toToggle(components: string[]) {
     return !("camera" in components) && !("point_light" in components) && !("label" in components);
 }
 
+//------------------------------------------------------------------------------
 export async function runAnimation(uuid: string) {
     SDK3DVerse.engineAPI.playAnimationSequence(uuid, { playbackSpeed: 1, seekOffset: 0 });
 }
 
+//------------------------------------------------------------------------------
 export async function pauseAnimation(uuid: string) {
     SDK3DVerse.engineAPI.pauseAnimationSequence(uuid);
 }
 
+//------------------------------------------------------------------------------
 export async function stopAnimation(uuid: string) {
     SDK3DVerse.engineAPI.stopAnimationSequence(uuid);
 }
 
+//------------------------------------------------------------------------------
 export async function showClientAvatars() {
     const clientDisplayEX = await SDK3DVerse.installExtension(SDK3DVerse_ClientDisplay_Ext);
     const clientAvatarContent = await fetch("../../../images/client-avatar.svg").then((res) => res.text());
@@ -341,6 +367,7 @@ export async function showClientAvatars() {
     });
 }
 
+//------------------------------------------------------------------------------
 export function toggleFilter(filterType: string, activate: boolean) {
     const regularFilter = { name: "regular", value: "REGULAR", isEnabled: !activate };
 

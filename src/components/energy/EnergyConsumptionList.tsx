@@ -2,8 +2,8 @@
 import { memo } from "react";
 
 //------------------------------------------------------------------------------
-import ifcInfo from "data/json/ifcData.json";
-import energyData from "data/json/energyData.json";
+import IFC_DATA from "data/json/ifcData.json";
+import ENERGY_DATA from "data/json/energyData.json";
 
 //------------------------------------------------------------------------------
 import { SpaceEnergyViz } from "@/components/energy/SpaceEnergyViz";
@@ -13,8 +13,8 @@ import { MainPanelHeader } from "@/components/layout/MainPanelHeader";
 import { IfcData, EnergyData } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
-const ifcData = ifcInfo as IfcData;
-const roomEnergyData = energyData as EnergyData;
+const ifcData = IFC_DATA as IfcData;
+const roomEnergyData = ENERGY_DATA as EnergyData;
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------

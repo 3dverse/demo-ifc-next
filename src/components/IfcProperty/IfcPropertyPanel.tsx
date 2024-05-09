@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-import ifcInfo from "data/json/ifcData.json";
+import IFC_DATA from "data/json/ifcData.json";
 
 //------------------------------------------------------------------------------
 import { Header } from "./Header";
@@ -14,7 +14,7 @@ import { IfcData } from "@/types/ifc";
 //------------------------------------------------------------------------------
 export const IfcPropertyPanel = ({ guid }: { guid: string }) => {
     //------------------------------------------------------------------------------
-    const ifcData = ifcInfo as IfcData;
+    const ifcData = IFC_DATA as IfcData;
     const entitiyProperties = ifcData[guid];
 
     if (!entitiyProperties?.props?.Name) {

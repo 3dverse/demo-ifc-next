@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Accordion, Button } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
-import ifcInfo from "data/json/ifcData.json";
-import ifcTypes from "data/json/ifctype2guids.json";
+import IFC_DATA from "data/json/ifcData.json";
+import IFC_TYPES from "data/json/ifctype2guids.json";
 import { getEntityFromGuid, toToggle } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
@@ -18,8 +18,8 @@ import { IfcData, IfcType } from "@/types/ifc";
 //------------------------------------------------------------------------------
 export const StoreyList = () => {
     //------------------------------------------------------------------------------
-    const ifcData = ifcInfo as IfcData;
-    const ifctypes = ifcTypes as IfcType;
+    const ifcData = IFC_DATA as IfcData;
+    const ifctypes = IFC_TYPES as IfcType;
 
     const storeyKey = "IfcBuildingStorey";
     const storeys = ifctypes[storeyKey];

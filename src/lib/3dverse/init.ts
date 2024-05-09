@@ -1,6 +1,8 @@
+//------------------------------------------------------------------------------
+import { showClientAvatars } from "@/lib/3dverse/helpers";
 import { publicToken, mainSceneUUID } from "../../../config.js";
-import { showClientAvatars } from "./helpers";
 
+//------------------------------------------------------------------------------
 export async function initApp() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.size) {
@@ -50,6 +52,6 @@ export async function initApp() {
         lookAtPoint: [projectGlobalCenter[0], projectGlobalCenter[1], projectGlobalCenter[2]],
     });
 
-    const regularFilter = { name: "regular", value: "REGULAR", isEnabled: true};
-    SDK3DVerse.engineAPI.ftlAPI.setFilter(regularFilter)
+    const regularFilter = { name: "regular", value: "REGULAR", isEnabled: true };
+    SDK3DVerse.engineAPI.ftlAPI.setFilter(regularFilter);
 }
