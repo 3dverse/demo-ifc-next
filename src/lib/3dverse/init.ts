@@ -49,4 +49,7 @@ export async function initApp() {
     SDK3DVerse.updateControllerSetting({
         lookAtPoint: [projectGlobalCenter[0], projectGlobalCenter[1], projectGlobalCenter[2]],
     });
+
+    const regularFilter = { name: "regular", value: "REGULAR", isEnabled: true};
+    SDK3DVerse.engineAPI.ftlAPI.setFilter(regularFilter)
 }

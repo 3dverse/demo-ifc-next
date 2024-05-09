@@ -16,6 +16,10 @@ import {
 import { MainActionLegend } from "./MainActionLegend";
 
 //------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+import { toggleFilter } from "@/lib/3dverse/helpers";
+//------------------------------------------------------------------------------
 export type MainAction = {
     name: string;
     icon: IconType;
@@ -41,13 +45,27 @@ export const MainActionBar = ({
         {
             name: "Waste Type",
             icon: RiDeleteBin3Line,
-            onClick: () => console.log("Waste Type"),
+            onClick: () => {
+                if (activeActionIndex == 0) {
+                    toggleFilter("W", false);
+                } else {
+                    toggleFilter("R", false);
+                    toggleFilter("W", true);
+                }
+            },
             hasLegendPanel: true,
         },
         {
             name: "Reusability",
             icon: RiRecycleLine,
-            onClick: () => console.log("Reusability"),
+            onClick: () => {
+                if (activeActionIndex == 1) {
+                    toggleFilter("R", false);
+                } else {
+                    toggleFilter("W", false);
+                    toggleFilter("R", true);
+                }
+            },
             hasLegendPanel: true,
         },
         {

@@ -340,3 +340,22 @@ export async function showClientAvatars() {
         },
     });
 }
+
+export function toggleFilter(filterType: string, activate: boolean) {
+    const regularFilter = { name: "regular", value: "REGULAR", isEnabled: !activate };
+
+    const wasteFilter = { name: "waste", value: "( ! REGULAR & ! VOID ) & W", isEnabled: activate };
+    const reuseFilter = { name: "reuse", value: "( ! REGULAR & ! REEMPLOI_VOID ) & R", isEnabled: activate };
+
+    const transpFilter = { name: "transparent", value: "TRANSPARENT", isEnabled: activate };
+
+    if (activate) {
+        SDK3DVerse.engineAPI.ftlAPI.setFilter(filterType == "W" ? wasteFilter : reuseFilter);
+        SDK3DVerse.engineAPI.ftlAPI.setFilter(transpFilter);
+        SDK3DVerse.engineAPI.ftlAPI.toggleFilter(regularFilter);
+    } else {
+        SDK3DVerse.engineAPI.ftlAPI.toggleFilter(filterType == "W" ? wasteFilter : reuseFilter);
+        SDK3DVerse.engineAPI.ftlAPI.toggleFilter(transpFilter);
+        SDK3DVerse.engineAPI.ftlAPI.toggleFilter(regularFilter);
+    }
+}
