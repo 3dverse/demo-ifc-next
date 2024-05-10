@@ -7,10 +7,20 @@ import { Product } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-export const ProductsListAccordionPanel = ({ product }: { product: Product }) => {
+export const ProductsListAccordionPanel = ({
+    product,
+    setSelectedProduct,
+    setselectedPropertyGUID,
+}: {
+    product: Product;
+    setSelectedProduct: (state: Product) => void;
+    setselectedPropertyGUID: (state: string) => void;
+}) => {
     //------------------------------------------------------------------------------
     const handleClick = async (guid: string) => {
         focusOnEntity(guid);
+        setSelectedProduct(product);
+        product.ifc_instances_guids[0] && setselectedPropertyGUID(product.ifc_instances_guids[0]);
     };
 
     //------------------------------------------------------------------------------

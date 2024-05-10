@@ -16,7 +16,13 @@ import { Product } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-export const ProductsList = () => {
+export const ProductsList = ({
+    setSelectedProduct,
+    setselectedPropertyGUID,
+}: {
+    setSelectedProduct: (state: Product) => void;
+    setselectedPropertyGUID: (state: string) => void;
+}) => {
     //------------------------------------------------------------------------------
     const [productList, setProductList] = useState<Product[]>(PRODUCT_LIST);
     const [searchString, setSearch] = useState("");
@@ -69,6 +75,8 @@ export const ProductsList = () => {
                                 <ProductsListAccordionItem
                                     key={index}
                                     product={product}
+                                    setselectedPropertyGUID={setselectedPropertyGUID}
+                                    setSelectedProduct={setSelectedProduct}
                                     productCount={productList.length}
                                     hasIfcInstances={product.ifc_instances_guids.length > 0}
                                     searchString={searchString}

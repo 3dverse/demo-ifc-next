@@ -11,11 +11,24 @@ import { StoreyList } from "@/components/storeys/StoreyList";
 import { ProductsList } from "@/components/products/ProductsList";
 import { Logo } from "@/components/common/Logo";
 import { MainPanelTabList } from "./MainPanelTabList";
+import { Product } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 export const MainPanel = memo(
-    ({ isExpanded, onExpand, onCollapse }: { isExpanded: boolean; onExpand: () => void; onCollapse: () => void }) => {
+    ({
+        isExpanded,
+        onExpand,
+        onCollapse,
+        setselectedPropertyGUID,
+        setSelectedProduct,
+    }: {
+        isExpanded: boolean;
+        onExpand: () => void;
+        onCollapse: () => void;
+        setselectedPropertyGUID: (state: string) => void;
+        setSelectedProduct: (state: Product) => void;
+    }) => {
         //------------------------------------------------------------------------------
         const isCollapsed = !isExpanded;
 
@@ -64,7 +77,10 @@ export const MainPanel = memo(
                                     <StoreyList />
                                 </TabPanel>
                                 <TabPanel flexGrow="1" p={0}>
-                                    <ProductsList />
+                                    <ProductsList
+                                        setSelectedProduct={setSelectedProduct}
+                                        setselectedPropertyGUID={setselectedPropertyGUID}
+                                    />
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>

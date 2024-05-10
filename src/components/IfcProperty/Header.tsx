@@ -5,7 +5,7 @@ import { Property } from "@/types/ifc";
 //------------------------------------------------------------------------------
 export const Header = ({ entitiyProperties, onClose }: { entitiyProperties: Property; onClose?: () => void }) => {
     return (
-        <header className="card-header card-wrapper py-3">
+        <header className="card-header card-wrapper py-3 shadow-[0_-10px_25px_-5px_rgb(0_0_0_/_0.1)] border-t borer-primary rounded-t-xl">
             <div className="flex flex-col">
                 <div className="flex flex-row justify-between">
                     <p className="card-title">Selection</p>

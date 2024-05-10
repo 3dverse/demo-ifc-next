@@ -14,15 +14,19 @@ import { Product } from "@/types/ifc";
 export const ProductsListAccordionItem = ({
     product,
     productCount,
-    hasIfcInstances,
-    searchString,
+    setSelectedProduct,
+    setselectedPropertyGUID,
     index,
+    searchString,
+    hasIfcInstances,
 }: {
     product: Product;
     productCount: number;
-    hasIfcInstances: boolean;
-    searchString: string;
     index: number;
+    searchString: string;
+    setSelectedProduct: (state: Product) => void;
+    setselectedPropertyGUID: (state: string) => void;
+    hasIfcInstances: boolean;
 }) => {
     //------------------------------------------------------------------------------
     const highlightSearchString = (value: string) => {
@@ -90,7 +94,11 @@ export const ProductsListAccordionItem = ({
                             </span>
                         </AccordionButton>
                     </div>
-                    <ProductsListAccordionPanel product={product} />
+                    <ProductsListAccordionPanel
+                        product={product}
+                        setSelectedProduct={setSelectedProduct}
+                        setselectedPropertyGUID={setselectedPropertyGUID}
+                    />
                 </div>
             )}
         </AccordionItem>

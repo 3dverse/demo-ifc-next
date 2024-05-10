@@ -27,9 +27,9 @@ export const DetailsPanel = ({
     return (
         <aside
             className={`
-                panel-card lg:card animate-appear-top 
-                absolute lg:left-auto lg:bottom-0 lg:right-3 
-                lg:max-h-[46vh] 
+                panel-card lg:card animate-appear-top
+                absolute lg:left-auto lg:bottom-0 lg:right-3
+                lg:max-h-[80vh]
                 flex flex-col
             `}
         >

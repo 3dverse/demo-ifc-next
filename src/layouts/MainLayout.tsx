@@ -54,8 +54,6 @@ export const MainLayout = memo(() => {
         unselectEntities(event, setselectedPropertyGUID);
     }, []);
 
-    const SHOW_ENERGY_CONSUMPTION_PANEL = false;
-
     //------------------------------------------------------------------------------
     // UI
     return (
@@ -67,13 +65,22 @@ export const MainLayout = memo(() => {
                 setSessionId={setSessionId}
             />
             {energyVisible && <EnergyConsumptionPanel isMainPanelExpanded={isMainPanelExpanded} />}
-            <MainPanel isExpanded={isMainPanelExpanded} onExpand={onExpandMainPanel} onCollapse={onCollapseMainPanel} />
+            <MainPanel
+                isExpanded={isMainPanelExpanded}
+                onExpand={onExpandMainPanel}
+                onCollapse={onCollapseMainPanel}
+                setselectedPropertyGUID={setselectedPropertyGUID}
+                setSelectedProduct={setSelectedProduct}
+            />
             <MainActionBar isMainPanelExpanded={isMainPanelExpanded} setEnergyVisibility={setEnergyVisibility} />
             <SecondaryActionBar basePoint={basePoint} sessionId={sessionId} />
             <DetailsPanel
                 selectedProduct={selectedProduct}
                 selectedPropertyGUID={selectedPropertyGUID}
-                onClose={() => setselectedPropertyGUID(null)}
+                onClose={() => {
+                    setselectedPropertyGUID(null);
+                    setSelectedProduct(null);
+                }}
             />
             <AboutCard />
             <WelcomeModal />
