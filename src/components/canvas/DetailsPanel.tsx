@@ -47,7 +47,9 @@ export const DetailsPanel = ({
             </Button>
 
             {selectedProduct && <ProductDetails product={selectedProduct} />}
-            {selectedPropertyGUID && <IfcPropertyPanel guid={selectedPropertyGUID} />}
+            {selectedPropertyGUID && (
+                <IfcPropertyPanel uppertitle={selectedProduct ? "IFC" : "Selection"} guid={selectedPropertyGUID} />
+            )}
         </aside>
     );
 };

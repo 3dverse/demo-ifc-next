@@ -12,7 +12,7 @@ import { IfcData } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-export const IfcPropertyPanel = ({ guid }: { guid: string }) => {
+export const IfcPropertyPanel = ({ uppertitle, guid }: { uppertitle?: string; guid: string }) => {
     //------------------------------------------------------------------------------
     const ifcData = IFC_DATA as IfcData;
     const entitiyProperties = ifcData[guid];
@@ -24,7 +24,7 @@ export const IfcPropertyPanel = ({ guid }: { guid: string }) => {
     //------------------------------------------------------------------------------
     return (
         <>
-            <Header entitiyProperties={entitiyProperties} />
+            <Header uppertitle={uppertitle} entitiyProperties={entitiyProperties} />
             <div className="card-body pb-8">
                 {entitiyProperties?.props?.type == "IfcLightFixture" && <ControlLight guid={guid} />}
                 {entitiyProperties?.props?.GlobalId == "02a5zYLwD3j9mC$YV6woIu" && <ControlAnimation />}

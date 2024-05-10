@@ -25,7 +25,7 @@ export const ProductDetails = ({ product }: { product: Product }) => {
                     </article>
                 )}
                 {typeof product.images === "object" && product.images.length > 0 && (
-                    <div className="flex align-center justify-center p-4 bg-underground">
+                    <article className="flex align-center justify-center p-4 bg-underground">
                         {product.images.map((imageUrl: string, i: number) => {
                             return (
                                 <image
@@ -36,7 +36,7 @@ export const ProductDetails = ({ product }: { product: Product }) => {
                                 />
                             );
                         })}
-                    </div>
+                    </article>
                 )}
 
                 <article className="pset w-full py-4 px-4">

@@ -3,12 +3,20 @@ import { Button } from "@chakra-ui/react";
 import { Property } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
-export const Header = ({ entitiyProperties, onClose }: { entitiyProperties: Property; onClose?: () => void }) => {
+export const Header = ({
+    uppertitle,
+    entitiyProperties,
+    onClose,
+}: {
+    uppertitle?: string;
+    entitiyProperties: Property;
+    onClose?: () => void;
+}) => {
     return (
         <header className="card-header card-wrapper py-3 shadow-[0_-10px_25px_-5px_rgb(0_0_0_/_0.1)] border-t borer-primary rounded-t-xl">
             <div className="flex flex-col">
                 <div className="flex flex-row justify-between">
-                    <p className="card-title">Selection</p>
+                    {uppertitle && <p className="card-title">{uppertitle}</p>}
                     {onClose && (
                         <Button variant="ghost" size="xs" color="content.secondary" px="1" onClick={onClose}>
                             Close

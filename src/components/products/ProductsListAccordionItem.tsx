@@ -83,7 +83,11 @@ export const ProductsListAccordionItem = ({
                                 className="fill-accent group-hover:opacity-[.8] transition-opacity"
                             />
 
-                            <h2 className="flex-1 text-left text-sm [text-wrap:balance] font-medium">
+                            <h2
+                                className={`flex-1 text-left text-sm font-medium [text-wrap:balance] ${
+                                    hasIfcInstances ? "" : "text-secondary"
+                                }`}
+                            >
                                 {highlightSearchString(product.name)}
                             </h2>
                             <span className="block mt-[3px]">
