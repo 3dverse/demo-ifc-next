@@ -1,6 +1,7 @@
 //------------------------------------------------------------------------------
 import { useEffect, useState } from "react";
-import { Accordion, Text } from "@chakra-ui/react";
+import { Accordion, Button, Icon, Link, Text } from "@chakra-ui/react";
+import { RiFileTextLine } from "react-icons/ri";
 
 //------------------------------------------------------------------------------
 import PRODUCT_LIST from "@/public/data/json/products.json";
@@ -19,6 +20,9 @@ export const ProductsList = () => {
     //------------------------------------------------------------------------------
     const [productList, setProductList] = useState<Product[]>(PRODUCT_LIST);
     const [searchString, setSearch] = useState("");
+
+    //------------------------------------------------------------------------------
+    const PDF_REPORT_URL = "/data/pdf/report.pdf";
 
     //------------------------------------------------------------------------------
     useEffect(() => {
@@ -44,6 +48,18 @@ export const ProductsList = () => {
                             {PRODUCT_LIST.length}
                         </Text>
                     )}
+                    <Button
+                        variant="secondary"
+                        as={Link}
+                        href={PDF_REPORT_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        size="xs"
+                        leftIcon={<Icon as={RiFileTextLine} boxSize={3} opacity={0.6} />}
+                        className="ml-4"
+                    >
+                        PDF report
+                    </Button>
                 </MainPanelHeader>
 
                 <div className="md:mx-2">
