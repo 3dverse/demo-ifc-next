@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-import ifcInfo from "../../../public/data/json/ifcData.json";
+import IFC_DATA from "../../../public/data/json/ifcData.json";
 
 //------------------------------------------------------------------------------
 import { Header } from "./Header";
@@ -23,7 +23,7 @@ export const IfcPropertyPanel = ({
     spotLightEntity: Entity | undefined;
 }) => {
     //------------------------------------------------------------------------------
-    const ifcData = ifcInfo as IfcData;
+    const ifcData = IFC_DATA as IfcData;
     const entitiyProperties = ifcData[guid];
 
     if (!entitiyProperties?.props?.Name) {

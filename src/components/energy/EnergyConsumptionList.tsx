@@ -2,7 +2,7 @@
 import { memo } from "react";
 
 //------------------------------------------------------------------------------
-import ifcInfo from "../../../public/data/json/ifcInfo.json";
+import IFC_DATA from "../../../public/data/json/ifcData.json";
 import energyData from "../../../public/data/json/energyData.json";
 
 //------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ import { MainPanelHeader } from "@/components/layout/MainPanelHeader";
 import { IfcData, EnergyData } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
-const ifcData = ifcInfo as IfcData;
+const ifcData = IFC_DATA as IfcData;
 const roomEnergyData = energyData as EnergyData;
 
 //------------------------------------------------------------------------------

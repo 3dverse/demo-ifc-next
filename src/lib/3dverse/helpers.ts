@@ -1,4 +1,4 @@
-import ifcInfo from "../../../public/data/json/ifcInfo.json";
+import IFC_DATA from "../../../public/data/json/ifcData.json";
 import ifctype2guids from "../../../public/data/json/ifctype2guids.json";
 import energyData from "../../../public/data/json/energyData.json";
 import { guid2euid, euid2guid } from "../id-converter";
@@ -11,7 +11,7 @@ CameraControls.install({ THREE: THREE });
 import chroma from "chroma-js";
 import { Entity } from "@/types/3dverse";
 
-const ifcData = ifcInfo as IfcData;
+const ifcData = IFC_DATA as IfcData;
 const ifcTypes = ifctype2guids;
 const roomEnergyData = energyData as EnergyData;
 
