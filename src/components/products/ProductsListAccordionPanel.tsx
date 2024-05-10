@@ -2,16 +2,15 @@
 import { AccordionPanel, Button } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
-import { travelToEntity } from "@/lib/3dverse/helpers";
-import { guid2euid } from "@/lib/id-converter";
+import { focusOnEntity } from "@/lib/3dverse/helpers";
 import { Product } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 export const ProductsListAccordionPanel = ({ product }: { product: Product }) => {
     //------------------------------------------------------------------------------
-    const handleClick = (guid: string) => {
-        travelToEntity(guid2euid(guid));
+    const handleClick = async (guid: string) => {
+        focusOnEntity(guid);
     };
 
     //------------------------------------------------------------------------------

@@ -272,6 +272,13 @@ export async function travelToEntity(entityUUID: string | undefined) {
 }
 
 //------------------------------------------------------------------------------
+export async function focusOnEntity(guid: string) {
+    const entity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
+    const viewport = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0];
+    viewport.focusOn(entity);
+}
+
+//------------------------------------------------------------------------------
 export async function getEntityFromGuid(guid: string) {
     return (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
 }
