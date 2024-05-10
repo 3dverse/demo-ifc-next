@@ -21,7 +21,7 @@ import { Product } from "@/types/ifc";
 export const MainLayout = memo(() => {
     //--------------------------------------------------------------------------
     // Hooks
-    const [selectedPropertyEUID, setSelectedPropertyEUID] = useState<string | null>(null);
+    const [selectedPropertyGUID, setselectedPropertyGUID] = useState<string | null>(null);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
     const [energyVisible, setEnergyVisibility] = useState(false);
@@ -44,14 +44,14 @@ export const MainLayout = memo(() => {
     //------------------------------------------------------------------------------
     const handleChange = useCallback(
         (event: React.MouseEvent<HTMLElement>) => {
-            handleCanvasSelection(event, setSelectedPropertyEUID, energyVisible);
+            handleCanvasSelection(event, setselectedPropertyGUID, energyVisible);
         },
         [energyVisible],
     );
 
     //------------------------------------------------------------------------------
     const handleKey = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
-        unselectEntities(event, setSelectedPropertyEUID);
+        unselectEntities(event, setselectedPropertyGUID);
     }, []);
 
     const SHOW_ENERGY_CONSUMPTION_PANEL = false;
@@ -72,8 +72,8 @@ export const MainLayout = memo(() => {
             <SecondaryActionBar basePoint={basePoint} sessionId={sessionId} />
             <DetailsPanel
                 selectedProduct={selectedProduct}
-                selectedPropertyEUID={selectedPropertyEUID}
-                onClose={() => setSelectedPropertyEUID(null)}
+                selectedPropertyGUID={selectedPropertyGUID}
+                onClose={() => setselectedPropertyGUID(null)}
             />
             <AboutCard />
             <WelcomeModal />

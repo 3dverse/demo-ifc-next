@@ -10,16 +10,16 @@ import { IfcPropertyPanel } from "../IfcProperty/IfcPropertyPanel";
 //------------------------------------------------------------------------------
 export const DetailsPanel = ({
     selectedProduct,
-    selectedPropertyEUID,
+    selectedPropertyGUID,
     onClose,
 }: {
     selectedProduct: Product | null;
-    selectedPropertyEUID: string | null;
+    selectedPropertyGUID: string | null;
     onClose: () => void;
 }) => {
     //------------------------------------------------------------------------------
 
-    if (!selectedProduct && !selectedPropertyEUID) {
+    if (!selectedProduct && !selectedPropertyGUID) {
         return <></>;
     }
 
@@ -40,7 +40,7 @@ export const DetailsPanel = ({
             </Button>
 
             {selectedProduct && <ProductDetails product={selectedProduct} />}
-            {selectedPropertyEUID && <IfcPropertyPanel guid={selectedPropertyEUID} />}
+            {selectedPropertyGUID && <IfcPropertyPanel guid={selectedPropertyGUID} />}
         </aside>
     );
 };
