@@ -1,6 +1,5 @@
-//------------------------------------------------------------------------------
 import { useState, useCallback, memo, useEffect } from "react";
-import { useDisclosure } from "@chakra-ui/react";
+import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
 import { Canvas } from "@/components/canvas/Canvas";
@@ -10,9 +9,10 @@ import { EnergyConsumptionPanel } from "@/components/energy/EnergyConsumptionPan
 import { CanvasActionBar } from "@/components/canvas/CanvasActionBar";
 import { ShareQRCode } from "@/components/canvas/ShareQRCode";
 import { Entity } from "@/types/3dverse";
+import { handleCanvasSelection, CameraController_, unselectEntities } from "@/lib/3dverse/helpers";
+import { useRef } from "react";
 
 //------------------------------------------------------------------------------
-import { handleCanvasSelection, unselectEntities } from "@/lib/3dverse/helpers";
 import { WelcomeModal } from "@/components/common/WelcomeModal";
 import { AboutCard } from "@/components/about/AboutCard";
 
@@ -63,6 +63,29 @@ export const MainLayout = memo(() => {
     }, [sessionId]);
     //------------------------------------------------------------------------------
     // UI
+    const maxWidth = "760px";
+    const [onMobile] = useMediaQuery(`(max-width: ${maxWidth})`, { ssr: false });
+
+    const canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
+    const cameraControllerRef = useRef<CameraController_ | null>(null);
+
+    useEffect(() => {
+        if (!sessionId) return;
+        if (!cameraControllerRef.current) {
+            cameraControllerRef.current = new CameraController_(canvasElement);
+        }
+    }, [sessionId]);
+
+    useEffect(() => {
+        if (!cameraControllerRef.current || !sessionId) return;
+
+        if (onMobile) {
+            cameraControllerRef.current.activateThreeJsController();
+        } else {
+            cameraControllerRef.current.deactivateThreeJsController();
+        }
+    }, [sessionId, onMobile]);
+
     return (
         <>
             <Canvas
