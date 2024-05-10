@@ -28,6 +28,8 @@ export type Product = {
     images: string | string[];
 };
 
+export type WasteType = "DD" | "DEA" | "DEEE" | "DI" | "DNIND" | "VOID";
+
 export type Waste = {
-    type: "DD" | "DEA" | "DEEE" | "DI" | "DNIND" | "VOID";
+    type: WasteType;
 };

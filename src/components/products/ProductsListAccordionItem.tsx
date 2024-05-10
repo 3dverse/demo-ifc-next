@@ -3,6 +3,7 @@ import { AccordionItem, AccordionButton, AccordionIcon } from "@chakra-ui/react"
 
 //------------------------------------------------------------------------------
 import { CaretRightSharpSolidIcon } from "@/components/common/icons";
+import { WasteTypeLabel } from "@/components/waste/WasteTypeLabel";
 import { ProductsListAccordionPanel } from "./ProductsListAccordionPanel";
 
 //------------------------------------------------------------------------------
@@ -46,11 +47,10 @@ export const ProductsListAccordionItem = ({
                 >
                     <div className="relative">
                         <AccordionButton
-                            pr="1"
-                            pl="2"
+                            px="2"
                             py="1"
                             textTransform="none"
-                            alignItems="center"
+                            alignItems="start"
                             className="group w-full gap-2"
                             border="none"
                             _hover={{
@@ -69,16 +69,23 @@ export const ProductsListAccordionItem = ({
                         >
                             <AccordionIcon
                                 as={CaretRightSharpSolidIcon}
-                                width="3"
-                                height="3"
+                                width={3}
+                                height={3}
+                                mt="5px"
                                 opacity={isExpanded ? "1 !important" : 0.5}
                                 transform={isExpanded ? "rotate(90deg)" : undefined}
                                 className="fill-accent group-hover:opacity-[.8] transition-opacity"
                             />
 
-                            <h2 className="flex-1 text-left font-medium">{highlightSearchString(product.name)}</h2>
-                            <p className="text-2xs text-secondary">{product.waste_type}</p>
-                            <p className="text-2xs text-secondary">{product.reuse_rate}%</p>
+                            <h2 className="flex-1 text-left text-sm [text-wrap:balance] font-medium">
+                                {highlightSearchString(product.name)}
+                            </h2>
+                            <span className="block mt-[3px]">
+                                <WasteTypeLabel wasteType={product.waste_type} />
+                                {false && product.reuse_rate && (
+                                    <p className="text-2xs text-secondary">{product.reuse_rate}%</p>
+                                )}
+                            </span>
                         </AccordionButton>
                     </div>
                     <ProductsListAccordionPanel product={product} />
