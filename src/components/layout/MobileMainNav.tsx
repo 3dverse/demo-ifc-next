@@ -19,7 +19,7 @@ import { StoreyList } from "@/components/storeys/StoreyList";
 import { EnergyConsumptionList } from "@/components/energy/EnergyConsumptionList";
 import { AboutPanel } from "@/components/about/AboutPanel";
 import { MainNavActiveItemId } from "@/core/type";
-import { ProductsList } from "@/components/products/ProductsList";
+// import { ProductsList } from "@/components/products/ProductsList";
 import { MainNavItem } from "@/types/app";
 
 //------------------------------------------------------------------------------
@@ -95,7 +95,7 @@ export const MobileMainNav = () => {
                         />
                     </div>
                     {mainNavActiveItemId === MAIN_NAV_STOREYS_ID && <StoreyList />}
-                    {mainNavActiveItemId === MAIN_NAV_PRODUCTS_ID && <ProductsList />}
+                    {/* {mainNavActiveItemId === MAIN_NAV_PRODUCTS_ID && <ProductsList />} */}
                     {mainNavActiveItemId === MAIN_NAV_ENERGY_ID && <EnergyConsumptionList />}
                     {mainNavActiveItemId === MAIN_NAV_ABOUT_ID && <AboutPanel />}
                 </div>

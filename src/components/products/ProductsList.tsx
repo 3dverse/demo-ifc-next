@@ -4,7 +4,7 @@ import { Accordion, Button, Icon, Link, Text } from "@chakra-ui/react";
 import { RiFileTextLine } from "react-icons/ri";
 
 //------------------------------------------------------------------------------
-import PRODUCT_LIST from "@/public/data/json/products.json";
+import PRODUCT_LIST from "../../../public/data/json/products.json";
 
 //------------------------------------------------------------------------------
 import { MainPanelHeader } from "@/components/layout/MainPanelHeader";

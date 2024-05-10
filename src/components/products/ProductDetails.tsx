@@ -28,7 +28,7 @@ export const ProductDetails = ({ product }: { product: Product }) => {
                     <article className="flex align-center justify-center p-4 bg-underground">
                         {product.images.map((imageUrl: string, i: number) => {
                             return (
-                                <image
+                                <img
                                     key={i}
                                     src={`/data/${imageUrl}`}
                                     alt=""

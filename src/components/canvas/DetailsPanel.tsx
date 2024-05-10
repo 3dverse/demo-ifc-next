@@ -5,6 +5,7 @@ import { Button } from "@chakra-ui/react";
 import { Product } from "@/types/ifc";
 import { ProductDetails } from "@/components/products/ProductDetails";
 import { IfcPropertyPanel } from "../IfcProperty/IfcPropertyPanel";
+import { Entity } from "@/types/3dverse";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -12,10 +13,12 @@ export const DetailsPanel = ({
     selectedProduct,
     selectedPropertyGUID,
     onClose,
+    spotLightEntity,
 }: {
     selectedProduct: Product | null;
     selectedPropertyGUID: string | null;
     onClose: () => void;
+    spotLightEntity?: Entity;
 }) => {
     //------------------------------------------------------------------------------
 
@@ -48,7 +51,11 @@ export const DetailsPanel = ({
 
             {selectedProduct && <ProductDetails product={selectedProduct} />}
             {selectedPropertyGUID && (
-                <IfcPropertyPanel uppertitle={selectedProduct ? "IFC" : "Selection"} guid={selectedPropertyGUID} />
+                <IfcPropertyPanel
+                    uppertitle={selectedProduct ? "IFC" : "Selection"}
+                    guid={selectedPropertyGUID}
+                    spotLightEntity={spotLightEntity}
+                />
             )}
         </aside>
     );

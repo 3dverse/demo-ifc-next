@@ -21,11 +21,11 @@ export type Product = {
     name: string;
     waste_type: string;
     reuse_rate: number | string;
-    room_names: string[];
+    room_names?: string[];
     ifc_space_guids: string[];
     ifc_instances_guids: string[];
     instructions: string;
-    images: string | string[];
+    images?: string | string[];
 };
 
 export type WasteType = "DD" | "DEA" | "DEEE" | "DI" | "DNIND" | "VOID";

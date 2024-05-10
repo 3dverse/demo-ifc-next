@@ -1,13 +1,14 @@
-//------------------------------------------------------------------------------
-import chroma from "chroma-js";
-
-//------------------------------------------------------------------------------
-import IFC_DATA from "@/public/data/json/ifcData.json";
-import ENERGY_DATA from "@/public/data/json/energyData.json";
-
-//------------------------------------------------------------------------------
-import { guid2euid, euid2guid } from "@/lib/id-converter";
+import IFC_DATA from "../../../public/data/json/ifcInfo.json";
+import ENERGY_DATA from "../../../public/data/json/energyData.json";
+import { guid2euid, euid2guid } from "../id-converter";
 import { EnergyData, IfcData, ChartInput, CanvasEvent, Attribute, BasePoint } from "@/types/ifc";
+import * as THREE from "three";
+import CameraControls from "camera-controls";
+
+CameraControls.install({ THREE: THREE });
+
+import chroma from "chroma-js";
+import { Entity } from "@/types/3dverse";
 
 //------------------------------------------------------------------------------
 const ifcData = IFC_DATA as IfcData;
@@ -288,43 +289,51 @@ export function getSurface(areaData: Attribute) {
     return typeof areaData === "number" ? areaData.toFixed(2) : "-";
 }
 
-//------------------------------------------------------------------------------
-export async function updateLightIntensity(value: number, guid: string) {
-    const lightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
-    const lightEntityChildren = await lightEntity.getChildren();
-
-    for (const lightChild of lightEntityChildren) {
-        if ("point_light" in lightChild.components) {
-            const spotlightComponent = lightChild.getComponent("point_light");
-            const newComponent = {
-                ...spotlightComponent,
-                intensity: value,
-            };
-            lightChild.setComponent("point_light", newComponent);
-        }
+export async function updateLightIntensity(
+    value: number,
+    spotLightEntity: Entity | undefined,
+    setIntensity: (value: number) => void,
+) {
+    // spotLightEntity
+    if (spotLightEntity) {
+        const spotlightComponent = spotLightEntity.getComponent("point_light");
+        const newComponent = {
+            ...spotlightComponent,
+            intensity: value,
+        };
+        setIntensity(value);
+        spotLightEntity.setComponent("point_light", newComponent);
     }
 }
 
-//------------------------------------------------------------------------------
-export async function updateColor(value: string, guid: string) {
+function componentToHex(c: number) {
+    var hex = (c * 255).toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+export function rgbToHex(rgb: number[]) {
+    return "#" + componentToHex(rgb[0]) + componentToHex(rgb[1]) + componentToHex(rgb[2]);
+}
+
+export async function updateColor(
+    value: string,
+    spotLightEntity: Entity | undefined,
+    setColor: (col: number[]) => void,
+) {
     const colorValHex = value;
     const red = parseInt(colorValHex.substring(1, 3), 16);
     const green = parseInt(colorValHex.substring(3, 5), 16);
     const blue = parseInt(colorValHex.substring(5, 7), 16);
 
     const rgb = [red / 255, green / 255, blue / 255];
-    const lightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(guid2euid(guid)))[0];
-    const lightEntityChildren = await lightEntity.getChildren();
-
-    for (const lightChild of lightEntityChildren) {
-        if ("point_light" in lightChild.components) {
-            const spotlightComponent = lightChild.getComponent("point_light");
-            const newComponent = {
-                ...spotlightComponent,
-                color: rgb,
-            };
-            lightChild.setComponent("point_light", newComponent);
-        }
+    if (spotLightEntity) {
+        const spotlightComponent = spotLightEntity.getComponent("point_light");
+        setColor(rgb);
+        const newComponent = {
+            ...spotlightComponent,
+            color: rgb,
+        };
+        spotLightEntity.setComponent("point_light", newComponent);
     }
 }
 
@@ -391,5 +400,67 @@ export function toggleFilter(filterType: string, activate: boolean) {
         SDK3DVerse.engineAPI.ftlAPI.toggleFilter(filterType == "W" ? wasteFilter : reuseFilter);
         SDK3DVerse.engineAPI.ftlAPI.toggleFilter(transpFilter);
         SDK3DVerse.engineAPI.ftlAPI.toggleFilter(regularFilter);
+    }
+}
+
+export class CameraController_ {
+    canvasElement: HTMLElement;
+    cameraControls: CameraControls;
+    viewport: any;
+
+    constructor(canvasElement: HTMLElement) {
+        this.canvasElement = canvasElement;
+        // create THREE camera
+        this.viewport = SDK3DVerse.engineAPI.cameraAPI.getViewports()[0];
+        const { fovy, aspectRatio, nearPlane, farPlane } = this.viewport.getProjection();
+        const camera = new THREE.PerspectiveCamera(fovy, aspectRatio, nearPlane, farPlane || 100000);
+        this.cameraControls = new CameraControls(camera, this.canvasElement);
+    }
+
+    onCameraUpdate = () => {
+        const cameraPosition = this.cameraControls.camera.position.toArray();
+        const cameraOrientation = new THREE.Quaternion();
+        this.cameraControls.camera.getWorldQuaternion(cameraOrientation);
+        const cameraOrientationArray = cameraOrientation.toArray();
+
+        this.viewport.setLocalTransform({
+            position: cameraPosition,
+            orientation: cameraOrientationArray,
+        });
+    };
+
+    async activateThreeJsController() {
+        this.viewport.setControllerType(SDK3DVerse.cameraControllerType.none);
+        const clock = new THREE.Clock();
+
+        const cameraTransform: {
+            position: [number, number, number];
+            orientation: [number, number, number, number];
+        } = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().getGlobalTransform();
+
+        this.cameraControls.enabled = true;
+
+        const target = new THREE.Object3D();
+        target.rotation.setFromQuaternion(new THREE.Quaternion(...cameraTransform.orientation));
+        target.translateOnAxis(new THREE.Vector3(0, 0, -1), 0.01);
+
+        this.cameraControls.setLookAt(...cameraTransform.position, ...target.position.toArray());
+
+        // listen to camera update events
+        this.cameraControls.addEventListener("update", this.onCameraUpdate);
+        this.cameraControls.dollySpeed = 0.5;
+
+        const anim = () => {
+            const delta = clock.getDelta();
+            this.cameraControls.update(delta);
+            requestAnimationFrame(anim);
+        };
+        anim();
+    }
+
+    deactivateThreeJsController() {
+        this.cameraControls.enabled = false;
+        this.cameraControls.removeEventListener("update", this.onCameraUpdate);
+        this.viewport.setControllerType(SDK3DVerse.cameraControllerType.editor);
     }
 }
