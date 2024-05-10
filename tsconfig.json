@@ -14,8 +14,8 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@/public*": ["./public/*"]
+      "@/public*": ["./public/*"],
+      "@/*": ["./src/*"]
     },
     "target": "es2015"
   },
