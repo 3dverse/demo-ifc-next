@@ -1,4 +1,7 @@
 //------------------------------------------------------------------------------
+import Image from "next/image";
+
+//------------------------------------------------------------------------------
 import { WasteTypeLabel } from "@/components/waste/WasteTypeLabel";
 
 //------------------------------------------------------------------------------
@@ -28,11 +31,11 @@ export const ProductDetails = ({ product }: { product: Product }) => {
                     <article className="flex align-center justify-center p-4 bg-underground">
                         {product.images.map((imageUrl: string, i: number) => {
                             return (
-                                <img
+                                <Image
                                     key={i}
                                     src={`/data/${imageUrl}`}
                                     alt=""
-                                    className="block w-32 aspect-square bg-ground"
+                                    className="block h-32 object-contain bg-ground"
                                 />
                             );
                         })}
