@@ -39,16 +39,12 @@ export const ProductDetails = ({ product }: { product: Product }) => {
                     </article>
                 )}
 
-                <article className="pset w-full py-4 px-4">
-                    {product.instructions ? (
-                        <>
-                            <h1 className="pb-px text-2xs text-secondary uppercase">Instructions</h1>
-                            <p className="text-xs whitespace-pre [text-wrap:wrap]">{product.instructions}</p>
-                        </>
-                    ) : (
-                        <p className="text-xs text-tertiary">No instructions</p>
-                    )}
-                </article>
+                {product.instructions && (
+                    <article className="pset w-full py-4 px-4">
+                        <h1 className="pb-px text-2xs text-secondary uppercase">Instructions</h1>
+                        <p className="text-xs whitespace-pre [text-wrap:wrap]">{product.instructions}</p>
+                    </article>
+                )}
             </div>
         </>
     );

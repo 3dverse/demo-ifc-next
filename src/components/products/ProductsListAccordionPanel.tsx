@@ -20,7 +20,7 @@ export const ProductsListAccordionPanel = ({
     const handleClick = async (guid: string) => {
         focusOnEntity(guid);
         setSelectedProduct(product);
-        product.ifc_instances_guids[0] && setselectedPropertyGUID(product.ifc_instances_guids[0]);
+        product.ifc_instances_guids[0] && setselectedPropertyGUID(guid);
     };
 
     //------------------------------------------------------------------------------
