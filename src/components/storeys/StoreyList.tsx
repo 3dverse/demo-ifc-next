@@ -78,7 +78,7 @@ export const StoreyList = () => {
 
     //------------------------------------------------------------------------------
     return (
-        <article className="overflow-y-scroll h-full">
+        <article className="overflow-y-scroll h-[calc(100vh-107px)]">
             <div className="flex-1 pb-4 md:pb-12">
                 <MainPanelHeader title="Storeys" className="py-3">
                     <span />
