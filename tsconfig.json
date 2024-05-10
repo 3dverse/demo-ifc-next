@@ -15,7 +15,7 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"],
-      "data/*": ["./data/*"]
+      "@/public*": ["./public/*"]
     },
     "target": "es2015"
   },

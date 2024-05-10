@@ -1,8 +1,10 @@
 //------------------------------------------------------------------------------
-import { Product } from "@/types/ifc";
-import { ProductDetails } from "../products/ProductDetails";
-import { IfcPropertyPanel } from "../IfcProperty/IfcPropertyPanel";
 import { Button } from "@chakra-ui/react";
+
+//------------------------------------------------------------------------------
+import { Product } from "@/types/ifc";
+import { ProductDetails } from "@/components/products/ProductDetails";
+import { IfcPropertyPanel } from "../IfcProperty/IfcPropertyPanel";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------

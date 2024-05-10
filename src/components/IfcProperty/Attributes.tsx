@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-import IFC_DATA from "data/json/ifcData.json";
+import IFC_DATA from "@/public/data/json/ifcData.json";
 import { IfcData } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
