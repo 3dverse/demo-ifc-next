@@ -25,7 +25,14 @@ export const DetailsPanel = ({
 
     //------------------------------------------------------------------------------
     return (
-        <aside className="panel-card lg:card animate-appear-top absolute lg:left-auto lg:bottom-0 lg:right-3 lg:max-h-[46vh] flex flex-col">
+        <aside
+            className={`
+                panel-card lg:card animate-appear-top 
+                absolute lg:left-auto lg:bottom-0 lg:right-3 
+                lg:max-h-[46vh] 
+                flex flex-col
+            `}
+        >
             <Button
                 variant="ghost"
                 size="xs"

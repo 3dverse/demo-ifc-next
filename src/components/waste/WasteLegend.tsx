@@ -14,7 +14,6 @@ export const WasteLegend = () => {
                         }}
                     />
                     <p className="w-32">{wasteType.name}</p>
-                    <p className="w-16 text-right text-2xs text-secondary tabular-nums">{wasteType.weight}</p>
                 </li>
             ))}
         </ul>

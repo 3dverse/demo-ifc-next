@@ -15,7 +15,7 @@ export const WasteTypeLabel = ({ wasteType }: { wasteType: WasteType | string })
     }
     //------------------------------------------------------------------------------
     return (
-        <div className="flex items-center gap-1">
+        <div className="flex flex-row-reverse items-center gap-1">
             <div
                 className="w-3 aspect-square rounded-sm"
                 style={{
