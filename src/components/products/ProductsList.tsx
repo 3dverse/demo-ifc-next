@@ -37,7 +37,7 @@ export const ProductsList = () => {
 
     //------------------------------------------------------------------------------
     return (
-        <article className="overflow-y-scroll h-full">
+        <article className="overflow-y-scroll h-[calc(100vh-107px)]">
             <div className="flex-1 pb-4 md:pb-12">
                 <MainPanelHeader title="Products" className="!px-2 py-1">
                     <SearchInput setSearch={setSearch} />
