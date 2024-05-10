@@ -1,4 +1,4 @@
-import IFC_DATA from "../../../public/data/json/ifcInfo.json";
+import IFC_DATA from "../../../public/data/json/ifcData.json";
 import ENERGY_DATA from "../../../public/data/json/energyData.json";
 import { guid2euid, euid2guid } from "../id-converter";
 import { EnergyData, IfcData, ChartInput, CanvasEvent, Attribute, BasePoint } from "@/types/ifc";

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Accordion, Button } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
-import IFC_DATA from "../../../public/data/json/ifcInfo.json";
+import IFC_DATA from "../../../public/data/json/ifcData.json";
 import IFC_TYPES from "../../../public/data/json/ifctype2guids.json";
 import { getEntityFromGuid, toToggle } from "@/lib/3dverse/helpers";
 
