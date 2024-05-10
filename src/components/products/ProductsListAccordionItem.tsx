@@ -14,13 +14,15 @@ import { Product } from "@/types/ifc";
 export const ProductsListAccordionItem = ({
     product,
     productCount,
-    index,
+    hasIfcInstances,
     searchString,
+    index,
 }: {
     product: Product;
     productCount: number;
-    index: number;
+    hasIfcInstances: boolean;
     searchString: string;
+    index: number;
 }) => {
     //------------------------------------------------------------------------------
     const highlightSearchString = (value: string) => {
@@ -35,7 +37,7 @@ export const ProductsListAccordionItem = ({
     //------------------------------------------------------------------------------
     // UI
     return (
-        <AccordionItem key={index} border="none" transition="opacity .25s">
+        <AccordionItem key={index} border="none" transition="opacity .25s" isDisabled={!hasIfcInstances}>
             {({ isExpanded }) => (
                 <div
                     className={`
@@ -72,7 +74,7 @@ export const ProductsListAccordionItem = ({
                                 width={3}
                                 height={3}
                                 mt="5px"
-                                opacity={isExpanded ? "1 !important" : 0.5}
+                                opacity={hasIfcInstances ? (isExpanded ? "1 !important" : 0.5) : "0 !important"}
                                 transform={isExpanded ? "rotate(90deg)" : undefined}
                                 className="fill-accent group-hover:opacity-[.8] transition-opacity"
                             />

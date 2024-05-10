@@ -70,8 +70,9 @@ export const ProductsList = () => {
                                     key={index}
                                     product={product}
                                     productCount={productList.length}
-                                    index={index}
+                                    hasIfcInstances={product.ifc_instances_guids.length > 0}
                                     searchString={searchString}
+                                    index={index}
                                 />
                             ))}
                         </Accordion>
