@@ -28,7 +28,7 @@ export const ProductDetails = ({ product }: { product: Product }) => {
                     </article>
                 )}
                 {typeof product.images === "object" && product.images.length > 0 && (
-                    <article className="flex align-center justify-center p-4 bg-underground">
+                    <article className="flex flex-wrap align-center justify-center p-2 bg-underground">
                         {product.images.map((imageUrl: string, i: number) => {
                             return (
                                 <Image
@@ -37,7 +37,7 @@ export const ProductDetails = ({ product }: { product: Product }) => {
                                     alt=""
                                     width={128}
                                     height={128}
-                                    className="block object-contain bg-ground"
+                                    className="block object-contain bg-ground p-px"
                                 />
                             );
                         })}
