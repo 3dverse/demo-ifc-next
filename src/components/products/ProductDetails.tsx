@@ -20,7 +20,7 @@ export const ProductDetails = ({ product }: { product: Product }) => {
                     <h1 className="text-lg font-semibold">{product.name}</h1>
                 </div>
             </header>
-            <div className="card-body pb-4">
+            <div className="card-body pb-4 min-h-[5rem]">
                 <article className="pset w-full">
                     <ul>
                         <li className="pset-list-item card-wrapper">
