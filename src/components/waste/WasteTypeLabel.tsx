@@ -7,7 +7,7 @@ import { WasteType } from "@/types/ifc";
 //------------------------------------------------------------------------------
 export const WasteTypeLabel = ({ wasteType }: { wasteType: WasteType | string }) => {
     //------------------------------------------------------------------------------
-    const wasteTypeDetail = wasteTypes.find((w) => w.name === wasteType);
+    const wasteTypeDetail = wasteTypes.find((w) => w.type === wasteType);
 
     //------------------------------------------------------------------------------
     if (!wasteTypeDetail) {
@@ -22,7 +22,7 @@ export const WasteTypeLabel = ({ wasteType }: { wasteType: WasteType | string })
                     backgroundColor: wasteTypeDetail.color,
                 }}
             />
-            <p className="text-2xs text-seocndary">{wasteTypeDetail.name}</p>
+            <p className="text-2xs text-seocndary">{wasteTypeDetail.type}</p>
         </div>
     );
 };
