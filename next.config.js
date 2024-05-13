@@ -3,6 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   output: 'export',
   basePath: '/demo-ifc-next',
+  images: {
+    unoptimized: true
+  },
 };
 
 module.exports = {

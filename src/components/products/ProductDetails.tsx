@@ -33,9 +33,11 @@ export const ProductDetails = ({ product }: { product: Product }) => {
                             return (
                                 <Image
                                     key={i}
-                                    src={`/data/${imageUrl}`}
+                                    src={`/demo-ifc-next/data/${imageUrl}`}
                                     alt=""
-                                    className="block h-32 object-contain bg-ground"
+                                    width={128}
+                                    height={128}
+                                    className="block object-contain bg-ground"
                                 />
                             );
                         })}
