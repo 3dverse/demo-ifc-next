@@ -3,9 +3,18 @@ import { createMultiStyleConfigHelpers } from "@chakra-ui/react";
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(tabsAnatomy.keys);
 
-const noBoxShadow = {
-    boxShadow: "none",
-};
+const baseStyle = definePartsStyle({
+    tab: {
+        pr: "0!",
+        pl: "0!",
+        pt: "3!",
+        fontWeight: 500,
+        color: "content.tertiary",
+        _selected: {
+            color: "accent.500",
+        },
+    },
+});
 
 const line = definePartsStyle({
     tablist: {
@@ -26,7 +35,9 @@ const line = definePartsStyle({
             color: "accent.500",
             borderColor: "accent.500",
         },
-        _focusVisible: noBoxShadow,
+        _focusVisible: {
+            boxShadow: "none",
+        },
     },
 });
 
@@ -111,5 +122,6 @@ const variants = {
 };
 
 export default defineMultiStyleConfig({
+    baseStyle,
     variants,
 });
