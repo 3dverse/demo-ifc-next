@@ -1,13 +1,17 @@
-import ifcInfo from "../../../data/json/ifcInfo.json";
-import ifctype2guids from "../../../data/json/ifctype2guids.json";
-import energyData from "../../../data/json/energyData.json";
+import IFC_DATA from "../../../public/data/json/ifcData.json";
+import ifctype2guids from "../../../public/data/json/ifctype2guids.json";
+import energyData from "../../../public/data/json/energyData.json";
 import { guid2euid, euid2guid } from "../id-converter";
 import { EnergyData, IfcData, ChartInput, CanvasEvent, Attribute, BasePoint } from "@/types/ifc";
+import * as THREE from "three";
+import CameraControls from "camera-controls";
+
+CameraControls.install({ THREE: THREE });
 
 import chroma from "chroma-js";
 import { Entity } from "@/types/3dverse";
 
-const ifcData = ifcInfo as IfcData;
+const ifcData = IFC_DATA as IfcData;
 const ifcTypes = ifctype2guids;
 const roomEnergyData = energyData as EnergyData;
 
@@ -348,4 +352,66 @@ export async function showClientAvatars() {
             return `User ${nameCapitalized}`;
         },
     });
+}
+
+export class CameraController_ {
+    canvasElement: HTMLElement;
+    cameraControls: CameraControls;
+    viewport: any;
+
+    constructor(canvasElement: HTMLElement) {
+        this.canvasElement = canvasElement;
+        // create THREE camera
+        this.viewport = SDK3DVerse.engineAPI.cameraAPI.getViewports()[0];
+        const { fovy, aspectRatio, nearPlane, farPlane } = this.viewport.getProjection();
+        const camera = new THREE.PerspectiveCamera(fovy, aspectRatio, nearPlane, farPlane || 100000);
+        this.cameraControls = new CameraControls(camera, this.canvasElement);
+    }
+
+    onCameraUpdate = () => {
+        const cameraPosition = this.cameraControls.camera.position.toArray();
+        const cameraOrientation = new THREE.Quaternion();
+        this.cameraControls.camera.getWorldQuaternion(cameraOrientation);
+        const cameraOrientationArray = cameraOrientation.toArray();
+
+        this.viewport.setLocalTransform({
+            position: cameraPosition,
+            orientation: cameraOrientationArray,
+        });
+    };
+
+    async activateThreeJsController() {
+        this.viewport.setControllerType(SDK3DVerse.cameraControllerType.none);
+        const clock = new THREE.Clock();
+
+        const cameraTransform: {
+            position: [number, number, number];
+            orientation: [number, number, number, number];
+        } = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().getGlobalTransform();
+
+        this.cameraControls.enabled = true;
+
+        const target = new THREE.Object3D();
+        target.rotation.setFromQuaternion(new THREE.Quaternion(...cameraTransform.orientation));
+        target.translateOnAxis(new THREE.Vector3(0, 0, -1), 0.01);
+
+        this.cameraControls.setLookAt(...cameraTransform.position, ...target.position.toArray());
+
+        // listen to camera update events
+        this.cameraControls.addEventListener("update", this.onCameraUpdate);
+        this.cameraControls.dollySpeed = 0.5;
+
+        const anim = () => {
+            const delta = clock.getDelta();
+            this.cameraControls.update(delta);
+            requestAnimationFrame(anim);
+        };
+        anim();
+    }
+
+    deactivateThreeJsController() {
+        this.cameraControls.enabled = false;
+        this.cameraControls.removeEventListener("update", this.onCameraUpdate);
+        this.viewport.setControllerType(SDK3DVerse.cameraControllerType.editor);
+    }
 }

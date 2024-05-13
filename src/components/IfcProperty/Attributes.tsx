@@ -1,12 +1,12 @@
 //------------------------------------------------------------------------------
-import ifcInfo from "../../../data/json/ifcInfo.json";
+import IFC_DATA from "../../../public/data/json/ifcData.json";
 import { IfcData } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 export const Attributes = ({ guid }: { guid: string }) => {
     //------------------------------------------------------------------------------
-    const ifcData = ifcInfo as IfcData;
+    const ifcData = IFC_DATA as IfcData;
     const entitiyProperties = ifcData[guid];
 
     //------------------------------------------------------------------------------
