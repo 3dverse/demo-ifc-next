@@ -8,6 +8,7 @@ import PRODUCT_LIST from "../../../public/data/json/products.json";
 
 //------------------------------------------------------------------------------
 import { MainPanelHeader } from "@/components/layout/MainPanelHeader";
+import { MainPanelBody } from "@/components/layout/MainPanelBody";
 import { SearchInput } from "@/components/common/SearchInput";
 import { ProductsListAccordionItem } from "./ProductsListAccordionItem";
 
@@ -43,54 +44,52 @@ export const ProductsList = ({
 
     //------------------------------------------------------------------------------
     return (
-        <article className="overflow-y-scroll h-[calc(100vh-107px)]">
-            <div className="flex-1 pb-4 md:pb-12">
-                <MainPanelHeader title="Products" className="!px-2 py-1">
-                    <SearchInput setSearch={setSearch} />
-                    {productList.length < PRODUCT_LIST.length && (
-                        <Text fontSize="2xs" color="content.secondary">
-                            {productList.length}
-                            <span className="px-px">/</span>
-                            {PRODUCT_LIST.length}
-                        </Text>
-                    )}
-                    <Button
-                        variant="secondary"
-                        as={Link}
-                        href={PDF_REPORT_URL}
-                        target="_blank"
-                        rel="noreferrer"
-                        size="xs"
-                        leftIcon={<Icon as={RiFileTextLine} boxSize={3} opacity={0.6} />}
-                        className="ml-4"
-                    >
-                        PDF report
-                    </Button>
-                </MainPanelHeader>
+        <article>
+            <MainPanelHeader title="Products" className="!px-2 py-1">
+                <SearchInput setSearch={setSearch} />
+                {productList.length < PRODUCT_LIST.length && (
+                    <Text fontSize="2xs" color="content.secondary">
+                        {productList.length}
+                        <span className="px-px">/</span>
+                        {PRODUCT_LIST.length}
+                    </Text>
+                )}
+                <Button
+                    variant="secondary"
+                    as={Link}
+                    href={PDF_REPORT_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    size="xs"
+                    leftIcon={<Icon as={RiFileTextLine} boxSize={3} opacity={0.6} />}
+                    className="ml-4"
+                >
+                    PDF report
+                </Button>
+            </MainPanelHeader>
 
-                <div className="md:mx-2">
-                    {productList.length > 0 ? (
-                        <Accordion allowMultiple>
-                            {productList.map((product, index) => (
-                                <ProductsListAccordionItem
-                                    key={index}
-                                    product={product}
-                                    setselectedPropertyGUID={setselectedPropertyGUID}
-                                    setSelectedProduct={setSelectedProduct}
-                                    productCount={productList.length}
-                                    hasIfcInstances={product.ifc_instances_guids.length > 0}
-                                    searchString={searchString}
-                                    index={index}
-                                />
-                            ))}
-                        </Accordion>
-                    ) : (
-                        <div className="animate-appear-top [--animation-appear-offset:10px]">
-                            <p className="text-xs text-tertiary text-center p-8">No results</p>
-                        </div>
-                    )}
-                </div>
-            </div>
+            <MainPanelBody>
+                {productList.length > 0 ? (
+                    <Accordion allowMultiple>
+                        {productList.map((product, index) => (
+                            <ProductsListAccordionItem
+                                key={index}
+                                product={product}
+                                setselectedPropertyGUID={setselectedPropertyGUID}
+                                setSelectedProduct={setSelectedProduct}
+                                productCount={productList.length}
+                                hasIfcInstances={product.ifc_instances_guids.length > 0}
+                                searchString={searchString}
+                                index={index}
+                            />
+                        ))}
+                    </Accordion>
+                ) : (
+                    <div className="animate-appear-top [--animation-appear-offset:10px]">
+                        <p className="text-xs text-tertiary text-center p-8">No results</p>
+                    </div>
+                )}
+            </MainPanelBody>
         </article>
     );
 };

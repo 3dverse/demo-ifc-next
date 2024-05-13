@@ -9,6 +9,7 @@ import { getEntityFromGuid, toToggle } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 import { MainPanelHeader } from "@/components/layout/MainPanelHeader";
+import { MainPanelBody } from "@/components/layout/MainPanelBody";
 import { StoreyListAccordionItem } from "./StoreyListAccordionItem";
 
 //------------------------------------------------------------------------------
@@ -78,46 +79,44 @@ export const StoreyList = () => {
 
     //------------------------------------------------------------------------------
     return (
-        <article className="overflow-y-scroll h-[calc(100vh-107px)]">
-            <div className="flex-1 pb-4 md:pb-12">
-                <MainPanelHeader title="Storeys" className="py-3">
-                    <span />
-                    <Button
-                        variant="ghost"
-                        fontSize="2xs"
-                        size="2xs"
-                        px="1"
-                        color="content.secondary"
-                        fontWeight={400}
-                        onClick={toggleStoreysVisibility}
-                    >
-                        {areSomeVisible ? "Hide" : "Show"} all
-                    </Button>
-                </MainPanelHeader>
+        <article>
+            <MainPanelHeader title="Storeys" className="py-3">
+                <span />
+                <Button
+                    variant="ghost"
+                    fontSize="2xs"
+                    size="2xs"
+                    px="1"
+                    color="content.secondary"
+                    fontWeight={400}
+                    onClick={toggleStoreysVisibility}
+                >
+                    {areSomeVisible ? "Hide" : "Show"} all
+                </Button>
+            </MainPanelHeader>
 
-                <div className="md:mx-2">
-                    <Accordion allowMultiple>
-                        {storeyGuids.map((storeyGuid: string, index: number) => {
-                            const spaces = ifcData[storeyGuid].props?.spaces;
-                            const hasStoreySpaces = typeof spaces === "object" && spaces!.length > 0;
-                            const isStoreyVisible = visibleStoreys[index];
+            <MainPanelBody>
+                <Accordion allowMultiple>
+                    {storeyGuids.map((storeyGuid: string, index: number) => {
+                        const spaces = ifcData[storeyGuid].props?.spaces;
+                        const hasStoreySpaces = typeof spaces === "object" && spaces!.length > 0;
+                        const isStoreyVisible = visibleStoreys[index];
 
-                            return (
-                                <StoreyListAccordionItem
-                                    key={index}
-                                    index={index}
-                                    ifcData={ifcData}
-                                    storeyGuid={storeyGuid}
-                                    storeyCount={storeyGuids.length}
-                                    hasStoreySpaces={hasStoreySpaces}
-                                    isStoreyVisible={isStoreyVisible}
-                                    handleStoreyVisibility={handleStoreyVisibility}
-                                />
-                            );
-                        })}
-                    </Accordion>
-                </div>
-            </div>
+                        return (
+                            <StoreyListAccordionItem
+                                key={index}
+                                index={index}
+                                ifcData={ifcData}
+                                storeyGuid={storeyGuid}
+                                storeyCount={storeyGuids.length}
+                                hasStoreySpaces={hasStoreySpaces}
+                                isStoreyVisible={isStoreyVisible}
+                                handleStoreyVisibility={handleStoreyVisibility}
+                            />
+                        );
+                    })}
+                </Accordion>
+            </MainPanelBody>
         </article>
     );
 };
