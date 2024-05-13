@@ -26,7 +26,7 @@ export const MainActionLegend = ({ activeAction }: { activeAction?: MainAction }
             rounded="lg"
             className="animate-appear-bottom"
         >
-            <h1 className="mb-2 text-xs font-medium">{activeAction.name}</h1>
+            <h1 className="mb-1 text-2xs font-semibold text-accent-500 uppercase tracking-wide">{activeAction.name}</h1>
             {activeAction.name === "Waste Type" && <WasteLegend />}
             {activeAction.name === "Reusability" && <ReusabilityLegend />}
         </Box>
