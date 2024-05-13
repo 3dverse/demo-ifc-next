@@ -13,8 +13,12 @@ export const ReusabilityLegend = () => {
                             backgroundColor: reusabilityType.color,
                         }}
                     />
+                    {reusabilityType.weight && (
+                        <p className="w-16 text-right text-2xs text-secondary tabular-nums">
+                            {reusabilityType.weight} %
+                        </p>
+                    )}
                     <p className="w-32">{reusabilityType.name}</p>
-                    <p className="w-16 text-right text-2xs text-secondary tabular-nums">{reusabilityType.weight}</p>
                 </li>
             ))}
         </ul>

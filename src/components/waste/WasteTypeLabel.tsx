@@ -1,11 +1,15 @@
 //------------------------------------------------------------------------------
+import { twMerge } from "tailwind-merge";
+
+//------------------------------------------------------------------------------
 import { wasteTypes } from "./content";
 
 //------------------------------------------------------------------------------
 import { WasteType } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
-export const WasteTypeLabel = ({ wasteType }: { wasteType: WasteType | string }) => {
+//------------------------------------------------------------------------------
+export const WasteTypeLabel = ({ wasteType, className }: { wasteType: WasteType | string; className?: string }) => {
     //------------------------------------------------------------------------------
     const wasteTypeDetail = wasteTypes.find((w) => w.type === wasteType);
 
@@ -15,7 +19,7 @@ export const WasteTypeLabel = ({ wasteType }: { wasteType: WasteType | string })
     }
     //------------------------------------------------------------------------------
     return (
-        <div className="flex flex-row-reverse items-center gap-1">
+        <div className={twMerge("flex flex-row-reverse items-center gap-1", className)}>
             <div
                 className="w-3 aspect-square rounded-sm"
                 style={{

@@ -90,11 +90,12 @@ export const ProductsListAccordionItem = ({
                             >
                                 {highlightSearchString(product.name)}
                             </h2>
-                            <span className="block mt-[3px]">
-                                <WasteTypeLabel wasteType={product.waste_type} />
+
+                            <span className="flex gap-2 mt-[3px]">
                                 {false && product.reuse_rate && (
                                     <p className="text-2xs text-secondary">{product.reuse_rate}%</p>
                                 )}
+                                <WasteTypeLabel wasteType={product.waste_type} />
                             </span>
                         </AccordionButton>
                     </div>
