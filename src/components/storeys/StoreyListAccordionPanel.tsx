@@ -11,7 +11,7 @@ import { IfcData } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-export const StoreyListAccordionPanel = ({ ifcData, storey }: { ifcData: IfcData; storey: string }) => {
+export const StoreyListAccordionPanel = ({ ifcData, storeyGuid }: { ifcData: IfcData; storeyGuid: string }) => {
     //------------------------------------------------------------------------------
     const handleClick = (storeySpace: string) => {
         const guid = ifcData[storeySpace].props["GlobalId"];
@@ -19,19 +19,19 @@ export const StoreyListAccordionPanel = ({ ifcData, storey }: { ifcData: IfcData
     };
 
     //------------------------------------------------------------------------------
-    const storeySpaces = ifcData[storey].props.spaces as string[];
+    const storeySpaces = ifcData[storeyGuid].props.spaces as string[];
     //------------------------------------------------------------------------------
     // UI
     return (
         <AccordionPanel p="0">
             <ul className="w-full pt-1 pb-2">
-                {storeySpaces.map((storey: string, i: number) => (
+                {storeySpaces.map((storeySpaceGuid: string, i: number) => (
                     <li
-                        key={ifcData[storey].props.GlobalId}
+                        key={ifcData[storeySpaceGuid].props.GlobalId}
                         className="group cursor-pointer hover:bg-underground transition-colors duration-300"
-                        onClick={() => handleClick(storey)}
+                        onClick={() => handleClick(storeySpaceGuid)}
                     >
-                        <SpaceName ifcAttributes={ifcData[storey]} />
+                        <SpaceName ifcAttributes={ifcData[storeySpaceGuid]} />
                     </li>
                 ))}
             </ul>

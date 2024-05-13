@@ -22,9 +22,9 @@ export const StoreyList = () => {
     const ifctypes = IFC_TYPES as IfcType;
 
     const storeyKey = "IfcBuildingStorey";
-    const storeys = ifctypes[storeyKey];
+    const storeyGuids = ifctypes[storeyKey];
 
-    const [visibleStoreys, setVisibleStoreys]: any = useState(new Array(storeys.length).fill(true));
+    const [visibleStoreys, setVisibleStoreys]: any = useState(new Array(storeyGuids.length).fill(true));
 
     //------------------------------------------------------------------------------
     const handleStoreyVisibility = async (index: any, storeyGuid: string | null, event: any) => {
@@ -97,8 +97,8 @@ export const StoreyList = () => {
 
                 <div className="md:mx-2">
                     <Accordion allowMultiple>
-                        {storeys.map((storey: string, index: number) => {
-                            const spaces = ifcData[storey].props?.spaces;
+                        {storeyGuids.map((storeyGuid: string, index: number) => {
+                            const spaces = ifcData[storeyGuid].props?.spaces;
                             const hasStoreySpaces = typeof spaces === "object" && spaces!.length > 0;
                             const isStoreyVisible = visibleStoreys[index];
 
@@ -107,8 +107,8 @@ export const StoreyList = () => {
                                     key={index}
                                     index={index}
                                     ifcData={ifcData}
-                                    storey={storey}
-                                    storeyCount={storeys.length}
+                                    storeyGuid={storeyGuid}
+                                    storeyCount={storeyGuids.length}
                                     hasStoreySpaces={hasStoreySpaces}
                                     isStoreyVisible={isStoreyVisible}
                                     handleStoreyVisibility={handleStoreyVisibility}
