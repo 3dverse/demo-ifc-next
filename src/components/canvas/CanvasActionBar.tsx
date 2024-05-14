@@ -22,15 +22,17 @@ export const CanvasActionBar = ({
     return (
         <div
             className={twMerge(
-                `absolute top-2 lg:top-4 left-0 lg:left-[var(--main-panel-width)] 
+                `absolute top-2 lg:top-4 left-0 lg:left-[var(--main-panel-width)]
                 flex flex-col md:flex-row items-start justify-between gap-2 
-                max-w-[500px] ml-2 
+                max-w-[500px] ml-2 h-full
                 animate-appear-left animation-delay-[250ms] opacity-0 transition-all`,
                 !isMainPanelExpanded ? "lg:left-16" : "",
             )}
         >
-            <Settings basePoint={basePoint} />
             <EnergyConsumptionButton energyVisible={energyVisible} setEnergyVisibility={setEnergyVisibility} />
+            <div className="absolute left-0 top-1/2 -translate-y-1/2">
+                <Settings basePoint={basePoint} />
+            </div>
         </div>
     );
 };

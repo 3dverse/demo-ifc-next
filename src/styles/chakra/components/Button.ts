@@ -79,13 +79,9 @@ export default defineStyleConfig({
         primaryLight: {
             color: "content.primary",
             bgColor: "white",
-            boxShadow: "0px 3px 13px var(--accent-color)",
             _hover: {
-                bgColor: "accent.600",
-                boxShadow: "0px 1px 12px var(--accent-color)",
                 _disabled: {
                     ...disabledStyles,
-                    bgColor: "accent.500",
                 },
             },
         },

@@ -13,7 +13,7 @@
 
 @keyframes appear-right {
     0% {
-        translate: var(--animation-appear-offset, -16px) var(--tw-translate-y, 0px);
+        translate: var(--animation-appear-offset, 16px) var(--tw-translate-y, 0px);
         opacity: 0;
     }
     100% {
@@ -35,7 +35,7 @@
 
 @keyframes appear-left {
     0% {
-        translate: var(--animation-appear-offset, 16px) var(--tw-translate-y, 0px);
+        translate: var(--animation-appear-offset, -16px) var(--tw-translate-y, 0px);
         opacity: 0;
     }
     100% {
@@ -80,6 +80,11 @@
 
     .animate-disappear-left {
         @apply animate-appear-left;
+        animation-direction: reverse;
+    }
+
+    .animate-disappear-right {
+        @apply animate-appear-right;
         animation-direction: reverse;
     }
 
