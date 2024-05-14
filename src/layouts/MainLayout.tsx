@@ -15,6 +15,7 @@ import { useRef } from "react";
 //------------------------------------------------------------------------------
 import { WelcomeModal } from "@/components/common/WelcomeModal";
 import { AboutCard } from "@/components/about/AboutCard";
+import { BottomActionBar } from "@/components/canvas/BottomActionBar";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -105,6 +106,7 @@ export const MainLayout = memo(() => {
                 energyVisible={energyVisible}
                 setEnergyVisibility={setEnergyVisibility}
             />
+            <BottomActionBar isMainPanelExpanded={isMainPanelExpanded} />
 
             <ShareQRCode sessionId={sessionId} />
 
