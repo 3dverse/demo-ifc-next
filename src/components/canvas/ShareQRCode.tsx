@@ -23,7 +23,7 @@ export const ShareQRCode = memo(({ sessionId }: { sessionId: string }) => {
         <div className="hidden md:block absolute top-4 right-4">
             <Popover gutter={6}>
                 <PopoverTrigger>
-                    <Button size="sm" variant="primary" rounded="full" leftIcon={<RiQrCodeFill />}>
+                    <Button size="sm" variant="accent" rounded="full" leftIcon={<RiQrCodeFill />}>
                         Invite
                     </Button>
                 </PopoverTrigger>

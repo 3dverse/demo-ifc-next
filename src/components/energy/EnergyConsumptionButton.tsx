@@ -34,7 +34,7 @@ export const EnergyConsumptionButton = ({
     //------------------------------------------------------------------------------
     return (
         <Button
-            variant="primary"
+            variant="accent"
             size="sm"
             fontSize="xs"
             leftIcon={<RiFlashlightFill />}

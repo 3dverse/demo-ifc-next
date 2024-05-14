@@ -28,6 +28,30 @@ export default defineStyleConfig({
         _focusVisible: disabledStyles,
     },
     variants: {
+        accent: {
+            color: "content.primaryLight",
+            bgColor: "accent.500",
+            boxShadow: "0px 3px 13px var(--accent-color)",
+            _hover: {
+                bgColor: "accent.600",
+                boxShadow: "0px 1px 12px var(--accent-color)",
+                _disabled: {
+                    ...disabledStyles,
+                    bgColor: "accent.500",
+                },
+            },
+            _focus: {
+                bgColor: "accent.600",
+                boxShadow: "0px 1px 12px var(--accent-color)",
+            },
+            _active: {
+                bgColor: "accent.500",
+                boxShadow: "0px 1px 16px var(--accent-color)",
+            },
+            _loading: {
+                bgColor: "accent.500",
+            },
+        },
         primary: {
             color: "content.primaryLight",
             bgColor: "accent.500",
@@ -211,7 +235,6 @@ export default defineStyleConfig({
                 borderColor: "transparent",
             },
         },
-
         "outline-island": {
             bgColor: "rgba(252, 250, 254, 0.8)",
             borderColor: "border.secondary",
