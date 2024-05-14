@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-import { Dispatch, SetStateAction, useEffect, memo } from "react";
+import { Dispatch, SetStateAction, useEffect, memo, useState } from "react";
 
 //------------------------------------------------------------------------------
 import { initApp } from "@/lib/3dverse/init";
@@ -27,7 +27,12 @@ export const Canvas = memo(
             event.preventDefault();
         };
 
-        //------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------
+        // Hooks
+        const [timeMouseKeys, settimeMouseKeys] = useState([0, 0]); // 0: down, 1: up
+
+        //--------------------------------------------------------------------------
+        // Effects
         useEffect(() => {
             let cancelled = false;
             SDK3DVerse.disconnectFromSession()
@@ -68,7 +73,19 @@ export const Canvas = memo(
                                 }
                             }
                         }}
-                        onClick={onInputChange}
+                        onMouseDown={() => {
+                            const time = new Date().getTime();
+                            const updatedTimeMouseKeys = [...timeMouseKeys];
+                            updatedTimeMouseKeys[0] = time;
+                            settimeMouseKeys(updatedTimeMouseKeys);
+                        }}
+                        onMouseUp={() => {
+                            const time = new Date().getTime();
+                            const updatedTimeMouseKeys = [...timeMouseKeys];
+                            updatedTimeMouseKeys[1] = time;
+                            settimeMouseKeys(updatedTimeMouseKeys);
+                        }}
+                        onClick={(e) => { (timeMouseKeys[1] - timeMouseKeys[0]) < 100 && onInputChange(e) }}
                         onKeyDown={(e) => {
                             onKeyboardChange(e);
                         }}
