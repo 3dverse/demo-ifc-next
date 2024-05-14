@@ -21,7 +21,7 @@ import { AboutCard } from "@/components/about/AboutCard";
 export const MainLayout = memo(() => {
     //--------------------------------------------------------------------------
     // Hooks
-    const [selectedPropertyEUID, setSelectedPropertyEUID] = useState<string | null>(null);
+    const [selectedPropertyGUID, setSelectedPropertyGUID] = useState<string | null>(null);
     const [energyVisible, setEnergyVisibility] = useState(false);
     const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
     const [sessionId, setSessionId] = useState("");
@@ -42,14 +42,14 @@ export const MainLayout = memo(() => {
     //------------------------------------------------------------------------------
     const handleChange = useCallback(
         (event: React.MouseEvent<HTMLElement>) => {
-            handleCanvasSelection(event, setSelectedPropertyEUID, energyVisible);
+            handleCanvasSelection(event, setSelectedPropertyGUID, energyVisible);
         },
         [energyVisible],
     );
 
     //------------------------------------------------------------------------------
     const handleKey = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
-        unselectEntities(event, setSelectedPropertyEUID);
+        unselectEntities(event, setSelectedPropertyGUID);
     }, []);
 
     //------------------------------------------------------------------------------
@@ -108,10 +108,10 @@ export const MainLayout = memo(() => {
 
             <ShareQRCode sessionId={sessionId} />
 
-            {selectedPropertyEUID && (
+            {selectedPropertyGUID && (
                 <IfcPropertyPanel
-                    guid={selectedPropertyEUID}
-                    onClose={() => setSelectedPropertyEUID(null)}
+                    guid={selectedPropertyGUID}
+                    onClose={() => setSelectedPropertyGUID(null)}
                     spotLightEntity={spotLightEntity}
                 />
             )}
