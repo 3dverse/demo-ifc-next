@@ -1,7 +1,7 @@
 @layer base {
     .panel-card,
     .card {
-        width: clamp(20rem, 25vw, 30rem);
+        width: clamp(20rem, 35vw, 30rem);
         border-radius: var(--border-radius-md);
         @apply bg-underground bg-opacity-[.9];
         box-shadow: var(--shadow-xl);
