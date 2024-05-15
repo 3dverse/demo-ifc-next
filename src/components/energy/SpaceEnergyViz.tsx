@@ -19,7 +19,7 @@ export const SpaceEnergyViz = ({ roomName, cons }: { roomName: string | null; co
         datasets: [
             {
                 label: "My First Dataset",
-
+                borderWidth: "1px",
                 borderColor: consHasIncreased ? "#E9204C" : "#51AA09",
                 data: consValues,
             },
