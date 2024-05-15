@@ -19,7 +19,7 @@ export const SpaceEnergyViz = ({ roomName, cons }: { roomName: string | null; co
         datasets: [
             {
                 label: "My First Dataset",
-                borderWidth: "1px",
+
                 borderColor: consHasIncreased ? "#E9204C" : "#51AA09",
                 data: consValues,
             },
@@ -79,7 +79,7 @@ export const SpaceEnergyViz = ({ roomName, cons }: { roomName: string | null; co
                 )}
             </div>
             <div>
-                <Line width={"50%"} height={"30%"} data={data} options={options}></Line>
+                <Line width="50%" height="30%" data={data} options={options}></Line>
             </div>
         </div>
     );
