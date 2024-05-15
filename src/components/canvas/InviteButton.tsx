@@ -13,7 +13,7 @@ function buildQRCodeUrl(sessionId: string) {
 }
 
 //------------------------------------------------------------------------------
-export const ShareQRCode = memo(({ sessionId }: { sessionId: string }) => {
+export const InviteButton = memo(({ sessionId }: { sessionId: string }) => {
     //------------------------------------------------------------------------------
     if (!sessionId) {
         return null;
@@ -37,4 +37,4 @@ export const ShareQRCode = memo(({ sessionId }: { sessionId: string }) => {
     );
 });
 
-ShareQRCode.displayName = "ShareQRCode";
+InviteButton.displayName = "InviteButton";

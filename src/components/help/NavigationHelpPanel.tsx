@@ -109,7 +109,7 @@ export const NavigationHelpPanel = () => {
                     color="content.primaryLight"
                     bgColor="transparent"
                     border="1px"
-                    borderColor="white"
+                    borderColor="#ffffff60"
                     rounded="xl"
                 >
                     <div

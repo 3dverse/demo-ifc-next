@@ -7,7 +7,7 @@ import { Canvas } from "@/components/canvas/Canvas";
 import { MainPanel } from "@/components/layout/MainPanel";
 import { IfcPropertyPanel } from "@/components/IfcProperty/IfcPropertyPanel";
 import { MainActionBar } from "@/components/canvas/MainActionBar";
-import { ShareQRCode } from "@/components/canvas/ShareQRCode";
+import { InviteButton } from "@/components/canvas/InviteButton";
 import { WelcomeModal } from "@/components/common/WelcomeModal";
 import { AboutCard } from "@/components/about/AboutCard";
 import { BottomActionBar } from "@/components/canvas/BottomActionBar";
@@ -111,7 +111,7 @@ export const MainLayout = memo(() => {
 
             <BottomActionBar isMainPanelExpanded={isMainPanelExpanded} />
 
-            <ShareQRCode sessionId={sessionId} />
+            <InviteButton sessionId={sessionId} />
 
             {selectedPropertyGUID && (
                 <IfcPropertyPanel

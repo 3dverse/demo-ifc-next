@@ -36,7 +36,7 @@ export const SettingsMenu = memo(({ basePoint }: { basePoint: BasePoint }) => {
     const [showMoveSpeedBar, setShowMoveSpeedbar] = useState<boolean>(false);
 
     //------------------------------------------------------------------------------
-    const settings_actions = [
+    const settingsActions = [
         {
             label: "Reset position",
             onClick: () => handleReset(basePoint),
@@ -74,7 +74,7 @@ export const SettingsMenu = memo(({ basePoint }: { basePoint: BasePoint }) => {
                 rounded="md"
                 className={showMoveSpeedBar ? "animate-disappear-left pointer-events-none" : "animate-appear-left"}
             >
-                {settings_actions.map(({ label, onClick, icon }) => (
+                {settingsActions.map(({ label, onClick, icon }) => (
                     <Tooltip key={label} label={label} size="sm" placement="right">
                         <IconButton aria-label={label} onClick={onClick} icon={icon} border="none" />
                     </Tooltip>

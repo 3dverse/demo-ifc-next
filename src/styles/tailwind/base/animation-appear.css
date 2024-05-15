@@ -75,8 +75,10 @@
     }
 
     /* ------------------------------------------------------------------------------ */
-    /* Note: Feel free to create `animate-disappear-...` for other directions.
-    /* ------------------------------------------------------------------------------ */
+    .animate-disappear-top {
+        @apply animate-appear-top;
+        animation-direction: reverse;
+    }
 
     .animate-disappear-left {
         @apply animate-appear-left;
