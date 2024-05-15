@@ -1,13 +1,24 @@
 //------------------------------------------------------------------------------
-import { Box, Flex, IconButton, Popover, PopoverContent, PopoverTrigger, Text, useDisclosure } from "@chakra-ui/react";
+import {
+    Box,
+    Button,
+    Flex,
+    Icon,
+    IconButton,
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+    Text,
+    useDisclosure,
+} from "@chakra-ui/react";
 import { RiCloseLine, RiQuestionLine } from "react-icons/ri";
 
 //------------------------------------------------------------------------------
-import HelpCursorSelectElement from "../../../public/images/help/help-cursor-select-element.svg";
-import HelpCursorMove from "../../../public/images/help/help-cursor-move.svg";
+import HelpCursorSelectElement from "../../../public/images/help/help-cursor-click.svg";
+import HelpCursorFly from "../../../public/images/help/help-cursor-fly.svg";
+import HelpCursorRotate from "../../../public/images/help/help-cursor-rotate.svg";
 import HelpCursorZoom from "../../../public/images/help/help-cursor-zoom.svg";
 import HelpKeyboardWASD from "../../../public/images/help/help-keyboard-wasd.svg";
-import HelpKeyboardArrow from "../../../public/images/help/help-keyboard-arrows.svg";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -15,18 +26,39 @@ export const NavigationHelpPanel = () => {
     //------------------------------------------------------------------------------
     const HELP_ITEMS = [
         {
-            label: "See IFC Properties",
+            label: "IFC Properties",
             instruction: "Left click",
             image: HelpCursorSelectElement,
         },
         {
-            label: "Rotate camera",
-            instruction: "Left click and move",
-            image: HelpCursorMove,
+            label: "Move",
+            image: HelpKeyboardWASD,
+            imageHeight: 12,
+            instruction: <>or directional arrows</>,
+        },
+        {
+            label: "Fly",
+            instruction: (
+                <>
+                    Left click
+                    <br /> and move
+                </>
+            ),
+            image: HelpCursorFly,
+        },
+        {
+            label: "Rotate",
+            instruction: (
+                <>
+                    Right click
+                    <br /> and move
+                </>
+            ),
+            image: HelpCursorRotate,
         },
         {
             label: "Zoom",
-            instruction: "Right click and move",
+            instruction: "Mouse wheel",
             image: HelpCursorZoom,
         },
     ];
@@ -39,7 +71,7 @@ export const NavigationHelpPanel = () => {
     // UI
     return (
         <div className="hidden lg:block">
-            <Popover isOpen={isOpen} closeOnBlur={false} placement="end-start" gutter={-32}>
+            <Popover isOpen={isOpen} closeOnBlur={false} placement="end-start" gutter={-32} autoFocus={false}>
                 <PopoverTrigger>
                     <IconButton
                         visibility={isOpen ? "hidden" : "visible"}
@@ -71,9 +103,9 @@ export const NavigationHelpPanel = () => {
                 <PopoverContent
                     pos="relative"
                     w="auto"
-                    px={7}
+                    px={5}
                     pt={3}
-                    pb={5}
+                    pb={3}
                     color="content.primaryLight"
                     bgColor="transparent"
                     border="1px"
@@ -86,41 +118,33 @@ export const NavigationHelpPanel = () => {
                             backgroundImage: "radial-gradient(at 25% 100%, rgba(31,46,56, .6) 0%, transparent 40%)",
                         }}
                     />
-                    <Box pos="absolute" right="2px" top="2px">
-                        <IconButton
-                            aria-label="Close panel"
-                            onClick={onClose}
-                            size="sm"
-                            color="content.primaryLight"
-                            bgColor="#ffffff30"
-                            rounded="5px"
-                            icon={<RiCloseLine fontSize="1.4rem" />}
-                            _hover={{
-                                color: "content.primaryLight",
-                                bgColor: "#ffffff30",
-                            }}
-                        />
-                    </Box>
-                    <Flex>
-                        <Flex flexDir="column" gap={2}>
-                            <Flex justifyContent="center" alignItems="center" gap={4} h={14}>
-                                <Box as={HelpKeyboardWASD} w={16} h={12} color="accent.700" />
-                                <Box fontSize="3xs">OR</Box>
-                                <Box as={HelpKeyboardArrow} w={16} h={12} color="accent.700" />
-                            </Flex>
-                            <Box textAlign="center" className="text-balance">
-                                <Text fontSize="sm" fontWeight={500} pb="1px">
-                                    Move
-                                </Text>
-                            </Box>
-                        </Flex>
-                        {HELP_ITEMS.map(({ label, instruction, image }) => (
-                            <Flex key={label} flexDir="column" alignItems="center" gap={2} minW={44}>
-                                <Flex justifyContent="center" alignItems="center" flexGrow={1} h={14}>
-                                    <Box as={image} w={14} h={9} color="accent.700" />
+                    <Button
+                        onClick={onClose}
+                        variant="ghost"
+                        size="xs"
+                        color="#ffffffDD"
+                        rightIcon={<Icon as={RiCloseLine} boxSize={4} />}
+                        iconSpacing={1}
+                        pos="absolute"
+                        top={-1}
+                        pr={0}
+                        _hover={{
+                            color: "#ffffff",
+                            bgColor: "transparent",
+                        }}
+                        right={0}
+                        transform="translateY(-100%)"
+                    >
+                        Hide navigation help
+                    </Button>
+                    <Flex gap={3}>
+                        {HELP_ITEMS.map(({ label, instruction, image, imageHeight }) => (
+                            <Flex key={label} flexDir="column" alignItems="center" gap={2} w="8rem">
+                                <Flex justifyContent="center" alignItems="center" h={14}>
+                                    <Box as={image} w={16} h={imageHeight ?? 10} />
                                 </Flex>
                                 <Box className="text-center text-balance">
-                                    <Text fontSize="sm" fontWeight={500} pb="1px">
+                                    <Text fontSize="sm" fontWeight={500} pb="1px" className="tracking-wide">
                                         {label}
                                     </Text>
                                     <Text fontSize="2xs" fontWeight={500} opacity={0.8} textTransform="uppercase">
