@@ -69,7 +69,7 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
                 as="nav"
                 isAttached
                 variant="outline-island"
-                size="sm"
+                size={{ base: "md", lg: "sm" }}
                 shadow={["lg", null, "xl"]}
                 rounded="md"
                 className={showMoveSpeedBar ? "animate-disappear-left pointer-events-none" : "animate-appear-left"}
