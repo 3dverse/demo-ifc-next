@@ -6,7 +6,7 @@ import { RiCloseLine, RiQuestionLine } from "react-icons/ri";
 import HelpCursorSelectElement from "../../../public/images/help/help-cursor-select-element.svg";
 import HelpCursorMove from "../../../public/images/help/help-cursor-move.svg";
 import HelpCursorZoom from "../../../public/images/help/help-cursor-zoom.svg";
-import HelpKeyboardZQSD from "../../../public/images/help/help-keyboard-zqsd.svg";
+import HelpKeyboardWASD from "../../../public/images/help/help-keyboard-wasd.svg";
 import HelpKeyboardArrow from "../../../public/images/help/help-keyboard-arrows.svg";
 
 //------------------------------------------------------------------------------
@@ -104,7 +104,7 @@ export const NavigationHelpPanel = () => {
                     <Flex>
                         <Flex flexDir="column" gap={2}>
                             <Flex justifyContent="center" alignItems="center" gap={4} h={14}>
-                                <Box as={HelpKeyboardZQSD} w={16} h={12} color="accent.700" />
+                                <Box as={HelpKeyboardWASD} w={16} h={12} color="accent.700" />
                                 <Box fontSize="3xs">OR</Box>
                                 <Box as={HelpKeyboardArrow} w={16} h={12} color="accent.700" />
                             </Flex>
