@@ -19,6 +19,7 @@ import { Logo } from "@/components/common/Logo";
 //------------------------------------------------------------------------------
 import { defaultModalProps } from "@/styles/chakra/components/Modal";
 import { breakpoints } from "@/styles/theme/breakpoints";
+import { enableFullScreen } from "@/lib/utils/helper";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -50,7 +51,14 @@ export const WelcomeModal = () => {
 
                 <ModalFooter justifyContent={{ base: "center", md: "start" }} gap={3}>
                     {IS_FEATURE_READY && <Button>Send this app to your desktop</Button>}
-                    <Button variant="accent" className="w-full" onClick={onClose}>
+                    <Button
+                        variant="accent"
+                        className="w-full"
+                        onClick={() => {
+                            enableFullScreen();
+                            onClose();
+                        }}
+                    >
                         Understood
                     </Button>
                 </ModalFooter>
