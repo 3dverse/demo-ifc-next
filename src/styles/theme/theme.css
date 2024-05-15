@@ -82,6 +82,7 @@
     --color-feedback-warning-800-hsl: 12, 29.4%, 13.3%;
     --color-feedback-warning-800: hsl(var(--color-feedback-warning-800-hsl));
 
+    --color-feedback-negative-100: #f8d9d9;
     --color-feedback-negative-400: #f56565;
     --color-feedback-negative-500-hsl: 0, 95.7%, 63.53%;
     --color-feedback-negative-500: hsl(var(--color-feedback-negative-500-hsl));
