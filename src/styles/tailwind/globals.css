@@ -4,7 +4,8 @@
 @import "tailwindcss/utilities";
 
 @import "./base/core.css";
-@import "./base/animation.css";
+@import "./base/animation-appear.css";
+@import "./base/animation-fade.css";
 @import "./base/bg-backdrop-blur.css";
 
 @import "./components/button.css";

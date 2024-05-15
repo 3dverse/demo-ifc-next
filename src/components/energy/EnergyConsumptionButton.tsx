@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 import { useState, Dispatch, SetStateAction } from "react";
-import { Button, Spinner } from "@chakra-ui/react";
+import { Button, Icon, Spinner } from "@chakra-ui/react";
 import { RiFlashlightFill } from "react-icons/ri";
 import { toggleEnergyView } from "@/lib/3dverse/helpers";
 
@@ -34,14 +34,14 @@ export const EnergyConsumptionButton = ({
     //------------------------------------------------------------------------------
     return (
         <Button
-            variant="primary"
-            size="sm"
-            fontSize="xs"
-            leftIcon={<RiFlashlightFill />}
+            variant="accent"
+            fontSize="sm"
+            leftIcon={<Icon as={RiFlashlightFill} opacity={0.5} boxSize={5} />}
+            pl={3}
             isLoading={isEnergyVizProcessing}
             spinner={<Spinner color="white" thickness="1px" size="xs" mr="1" />}
             className="tracking-wide"
-            display={["none", null, null, null, "block"]}
+            display={{ base: "none", xl: "flex" }}
             onClick={handleClick}
         >
             {energyVisible ? "Hide" : "Visualize"} Energy Consumption

@@ -1,4 +1,5 @@
-import { useState, useCallback, memo, useEffect } from "react";
+//------------------------------------------------------------------------------
+import { useRef, useState, useCallback, memo, useEffect } from "react";
 import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
@@ -6,15 +7,16 @@ import { Canvas } from "@/components/canvas/Canvas";
 import { MainPanel } from "@/components/layout/MainPanel";
 import { IfcPropertyPanel } from "@/components/IfcProperty/IfcPropertyPanel";
 import { EnergyConsumptionPanel } from "@/components/energy/EnergyConsumptionPanel";
-import { CanvasActionBar } from "@/components/canvas/CanvasActionBar";
+import { MainActionBar } from "@/components/canvas/MainActionBar";
 import { ShareQRCode } from "@/components/canvas/ShareQRCode";
-import { Entity } from "@/types/3dverse";
-import { handleCanvasSelection, CameraController_, unselectEntities } from "@/lib/3dverse/helpers";
-import { useRef } from "react";
-
-//------------------------------------------------------------------------------
 import { WelcomeModal } from "@/components/common/WelcomeModal";
 import { AboutCard } from "@/components/about/AboutCard";
+import { BottomActionBar } from "@/components/canvas/BottomActionBar";
+import { SettingsActionBar } from "@/components/canvas/SettingsActionBar";
+
+//------------------------------------------------------------------------------
+import { Entity } from "@/types/3dverse";
+import { handleCanvasSelection, CameraController_, unselectEntities } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -99,12 +101,14 @@ export const MainLayout = memo(() => {
 
             <MainPanel isExpanded={isMainPanelExpanded} onExpand={onExpandMainPanel} onCollapse={onCollapseMainPanel} />
 
-            <CanvasActionBar
+            <MainActionBar
                 isMainPanelExpanded={isMainPanelExpanded}
-                basePoint={basePoint}
                 energyVisible={energyVisible}
                 setEnergyVisibility={setEnergyVisibility}
             />
+            <SettingsActionBar basePoint={basePoint} isMainPanelExpanded={isMainPanelExpanded} />
+
+            <BottomActionBar isMainPanelExpanded={isMainPanelExpanded} />
 
             <ShareQRCode sessionId={sessionId} />
 

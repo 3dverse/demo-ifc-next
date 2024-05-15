@@ -50,7 +50,7 @@ export const WelcomeModal = () => {
 
                 <ModalFooter justifyContent={{ base: "center", md: "start" }} gap={3}>
                     {IS_FEATURE_READY && <Button>Send this app to your desktop</Button>}
-                    <Button variant="primary" className="w-full" onClick={onClose}>
+                    <Button variant="accent" className="w-full" onClick={onClose}>
                         Understood
                     </Button>
                 </ModalFooter>
