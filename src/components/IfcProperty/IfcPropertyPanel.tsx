@@ -3,7 +3,7 @@ import IFC_DATA from "../../../public/data/json/ifcData.json";
 
 //------------------------------------------------------------------------------
 import { Header } from "./Header";
-import { ControlLight } from "./ControlLight";
+import { SmartControlLight } from "../smartControls/SmartControlLight";
 import { ControlAnimation } from "./ControlAnimation";
 import { Attributes } from "./Attributes";
 
@@ -36,7 +36,7 @@ export const IfcPropertyPanel = ({
             <Header entitiyProperties={entitiyProperties} onClose={onClose} />
             <div className="card-body">
                 {entitiyProperties?.props?.type == "IfcLightFixture" && (
-                    <ControlLight spotLightEntity={spotLightEntity} />
+                    <SmartControlLight spotLightEntity={spotLightEntity} />
                 )}
                 {entitiyProperties?.props?.GlobalId == "02a5zYLwD3j9mC$YV6woIu" && <ControlAnimation />}
                 <Attributes guid={guid} />

@@ -6,7 +6,6 @@ import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
 import { Canvas } from "@/components/canvas/Canvas";
 import { MainPanel } from "@/components/layout/MainPanel";
 import { IfcPropertyPanel } from "@/components/IfcProperty/IfcPropertyPanel";
-import { EnergyConsumptionPanel } from "@/components/energy/EnergyConsumptionPanel";
 import { MainActionBar } from "@/components/canvas/MainActionBar";
 import { ShareQRCode } from "@/components/canvas/ShareQRCode";
 import { WelcomeModal } from "@/components/common/WelcomeModal";
@@ -16,7 +15,7 @@ import { SettingsActionBar } from "@/components/canvas/SettingsActionBar";
 
 //------------------------------------------------------------------------------
 import { Entity } from "@/types/3dverse";
-import { handleCanvasSelection, CameraController_, unselectEntities } from "@/lib/3dverse/helpers";
+import { handleCanvasSelection, CameraController_, unselectEntities, getSpotlightEntity } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -56,21 +55,22 @@ export const MainLayout = memo(() => {
 
     //------------------------------------------------------------------------------
     useEffect(() => {
-        const getSpotlightEntity = async () => {
-            const spotligthId = "5f0cf797-d27a-4f53-91b3-de21758050dd";
-            const spotlightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(spotligthId))[0];
+        const update = async () => {
+            const spotlightEntity = await getSpotlightEntity();
             setSpotLightEntity(spotlightEntity);
         };
-        getSpotlightEntity();
+        update();
     }, [sessionId]);
+
     //------------------------------------------------------------------------------
-    // UI
     const maxWidth = "760px";
     const [onMobile] = useMediaQuery(`(max-width: ${maxWidth})`, { ssr: false });
 
+    //------------------------------------------------------------------------------
     const canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
     const cameraControllerRef = useRef<CameraController_ | null>(null);
 
+    //------------------------------------------------------------------------------
     useEffect(() => {
         if (!sessionId) return;
         if (!cameraControllerRef.current) {
@@ -78,6 +78,7 @@ export const MainLayout = memo(() => {
         }
     }, [sessionId]);
 
+    //------------------------------------------------------------------------------
     useEffect(() => {
         if (!cameraControllerRef.current || !sessionId) return;
 
@@ -88,6 +89,8 @@ export const MainLayout = memo(() => {
         }
     }, [sessionId, onMobile]);
 
+    //------------------------------------------------------------------------------
+    // UI
     return (
         <>
             <Canvas
@@ -96,8 +99,6 @@ export const MainLayout = memo(() => {
                 setBasePoint={setBasePoint}
                 setSessionId={setSessionId}
             />
-
-            {energyVisible && <EnergyConsumptionPanel isMainPanelExpanded={isMainPanelExpanded} />}
 
             <MainPanel isExpanded={isMainPanelExpanded} onExpand={onExpandMainPanel} onCollapse={onCollapseMainPanel} />
 

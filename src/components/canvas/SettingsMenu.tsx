@@ -28,7 +28,7 @@ const DEFAULT_MOVE_SPEED = SDK3DVerse.engineAPI.cameraAPI.controllerSettings.spe
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
+export const SettingsMenu = memo(({ basePoint }: { basePoint: BasePoint }) => {
     //------------------------------------------------------------------------------
     const [switchCameraState, setSwitchCameraState] = useState(true);
     const [switchEdgeState, setSwitchEdgeState] = useState(true);
@@ -123,4 +123,4 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
 });
 
 //------------------------------------------------------------------------------
-Settings.displayName = "Settings";
+SettingsMenu.displayName = "SettingsMenu";

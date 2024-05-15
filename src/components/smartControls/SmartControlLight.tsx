@@ -9,11 +9,12 @@ import { Entity } from "@/types/3dverse";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-export const ControlLight = ({ spotLightEntity }: { spotLightEntity: Entity | undefined }) => {
+export const SmartControlLight = ({ spotLightEntity }: { spotLightEntity?: Entity }) => {
     //--------------------------------------------------------------------------
     // Hooks
     const [intensity, setIntensity] = useState(0);
     const [color, setColor] = useState([0, 0, 0]);
+
     //--------------------------------------------------------------------------
     // Effects
     useEffect(() => {
@@ -22,6 +23,7 @@ export const ControlLight = ({ spotLightEntity }: { spotLightEntity: Entity | un
             setColor(spotLightEntity.components.point_light.color);
         }
     }, []);
+
     //--------------------------------------------------------------------------
     return (
         <article className="card-wrapper pset-header">
@@ -53,4 +55,4 @@ export const ControlLight = ({ spotLightEntity }: { spotLightEntity: Entity | un
 };
 
 //------------------------------------------------------------------------------
-ControlLight.displayName = "ControlLight";
+SmartControlLight.displayName = "SmartControlLight";

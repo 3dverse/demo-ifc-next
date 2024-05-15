@@ -8,7 +8,7 @@ Chart.register(CategoryScale);
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-export const SpaceEnergyViz = ({ roomName, cons }: { roomName: string | null; cons: number }) => {
+export const EnergyConsumptionItem = ({ roomName, cons }: { roomName: string | null; cons: number }) => {
     //------------------------------------------------------------------------------
     const consValues = Array.from({ length: 6 }, () => Math.floor(Math.random() * (cons + 1)));
     const consHasIncreased = consValues[consValues.length - 1] - consValues[0] > 0;
@@ -85,4 +85,4 @@ export const SpaceEnergyViz = ({ roomName, cons }: { roomName: string | null; co
     );
 };
 
-SpaceEnergyViz.displayName = "SpaceEnergyViz";
+EnergyConsumptionItem.displayName = "EnergyConsumptionItem";

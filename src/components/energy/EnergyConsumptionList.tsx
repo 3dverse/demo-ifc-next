@@ -6,7 +6,7 @@ import IFC_DATA from "../../../public/data/json/ifcData.json";
 import energyData from "../../../public/data/json/energyData.json";
 
 //------------------------------------------------------------------------------
-import { SpaceEnergyViz } from "@/components/energy/SpaceEnergyViz";
+import { EnergyConsumptionItem } from "@/components/energy/EnergyConsumptionItem";
 import { MainPanelHeader } from "@/components/layout/MainPanelHeader";
 
 //------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ export const EnergyConsumptionList = memo(() => {
             </MainPanelHeader>
             <div className="grid grid-cols-3 h-full gap-3 px-4">
                 {Object.entries(roomEnergyData).map(([roomGuid, cons]: [string, number]) => (
-                    <SpaceEnergyViz key={roomGuid} roomName={ifcData[roomGuid].props.Name} cons={cons} />
+                    <EnergyConsumptionItem key={roomGuid} roomName={ifcData[roomGuid].props.Name} cons={cons} />
                 ))}
             </div>
         </article>

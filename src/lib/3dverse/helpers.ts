@@ -415,3 +415,9 @@ export class CameraController_ {
         this.viewport.setControllerType(SDK3DVerse.cameraControllerType.editor);
     }
 }
+
+export const getSpotlightEntity = async () => {
+    const SPOTLIGHT_UUID = "5f0cf797-d27a-4f53-91b3-de21758050dd";
+    const [spotlightEntity] = await SDK3DVerse.engineAPI.findEntitiesByEUID(SPOTLIGHT_UUID);
+    return spotlightEntity;
+};

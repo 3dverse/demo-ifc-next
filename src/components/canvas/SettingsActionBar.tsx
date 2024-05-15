@@ -2,7 +2,7 @@
 import { twMerge } from "tailwind-merge";
 
 //------------------------------------------------------------------------------
-import { Settings } from "@/components/canvas/Settings";
+import { SettingsMenu } from "@/components/canvas/SettingsMenu";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ export const SettingsActionBar = ({
                 !isMainPanelExpanded ? "lg:left-16" : "",
             )}
         >
-            <Settings basePoint={basePoint} />
+            <SettingsMenu basePoint={basePoint} />
         </div>
     );
 };
