@@ -1,0 +1,19 @@
+/* ------------------------------------------------------------------------------ */
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ------------------------------------------------------------------------------ */
+@layer base {
+    .animate-fade-in {
+        animation-name: fade-in;
+        animation-duration: var(--animation-duration, 0.25s);
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+    }
+}

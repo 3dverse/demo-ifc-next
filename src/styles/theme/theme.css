@@ -91,9 +91,9 @@
     /* ------------------------------------------------------------------------------ */
     /* Energy colors */
 
-    --color-energy-increase-hsl: 347, 82%, 52%, 1;
+    --color-energy-increase-hsl: 347, 82%, 52%;
     --color-energy-increase: hsl(var(--color-energy-increase-hsl));
-    --color-energy-decrease-hsl: 93, 90%, 35%, 1;
+    --color-energy-decrease-hsl: 93, 90%, 35%;
     --color-energy-decrease: hsl(var(--color-energy-decrease-hsl));
 
     /* ------------------------------------------------------------------------------ */

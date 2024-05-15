@@ -11,11 +11,12 @@ import {
     MenuList,
     Switch,
 } from "@chakra-ui/react";
-import { RiPlaneFill, RiPlaneLine, RiSettings3Line } from "react-icons/ri";
+import { RiPlaneFill, RiSettings3Line } from "react-icons/ri";
 
 //------------------------------------------------------------------------------
 import { Tooltip } from "@/components/common/Tooltip";
 import { ArrowsToDotLightIcon } from "@/components/common/icons";
+import { IconStriked } from "@/components/common/IconStriked";
 import { MoveSpeedBar } from "@/components/settings/MoveSpeedBar";
 
 //------------------------------------------------------------------------------
@@ -32,7 +33,6 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
     const [switchCameraState, setSwitchCameraState] = useState(true);
     const [switchEdgeState, setSwitchEdgeState] = useState(true);
     const [moveSpeed, setMoveSpeed] = useState<number>(DEFAULT_MOVE_SPEED);
-
     const [showMoveSpeedBar, setShowMoveSpeedbar] = useState<boolean>(false);
 
     //------------------------------------------------------------------------------
@@ -45,7 +45,13 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
         {
             label: "Toggle fly camera",
             onClick: () => handleCameraSwitchChange(switchCameraState, setSwitchCameraState),
-            icon: switchCameraState ? <Icon as={RiPlaneFill} /> : <Icon as={RiPlaneLine} />,
+            icon: switchCameraState ? (
+                <Icon as={RiPlaneFill} />
+            ) : (
+                <IconStriked>
+                    <Icon as={RiPlaneFill} />
+                </IconStriked>
+            ),
         },
     ];
 
