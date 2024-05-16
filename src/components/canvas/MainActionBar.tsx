@@ -117,7 +117,7 @@ export const MainActionBar = ({
 
                 <TabPanels>
                     <TabPanel>
-                        <MainActionPanel>
+                        <MainActionPanel className="hidden lg:flex">
                             <EnergyConsumptionList />
                         </MainActionPanel>
                     </TabPanel>
