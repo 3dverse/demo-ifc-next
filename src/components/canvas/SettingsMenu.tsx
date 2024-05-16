@@ -69,7 +69,7 @@ export const SettingsMenu = memo(({ basePoint }: { basePoint: BasePoint }) => {
                 as="nav"
                 isAttached
                 variant="outline-island"
-                size={{ base: "md", lg: "sm" }}
+                size={{ base: "md", sm: "sm" }}
                 shadow={["lg", null, "xl"]}
                 rounded="md"
                 className={showMoveSpeedBar ? "animate-disappear-left pointer-events-none" : "animate-appear-left"}
@@ -101,13 +101,15 @@ export const SettingsMenu = memo(({ basePoint }: { basePoint: BasePoint }) => {
                                 />
                             </span>
                         </MenuItem>
-                        <MenuDivider />
-                        <MenuItem onClick={() => setShowMoveSpeedbar(true)}>
-                            <span className="flex justify-between items-center flex-grow gap-4 text-xs">
-                                Move speed
-                                <span className="text-2xs text-secondary">{moveSpeed} km/h</span>
-                            </span>
-                        </MenuItem>
+                        <span className="hidden lg:block">
+                            <MenuDivider />
+                            <MenuItem onClick={() => setShowMoveSpeedbar(true)}>
+                                <span className="flex justify-between items-center flex-grow gap-4 text-xs">
+                                    Move speed
+                                    <span className="text-2xs text-secondary">{moveSpeed} km/h</span>
+                                </span>
+                            </MenuItem>
+                        </span>
                     </MenuList>
                 </Menu>
             </ButtonGroup>
