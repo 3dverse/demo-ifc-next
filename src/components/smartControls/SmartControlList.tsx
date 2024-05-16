@@ -1,11 +1,14 @@
 //------------------------------------------------------------------------------
 import { useState } from "react";
 import { Button, Icon, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
-import { RiArrowRightSFill, RiLightbulbFill, RiPlayFill } from "react-icons/ri";
+import { RiArrowRightSFill } from "react-icons/ri";
 
 //------------------------------------------------------------------------------
 import { SmartControlLight2 } from "./SmartControlLight2";
 import { SmartControlDoor } from "./SmartControlDoor";
+
+//------------------------------------------------------------------------------
+import { DOOR_EUID, SPOTLIGHT_EUID, travelToEntity } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -17,16 +20,25 @@ export const SmartControlList = () => {
     const [activeItemIndex, setActiveItemIndex] = useState(0);
 
     //------------------------------------------------------------------------------
+    const onTabChange = (index: number) => {
+        if (index === 0) {
+            travelToEntity(SPOTLIGHT_EUID);
+        } else if (index === 1) {
+            DOOR_EUID && travelToEntity(DOOR_EUID);
+        }
+        setActiveItemIndex(index);
+    };
+
+    //------------------------------------------------------------------------------
     // UI
     return (
         <article>
-            <Tabs index={activeItemIndex} orientation="vertical" display="flex" minH={28}>
+            <Tabs orientation="vertical" display="flex" minH={28} onChange={onTabChange}>
                 <TabList gap={0} border="none" borderRight="1px" borderColor="border.primary">
                     {items.map((item, index: number) => (
                         <Tab
                             key={index}
                             as={Button}
-                            onClick={() => setActiveItemIndex(index)}
                             isActive={index === activeItemIndex}
                             variant={index === activeItemIndex ? "accent" : "ghost"}
                             size="sm"
@@ -58,7 +70,7 @@ export const SmartControlList = () => {
                         </p>
                     </div>
                 </TabList>
-                <TabPanels>
+                <TabPanels minW={72}>
                     <TabPanel px={4} py={2} className="animate-appear-top [--animation-appear-offset:4px]">
                         <h1 className="text-2xs mb-2 opacity-90 uppercase tracking-wide">Connected lights</h1>
                         <SmartControlLight2 />

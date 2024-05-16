@@ -11,25 +11,25 @@ import {
 } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
-import { getSpotlightEntity, rgbToHex, SPOTLIGHT_UUID, travelToEntity, updateColor } from "@/lib/3dverse/helpers";
+import { getSpotlightEntity, rgbToHex, updateColor, updateLightIntensity } from "@/lib/3dverse/helpers";
 import { Entity } from "@/types/3dverse";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 export const SmartControlLight2 = () => {
     //--------------------------------------------------------------------------
-    const [intensity, setIntensity] = useState(50);
+    const [spotLightEntity, setSpotLightEntity] = useState<Entity | undefined>(undefined);
+    const [intensity, setIntensity] = useState(0);
     const [color, setColor] = useState([0, 0, 0]);
 
-    //------------------------------------------------------------------------------
-    const [spotLightEntity, setSpotLightEntity] = useState<Entity | undefined>(undefined);
-
-    //------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    // Effects
     useEffect(() => {
         const update = async () => {
-            const spotlightEntity = await getSpotlightEntity();
-            setSpotLightEntity(spotlightEntity);
-            // travelToEntity(SPOTLIGHT_UUID);
+            const _spotLightEntity = await getSpotlightEntity();
+            setIntensity(_spotLightEntity.components.point_light.intensity);
+            setColor(_spotLightEntity.components.point_light.color);
+            setSpotLightEntity(_spotLightEntity);
         };
         update();
     }, []);
@@ -48,14 +48,12 @@ export const SmartControlLight2 = () => {
                     `}
                 >
                     <input
-                        onChange={async (e) => {
-                            await updateColor(e.target.value, spotLightEntity, setColor);
-                        }}
+                        value={rgbToHex(color)}
+                        onChange={async (e) => await updateColor(e.target.value, spotLightEntity, setColor)}
                         type="color"
                         id="color"
                         name="color"
                         className="h-[calc(100%+10px)] aspect-square -m-[5px] cursor-pointer"
-                        value={rgbToHex(color)}
                     />
                 </div>
             </FormControl>
@@ -64,17 +62,17 @@ export const SmartControlLight2 = () => {
                     Intensity
                 </FormLabel>
                 <Slider
-                    defaultValue={intensity}
+                    value={intensity}
+                    onChange={async (value: number) => await updateLightIntensity(value, spotLightEntity, setIntensity)}
                     min={0}
-                    max={100}
+                    max={1000}
                     h={4}
                     colorScheme="accent"
-                    onChange={(v) => setIntensity(v)}
                 >
                     <SliderMark value={0} mt={3} fontSize="3xs" opacity={0.8}>
                         0%
                     </SliderMark>
-                    <SliderMark value={100} mt={3} ml={-7} fontSize="3xs" opacity={0.8}>
+                    <SliderMark value={1000} mt={3} ml={-7} fontSize="3xs" opacity={0.8}>
                         100%
                     </SliderMark>
                     <SliderTrack h={4} rounded={8} bgColor="white">

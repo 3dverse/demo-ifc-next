@@ -10,6 +10,7 @@ import { Attributes } from "./Attributes";
 //------------------------------------------------------------------------------
 import { IfcData } from "@/types/ifc";
 import { Entity } from "@/types/3dverse";
+import { DOOR_GUID } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -38,7 +39,7 @@ export const IfcPropertyPanel = ({
                 {entitiyProperties?.props?.type == "IfcLightFixture" && (
                     <SmartControlLight spotLightEntity={spotLightEntity} />
                 )}
-                {entitiyProperties?.props?.GlobalId == "02a5zYLwD3j9mC$YV6woIu" && <ControlAnimation />}
+                {entitiyProperties?.props?.GlobalId == DOOR_GUID && <ControlAnimation />}
                 <Attributes guid={guid} />
             </div>
         </aside>

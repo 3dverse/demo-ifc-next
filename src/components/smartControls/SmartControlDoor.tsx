@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 import { useState } from "react";
 import { Button, Icon } from "@chakra-ui/react";
-import { RiPauseFill, RiPlayFill, RiPlayLine } from "react-icons/ri";
+import { RiPauseFill, RiPlayLine } from "react-icons/ri";
 
 //------------------------------------------------------------------------------
 import { pauseAnimation, runAnimation, stopAnimation } from "@/lib/3dverse/helpers";
