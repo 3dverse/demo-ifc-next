@@ -433,7 +433,7 @@ export const getSpotlightEntity = async () => {
 export const travelToEntity = async (entityUUID: string) => {
     const [entity] = await SDK3DVerse.engineAPI.findEntitiesByEUID(entityUUID);
     const [viewport] = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports();
-    const speed = 40;
+    const speed = 30;
     SDK3DVerse.engineAPI.cameraAPI.stopTravel();
     SDK3DVerse.engineAPI.cameraAPI.travel(
         viewport,

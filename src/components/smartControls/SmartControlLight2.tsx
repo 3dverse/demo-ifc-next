@@ -20,6 +20,7 @@ export const SmartControlLight2 = () => {
     //--------------------------------------------------------------------------
     const [spotLightEntity, setSpotLightEntity] = useState<Entity | undefined>(undefined);
     const [intensity, setIntensity] = useState(0);
+    const INTENSITY_MAX = 100;
     const [color, setColor] = useState([0, 0, 0]);
 
     //--------------------------------------------------------------------------
@@ -27,9 +28,9 @@ export const SmartControlLight2 = () => {
     useEffect(() => {
         const update = async () => {
             const _spotLightEntity = await getSpotlightEntity();
+            setSpotLightEntity(_spotLightEntity);
             setIntensity(_spotLightEntity.components.point_light.intensity);
             setColor(_spotLightEntity.components.point_light.color);
-            setSpotLightEntity(_spotLightEntity);
         };
         update();
     }, []);
@@ -65,14 +66,14 @@ export const SmartControlLight2 = () => {
                     value={intensity}
                     onChange={async (value: number) => await updateLightIntensity(value, spotLightEntity, setIntensity)}
                     min={0}
-                    max={1000}
+                    max={INTENSITY_MAX}
                     h={4}
                     colorScheme="accent"
                 >
                     <SliderMark value={0} mt={3} fontSize="3xs" opacity={0.8}>
                         0%
                     </SliderMark>
-                    <SliderMark value={1000} mt={3} ml={-7} fontSize="3xs" opacity={0.8}>
+                    <SliderMark value={INTENSITY_MAX} mt={3} ml={-7} fontSize="3xs" opacity={0.8}>
                         100%
                     </SliderMark>
                     <SliderTrack h={4} rounded={8} bgColor="white">
