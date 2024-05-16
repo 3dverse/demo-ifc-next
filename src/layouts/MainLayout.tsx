@@ -3,15 +3,15 @@ import { useRef, useState, useCallback, memo, useEffect } from "react";
 import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
-import { Canvas } from "@/components/canvas/Canvas";
 import { MainPanel } from "@/components/layout/MainPanel";
-import { IfcPropertyPanel } from "@/components/IfcProperty/IfcPropertyPanel";
+import { WelcomeModal } from "@/components/common/WelcomeModal";
+import { Canvas } from "@/components/canvas/Canvas";
 import { MainActionBar } from "@/components/canvas/MainActionBar";
 import { InviteButton } from "@/components/canvas/InviteButton";
-import { WelcomeModal } from "@/components/common/WelcomeModal";
-import { AboutCard } from "@/components/about/AboutCard";
 import { BottomActionBar } from "@/components/canvas/BottomActionBar";
-import { SettingsActionBar } from "@/components/canvas/SettingsActionBar";
+import { AboutCard } from "@/components/about/AboutCard";
+import { SettingsActionBar } from "@/components/settings/SettingsActionBar";
+import { IfcPropertyPanel } from "@/components/IfcProperty/IfcPropertyPanel";
 
 //------------------------------------------------------------------------------
 import { Entity } from "@/types/3dverse";
@@ -109,9 +109,9 @@ export const MainLayout = memo(() => {
             />
             <SettingsActionBar basePoint={basePoint} isMainPanelExpanded={isMainPanelExpanded} />
 
-            <BottomActionBar isMainPanelExpanded={isMainPanelExpanded} />
+            {sessionId && <BottomActionBar isMainPanelExpanded={isMainPanelExpanded} />}
 
-            <InviteButton sessionId={sessionId} />
+            {sessionId && <InviteButton sessionId={sessionId} />}
 
             {selectedPropertyGUID && (
                 <IfcPropertyPanel

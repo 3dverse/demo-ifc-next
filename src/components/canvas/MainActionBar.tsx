@@ -64,10 +64,7 @@ export const MainActionBar = ({
                     {TAB_ITEMS.map(({ label, icon }, index: number) => (
                         <Tab
                             key={label}
-                            onClick={() => {
-                                console.log(index, tabIndex);
-                                setTabIndex(index === tabIndex ? -1 : index);
-                            }}
+                            onClick={() => setTabIndex(index === tabIndex ? -1 : index)}
                             p={3}
                             pb="2!"
                             w={32}

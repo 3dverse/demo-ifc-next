@@ -65,8 +65,8 @@ export const SmartControlList = () => {
                     ))}
                     <div className="flex items-end flex-1 px-3 py-2">
                         <p className="text-3xs leading-tight text-secondary opacity-90">
-                            Connect any device
-                            <br /> with 3dverse.
+                            Connect to 3dverse
+                            <br /> with any device.
                         </p>
                     </div>
                 </TabList>

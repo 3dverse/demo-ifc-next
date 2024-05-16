@@ -5,12 +5,12 @@ import { RiQrCodeFill, RiUserAddLine } from "react-icons/ri";
 import QRCode from "react-qr-code";
 
 //------------------------------------------------------------------------------
-function buildQRCodeUrl(sessionId: string) {
+const buildQRCodeUrl = (sessionId: string) => {
     const baseUrl = window.location.href;
     const queryParam = `sessionId=${sessionId}`;
     const urlWithQueryParam = `${baseUrl}?${queryParam}`;
     return urlWithQueryParam;
-}
+};
 
 //--------------------------------------------------------------------------
 const shareLink = async () => {
@@ -42,10 +42,6 @@ const shareLinkPrompt = (url: string) => {
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 export const InviteButton = memo(({ sessionId }: { sessionId: string }) => {
-    //------------------------------------------------------------------------------
-    if (!sessionId) {
-        return null;
-    }
     //------------------------------------------------------------------------------
     return (
         <div className="absolute top-4 right-4">
