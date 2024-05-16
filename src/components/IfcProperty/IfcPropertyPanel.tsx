@@ -3,13 +3,14 @@ import IFC_DATA from "../../../public/data/json/ifcData.json";
 
 //------------------------------------------------------------------------------
 import { Header } from "./Header";
-import { ControlLight } from "./ControlLight";
+import { SmartControlLight } from "../smartControls/SmartControlLight";
 import { ControlAnimation } from "./ControlAnimation";
 import { Attributes } from "./Attributes";
 
 //------------------------------------------------------------------------------
 import { IfcData } from "@/types/ifc";
 import { Entity } from "@/types/3dverse";
+import { DOOR_GUID } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -36,9 +37,9 @@ export const IfcPropertyPanel = ({
             <Header entitiyProperties={entitiyProperties} onClose={onClose} />
             <div className="card-body">
                 {entitiyProperties?.props?.type == "IfcLightFixture" && (
-                    <ControlLight spotLightEntity={spotLightEntity} />
+                    <SmartControlLight spotLightEntity={spotLightEntity} />
                 )}
-                {entitiyProperties?.props?.GlobalId == "02a5zYLwD3j9mC$YV6woIu" && <ControlAnimation />}
+                {entitiyProperties?.props?.GlobalId == DOOR_GUID && <ControlAnimation />}
                 <Attributes guid={guid} />
             </div>
         </aside>

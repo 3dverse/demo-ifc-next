@@ -47,11 +47,14 @@ export const MoveSpeedBar = ({
             />
             <div className="relative flex items-center gap-4 pl-3 animate-appear-right">
                 <div className="flex items-center gap-2 text-[white]">
-                    <p className="rotate-180 text-2xs uppercase tracking-widest" style={{ writingMode: "vertical-rl" }}>
+                    <p
+                        className="rotate-180 text-2xs uppercase tracking-widest opacity-60"
+                        style={{ writingMode: "vertical-rl" }}
+                    >
                         Move speed
                     </p>
-                    <Icon as={RiTriangleFill} boxSize={2} className="rotate-90 opacity-90" />
-                    <p className="absolute left-24 text-xs tracking-wide opacity-80">km/h</p>
+                    {false && <Icon as={RiTriangleFill} boxSize={2} className="rotate-90 opacity-60" />}
+                    <p className="absolute left-24 text-xs tracking-wide">km/h</p>
                 </div>
                 <Box
                     className="absolute left-0"
@@ -84,16 +87,15 @@ export const MoveSpeedBar = ({
                         centeredSlides
                         slideToClickedSlide
                         style={{
+                            marginLeft: "1.75rem",
                             height: "20rem",
-                            width: "5.5rem",
+                            width: "3.5rem",
                             maskImage: "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
                         }}
                     >
                         {SPEEDS.map((v) => (
-                            <SwiperSlide
-                                className="border-t border-[#ffffff40] text-[white] text-end text-md py-px"
-                                key={v}
-                            >
+                            <SwiperSlide className="relative text-[white] text-end text-md py-px" key={v}>
+                                <span className="absolute -top-px block h-px w-full bg-gradient-to-r from-transparent to-[white] rounded-[2px] opacity-50" />
                                 {v}
                             </SwiperSlide>
                         ))}

@@ -22,6 +22,6 @@
     }
 
     &-value {
-        @apply w-[60%] text-secondary;
+        @apply w-[60%] text-secondary font-medium;
     }
 }

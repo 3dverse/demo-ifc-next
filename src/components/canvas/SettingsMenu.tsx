@@ -28,7 +28,7 @@ const DEFAULT_MOVE_SPEED = SDK3DVerse.engineAPI.cameraAPI.controllerSettings.spe
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
+export const SettingsMenu = memo(({ basePoint }: { basePoint: BasePoint }) => {
     //------------------------------------------------------------------------------
     const [switchCameraState, setSwitchCameraState] = useState(true);
     const [switchEdgeState, setSwitchEdgeState] = useState(true);
@@ -36,7 +36,7 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
     const [showMoveSpeedBar, setShowMoveSpeedbar] = useState<boolean>(false);
 
     //------------------------------------------------------------------------------
-    const settings_actions = [
+    const settingsActions = [
         {
             label: "Reset position",
             onClick: () => handleReset(basePoint),
@@ -69,12 +69,12 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
                 as="nav"
                 isAttached
                 variant="outline-island"
-                size={{ base: "md", lg: "sm" }}
+                size={{ base: "md", sm: "sm" }}
                 shadow={["lg", null, "xl"]}
                 rounded="md"
                 className={showMoveSpeedBar ? "animate-disappear-left pointer-events-none" : "animate-appear-left"}
             >
-                {settings_actions.map(({ label, onClick, icon }) => (
+                {settingsActions.map(({ label, onClick, icon }) => (
                     <Tooltip key={label} label={label} size="sm" placement="right">
                         <IconButton aria-label={label} onClick={onClick} icon={icon} border="none" />
                     </Tooltip>
@@ -101,13 +101,15 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
                                 />
                             </span>
                         </MenuItem>
-                        <MenuDivider />
-                        <MenuItem onClick={() => setShowMoveSpeedbar(true)}>
-                            <span className="flex justify-between items-center flex-grow gap-4 text-xs">
-                                Move speed
-                                <span className="text-2xs text-secondary">{moveSpeed} km/h</span>
-                            </span>
-                        </MenuItem>
+                        <span className="hidden lg:block">
+                            <MenuDivider />
+                            <MenuItem onClick={() => setShowMoveSpeedbar(true)}>
+                                <span className="flex justify-between items-center flex-grow gap-4 text-xs">
+                                    Move speed
+                                    <span className="text-2xs text-secondary">{moveSpeed} km/h</span>
+                                </span>
+                            </MenuItem>
+                        </span>
                     </MenuList>
                 </Menu>
             </ButtonGroup>
@@ -123,4 +125,4 @@ export const Settings = memo(({ basePoint }: { basePoint: BasePoint }) => {
 });
 
 //------------------------------------------------------------------------------
-Settings.displayName = "Settings";
+SettingsMenu.displayName = "SettingsMenu";

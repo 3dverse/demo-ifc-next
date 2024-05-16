@@ -4,8 +4,7 @@ import { Accordion, Button } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
 import IFC_DATA from "../../../public/data/json/ifcData.json";
-import ifcTypes from "../../../public/data/json/ifctype2guids.json";
-import { getEntityFromGuid, toToggle } from "@/lib/3dverse/helpers";
+import IFC_TYPES from "../../../public/data/json/ifctype2guids.json";
 
 //------------------------------------------------------------------------------
 import { MainPanelHeader } from "@/components/layout/MainPanelHeader";
@@ -13,18 +12,19 @@ import { StoreyListAccordionItem } from "./StoreyListAccordionItem";
 
 //------------------------------------------------------------------------------
 import { IfcData, IfcType } from "@/types/ifc";
+import { getEntityFromGuid, toToggle } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 export const StoreyList = () => {
     //------------------------------------------------------------------------------
     const ifcData = IFC_DATA as IfcData;
-    const ifctypes = ifcTypes as IfcType;
+    const ifctypes = IFC_TYPES as IfcType;
 
     const storeyKey = "IfcBuildingStorey";
-    const storeys = ifctypes[storeyKey];
+    const storeyGuids = ifctypes[storeyKey];
 
-    const [visibleStoreys, setVisibleStoreys]: any = useState(new Array(storeys.length).fill(true));
+    const [visibleStoreys, setVisibleStoreys]: any = useState(new Array(storeyGuids.length).fill(true));
 
     //------------------------------------------------------------------------------
     const handleStoreyVisibility = async (index: any, storeyGuid: string | null, event: any) => {
@@ -96,8 +96,8 @@ export const StoreyList = () => {
 
                 <div className="md:mx-2">
                     <Accordion allowMultiple>
-                        {storeys.map((storey: string, index: number) => {
-                            const spaces = ifcData[storey].props?.spaces;
+                        {storeyGuids.map((storeyGuid: string, index: number) => {
+                            const spaces = ifcData[storeyGuid].props?.spaces;
                             const hasStoreySpaces = typeof spaces === "object" && spaces!.length > 0;
                             const isStoreyVisible = visibleStoreys[index];
 
@@ -106,8 +106,8 @@ export const StoreyList = () => {
                                     key={index}
                                     index={index}
                                     ifcData={ifcData}
-                                    storey={storey}
-                                    storeyCount={storeys.length}
+                                    storeyGuid={storeyGuid}
+                                    storeyCount={storeyGuids.length}
                                     hasStoreySpaces={hasStoreySpaces}
                                     isStoreyVisible={isStoreyVisible}
                                     handleStoreyVisibility={handleStoreyVisibility}

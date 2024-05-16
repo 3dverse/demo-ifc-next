@@ -24,7 +24,7 @@
 
 @keyframes appear-bottom {
     0% {
-        translate: var(--tw-translate-x, 0px) var(--animation-appear-offset, -16px);
+        translate: var(--tw-translate-x, 0px) var(--animation-appear-offset, 16px);
         opacity: 0;
     }
     100% {
@@ -75,8 +75,10 @@
     }
 
     /* ------------------------------------------------------------------------------ */
-    /* Note: Feel free to create `animate-disappear-...` for other directions.
-    /* ------------------------------------------------------------------------------ */
+    .animate-disappear-top {
+        @apply animate-appear-top;
+        animation-direction: reverse;
+    }
 
     .animate-disappear-left {
         @apply animate-appear-left;

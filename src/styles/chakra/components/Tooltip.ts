@@ -27,6 +27,12 @@ export default defineStyleConfig({
             px: "2",
             maxW: "200px",
         },
+        md: {
+            fontSize: "xs",
+            py: "1px",
+            px: "2",
+            maxW: "200px",
+        },
         lg: {
             py: ".5rem",
             px: "1rem",

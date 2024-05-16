@@ -138,6 +138,7 @@ const config: Config = {
         },
     },
     plugins: [
+        require("@tailwindcss/typography"),
         plugin(
             ({ matchUtilities, theme }: { matchUtilities: PluginAPI["matchUtilities"]; theme: PluginAPI["theme"] }) => {
                 matchUtilities(
@@ -155,5 +156,8 @@ const config: Config = {
             },
         ),
     ],
+    experimental: {
+        optimizeUniversalDefaults: true,
+    },
 };
 export default config;
