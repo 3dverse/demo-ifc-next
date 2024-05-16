@@ -416,8 +416,18 @@ export class CameraController_ {
     }
 }
 
+export const SPOTLIGHT_UUID = "5f0cf797-d27a-4f53-91b3-de21758050dd";
+
 export const getSpotlightEntity = async () => {
-    const SPOTLIGHT_UUID = "5f0cf797-d27a-4f53-91b3-de21758050dd";
     const [spotlightEntity] = await SDK3DVerse.engineAPI.findEntitiesByEUID(SPOTLIGHT_UUID);
     return spotlightEntity;
+};
+
+//--------------------------------------------------------------------------
+export const travelToEntity = async (entityUUID: string) => {
+    const [entity] = await SDK3DVerse.engineAPI.findEntitiesByEUID(entityUUID);
+    const [viewport] = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports();
+    const speed = 40;
+    SDK3DVerse.engineAPI.cameraAPI.stopTravel();
+    SDK3DVerse.engineAPI.cameraAPI.travel(viewport, entity.position, entity.orientation, speed);
 };

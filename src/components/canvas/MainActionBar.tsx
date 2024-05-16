@@ -55,7 +55,7 @@ export const MainActionBar = ({
                 `absolute top-2 lg:top-4 left-0 lg:left-[var(--main-panel-width)]
                 flex flex-col md:flex-row items-start justify-between gap-2 
                 max-w-[500px] ml-2
-                animate-appear-left animation-delay-[250ms] opacity-0 transition-all`,
+                animate-appear-left animation-delay-[250ms] opacity-0 transition-all z-10`,
                 !isMainPanelExpanded ? "lg:left-16" : "",
             )}
         >
