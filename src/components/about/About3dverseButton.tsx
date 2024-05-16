@@ -6,7 +6,7 @@ import Logo3dverse from "../../../public/socials/logo_3dverse.svg";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-export const AboutCard = () => {
+export const About3dverseButton = () => {
     return (
         <aside className="md:hidden fixed bottom-0 left-0 p-4">
             <Button
@@ -25,4 +25,4 @@ export const AboutCard = () => {
 };
 
 //------------------------------------------------------------------------------
-AboutCard.displayName = "AboutCard";
+About3dverseButton.displayName = "About3dverseButton";

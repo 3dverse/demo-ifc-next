@@ -9,7 +9,7 @@ import { Canvas } from "@/components/canvas/Canvas";
 import { MainActionBar } from "@/components/canvas/MainActionBar";
 import { InviteButton } from "@/components/canvas/InviteButton";
 import { BottomActionBar } from "@/components/canvas/BottomActionBar";
-import { AboutCard } from "@/components/about/AboutCard";
+import { About3dverseButton } from "@/components/about/AboutCard";
 import { SettingsActionBar } from "@/components/settings/SettingsActionBar";
 import { IfcPropertyPanel } from "@/components/IfcProperty/IfcPropertyPanel";
 
@@ -107,7 +107,7 @@ export const MainLayout = memo(() => {
                 <IfcPropertyPanel guid={selectedPropertyGUID} onClose={() => setSelectedPropertyGUID(null)} />
             )}
 
-            <AboutCard />
+            <About3dverseButton />
             <WelcomeModal />
         </>
     );
