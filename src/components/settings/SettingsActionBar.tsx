@@ -2,7 +2,7 @@
 import { twMerge } from "tailwind-merge";
 
 //------------------------------------------------------------------------------
-import { SettingsMenu } from "@/components/canvas/SettingsMenu";
+import { SettingsMenu } from "@/components/settings/SettingsMenu";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------

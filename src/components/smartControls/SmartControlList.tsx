@@ -1,14 +1,14 @@
 //------------------------------------------------------------------------------
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Icon, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { RiArrowRightSFill } from "react-icons/ri";
 
 //------------------------------------------------------------------------------
-import { SmartControlLight2 } from "./SmartControlLight2";
+import { SmartControlLight } from "./SmartControlLight";
 import { SmartControlDoor } from "./SmartControlDoor";
 
 //------------------------------------------------------------------------------
-import { DOOR_EUID, SPOTLIGHT_EUID, travelToEntity } from "@/lib/3dverse/helpers";
+import { DOOR_EUID, SPOTLIGHT_EUID, focusOnEntity } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -19,12 +19,16 @@ export const SmartControlList = () => {
     //------------------------------------------------------------------------------
     const [activeItemIndex, setActiveItemIndex] = useState(0);
 
+    useEffect(() => {
+        focusOnEntity(SPOTLIGHT_EUID);
+    }, []);
+
     //------------------------------------------------------------------------------
     const onTabChange = (index: number) => {
         if (index === 0) {
-            travelToEntity(SPOTLIGHT_EUID);
+            focusOnEntity(SPOTLIGHT_EUID);
         } else if (index === 1) {
-            DOOR_EUID && travelToEntity(DOOR_EUID);
+            DOOR_EUID && focusOnEntity(DOOR_EUID);
         }
         setActiveItemIndex(index);
     };
@@ -59,25 +63,28 @@ export const SmartControlList = () => {
                                     opacity={index === activeItemIndex ? 0.9 : 0.2}
                                 />
                             }
+                            _hover={{
+                                bgColor: "#ffffff60",
+                            }}
                         >
                             {item.label}
                         </Tab>
                     ))}
                     <div className="flex items-end flex-1 px-3 py-2">
                         <p className="text-3xs leading-tight text-secondary opacity-90">
-                            Connect any device
-                            <br /> with 3dverse.
+                            Connect to 3dverse
+                            <br /> with any device.
                         </p>
                     </div>
                 </TabList>
                 <TabPanels minW={72}>
                     <TabPanel px={4} py={2} className="animate-appear-top [--animation-appear-offset:4px]">
                         <h1 className="text-2xs mb-2 opacity-90 uppercase tracking-wide">Connected lights</h1>
-                        <SmartControlLight2 />
+                        <SmartControlLight />
                     </TabPanel>
                     <TabPanel px={4} py={2} className="animate-appear-top [--animation-appear-offset:4px]">
                         <h1 className="text-2xs mb-2 opacity-90 uppercase tracking-wide">Animate Doors</h1>
-                        <SmartControlDoor />
+                        <SmartControlDoor className="flex-col items-start gap-2" />
                     </TabPanel>
                 </TabPanels>
             </Tabs>

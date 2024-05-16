@@ -52,6 +52,7 @@ export const SettingsMenu = memo(({ basePoint }: { basePoint: BasePoint }) => {
                     <Icon as={RiPlaneFill} />
                 </IconStriked>
             ),
+            className: "hidden lg:block",
         },
     ];
 
@@ -74,9 +75,15 @@ export const SettingsMenu = memo(({ basePoint }: { basePoint: BasePoint }) => {
                 rounded="md"
                 className={showMoveSpeedBar ? "animate-disappear-left pointer-events-none" : "animate-appear-left"}
             >
-                {settingsActions.map(({ label, onClick, icon }) => (
+                {settingsActions.map(({ label, onClick, icon, className }) => (
                     <Tooltip key={label} label={label} size="sm" placement="right">
-                        <IconButton aria-label={label} onClick={onClick} icon={icon} border="none" />
+                        <IconButton
+                            aria-label={label}
+                            onClick={onClick}
+                            icon={icon}
+                            border="none"
+                            className={className}
+                        />
                     </Tooltip>
                 ))}
                 <Menu closeOnSelect={false} gutter={3} placement="end-start">

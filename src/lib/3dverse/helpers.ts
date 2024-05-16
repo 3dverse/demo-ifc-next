@@ -442,3 +442,9 @@ export const travelToEntity = async (entityUUID: string) => {
         speed,
     );
 };
+//--------------------------------------------------------------------------
+export const focusOnEntity = async (entityUUID: string) => {
+    const [entity] = await SDK3DVerse.engineAPI.findEntitiesByEUID(entityUUID);
+    const [viewport] = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports();
+    entity.focusOn(viewport, { speedFactor: 3 });
+};
