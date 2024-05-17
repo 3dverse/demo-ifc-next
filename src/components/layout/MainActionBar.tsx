@@ -5,7 +5,7 @@ import { RiLeafLine, RiRouterLine } from "react-icons/ri";
 import { twMerge } from "tailwind-merge";
 
 //------------------------------------------------------------------------------
-import { handleReset, toggleEnergyView } from "@/lib/3dverse/helpers";
+import { handleReset, LAMP_POS, toggleEnergyView } from "@/lib/3dverse/helpers";
 import { MainActionPanel } from "@/components/layout/MainActionPanel";
 import { EnergyConsumptionList } from "@/components/energy/EnergyConsumptionList";
 import { SmartControlList } from "@/components/smartControls/SmartControlList";
@@ -47,10 +47,11 @@ export const MainActionBar = ({
         if (tabIndex === 0) {
             handleReset(basePoint);
             handleToggleEnergyView(true);
-        } else if (energyVisible) {
+        } else if (tabIndex === 1) {
+            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(LAMP_POS);
             handleToggleEnergyView(false);
         }
-    }, [basePoint, energyVisible, handleToggleEnergyView, tabIndex]);
+    }, [basePoint, handleToggleEnergyView, tabIndex]);
 
     //------------------------------------------------------------------------------
     return (
