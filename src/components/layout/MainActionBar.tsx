@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 
 //------------------------------------------------------------------------------
 import { toggleEnergyView } from "@/lib/3dverse/helpers";
-import { MainActionPanel } from "@/components/canvas/MainActionPanel";
+import { MainActionPanel } from "@/components/layout/MainActionPanel";
 import { EnergyConsumptionList } from "@/components/energy/EnergyConsumptionList";
 import { SmartControlList } from "@/components/smartControls/SmartControlList";
 
