@@ -26,10 +26,12 @@ export const EnergyConsumptionList = memo(() => {
                     <small>&#9650;</small> 3 Alerts
                 </p>
             </MainPanelHeader>
-            <div className="grid grid-cols-3 h-full gap-3 px-4">
-                {Object.entries(roomEnergyData).map(([roomGuid, cons]: [string, number]) => (
-                    <EnergyConsumptionItem key={roomGuid} roomName={ifcData[roomGuid].props.Name} cons={cons} />
-                ))}
+            <div className="grid grid-cols-3 h-full gap-3 px-4 pb-3">
+                {Object.entries(roomEnergyData)
+                    .slice(0, 6)
+                    .map(([roomGuid, cons]: [string, number]) => (
+                        <EnergyConsumptionItem key={roomGuid} roomName={ifcData[roomGuid].props.Name} cons={cons} />
+                    ))}
             </div>
         </article>
     );
