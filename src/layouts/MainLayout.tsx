@@ -92,16 +92,21 @@ export const MainLayout = memo(() => {
 
             <MainPanel isExpanded={isMainPanelExpanded} onExpand={onExpandMainPanel} onCollapse={onCollapseMainPanel} />
 
-            <MainActionBar
-                isMainPanelExpanded={isMainPanelExpanded}
-                energyVisible={energyVisible}
-                setEnergyVisibility={setEnergyVisibility}
-            />
-            <SettingsActionBar basePoint={basePoint} isMainPanelExpanded={isMainPanelExpanded} />
+            {sessionId && (
+                <>
+                    <MainActionBar
+                        isMainPanelExpanded={isMainPanelExpanded}
+                        energyVisible={energyVisible}
+                        setEnergyVisibility={setEnergyVisibility}
+                    />
 
-            {sessionId && <BottomActionBar isMainPanelExpanded={isMainPanelExpanded} />}
+                    <SettingsActionBar basePoint={basePoint} isMainPanelExpanded={isMainPanelExpanded} />
 
-            {sessionId && <InviteButton sessionId={sessionId} />}
+                    <BottomActionBar isMainPanelExpanded={isMainPanelExpanded} />
+
+                    <InviteButton sessionId={sessionId} />
+                </>
+            )}
 
             {selectedPropertyGUID && (
                 <IfcPropertyPanel guid={selectedPropertyGUID} onClose={() => setSelectedPropertyGUID(null)} />

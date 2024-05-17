@@ -54,8 +54,8 @@ export const MainActionBar = ({
             className={twMerge(
                 `absolute top-2 lg:top-4 left-0 lg:left-[var(--main-panel-width)]
                 flex flex-col md:flex-row items-start justify-between gap-2 
-                max-w-[500px] ml-2
-                animate-appear-left animation-delay-[250ms] opacity-0 transition-all z-10`,
+                max-w-[500px] ml-2 transition-[left] z-10
+                `,
                 !isMainPanelExpanded ? "lg:left-16" : "",
             )}
         >
@@ -79,11 +79,13 @@ export const MainActionBar = ({
                             fontSize="xs"
                             lineHeight="1.1"
                             letterSpacing=".05em"
+                            backdropFilter="auto"
+                            backdropBlur="20px"
                             _selected={{
                                 color: "white",
                                 "--icon-opacity": ".9",
-                                "--tab-bg-color-from": "#6537ec",
-                                "--tab-bg-color-to": "#906afc",
+                                "--tab-bg-color-from": "#6537ecDD",
+                                "--tab-bg-color-to": "#906afcDD",
                             }}
                             transitionProperty="all, --tab-bg-color-from, --tab-bg-color-to"
                             transitionDuration=".2s"
@@ -91,6 +93,7 @@ export const MainActionBar = ({
                                 "--icon-opacity": "0.5",
                             }}
                             rounded="xl"
+                            className="animate-appear-right animation-delay-[250ms] opacity-0"
                         >
                             <Icon as={icon} boxSize={5} opacity="var(--icon-opacity)" transition="opacity .25s" />
                             {label}

@@ -44,7 +44,7 @@ const shareLinkPrompt = (url: string) => {
 export const InviteButton = memo(({ sessionId }: { sessionId: string }) => {
     //------------------------------------------------------------------------------
     return (
-        <div className="absolute top-4 right-4">
+        <div className="absolute top-4 right-4 animate-appear-left">
             <div className="hidden lg:block">
                 <Popover gutter={6}>
                     <PopoverTrigger>
