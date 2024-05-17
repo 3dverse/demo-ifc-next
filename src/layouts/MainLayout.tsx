@@ -1,20 +1,20 @@
-import { useState, useCallback, memo, useEffect } from "react";
+//------------------------------------------------------------------------------
+import { useRef, useState, useCallback, memo, useEffect } from "react";
 import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
 
 //------------------------------------------------------------------------------
-import { Canvas } from "@/components/canvas/Canvas";
 import { MainPanel } from "@/components/layout/MainPanel";
+import { WelcomeModal } from "@/components/common/WelcomeModal";
+import { Canvas } from "@/components/canvas/Canvas";
+import { MainActionBar } from "@/components/layout/MainActionBar";
+import { InviteButton } from "@/components/layout/InviteButton";
+import { BottomActionBar } from "@/components/layout/BottomActionBar";
+import { About3dverseButton } from "@/components/about/About3dverseButton";
+import { SettingsActionBar } from "@/components/settings/SettingsActionBar";
 import { IfcPropertyPanel } from "@/components/IfcProperty/IfcPropertyPanel";
-import { EnergyConsumptionPanel } from "@/components/energy/EnergyConsumptionPanel";
-import { CanvasActionBar } from "@/components/canvas/CanvasActionBar";
-import { ShareQRCode } from "@/components/canvas/ShareQRCode";
-import { Entity } from "@/types/3dverse";
-import { handleCanvasSelection, CameraController_, unselectEntities } from "@/lib/3dverse/helpers";
-import { useRef } from "react";
 
 //------------------------------------------------------------------------------
-import { WelcomeModal } from "@/components/common/WelcomeModal";
-import { AboutCard } from "@/components/about/AboutCard";
+import { handleCanvasSelection, CameraController_, unselectEntities } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ export const MainLayout = memo(() => {
     const [energyVisible, setEnergyVisibility] = useState(false);
     const [basePoint, setBasePoint] = useState({ position: [0, 0, 0], orientation: [0, 0, 0, 1] });
     const [sessionId, setSessionId] = useState("");
-    const [spotLightEntity, setSpotLightEntity] = useState<Entity | undefined>(undefined);
+
     //------------------------------------------------------------------------------
     const {
         isOpen: isMainPanelExpanded,
@@ -53,22 +53,14 @@ export const MainLayout = memo(() => {
     }, []);
 
     //------------------------------------------------------------------------------
-    useEffect(() => {
-        const getSpotlightEntity = async () => {
-            const spotligthId = "5f0cf797-d27a-4f53-91b3-de21758050dd";
-            const spotlightEntity = (await SDK3DVerse.engineAPI.findEntitiesByEUID(spotligthId))[0];
-            setSpotLightEntity(spotlightEntity);
-        };
-        getSpotlightEntity();
-    }, [sessionId]);
-    //------------------------------------------------------------------------------
-    // UI
     const maxWidth = "760px";
     const [onMobile] = useMediaQuery(`(max-width: ${maxWidth})`, { ssr: false });
 
+    //------------------------------------------------------------------------------
     const canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
     const cameraControllerRef = useRef<CameraController_ | null>(null);
 
+    //------------------------------------------------------------------------------
     useEffect(() => {
         if (!sessionId) return;
         if (!cameraControllerRef.current) {
@@ -76,6 +68,7 @@ export const MainLayout = memo(() => {
         }
     }, [sessionId]);
 
+    //------------------------------------------------------------------------------
     useEffect(() => {
         if (!cameraControllerRef.current || !sessionId) return;
 
@@ -86,6 +79,8 @@ export const MainLayout = memo(() => {
         }
     }, [sessionId, onMobile]);
 
+    //------------------------------------------------------------------------------
+    // UI
     return (
         <>
             <Canvas
@@ -95,28 +90,29 @@ export const MainLayout = memo(() => {
                 setSessionId={setSessionId}
             />
 
-            {energyVisible && <EnergyConsumptionPanel isMainPanelExpanded={isMainPanelExpanded} />}
-
             <MainPanel isExpanded={isMainPanelExpanded} onExpand={onExpandMainPanel} onCollapse={onCollapseMainPanel} />
 
-            <CanvasActionBar
-                isMainPanelExpanded={isMainPanelExpanded}
-                basePoint={basePoint}
-                energyVisible={energyVisible}
-                setEnergyVisibility={setEnergyVisibility}
-            />
+            {sessionId && (
+                <>
+                    <MainActionBar
+                        isMainPanelExpanded={isMainPanelExpanded}
+                        energyVisible={energyVisible}
+                        setEnergyVisibility={setEnergyVisibility}
+                    />
 
-            <ShareQRCode sessionId={sessionId} />
+                    <SettingsActionBar basePoint={basePoint} isMainPanelExpanded={isMainPanelExpanded} />
 
-            {selectedPropertyGUID && (
-                <IfcPropertyPanel
-                    guid={selectedPropertyGUID}
-                    onClose={() => setSelectedPropertyGUID(null)}
-                    spotLightEntity={spotLightEntity}
-                />
+                    <BottomActionBar isMainPanelExpanded={isMainPanelExpanded} />
+
+                    <InviteButton sessionId={sessionId} />
+                </>
             )}
 
-            <AboutCard />
+            {selectedPropertyGUID && (
+                <IfcPropertyPanel guid={selectedPropertyGUID} onClose={() => setSelectedPropertyGUID(null)} />
+            )}
+
+            <About3dverseButton />
             <WelcomeModal />
         </>
     );

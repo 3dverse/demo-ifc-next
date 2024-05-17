@@ -1,6 +1,6 @@
 import IFC_DATA from "../../../public/data/json/ifcData.json";
 import ifctype2guids from "../../../public/data/json/ifctype2guids.json";
-import energyData from "../../../public/data/json/energyData.json";
+import ENERGY_DATA from "../../../public/data/json/energyData.json";
 import { guid2euid, euid2guid } from "../id-converter";
 import { EnergyData, IfcData, ChartInput, CanvasEvent, Attribute, BasePoint } from "@/types/ifc";
 import * as THREE from "three";
@@ -13,7 +13,7 @@ import { Entity } from "@/types/3dverse";
 
 const ifcData = IFC_DATA as IfcData;
 const ifcTypes = ifctype2guids;
-const roomEnergyData = energyData as EnergyData;
+const roomEnergyData = ENERGY_DATA as EnergyData;
 
 const TRAVEL_TIME = 1;
 
@@ -27,7 +27,7 @@ export function createChartInputs() {
     let data = [];
     let colors = [];
 
-    for (const s in energyData) {
+    for (const s in ENERGY_DATA) {
         const spaceName = ifcData[s].props.LongName
             ? `${ifcData[s].props.LongName} - ${ifcData[s].props.Name}`
             : ifcData[s].props.Name;
@@ -171,6 +171,7 @@ export function getInitialPoint() {
 }
 
 export function handleReset(basePoint: BasePoint) {
+    SDK3DVerse.engineAPI.cameraAPI.stopTravel();
     SDK3DVerse.engineAPI.cameraAPI.travel(
         SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0],
         basePoint.position,
@@ -244,6 +245,7 @@ export async function goToRoom(roomUUID: string | undefined) {
 
         const speed = computeDistance(currentCameraPosition, aabbCenterGlobal) / TRAVEL_TIME;
 
+        SDK3DVerse.engineAPI.cameraAPI.stopTravel();
         SDK3DVerse.engineAPI.cameraAPI.travel(
             activeViewPort,
             [aabbCenterGlobal[0] + 0.5, aabbCenterGlobal[1] + 0.5, aabbCenterGlobal[2] + 0.5],
@@ -415,3 +417,71 @@ export class CameraController_ {
         this.viewport.setControllerType(SDK3DVerse.cameraControllerType.editor);
     }
 }
+
+//--------------------------------------------------------------------------
+export const SPOTLIGHT_EUID = "5f0cf797-d27a-4f53-91b3-de21758050dd";
+export const DOOR_GUID = "02a5zYLwD3j9mC$YV6woIu";
+export const DOOR_EUID = guid2euid(DOOR_GUID);
+export const LAMP_POS = {
+    "position": [
+        -15.927632331848145,
+        22.03559684753418,
+        11.06391429901123
+    ],
+    "orientation": [
+        -0.09937240183353424,
+        0.13353009521961212,
+        0.01345838513225317,
+        0.9859582781791687
+    ],
+    "scale": [
+        1,
+        1,
+        1
+    ]
+}
+
+export const DOOR_POS = {
+    "position": [
+        -6.018769264221191,
+        2.0901241302490234,
+        -5.873008728027344
+    ],
+    "orientation": [
+        -0.006866801530122757,
+        0.9931328892707825,
+        0.0828433558344841,
+        0.08232200145721436
+    ],
+    "scale": [
+        1,
+        1,
+        1
+    ]
+}
+
+//--------------------------------------------------------------------------
+export const getSpotlightEntity = async () => {
+    const [spotlightEntity] = await SDK3DVerse.engineAPI.findEntitiesByEUID(SPOTLIGHT_EUID);
+    return spotlightEntity;
+};
+
+//--------------------------------------------------------------------------
+export const travelToEntity = async (entityUUID: string) => {
+    const [entity] = await SDK3DVerse.engineAPI.findEntitiesByEUID(entityUUID);
+    const [viewport] = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports();
+    const speed = 30;
+    SDK3DVerse.engineAPI.cameraAPI.stopTravel();
+    SDK3DVerse.engineAPI.cameraAPI.travel(
+        viewport,
+        entity.getGlobalTransform().position,
+        entity.getGlobalTransform().orientation,
+        speed,
+    );
+};
+//--------------------------------------------------------------------------
+export const focusOnEntity = async (entityUUID: string) => {
+    const [entity] = await SDK3DVerse.engineAPI.findEntitiesByEUID(entityUUID);
+    const [viewport] = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports();
+    entity.focusOn(viewport, { speedFactor: 3 });
+};

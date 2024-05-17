@@ -42,7 +42,7 @@ export const MainPanel = memo(
                     <div
                         className={twMerge(
                             "flex flex-col h-[inherit] shadow-[23px_0_24px_-24px_#00000030]",
-                            isCollapsed ? "animate-disappear-left" : "animate-appear-right",
+                            isCollapsed ? "animate-disappear-right" : "animate-appear-left",
                         )}
                     >
                         <MainPanelTop onCollapse={onCollapse} />

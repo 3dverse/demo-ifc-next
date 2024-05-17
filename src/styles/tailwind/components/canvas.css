@@ -91,6 +91,6 @@ canvas:focus {
 
 .main-panel-expanded {
     .rocket-loader-3dverse.rocket-loader-3dverse {
-        @apply lg:left-[var(--main-panel-width)];
+        @apply lg:pl-[var(--main-panel-width)];
     }
 }

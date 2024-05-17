@@ -4,7 +4,8 @@
 @import "tailwindcss/utilities";
 
 @import "./base/core.css";
-@import "./base/animation.css";
+@import "./base/animation-appear.css";
+@import "./base/animation-fade.css";
 @import "./base/bg-backdrop-blur.css";
 
 @import "./components/button.css";
@@ -14,7 +15,4 @@
 @import "./components/glow-effect.css";
 @import "./components/link.css";
 @import "./components/loader-progressbar-undefined.css";
-@import "./components/main-panel.css";
-@import "./components/panel.css";
-@import "./components/panels.css";
 @import "./components/pset.css";

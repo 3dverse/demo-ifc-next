@@ -14,7 +14,7 @@ import { IfcData } from "@/types/ifc";
 //------------------------------------------------------------------------------
 export const StoreyListAccordionItem = ({
     ifcData,
-    storey,
+    storeyGuid,
     storeyCount,
     hasStoreySpaces,
     isStoreyVisible,
@@ -22,7 +22,7 @@ export const StoreyListAccordionItem = ({
     handleStoreyVisibility,
 }: {
     ifcData: IfcData;
-    storey: string;
+    storeyGuid: string;
     storeyCount: number;
     hasStoreySpaces: boolean;
     isStoreyVisible: boolean;
@@ -31,7 +31,7 @@ export const StoreyListAccordionItem = ({
 }) => {
     return (
         <AccordionItem
-            key={ifcData[storey].props.GlobalId}
+            key={ifcData[storeyGuid].props.GlobalId}
             border="none"
             isDisabled={!hasStoreySpaces}
             opacity={isStoreyVisible ? 1 : 0.6}
@@ -81,7 +81,7 @@ export const StoreyListAccordionItem = ({
                             />
 
                             <h2 className={`flex-1 text-left font-medium ${hasStoreySpaces ? "" : "text-secondary"}`}>
-                                {ifcData[storey].props.Name}
+                                {ifcData[storeyGuid].props.Name}
                                 {!hasStoreySpaces && <span className="px-3 text-xs text-tertiary">No IfcSpace</span>}
                             </h2>
                         </AccordionButton>
@@ -91,7 +91,7 @@ export const StoreyListAccordionItem = ({
                             size="sm"
                             icon={isStoreyVisible ? <RiEyeLine /> : <RiEyeOffLine />}
                             onClick={(event) => {
-                                handleStoreyVisibility(index, ifcData[storey].props.GlobalId, event);
+                                handleStoreyVisibility(index, ifcData[storeyGuid].props.GlobalId, event);
                             }}
                             pos="absolute"
                             top="0"
@@ -108,7 +108,7 @@ export const StoreyListAccordionItem = ({
                         />
                     </div>
 
-                    <StoreyListAccordionPanel ifcData={ifcData} storey={storey} />
+                    <StoreyListAccordionPanel ifcData={ifcData} storeyGuid={storeyGuid} />
                 </div>
             )}
         </AccordionItem>

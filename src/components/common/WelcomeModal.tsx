@@ -11,14 +11,12 @@ import {
     useDisclosure,
     useMediaQuery,
 } from "@chakra-ui/react";
-import { RiArrowLeftSLine, RiArrowRightSLine, RiComputerLine } from "react-icons/ri";
-
-//------------------------------------------------------------------------------
-import { Logo } from "@/components/common/Logo";
+import { RiTeamLine } from "react-icons/ri";
 
 //------------------------------------------------------------------------------
 import { defaultModalProps } from "@/styles/chakra/components/Modal";
 import { breakpoints } from "@/styles/theme/breakpoints";
+import { enableFullScreen } from "@/lib/utils/helper";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -37,61 +35,38 @@ export const WelcomeModal = () => {
 
     //------------------------------------------------------------------------------
     return (
-        <Modal isOpen={isOpen} onClose={onClose} {...defaultModalProps} isCentered>
+        <Modal isOpen={isOpen} onClose={onClose} {...defaultModalProps} isCentered size="lg">
             <ModalOverlay />
             <ModalContent textAlign="center" className="text-balance">
                 <ModalBody px={0} pb={0}>
-                    <MobileToDesktopIllustration />
-                    <h2 className="mt-4 mb-8 text-xl font-medium">
-                        <span className="text-accent">Continue on your desktop</span>
-                        <br /> to get the full experience.
+                    <Icon
+                        as={RiTeamLine}
+                        boxSize={24}
+                        color="accent.500"
+                        style={{
+                            stroke: "white",
+                            strokeWidth: "1.2px",
+                        }}
+                    />
+                    <h2 className="mt-4 mb-8 text-lg md:text-xl font-medium">
+                        The mobile viewer is designed to enhance collaboration with desktop users.
                     </h2>
                 </ModalBody>
 
                 <ModalFooter justifyContent={{ base: "center", md: "start" }} gap={3}>
                     {IS_FEATURE_READY && <Button>Send this app to your desktop</Button>}
-                    <Button variant="primary" className="w-full" onClick={onClose}>
-                        Understood
+                    <Button
+                        variant="accent"
+                        className="w-full"
+                        onClick={() => {
+                            enableFullScreen();
+                            onClose();
+                        }}
+                    >
+                        Close
                     </Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>
     );
 };
-
-//------------------------------------------------------------------------------
-const MobileToDesktopIllustration = () => (
-    <div className="relative">
-        <Icon
-            as={RiArrowRightSLine}
-            boxSize={16}
-            color="accent.200"
-            style={{
-                stroke: "var(--color-bg-ground)",
-                strokeWidth: "1.5px",
-            }}
-            className="animate-appear-right animation-delay-[1s] opacity-0"
-        />
-        <Icon
-            as={RiComputerLine}
-            boxSize={32}
-            color="accent.500"
-            style={{
-                stroke: "var(--color-bg-ground)",
-                strokeWidth: "1.7px",
-            }}
-        />
-        <Icon
-            as={RiArrowLeftSLine}
-            boxSize={16}
-            color="accent.200"
-            style={{
-                stroke: "var(--color-bg-ground)",
-                strokeWidth: "1.5px",
-            }}
-            className="animate-appear-left animation-delay-[1s] opacity-0"
-        />
-
-        <Logo className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 mt-px" id={5} />
-    </div>
-);

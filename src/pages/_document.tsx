@@ -28,7 +28,7 @@ export default function Document() {
                 <meta name="twitter:image" content={METADATA.image} />
 
                 <meta name="application-name" content="3dverse" />
-                <link rel="icon" type="image/svg+xml" href="/socials/favicon.svg" />
+                <link rel="icon" type="image/svg+xml" href="/demo-ifc-next/socials/favicon.svg" />
                 <link rel="icon" href="/demo-ifc-next/socials/favicon.svg" />
                 <meta name="theme-color" content={METADATA.themeColor} />
 

@@ -30,11 +30,11 @@ export const ControlAnimation = () => {
             <h4 className="pset-title">Animation</h4>
             <div className="flex gap-1">
                 {isAnimationPlaying && (
-                    <Button variant="primary" size="xs" onClick={resetAnimation}>
+                    <Button variant="accent" size="xs" onClick={resetAnimation}>
                         Reset
                     </Button>
                 )}
-                <Button variant="primary" size="xs" onClick={toggleAnimation}>
+                <Button variant="accent" size="xs" onClick={toggleAnimation}>
                     {isAnimationPlaying ? "Pause" : "Play"}
                 </Button>
             </div>

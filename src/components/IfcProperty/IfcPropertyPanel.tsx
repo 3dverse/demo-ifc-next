@@ -3,29 +3,22 @@ import IFC_DATA from "../../../public/data/json/ifcData.json";
 
 //------------------------------------------------------------------------------
 import { Header } from "./Header";
-import { ControlLight } from "./ControlLight";
-import { ControlAnimation } from "./ControlAnimation";
 import { Attributes } from "./Attributes";
+import { SmartControlLight } from "@/components/smartControls/SmartControlLight";
+import { SmartControlDoor } from "@/components/smartControls/SmartControlDoor";
 
 //------------------------------------------------------------------------------
 import { IfcData } from "@/types/ifc";
-import { Entity } from "@/types/3dverse";
+import { DOOR_GUID } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-export const IfcPropertyPanel = ({
-    guid,
-    onClose,
-    spotLightEntity,
-}: {
-    guid: string;
-    onClose: () => void;
-    spotLightEntity: Entity | undefined;
-}) => {
+export const IfcPropertyPanel = ({ guid, onClose }: { guid: string; onClose: () => void }) => {
     //------------------------------------------------------------------------------
     const ifcData = IFC_DATA as IfcData;
     const entitiyProperties = ifcData[guid];
 
+    //------------------------------------------------------------------------------
     if (!entitiyProperties?.props?.Name) {
         return <></>;
     }
@@ -36,9 +29,21 @@ export const IfcPropertyPanel = ({
             <Header entitiyProperties={entitiyProperties} onClose={onClose} />
             <div className="card-body">
                 {entitiyProperties?.props?.type == "IfcLightFixture" && (
-                    <ControlLight spotLightEntity={spotLightEntity} />
+                    <article className="pset-list-item card-wrapper items-center lg:!py-2">
+                        <h4 className="pset-title pset-label !text-primary">Light</h4>
+                        <div className="pset-value">
+                            <SmartControlLight />
+                        </div>
+                    </article>
                 )}
-                {entitiyProperties?.props?.GlobalId == "02a5zYLwD3j9mC$YV6woIu" && <ControlAnimation />}
+                {entitiyProperties?.props?.GlobalId == DOOR_GUID && (
+                    <article className="pset-list-item card-wrapper items-center lg:!py-2">
+                        <h4 className="pset-title pset-label !text-primary">Animation</h4>
+                        <div className="pset-value">
+                            <SmartControlDoor isFromIfcPropertyPanel />
+                        </div>
+                    </article>
+                )}
                 <Attributes guid={guid} />
             </div>
         </aside>

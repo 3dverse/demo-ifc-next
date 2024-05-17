@@ -22,3 +22,9 @@ body {
     color: var(--color-accent);
     background-color: hsl(var(--color-accent-hsl), 0.1);
 }
+
+mark {
+    color: var(--color-accent-800);
+    background-color: hsl(var(--color-accent-hsl), 0.2);
+    @apply rounded-sm;
+}
