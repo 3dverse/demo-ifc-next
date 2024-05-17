@@ -5,18 +5,21 @@ import { RiLeafLine, RiRouterLine } from "react-icons/ri";
 import { twMerge } from "tailwind-merge";
 
 //------------------------------------------------------------------------------
-import { toggleEnergyView } from "@/lib/3dverse/helpers";
+import { handleReset, toggleEnergyView } from "@/lib/3dverse/helpers";
 import { MainActionPanel } from "@/components/layout/MainActionPanel";
 import { EnergyConsumptionList } from "@/components/energy/EnergyConsumptionList";
 import { SmartControlList } from "@/components/smartControls/SmartControlList";
+import { BasePoint } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 export const MainActionBar = ({
+    basePoint,
     isMainPanelExpanded,
     energyVisible,
     setEnergyVisibility,
 }: {
+    basePoint: BasePoint;
     isMainPanelExpanded: boolean;
     energyVisible: any;
     setEnergyVisibility: Dispatch<SetStateAction<boolean>>;
@@ -42,11 +45,12 @@ export const MainActionBar = ({
     //------------------------------------------------------------------------------
     useEffect(() => {
         if (tabIndex === 0) {
+            handleReset(basePoint);
             handleToggleEnergyView(true);
         } else if (energyVisible) {
             handleToggleEnergyView(false);
         }
-    }, [energyVisible, handleToggleEnergyView, tabIndex]);
+    }, [basePoint, energyVisible, handleToggleEnergyView, tabIndex]);
 
     //------------------------------------------------------------------------------
     return (

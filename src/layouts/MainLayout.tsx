@@ -95,6 +95,7 @@ export const MainLayout = memo(() => {
             {sessionId && (
                 <>
                     <MainActionBar
+                        basePoint={basePoint}
                         isMainPanelExpanded={isMainPanelExpanded}
                         energyVisible={energyVisible}
                         setEnergyVisibility={setEnergyVisibility}
