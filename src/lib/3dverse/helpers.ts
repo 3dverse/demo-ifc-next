@@ -422,6 +422,43 @@ export class CameraController_ {
 export const SPOTLIGHT_EUID = "5f0cf797-d27a-4f53-91b3-de21758050dd";
 export const DOOR_GUID = "02a5zYLwD3j9mC$YV6woIu";
 export const DOOR_EUID = guid2euid(DOOR_GUID);
+export const LAMP_POS = {
+    "position": [
+        -15.927632331848145,
+        22.03559684753418,
+        11.06391429901123
+    ],
+    "orientation": [
+        -0.09937240183353424,
+        0.13353009521961212,
+        0.01345838513225317,
+        0.9859582781791687
+    ],
+    "scale": [
+        1,
+        1,
+        1
+    ]
+}
+
+export const DOOR_POS = {
+    "position": [
+        -6.018769264221191,
+        2.0901241302490234,
+        -5.873008728027344
+    ],
+    "orientation": [
+        -0.006866801530122757,
+        0.9931328892707825,
+        0.0828433558344841,
+        0.08232200145721436
+    ],
+    "scale": [
+        1,
+        1,
+        1
+    ]
+}
 
 //--------------------------------------------------------------------------
 export const getSpotlightEntity = async () => {

@@ -8,7 +8,7 @@ import { SmartControlLight } from "./SmartControlLight";
 import { SmartControlDoor } from "./SmartControlDoor";
 
 //------------------------------------------------------------------------------
-import { DOOR_EUID, SPOTLIGHT_EUID, focusOnEntity } from "@/lib/3dverse/helpers";
+import { LAMP_POS, DOOR_POS } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -20,15 +20,15 @@ export const SmartControlList = () => {
     const [activeItemIndex, setActiveItemIndex] = useState(0);
 
     useEffect(() => {
-        focusOnEntity(SPOTLIGHT_EUID);
+        SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(LAMP_POS);
     }, []);
 
     //------------------------------------------------------------------------------
     const onTabChange = (index: number) => {
         if (index === 0) {
-            focusOnEntity(SPOTLIGHT_EUID);
+            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(LAMP_POS);
         } else if (index === 1) {
-            DOOR_EUID && focusOnEntity(DOOR_EUID);
+            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(DOOR_POS);
         }
         setActiveItemIndex(index);
     };
