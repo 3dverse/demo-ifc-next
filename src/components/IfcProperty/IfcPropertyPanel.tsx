@@ -28,7 +28,7 @@ export const IfcPropertyPanel = ({ guid, onClose }: { guid: string; onClose: () 
         <aside className="panel-card lg:card animate-appear-top absolute lg:left-auto lg:bottom-0 lg:right-3 lg:max-h-[46vh] flex flex-col">
             <Header entitiyProperties={entitiyProperties} onClose={onClose} />
             <div className="card-body">
-                {entitiyProperties?.props?.type == "IfcLightFixture" && (
+                {entitiyProperties?.props?.GlobalId == "0b6St3DlX6wOevvBjxGgAO" && (
                     <article className="pset-list-item card-wrapper items-center lg:!py-2">
                         <h4 className="pset-title pset-label !text-primary">Light</h4>
                         <div className="pset-value">
