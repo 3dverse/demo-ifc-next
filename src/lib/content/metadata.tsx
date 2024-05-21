@@ -1,5 +1,5 @@
 export const METADATA = {
-    title: "IFC Demo Viewer",
+    title: "IFC Demo",
     description: "Powered by 3dverse",
     description_with_link: (
         <>
