@@ -15,14 +15,10 @@ export async function initApp() {
                     },
                 });
             } catch {
-                await SDK3DVerse.startSession({
-                    userToken: publicToken,
-                    sceneUUID: mainSceneUUID,
-                    canvas: document.getElementById("canvas"),
-                    viewportProperties: {
-                        defaultControllerType: SDK3DVerse.controller_type.editor,
-                    },
-                });
+                let url = window.location.href;
+                let urlObject = new URL(url);
+                urlObject.searchParams.delete("sessionId");
+                window.location.href = urlObject.toString();
             }
         }
     } else {
