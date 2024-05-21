@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 //------------------------------------------------------------------------------
 import { SettingsMenu } from "@/components/settings/SettingsMenu";
+import { BasePoint } from "@/types/ifc";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -11,7 +12,7 @@ export const SettingsActionBar = ({
     basePoint,
 }: {
     isMainPanelExpanded: boolean;
-    basePoint: any;
+    basePoint: BasePoint;
 }) => {
     return (
         <div

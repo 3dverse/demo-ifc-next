@@ -60,6 +60,7 @@ export const NavigationHelpPanel = () => {
             label: "Zoom",
             instruction: "Mouse wheel",
             image: HelpCursorZoom,
+            isHidden: true,
         },
     ];
 
@@ -137,7 +138,7 @@ export const NavigationHelpPanel = () => {
                     Hide navigation help
                 </Button>
                 <Flex gap={3}>
-                    {HELP_ITEMS.map(({ label, instruction, image, imageHeight }) => (
+                    {HELP_ITEMS.filter((i) => !i.isHidden).map(({ label, instruction, image, imageHeight }) => (
                         <Flex key={label} flexDir="column" alignItems="center" gap={2} w="8rem">
                             <Flex justifyContent="center" alignItems="center" h={14}>
                                 <Box as={image} w={16} h={imageHeight ?? 10} />

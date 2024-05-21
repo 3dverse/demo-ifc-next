@@ -19,10 +19,6 @@ export const SmartControlList = () => {
     //------------------------------------------------------------------------------
     const [activeItemIndex, setActiveItemIndex] = useState(0);
 
-    useEffect(() => {
-        SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(LAMP_POS);
-    }, []);
-
     //------------------------------------------------------------------------------
     const onTabChange = (index: number) => {
         if (index === 0) {
