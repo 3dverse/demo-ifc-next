@@ -47,11 +47,14 @@ export const MainActionBar = ({
         if (tabIndex === 0) {
             handleReset(basePoint);
             handleToggleEnergyView(true);
-        } else if (tabIndex === 1) {
-            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(LAMP_POS);
+        } else if (energyVisible) {
             handleToggleEnergyView(false);
         }
-    }, [basePoint, handleToggleEnergyView, tabIndex]);
+
+        if (tabIndex === 1) {
+            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(LAMP_POS);
+        }
+    }, [basePoint, energyVisible, handleToggleEnergyView, tabIndex]);
 
     //------------------------------------------------------------------------------
     return (
