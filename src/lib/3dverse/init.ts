@@ -5,14 +5,25 @@ export async function initApp() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.size) {
         if (urlParams.has("sessionId")) {
-            await SDK3DVerse.joinSession({
-                sessionId: urlParams.get("sessionId"),
-                userToken: publicToken,
-                canvas: document.getElementById("canvas"),
-                viewportProperties: {
-                    defaultControllerType: SDK3DVerse.controller_type.editor,
-                },
-            });
+            try {
+                await SDK3DVerse.joinSession({
+                    sessionId: urlParams.get("sessionId"),
+                    userToken: publicToken,
+                    canvas: document.getElementById("canvas"),
+                    viewportProperties: {
+                        defaultControllerType: SDK3DVerse.controller_type.editor,
+                    },
+                });
+            } catch {
+                await SDK3DVerse.startSession({
+                    userToken: publicToken,
+                    sceneUUID: mainSceneUUID,
+                    canvas: document.getElementById("canvas"),
+                    viewportProperties: {
+                        defaultControllerType: SDK3DVerse.controller_type.editor,
+                    },
+                });
+            }
         }
     } else {
         await SDK3DVerse.startSession({
