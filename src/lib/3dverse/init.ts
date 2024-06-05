@@ -43,7 +43,7 @@ export async function initApp() {
     SDK3DVerse.engineAPI.cameraAPI
         .getActiveViewports()[0]
         .getCamera()
-        .setComponent("camera", { dataJSON: { edgeOutlines: true, skybox: true } });
+        .setComponent("camera", { dataJSON: { edgeOutlines: false, skybox: true } });
 
     SDK3DVerse.engineAPI.cameraAPI
         .getActiveViewports()[0]
