@@ -15,6 +15,7 @@ import { IfcPropertyPanel } from "@/components/IfcProperty/IfcPropertyPanel";
 
 //------------------------------------------------------------------------------
 import { handleCanvasSelection, CameraController_, unselectEntities } from "@/lib/3dverse/helpers";
+import { Entity } from "@/types/3dverse";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -63,9 +64,24 @@ export const MainLayout = memo(() => {
     //------------------------------------------------------------------------------
     useEffect(() => {
         if (!sessionId) return;
+
+        const onCameraUpdate = (cameras: Entity[]) => {
+            const camera = cameras[0];
+            const cameraPosition = camera?.getComponent("local_transform")?.position;
+            const threeCamera = cameraControllerRef?.current?.cameraControls.camera;
+            const threeCameraPosition = threeCamera?.position?.toArray();
+            if (cameraPosition && JSON.stringify(threeCameraPosition) !== JSON.stringify(cameraPosition)) {
+                cameraControllerRef?.current?.cameraControls.setPosition(...cameraPosition);
+            }
+        };
+
         if (!cameraControllerRef.current) {
             cameraControllerRef.current = new CameraController_(canvasElement);
+            SDK3DVerse.notifier.on("OnCamerasUpdated", onCameraUpdate);
         }
+        return () => {
+            SDK3DVerse.notifier.off("OnCamerasUpdated", onCameraUpdate);
+        };
     }, [sessionId]);
 
     //------------------------------------------------------------------------------
