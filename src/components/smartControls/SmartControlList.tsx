@@ -22,9 +22,9 @@ export const SmartControlList = () => {
     //------------------------------------------------------------------------------
     const onTabChange = (index: number) => {
         if (index === 0) {
-            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(LAMP_POS);
+            SDK3DVerse.engineAPI.cameraAPI.travel(LAMP_POS.position, LAMP_POS.orientation)
         } else if (index === 1) {
-            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(DOOR_POS);
+            SDK3DVerse.engineAPI.cameraAPI.travel(DOOR_POS.position, DOOR_POS.orientation)
         }
         setActiveItemIndex(index);
     };

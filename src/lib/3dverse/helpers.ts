@@ -171,13 +171,7 @@ export function getInitialPoint() {
 }
 
 export function handleReset(basePoint: BasePoint) {
-    SDK3DVerse.engineAPI.cameraAPI.stopTravel();
-    SDK3DVerse.engineAPI.cameraAPI.travel(
-        SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0],
-        basePoint.position,
-        basePoint.orientation,
-        10000,
-    );
+    SDK3DVerse.engineAPI.cameraAPI.travel(basePoint.position, basePoint.orientation)
 }
 
 export function handleCameraSwitchChange(cameraState: boolean, cameraSetter: (cameraState: boolean) => void) {
@@ -243,16 +237,15 @@ export async function goToRoom(roomUUID: string | undefined) {
             .getCamera()
             .getGlobalTransform().position;
 
+        const orientation = SDK3DVerse.engineAPI.cameraAPI
+            .getActiveViewports()[0]
+            .getCamera()
+            .getGlobalTransform().orientation;
+
         const speed = computeDistance(currentCameraPosition, aabbCenterGlobal) / TRAVEL_TIME;
 
-        SDK3DVerse.engineAPI.cameraAPI.stopTravel();
-        SDK3DVerse.engineAPI.cameraAPI.travel(
-            activeViewPort,
-            [aabbCenterGlobal[0] + 0.5, aabbCenterGlobal[1] + 0.5, aabbCenterGlobal[2] + 0.5],
-            [0, 0, 0, 1],
-            speed,
-        );
-        // Update the orbit target.
+        SDK3DVerse.engineAPI.cameraAPI.travel(aabbCenterGlobal, orientation)
+
         SDK3DVerse.updateControllerSetting({
             lookAtPoint: [aabbCenterGlobal[0] + 0.2, aabbCenterGlobal[1] + 0.2, aabbCenterGlobal[2] + 0.2],
         });
@@ -360,6 +353,7 @@ export class CameraController_ {
     canvasElement: HTMLElement;
     cameraControls: CameraControls;
     viewport: any;
+    isOn: boolean
 
     constructor(canvasElement: HTMLElement) {
         this.canvasElement = canvasElement;
@@ -368,6 +362,7 @@ export class CameraController_ {
         const { fovy, aspectRatio, nearPlane, farPlane } = this.viewport.getProjection();
         const camera = new THREE.PerspectiveCamera(fovy, aspectRatio, nearPlane, farPlane || 100000);
         this.cameraControls = new CameraControls(camera, this.canvasElement);
+        this.isOn = false;
     }
 
     onCameraUpdate = () => {
@@ -472,12 +467,13 @@ export const travelToEntity = async (entityUUID: string) => {
     const [viewport] = SDK3DVerse.engineAPI.cameraAPI.getActiveViewports();
     const speed = 30;
     SDK3DVerse.engineAPI.cameraAPI.stopTravel();
-    SDK3DVerse.engineAPI.cameraAPI.travel(
-        viewport,
-        entity.getGlobalTransform().position,
-        entity.getGlobalTransform().orientation,
-        speed,
-    );
+
+    // SDK3DVerse.engineAPI.cameraAPI.travel(
+    //     viewport,
+    //     entity.getGlobalTransform().position,
+    //     entity.getGlobalTransform().orientation,
+    //     speed,
+    // );
 };
 //--------------------------------------------------------------------------
 export const focusOnEntity = async (entityUUID: string) => {

@@ -52,7 +52,7 @@ export const MainActionBar = ({
         }
 
         if (tabIndex === 1) {
-            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(LAMP_POS);
+            SDK3DVerse.engineAPI.cameraAPI.travel(LAMP_POS.position, LAMP_POS.orientation)
         }
     }, [basePoint, energyVisible, handleToggleEnergyView, tabIndex]);
 
