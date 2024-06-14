@@ -8,7 +8,7 @@ import { SmartControlLight } from "./SmartControlLight";
 import { SmartControlDoor } from "./SmartControlDoor";
 
 //------------------------------------------------------------------------------
-import { LAMP_POS, DOOR_POS } from "@/lib/3dverse/helpers";
+import { LAMP_POS, DOOR_POS, LAMP_COORDS, DOOR_COORDS } from "@/lib/3dverse/helpers";
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -22,9 +22,9 @@ export const SmartControlList = () => {
     //------------------------------------------------------------------------------
     const onTabChange = (index: number) => {
         if (index === 0) {
-            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(LAMP_POS);
+            SDK3DVerse.engineAPI.cameraAPI.travel(LAMP_POS.position, LAMP_POS.orientation, LAMP_COORDS);
         } else if (index === 1) {
-            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(DOOR_POS);
+            SDK3DVerse.engineAPI.cameraAPI.travel(DOOR_POS.position, DOOR_POS.orientation, DOOR_COORDS);
         }
         setActiveItemIndex(index);
     };

@@ -5,7 +5,7 @@ import { RiLeafLine, RiRouterLine } from "react-icons/ri";
 import { twMerge } from "tailwind-merge";
 
 //------------------------------------------------------------------------------
-import { handleReset, LAMP_POS, toggleEnergyView } from "@/lib/3dverse/helpers";
+import { handleReset, LAMP_POS, LAMP_COORDS, toggleEnergyView } from "@/lib/3dverse/helpers";
 import { MainActionPanel } from "@/components/layout/MainActionPanel";
 import { EnergyConsumptionList } from "@/components/energy/EnergyConsumptionList";
 import { SmartControlList } from "@/components/smartControls/SmartControlList";
@@ -52,7 +52,7 @@ export const MainActionBar = ({
         }
 
         if (tabIndex === 1) {
-            SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(LAMP_POS);
+            SDK3DVerse.engineAPI.cameraAPI.travel(LAMP_POS.position, LAMP_POS.orientation, LAMP_COORDS);
         }
     }, [basePoint, energyVisible, handleToggleEnergyView, tabIndex]);
 
