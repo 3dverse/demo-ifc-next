@@ -171,7 +171,7 @@ export function getInitialPoint() {
 }
 
 export function handleReset(basePoint: BasePoint) {
-    SDK3DVerse.engineAPI.cameraAPI.travel(basePoint.position, basePoint.orientation)
+    SDK3DVerse.engineAPI.cameraAPI.travel(basePoint.position, basePoint.orientation, [-2.8170461654663086, 6.087423324584961, -3.1617369651794434]);
 }
 
 export function handleCameraSwitchChange(cameraState: boolean, cameraSetter: (cameraState: boolean) => void) {
@@ -454,6 +454,9 @@ export const DOOR_POS = {
         1
     ]
 };
+
+export const LAMP_COORDS = [-17.66144561767578, 21.286380767822266, 7.2220964431762695];
+export const DOOR_COORDS = [-5.474447250366211, 1.8857547044754028, -3.1728570461273193];
 
 //--------------------------------------------------------------------------
 export const getSpotlightEntity = async () => {

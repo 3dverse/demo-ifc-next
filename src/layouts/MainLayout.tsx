@@ -64,15 +64,20 @@ export const MainLayout = memo(() => {
     //------------------------------------------------------------------------------
     SDK3DVerse.engineAPI.cameraAPI.travel = async (
         position: [number, number, number],
-        orientation: [number, number, number, number]
+        orientation: [number, number, number, number],
+        targetPos?: [number, number, number]
     ) => {
-
         if (onMobile) {
             const target = new THREE.Object3D();
             target.position.set(...position)
             target.rotation.setFromQuaternion(new THREE.Quaternion(...orientation));
             target.translateOnAxis(new THREE.Vector3(0, 0, -1), 0.01);
-            await cameraControllerRef?.current?.cameraControls.setLookAt(...position, ...target.position.toArray(), false);
+            if (targetPos) {
+                await cameraControllerRef?.current?.cameraControls.setLookAt(...position, ...targetPos, false);
+            }
+            else {
+                await cameraControllerRef?.current?.cameraControls.setLookAt(...position, ...target.position.toArray(), false);
+            }
         }
         else {
             SDK3DVerse.engineAPI.cameraAPI.getActiveViewports()[0].getCamera().setGlobalTransform(
